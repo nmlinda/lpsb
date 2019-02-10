@@ -11,13 +11,28 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+import { PemberitahuanPage } from '../pages/pemberitahuan/pemberitahuan';
+import { PesananPage } from '../pages/pesanan/pesanan';
+import { ProfilPage } from '../pages/profil/profil';
+import { BuatPesananPage } from '../pages/buat-pesanan/buat-pesanan';
+import { ListAnalisisPage } from '../pages/list-analisis/list-analisis';
+import { ReviewPesananPage } from '../pages/review-pesanan/review-pesanan';
+import { CheckoutPage } from '../pages/checkout/checkout';
+
 @NgModule({
   declarations: [
     MyApp,
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    PemberitahuanPage,
+    PesananPage,
+    ProfilPage,
+    BuatPesananPage,
+    ListAnalisisPage,
+    ReviewPesananPage,
+    CheckoutPage
   ],
   imports: [
     BrowserModule,
@@ -29,7 +44,14 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    PemberitahuanPage,
+    PesananPage,
+    ProfilPage,
+    BuatPesananPage,
+    ListAnalisisPage,
+    ReviewPesananPage,
+    CheckoutPage
   ],
   providers: [
     StatusBar,

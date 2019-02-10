@@ -1,0 +1,95 @@
+<!--
+  Generated template for the BuatPesananPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Buat Pesanan</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-label>Asal</ion-label>
+      <ion-select [(ngModel)]="asal">
+          <ion-option checked="true" disable="true">Pilih</ion-option>
+          <ion-option value="1">IPB</ion-option>
+          <ion-option value="2">Non IPB</ion-option>
+        </ion-select>
+    </ion-item>
+    <ion-item>
+        <ion-label>Lama Pengujian</ion-label>
+        <ion-select [(ngModel)]="lamaPengujian">
+            <ion-option value="1">Reguler (7 Hari)</ion-option>
+            <ion-option value="2">Percepatan (14 Hari)</ion-option>
+          </ion-select>
+      </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-list-header>
+      Sampel #1
+    </ion-list-header>
+      
+    <ion-item>
+        <ion-label color="primary" fixed>Jenis</ion-label>
+        <ion-input type="text" placeholder="Jenis"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label color="primary" fixed>Kemasan</ion-label>
+        <ion-input type="text" placeholder="Kemasan"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label color="primary" fixed>Jumlah</ion-label>
+        <ion-input type="text" placeholder="Jumlah"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label color="primary">Jenis Analisis</ion-label>
+        <ion-select [(ngModel)]="jenisanalisis">
+          <ion-item-divider color="light">Fitokimia</ion-item-divider>
+          <ion-option value="1">Fitokimia</ion-option>
+          <ion-option value="2">Oksidan</ion-option>
+        </ion-select>
+    </ion-item>
+    <ion-item>
+        <ion-label color="primary">Bentuk</ion-label>
+        <ion-select [(ngModel)]="bentuk">
+          <ion-option value="ekstrak">Ekstrak</ion-option>
+          <ion-option value="simplisia">Simplisia</ion-option>
+        </ion-select>
+    </ion-item>
+    <ion-item>
+        <ion-label>Harga</ion-label>
+        <ion-label>Rp 0</ion-label>
+    </ion-item>
+
+    <ion-item>
+        <button ion-button outline>Tambah Jenis Analisis</button>
+    </ion-item>
+  </ion-list>
+
+  <button ion-button outline>Tambah Sampel</button>
+
+  <ion-footer>
+      <ion-toolbar>
+        <ion-grid>
+          <ion-row>
+            <ion-col col-8>
+              <h6>Harga* : Rp 0</h6>
+              <p>Harga* : Rp 0<br>
+                untuk asal Non-IPB dengan Percepatan</p>
+            </ion-col>
+            <ion-col col-4>
+                <button ion-button>Berikutnya</button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-toolbar>
+  </ion-footer>
+</ion-content>
