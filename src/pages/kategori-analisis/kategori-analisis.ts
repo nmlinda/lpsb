@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { ReviewPesananPage } from '../review-pesanan/review-pesanan';
 
 /**
- * Generated class for the BuatPesananPage page.
+ * Generated class for the KategoriAnalisisPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -11,18 +10,16 @@ import { ReviewPesananPage } from '../review-pesanan/review-pesanan';
 
 @IonicPage()
 @Component({
-  selector: 'page-buat-pesanan',
-  templateUrl: 'buat-pesanan.html',
+  selector: 'page-kategori-analisis',
+  templateUrl: 'kategori-analisis.html',
 })
-export class BuatPesananPage {
+export class KategoriAnalisisPage {
 
-  reviewPesanan: any;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.reviewPesanan = ReviewPesananPage;
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad BuatPesananPage');
+    console.log('ionViewDidLoad KategoriAnalisisPage');
   }
 
 }

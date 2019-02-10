@@ -1,5 +1,7 @@
 {
   "name": "lpsb",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }

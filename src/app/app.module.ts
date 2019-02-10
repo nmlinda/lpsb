@@ -18,6 +18,7 @@ import { BuatPesananPage } from '../pages/buat-pesanan/buat-pesanan';
 import { ListAnalisisPage } from '../pages/list-analisis/list-analisis';
 import { ReviewPesananPage } from '../pages/review-pesanan/review-pesanan';
 import { CheckoutPage } from '../pages/checkout/checkout';
+import { KategoriAnalisisPage } from '../pages/kategori-analisis/kategori-analisis';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { CheckoutPage } from '../pages/checkout/checkout';
     BuatPesananPage,
     ListAnalisisPage,
     ReviewPesananPage,
-    CheckoutPage
+    CheckoutPage,
+    KategoriAnalisisPage
   ],
   imports: [
     BrowserModule,
@@ -51,7 +53,8 @@ import { CheckoutPage } from '../pages/checkout/checkout';
     BuatPesananPage,
     ListAnalisisPage,
     ReviewPesananPage,
-    CheckoutPage
+    CheckoutPage,
+    KategoriAnalisisPage
   ],
   providers: [
     StatusBar,
