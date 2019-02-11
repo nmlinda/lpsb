@@ -31,7 +31,7 @@
 
     <div [ngSwitch]="status">
         <ion-list *ngSwitchCase="1">
-          <ion-item navPush="detailPesanan">
+          <ion-item [navPush]="detailPesanan">
             <ion-label><h2>Pesanan No 19/II/2019</h2></ion-label>
           </ion-item>
           <ion-item>
