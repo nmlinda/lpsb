@@ -20,6 +20,7 @@ import { ReviewPesananPage } from '../pages/review-pesanan/review-pesanan';
 import { CheckoutPage } from '../pages/checkout/checkout';
 import { KategoriAnalisisPage } from '../pages/kategori-analisis/kategori-analisis';
 import { ModalPilihAnalisisPage } from '../pages/modal-pilih-analisis/modal-pilih-analisis';
+import { DetailPesananPage } from '../pages/detail-pesanan/detail-pesanan';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { ModalPilihAnalisisPage } from '../pages/modal-pilih-analisis/modal-pili
     ReviewPesananPage,
     CheckoutPage,
     KategoriAnalisisPage,
-    ModalPilihAnalisisPage
+    ModalPilihAnalisisPage,
+    DetailPesananPage
   ],
   imports: [
     BrowserModule,
@@ -56,7 +58,8 @@ import { ModalPilihAnalisisPage } from '../pages/modal-pilih-analisis/modal-pili
     ListAnalisisPage,
     ReviewPesananPage,
     CheckoutPage,
-    KategoriAnalisisPage
+    KategoriAnalisisPage,
+    DetailPesananPage
   ],
   providers: [
     StatusBar,

@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { DetailPesananPage } from '../detail-pesanan/detail-pesanan';
 
 /**
- * Generated class for the PesananPage page.
+ * Generated class for the DetailPesananPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -11,20 +10,16 @@ import { DetailPesananPage } from '../detail-pesanan/detail-pesanan';
 
 @IonicPage()
 @Component({
-  selector: 'page-pesanan',
-  templateUrl: 'pesanan.html',
-  
+  selector: 'page-detail-pesanan',
+  templateUrl: 'detail-pesanan.html',
 })
-export class PesananPage {
-  status: any;
-  detailPesanan: any;
+export class DetailPesananPage {
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.status = "1";
-    this.detailPesanan = DetailPesananPage;
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad PesananPage');
+    console.log('ionViewDidLoad DetailPesananPage');
   }
-  
+
 }
