@@ -4,6 +4,7 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
+<script src="lib/ionic-modal-select/ionic-modal-select.js"></script>
 <ion-header>
 
   <ion-navbar>
@@ -51,11 +52,11 @@
     </ion-item>
     <ion-item>
         <ion-label color="primary">Jenis Analisis</ion-label>
-        <ion-select [(ngModel)]="jenisanalisis">
+        <!-- <ion-select [(ngModel)]="jenisanalisis">
           <ion-item-divider color="light">Fitokimia</ion-item-divider>
           <ion-option value="1">Fitokimia</ion-option>
           <ion-option value="2">Oksidan</ion-option>
-        </ion-select>
+        </ion-select> -->
     </ion-item>
     <ion-item>
         <ion-label color="primary">Bentuk</ion-label>
@@ -86,19 +87,19 @@
   
 </ion-content>
 <ion-footer>
-    <ion-toolbar>
       <ion-grid>
         <ion-row>
-          <ion-col col-8>
+          <ion-col col-7>
             <p no-margin>
               <strong>Harga* : Rp 0</strong><br>
               *untuk asal Non-IPB dengan Percepatan
             </p>
           </ion-col>
-          <ion-col col-4>
+          <ion-col col-5>
+            <ion-buttons end>
               <button ion-button color="primary" [navPush]="reviewPesanan">Berikutnya</button>
+            </ion-buttons>
           </ion-col>
         </ion-row>
       </ion-grid>
-    </ion-toolbar>
 </ion-footer>

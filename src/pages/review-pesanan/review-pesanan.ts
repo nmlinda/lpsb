@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { CheckoutPage } from '../checkout/checkout';
 
 /**
  * Generated class for the ReviewPesananPage page.
@@ -14,12 +15,15 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'review-pesanan.html',
 })
 export class ReviewPesananPage {
-
+  
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    // this.checkout = CheckoutPage;
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ReviewPesananPage');
   }
-
+  checkout(){
+    this.navCtrl.push(CheckoutPage);
+  }
 }

@@ -19,6 +19,7 @@ import { ListAnalisisPage } from '../pages/list-analisis/list-analisis';
 import { ReviewPesananPage } from '../pages/review-pesanan/review-pesanan';
 import { CheckoutPage } from '../pages/checkout/checkout';
 import { KategoriAnalisisPage } from '../pages/kategori-analisis/kategori-analisis';
+import { ModalPilihAnalisisPage } from '../pages/modal-pilih-analisis/modal-pilih-analisis';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { KategoriAnalisisPage } from '../pages/kategori-analisis/kategori-analis
     ListAnalisisPage,
     ReviewPesananPage,
     CheckoutPage,
-    KategoriAnalisisPage
+    KategoriAnalisisPage,
+    ModalPilihAnalisisPage
   ],
   imports: [
     BrowserModule,

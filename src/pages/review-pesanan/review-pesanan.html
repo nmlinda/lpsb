@@ -7,12 +7,154 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>reviewPesanan</ion-title>
+    <ion-title>Review Pesanan</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6>
+        <p no-margin>
+          Muhammad Gofar
+          <br>
+          Institut Pertanian Bogor
+          <br>
+          Jl Balebak 2 Bogor
+        </p>
+      </ion-col>
+      <ion-col col-5>
+        <p no-margin text-right>
+          gofar@gmail.com
+          <br>
+          0813434936694
+          <br>
+          NPWP: 20857620934
+        </p>
+      </ion-col>
+      <ion-col col-1>
+        <button ion-button small clear icon-only>
+          <ion-icon name="create"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
 
+    <ion-row>
+      <ion-col col-11>
+        <p>
+          <strong>Sampel</strong>
+          <br>
+          1. Daun - Fitokimia
+          <br>
+          2. Daun - Antioksidan
+        </p>
+      </ion-col>
+      <ion-col col-1>
+        <button ion-button clear icon-only>
+          <ion-icon name="more"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-12>
+        <ion-list radio-group no-margin>
+             <p no-margin><strong>Sisa Sampel</strong></p>          
+            <ion-item>
+              <ion-label class="labelSisaSampel">Akan diambil setelah pengujian selesai</ion-label>
+              <ion-radio value="1"></ion-radio>
+            </ion-item>
+          
+            <ion-item>
+              <ion-label class="labelSisaSampel">Akan ditinggalkan dan dalam 3 bulan ke depan akan dimusnahkan</ion-label>
+              <ion-radio value="2"></ion-radio>
+            </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-12>
+        <p no-margin><strong>Keterangan</strong></p>
+        <ion-input type="text" placeholder="Keterangan"></ion-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-11>
+        <p no-margin>
+          <strong>Pembayaran</strong><br>
+          <ion-row>
+          <ion-col col-5>
+            Nama Bank
+            <br>
+            No Rekening
+            <br>
+            Nama Nasabah
+          </ion-col>
+          <ion-col col-7>
+            : BNI
+            <br>
+            : 0285784750293
+            <br>
+            : Muhammad Gofar
+          </ion-col>
+        </ion-row>
+        </p>
+      </ion-col>
+      <ion-col col-1>
+        <button ion-button small clear icon-only>
+          <ion-icon name="create"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+    
+    <ion-row>
+      <ion-col col-8>
+        <p no-margin>
+          <strong>Harga</strong>
+        </p>
+      </ion-col>
+      <ion-col col-4>
+        <p no-margin text-right>
+          Rp 480.000
+        </p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+        <ion-col col-8>
+          <p no-margin>
+            <strong>Kode Unik</strong>
+          </p>
+        </ion-col>
+        <ion-col col-4>
+          <p no-margin text-right>
+            Rp 112
+          </p>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+          <ion-col col-8>
+            <p no-margin>
+              <strong>Total</strong>
+            </p>
+          </ion-col>
+          <ion-col col-4>
+            <p no-margin text-right>
+              Rp 480.112
+            </p>
+          </ion-col>
+        </ion-row>
+
+  </ion-grid>
 </ion-content>
+
+<ion-footer>
+      <ion-buttons end>
+        <button ion-button color="primary" (click)="checkout()">Checkout</button>
+      </ion-buttons>
+</ion-footer>

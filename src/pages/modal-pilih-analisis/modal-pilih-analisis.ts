@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { HomePage } from '../home/home';
 
 /**
- * Generated class for the CheckoutPage page.
+ * Generated class for the ModalPilihAnalisisPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -11,17 +10,16 @@ import { HomePage } from '../home/home';
 
 @IonicPage()
 @Component({
-  selector: 'page-checkout',
-  templateUrl: 'checkout.html',
+  selector: 'page-modal-pilih-analisis',
+  templateUrl: 'modal-pilih-analisis.html',
 })
-export class CheckoutPage {
-  beranda: any;
+export class ModalPilihAnalisisPage {
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.beranda = HomePage;
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CheckoutPage');
+    console.log('ionViewDidLoad ModalPilihAnalisisPage');
   }
 
 }

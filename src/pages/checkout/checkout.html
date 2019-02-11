@@ -6,13 +6,50 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>checkout</ion-title>
+  <ion-navbar hideBackButton>
+    <ion-title>Checkout</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  <ion-list>
+    <ion-item>
+      <h1 text-center><strong>Rp 284.203</strong></h1>
+      <p text-center>
+        Bayar sebelum 23-02-2019
+        <br>
+        Kirim sampel sebelum 24-02-2019
+      </p>
+    </ion-item>
+    <ion-item>
+      <button ion-button outline text-capitalize>
+        Unduh Formulir Permohonan Analisis
+      </button>
+    </ion-item>
+  </ion-list>
 
+  <ion-list>
+    <ion-item>
+      <p>
+        <strong>Transfer Pembayaran</strong><br>
+        BNI 08457482023 <br>
+        a.n. Rektorat IPB
+      </p>
+    </ion-item>
+    <ion-item>
+      <p>
+        <strong>Kirim Sampel</strong><br>
+        Laboratorium Pusat Studi Biofarmaka<br>
+        Jl. Taman Kencana No 03<br>
+        Bogor 16251
+      </p>
+    </ion-item>
+  </ion-list>
 </ion-content>
+<ion-footer>
+  <ion-buttons end>
+    <button ion-button [navPush]="beranda">SELESAI</button>
+  </ion-buttons>
+</ion-footer>
