@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { CheckoutPage } from '../checkout/checkout';
+import { EditProfilPage } from '../edit-profil/edit-profil';
+import { EditRekeningPage } from '../edit-rekening/edit-rekening';
+import { DetailSampelPage } from '../detail-sampel/detail-sampel';
 
 /**
  * Generated class for the ReviewPesananPage page.
@@ -15,9 +18,14 @@ import { CheckoutPage } from '../checkout/checkout';
   templateUrl: 'review-pesanan.html',
 })
 export class ReviewPesananPage {
-  
+  editRekening: any;
+  editProfil: any;
+  detailSampel: any;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    // this.checkout = CheckoutPage;
+    this.editProfil= EditProfilPage;
+    this.editRekening = EditRekeningPage;
+    this.detailSampel = DetailSampelPage;
   }
 
   ionViewDidLoad() {

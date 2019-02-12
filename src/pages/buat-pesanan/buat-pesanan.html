@@ -37,71 +37,95 @@
         </p>
       </ion-col>
       <ion-col col-1>
-        <button ion-button small clear icon-only>
+        <button ion-button small clear icon-only [navPush]="editProfil">
           <ion-icon name="create"></ion-icon>
         </button>
       </ion-col>
     </ion-row>
     </ion-grid>
   </ion-card>
-  <ion-list margin-bottom>
-    <ion-item>
-        <ion-label color="light">Lama Pengujian</ion-label>
-        <ion-select [(ngModel)]="lamaPengujian">
-            <ion-option value="1">Reguler (7 Hari)</ion-option>
-            <ion-option value="2">Percepatan (14 Hari)</ion-option>
-          </ion-select>
-      </ion-item>
-  </ion-list>
+    <ion-card>
+      <ion-grid>
+        <ion-row>
+          <ion-item>
+            <ion-label color="primary">Lama Pengujian</ion-label>
+            <ion-select [(ngModel)]="lamaPengujian">
+              <ion-option value="pilih" disabled>Pilih</ion-option>
+    
+              <ion-option value="1">Reguler (7 Hari)</ion-option>
+              <ion-option value="2">Percepatan (14 Hari)</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-row>
+        <ion-row>
+          <ion-col col-10>
+              <h2 no-margin>
+                Sampel #1
+              </h2>
 
-  <ion-list margin-bottom pading>
-    <ion-list-header no-margin>
-      Sampel #1
-    </ion-list-header>
-      
-    <ion-item>
-        <ion-label color="primary" fixed>Jenis</ion-label>
-        <ion-input type="text" placeholder="Jenis"></ion-input>
-    </ion-item>
-    <ion-item>
-        <ion-label color="primary" fixed>Kemasan</ion-label>
-        <ion-input type="text" placeholder="Kemasan"></ion-input>
-    </ion-item>
-    <ion-item>
-        <ion-label color="primary" fixed>Jumlah</ion-label>
-        <ion-input type="text" placeholder="Jumlah"></ion-input>
-    </ion-item>
-    <ion-item (click)="pilihAnalisis()">
-        <ion-label color="primary">Jenis Analisis</ion-label>
-    </ion-item>
-    <ion-item>
-        <ion-label color="primary">Bentuk</ion-label>
-        <ion-select [(ngModel)]="bentuk">
-          <ion-option value="Ekstrak">Ekstrak</ion-option>
-          <ion-option value="Simplisia">Simplisia</ion-option>
-          <ion-option value="Serbuk">Serbuk</ion-option>
-          <ion-option value="Cairan">Cairan</ion-option>
-        </ion-select>
-    </ion-item>
-    <ion-item>
-        <ion-label>Harga</ion-label>
-        <ion-label>Rp 0</ion-label>
-    </ion-item>
+              <ion-item>
+                <ion-label color="primary" stacked>Jenis</ion-label>
+                <ion-input type="text" placeholder="Jenis"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label color="primary" stacked>Kemasan</ion-label>
+                <ion-input type="text" placeholder="Kemasan"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label color="primary" stacked>Jumlah</ion-label>
+                <ion-input type="text" placeholder="Jumlah"></ion-input>
+              </ion-item>
+          </ion-col>
+          <ion-col col-2>
+            <button ion-button clear icon-only>
+              <ion-icon name="trash"></ion-icon>
+            </button>
+          </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-10>
+          <ion-item (click)="pilihAnalisis()">
+              <ion-label color="primary" stacked>Jenis Analisis</ion-label>
+              <ion-label *ngIf="!jenisAnalisis">Pilih Jenis Analisis</ion-label>
+              <ion-label *ngIf="jenisAnalisis">{{jenisAnalisis}}</ion-label>
+          </ion-item>
+          <ion-item>
+              <ion-label color="primary" stacked>Bentuk</ion-label>
+              <ion-select [(ngModel)]="bentuk">
+                <ion-option value="pilih" disabled>Pilih</ion-option>
+                <ion-option value="Ekstrak">Ekstrak</ion-option>
+                <ion-option value="Simplisia">Simplisia</ion-option>
+                <ion-option value="Serbuk">Serbuk</ion-option>
+                <ion-option value="Cairan">Cairan</ion-option>
+              </ion-select>
+          </ion-item>
+          <ion-item>
+              <ion-label>Harga</ion-label>
+              <ion-label>Rp 0</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-2>
+          <button ion-button clear icon-only>
+            <ion-icon name="trash"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-item>
+          <ion-buttons right>
+            <button ion-button outline small>Tambah Jenis Analisis</button>
+          </ion-buttons>
+        </ion-item>
+      </ion-row>
+      </ion-grid>
+    </ion-card>
 
-    <ion-item>
-      <ion-buttons right>
-        <button ion-button outline small>Tambah Jenis Analisis</button>
-      </ion-buttons>
-    </ion-item>
-    </ion-list>
-  
   <ion-buttons right>
     <button ion-button outline>
-      <ion-icon name="add-circle-outline" margin-end></ion-icon>
+      <ion-icon name="add-circle" margin-end></ion-icon>
       Tambah Sampel
     </button>
-  </ion-buttons>
-  
+  </ion-buttons> 
   
 </ion-content>
 <ion-footer>

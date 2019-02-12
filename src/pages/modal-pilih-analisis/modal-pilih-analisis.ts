@@ -17,14 +17,15 @@ export class ModalPilihAnalisisPage {
   jenisAnalisis: any;
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public viewCtrl: ViewController) {
+      this.jenisAnalisis = this.navParams.get('data');
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ModalPilihAnalisisPage');
-    console.log(this.navParams.get('message'));
+    console.log('ionViewDidLoad ModalPilihAnalisisPage', this.navParams.get('data'));
   }
+
   closeModal(){
-    let analisis = [this.jenisAnalisis.value];
+    let analisis = this.jenisAnalisis;
     this.viewCtrl.dismiss(analisis);
     console.log(analisis);
   }

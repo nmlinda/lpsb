@@ -28,6 +28,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage';
+import { DetailSampelPage } from '../pages/detail-sampel/detail-sampel';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { IonicStorageModule } from '@ionic/storage';
     ModalPilihAnalisisPage,
     DetailPesananPage,
     EditProfilPage,
-    EditRekeningPage
+    EditRekeningPage,
+    DetailSampelPage
   ],
   imports: [
     HttpClientModule,
@@ -75,7 +77,8 @@ import { IonicStorageModule } from '@ionic/storage';
     ModalPilihAnalisisPage,
     DetailPesananPage,
     EditProfilPage,
-    EditRekeningPage
+    EditRekeningPage,
+    DetailSampelPage
   ],
   providers: [
     Data,

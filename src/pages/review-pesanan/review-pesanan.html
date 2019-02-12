@@ -35,7 +35,7 @@
         </p>
       </ion-col>
       <ion-col col-1>
-        <button ion-button small clear icon-only>
+        <button ion-button small clear icon-only [navPush]="editProfil">
           <ion-icon name="create"></ion-icon>
         </button>
       </ion-col>
@@ -52,7 +52,7 @@
         </p>
       </ion-col>
       <ion-col col-1>
-        <button ion-button clear icon-only>
+        <button ion-button clear icon-only [navPush]="detailSampel">
           <ion-icon name="more"></ion-icon>
         </button>
       </ion-col>
@@ -61,7 +61,7 @@
     <ion-row>
       <ion-col col-12>
         <ion-list radio-group no-margin>
-             <p no-margin><strong>Sisa Sampel</strong></p>          
+            <p no-margin><strong>Sisa Sampel</strong></p>          
             <ion-item>
               <ion-label class="labelSisaSampel">Akan diambil setelah pengujian selesai</ion-label>
               <ion-radio value="1"></ion-radio>
@@ -105,7 +105,7 @@
         </p>
       </ion-col>
       <ion-col col-1>
-        <button ion-button small clear icon-only>
+        <button ion-button small clear icon-only [navPush]="editRekening">
           <ion-icon name="create"></ion-icon>
         </button>
       </ion-col>
