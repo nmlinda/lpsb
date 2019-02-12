@@ -1,5 +1,13 @@
 page-profil {
     ion-avatar{
-        width: 50px;
+        width: 70px;
+        display: block;
+        margin: auto;
+        border-radius: 50% !important;
+        overflow: hidden;
+    }
+    ion-card{
+        width: 100% !important;
+        margin: 0 !important;
     }
 }

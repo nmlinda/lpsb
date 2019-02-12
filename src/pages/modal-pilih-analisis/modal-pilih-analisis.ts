@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 
 /**
  * Generated class for the ModalPilihAnalisisPage page.
@@ -14,12 +14,18 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'modal-pilih-analisis.html',
 })
 export class ModalPilihAnalisisPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  jenisAnalisis: any;
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    public viewCtrl: ViewController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ModalPilihAnalisisPage');
+    console.log(this.navParams.get('message'));
   }
-
+  closeModal(){
+    let analisis = [this.jenisAnalisis.value];
+    this.viewCtrl.dismiss(analisis);
+    console.log(analisis);
+  }
 }

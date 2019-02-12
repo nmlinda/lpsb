@@ -21,6 +21,13 @@ import { CheckoutPage } from '../pages/checkout/checkout';
 import { KategoriAnalisisPage } from '../pages/kategori-analisis/kategori-analisis';
 import { ModalPilihAnalisisPage } from '../pages/modal-pilih-analisis/modal-pilih-analisis';
 import { DetailPesananPage } from '../pages/detail-pesanan/detail-pesanan';
+import { EditProfilPage } from '../pages/edit-profil/edit-profil';
+import { EditRekeningPage } from '../pages/edit-rekening/edit-rekening';
+import { Data } from '../provider/data';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+import { IonicStorageModule } from '@ionic/storage';
 
 @NgModule({
   declarations: [
@@ -38,11 +45,17 @@ import { DetailPesananPage } from '../pages/detail-pesanan/detail-pesanan';
     CheckoutPage,
     KategoriAnalisisPage,
     ModalPilihAnalisisPage,
-    DetailPesananPage
+    DetailPesananPage,
+    EditProfilPage,
+    EditRekeningPage
   ],
   imports: [
+    HttpClientModule,
+    FormsModule,
+    HttpModule,
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot(),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -59,9 +72,13 @@ import { DetailPesananPage } from '../pages/detail-pesanan/detail-pesanan';
     ReviewPesananPage,
     CheckoutPage,
     KategoriAnalisisPage,
-    DetailPesananPage
+    ModalPilihAnalisisPage,
+    DetailPesananPage,
+    EditProfilPage,
+    EditRekeningPage
   ],
   providers: [
+    Data,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}

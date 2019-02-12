@@ -7,21 +7,47 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Profil</ion-title>
+    <ion-title>Profil Saya</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-  <ion-card>
-    <ion-card-content>
-      <button ion-button>
-        Keluar
-      </button>
+<ion-content>
+  <ion-card color="light">
+    <ion-col>
+      <ion-item color="light">
+        <button ion-button item-right text-capitalize>Keluar</button>
+      </ion-item>
+    </ion-col>
+    <ion-col>
       <ion-avatar>
-        <img src="../../assets/imgs/logo.png">
+        <img src="../../assets/imgs/photo-profile.png">
       </ion-avatar>
-    </ion-card-content>
+    </ion-col>
+    <ion-col text-center>
+      <h2>
+        <strong>
+          Muhammad Gofar
+        </strong>
+      </h2>
+      <h3>
+        gofar@gmail.com
+      </h3>
+    </ion-col>
+  </ion-card>
+  <ion-card>
+    <ion-list>
+      <button ion-item [navPush]="editProfil" style="border-bottom : 1px solid rgb(173, 171, 171)">
+        Data Diri
+      </button>
+    </ion-list>
+  </ion-card>
+  <ion-card>
+    <ion-list>
+      <button ion-item [navPush]="editRekening" style="border-bottom : 1px solid rgb(173, 171, 171)">
+        Rekening Saya
+      </button>
+    </ion-list>
   </ion-card>
 </ion-content>

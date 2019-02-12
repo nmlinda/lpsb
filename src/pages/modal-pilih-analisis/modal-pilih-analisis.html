@@ -7,12 +7,25 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>modalPilihAnalisis</ion-title>
+    <ion-title>Pilih Jenis Analisis</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="closeModal()">Pilih</button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+  <ion-list radio-group no-margin [(ngModel)]="jenisAnalisis">
+    <ion-item-divider color="light">Fitokimia</ion-item-divider>
+    <ion-item>
+      <ion-label>Fitokimia</ion-label>
+      <ion-radio [value]="1"></ion-radio>
+    </ion-item>
+    <ion-item>
+        <ion-label>Antioksidan</ion-label>
+        <ion-radio value="2"></ion-radio>
+      </ion-item>
+  </ion-list>
 </ion-content>

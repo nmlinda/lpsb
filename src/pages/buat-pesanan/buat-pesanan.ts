@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { ModalController } from 'ionic-angular';
+import { ModalController, IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { ReviewPesananPage } from '../review-pesanan/review-pesanan';
 import { ModalPilihAnalisisPage } from '../modal-pilih-analisis/modal-pilih-analisis';
@@ -30,9 +29,11 @@ export class BuatPesananPage {
     console.log('ionViewDidLoad BuatPesananPage');
   }
 
-  presentModal() {
-    const modal = this.modalCtrl.create(ModalPilihAnalisisPage);
+  pilihAnalisis() {
+    var data = { message : 'hello world' };
+    let modal = this.modalCtrl.create(ModalPilihAnalisisPage);
     modal.present();
   }
+  
 
 }
