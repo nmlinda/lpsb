@@ -21,16 +21,19 @@ export class ReviewPesananPage {
   editRekening: any;
   editProfil: any;
   detailSampel: any;
-
+  lamaPengujian: any;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.editProfil= EditProfilPage;
     this.editRekening = EditRekeningPage;
     this.detailSampel = DetailSampelPage;
+
+    this.lamaPengujian = "1";
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ReviewPesananPage');
   }
+  
   checkout(){
     this.navCtrl.push(CheckoutPage);
   }

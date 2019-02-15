@@ -22,14 +22,18 @@ export class BuatPesananPage {
   reviewPesanan: any;
   jenisAnalisis: any;
   editProfil: any;
-  lamaPengujian: string;
+  lamaPengujian: any;
   bentuk: string;
+  kemasan: string;
+  inputAsal: boolean = true;
+  asal: string;
   constructor(public navCtrl: NavController, public navParams: NavParams, 
     public modalCtrl: ModalController) {
     this.reviewPesanan = ReviewPesananPage;
     this.editProfil = EditProfilPage;
-    this.lamaPengujian = 'pilih';
+    this.lamaPengujian = 1;
     this.bentuk = 'pilih';
+    this.kemasan = 'pilih';
   }
 
   ionViewDidLoad() {
@@ -43,6 +47,15 @@ export class BuatPesananPage {
       this.jenisAnalisis = data;
     });
     modal.present();
+  }
+
+  onInputAsal(){
+    this.inputAsal = false;
+    this.asal = "*untuk asal Non-IPB";
+  }
+  offInputAsal(){
+    this.inputAsal = true;
+    this.asal = "*untuk asal IPB";
   }
 
   

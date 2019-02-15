@@ -13,83 +13,99 @@
 
 </ion-header>
 
-
 <ion-content>
-  <ion-card color="light">
+  <ion-card>
     <ion-grid>
       <ion-row>
-      <ion-col col-6>
-        <p no-margin>
-          Muhammad Gofar
-          <br>
-          Institut Pertanian Bogor
-          <br>
-          Jl Balebak 2 Bogor
-        </p>
-      </ion-col>
-      <ion-col col-5>
-        <p no-margin text-right>
-          gofar@gmail.com
-          <br>
-          0813434936694
-          <br>
-          NPWP: 20857620934
-        </p>
-      </ion-col>
-      <ion-col col-1>
-        <button ion-button small clear icon-only [navPush]="editProfil">
-          <ion-icon name="create"></ion-icon>
-        </button>
-      </ion-col>
-    </ion-row>
+        <ion-col col-12>
+          <ion-list radio-group no-margin [(ngModel)]="Institusi">
+              <p no-margin><strong>Institusi/Perusahaan</strong></p>          
+              <ion-item no-padding>
+                <ion-label class="labelSisaSampel">Institut Pertanian Bogor</ion-label>
+                <ion-radio value="IPB" item-left style="margin: 6px;" (ionSelect)='offInputAsal()'></ion-radio>
+              </ion-item>
+              <ion-row>
+              <ion-col col-4 no-padding>
+              <ion-item no-padding>
+                <ion-label class="labelSisaSampel">Lainnya: </ion-label>
+                <ion-radio item-left style="margin-right: 6px;" (ionSelect)='onInputAsal()'></ion-radio>
+              </ion-item>
+            </ion-col>
+            <ion-col col-8 no-padding>
+              <ion-item>
+                  <ion-input type="text" [disabled]="inputAsal" ></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          </ion-list>
+        </ion-col>
+      </ion-row>
     </ion-grid>
   </ion-card>
-    <ion-card>
-      <ion-grid>
-        <ion-row>
-          <ion-item>
-            <ion-label color="primary">Lama Pengujian</ion-label>
-            <ion-select [(ngModel)]="lamaPengujian">
-              <ion-option value="pilih" disabled>Pilih</ion-option>
     
-              <ion-option value="1">Reguler (7 Hari)</ion-option>
-              <ion-option value="2">Percepatan (14 Hari)</ion-option>
-            </ion-select>
-          </ion-item>
-        </ion-row>
+  <ion-card>
+      <ion-grid>
         <ion-row>
           <ion-col col-10>
               <h2 no-margin>
-                Sampel #1
+                <strong>
+                  Sampel #1
+                </strong>
               </h2>
-
-              <ion-item>
+            </ion-col>
+            <ion-col col-2>
+                <button ion-button clear icon-only no-padding no-margin>
+                  <ion-icon name="arrow-dropup"></ion-icon>
+                </button>
+              </ion-col>
+              </ion-row>
+              <ion-row>
+          <ion-col col-12>
+              <h2 no-margin>
+                  Kondisi Sampel
+              </h2>
+              <ion-item no-padding>
                 <ion-label color="primary" stacked>Jenis</ion-label>
                 <ion-input type="text" placeholder="Jenis"></ion-input>
               </ion-item>
-              <ion-item>
-                <ion-label color="primary" stacked>Kemasan</ion-label>
-                <ion-input type="text" placeholder="Kemasan"></ion-input>
-              </ion-item>
-              <ion-item>
-                <ion-label color="primary" stacked>Jumlah</ion-label>
-                <ion-input type="text" placeholder="Jumlah"></ion-input>
-              </ion-item>
+              <ion-row>
+                <ion-col col-8 no-padding>
+                  <ion-label color="primary" stacked>Kemasan</ion-label>
+                  <ion-select [(ngModel)]="kemasan">
+                      <ion-option value="pilih" disabled>Pilih</ion-option>
+                      <ion-option value="Plastik">Plastik</ion-option>
+                      <ion-option value="Kardus">Kardus</ion-option>
+                    </ion-select>
+                </ion-col>
+                <ion-col col-4 no-padding>
+                  <ion-label color="primary" stacked>Jumlah</ion-label>
+                  <ion-input type="number" placeholder="Jumlah" min="1"></ion-input>
+                </ion-col>
+              </ion-row>
           </ion-col>
-          <ion-col col-2>
+          
+      </ion-row>
+      <ion-row>
+        <ion-col col-10>
+            <h2 no-margin>
+                  #1 Jenis Analisis
+              </h2>
+        </ion-col>
+        <ion-col col-2>
             <button ion-button clear icon-only>
-              <ion-icon name="trash"></ion-icon>
+              <ion-icon name="add-circle"></ion-icon>
             </button>
           </ion-col>
       </ion-row>
       <ion-row>
-        <ion-col col-10>
+        <ion-col col-12>
           <ion-item (click)="pilihAnalisis()">
-              <ion-label color="primary" stacked>Jenis Analisis</ion-label>
               <ion-label *ngIf="!jenisAnalisis">Pilih Jenis Analisis</ion-label>
               <ion-label *ngIf="jenisAnalisis">{{jenisAnalisis}}</ion-label>
           </ion-item>
-          <ion-item>
+          <ion-row>
+            <ion-col col-6>
+              <ion-item>
               <ion-label color="primary" stacked>Bentuk</ion-label>
               <ion-select [(ngModel)]="bentuk">
                 <ion-option value="pilih" disabled>Pilih</ion-option>
@@ -98,50 +114,42 @@
                 <ion-option value="Serbuk">Serbuk</ion-option>
                 <ion-option value="Cairan">Cairan</ion-option>
               </ion-select>
-          </ion-item>
-          <ion-item>
-              <ion-label>Harga</ion-label>
-              <ion-label>Rp 0</ion-label>
-          </ion-item>
+            </ion-item>
+            </ion-col>
+            <ion-col col-6>
+              <ion-item>
+                <h2>Harga</h2><h2>Rp 0</h2>
+              </ion-item>
+            </ion-col>
+          </ion-row>
         </ion-col>
-        <ion-col col-2>
-          <button ion-button clear icon-only>
-            <ion-icon name="trash"></ion-icon>
-          </button>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-item>
-          <ion-buttons right>
-            <button ion-button outline small>Tambah Jenis Analisis</button>
-          </ion-buttons>
-        </ion-item>
       </ion-row>
       </ion-grid>
     </ion-card>
 
-  <ion-buttons right>
-    <button ion-button outline>
+  <!-- <ion-buttons right block> -->
+    <button ion-button outline block>
       <ion-icon name="add-circle" margin-end></ion-icon>
       Tambah Sampel
     </button>
-  </ion-buttons> 
+  <!-- </ion-buttons>  -->
   
 </ion-content>
 <ion-footer>
-      <ion-grid>
-        <ion-row>
-          <ion-col col-7>
-            <p no-margin>
-              <strong>Harga* : Rp 0</strong><br>
-              *untuk asal Non-IPB dengan Percepatan
-            </p>
-          </ion-col>
-          <ion-col col-5>
-            <ion-buttons end>
-              <button ion-button color="primary" [navPush]="reviewPesanan">Berikutnya</button>
-            </ion-buttons>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-7>
+          <p no-margin>
+            <strong>Harga* : Rp 0</strong><br>
+            {{asal}}
+          </p>
+        </ion-col>
+        <ion-col col-5>
+          <ion-buttons end>
+            <button ion-button color="primary" [navPush]="reviewPesanan">Berikutnya</button>
+          </ion-buttons>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 </ion-footer>
+

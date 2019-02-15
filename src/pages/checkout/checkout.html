@@ -13,43 +13,90 @@
 </ion-header>
 
 
-<ion-content padding>
-  <ion-list>
-    <ion-item>
-      <h1 text-center><strong>Rp 284.203</strong></h1>
-      <p text-center>
-        Bayar sebelum 23-02-2019
-        <br>
-        Kirim sampel sebelum 24-02-2019
-      </p>
-    </ion-item>
-    <ion-item>
-      <button ion-button outline text-capitalize>
-        Unduh Formulir Permohonan Analisis
-      </button>
-    </ion-item>
-  </ion-list>
+<ion-content>
+  <ion-card>
+      <ion-item>
+          <h1 text-center><strong>Rp 284.203</strong></h1>
+          <h3 text-center>
+            Bayar sebelum 23-02-2019
+            <br>
+            Kirim sampel sebelum 24-02-2019
+          </h3>
+        </ion-item>
+        <ion-item text-center>
+          <button ion-button outline text-capitalize>
+            Unduh Formulir Permohonan Analisis
+          </button>
+        
+        </ion-item>
+  </ion-card>
 
-  <ion-list>
-    <ion-item>
-      <p>
-        <strong>Transfer Pembayaran</strong><br>
-        BNI 08457482023 <br>
-        a.n. Rektorat IPB
-      </p>
-    </ion-item>
-    <ion-item>
-      <p>
-        <strong>Kirim Sampel</strong><br>
-        Laboratorium Pusat Studi Biofarmaka<br>
-        Jl. Taman Kencana No 03<br>
-        Bogor 16251
-      </p>
-    </ion-item>
-  </ion-list>
+  <ion-card>
+    <ion-card-content no-padding>
+       <ion-item>
+         <h2>Transfer Pembayaran</h2>
+          <h3>
+            BNI 08457482023 <br>
+            a.n. Rektorat IPB
+          </h3>
+        </ion-item>
+    </ion-card-content>
+     
+        
+  </ion-card>
+  
+  <ion-card>
+    <ion-card-content no-padding>
+        <ion-row>
+            <ion-col col-11>
+              <h2>Rekening Saya</h2>
+              <p no-margin>
+              <ion-row>
+                <ion-col col-5>
+                  Nama Bank
+                  <br>
+                  No Rekening
+                  <br>
+                  Nama Nasabah
+                </ion-col>
+                <ion-col col-7>
+                  : BNI
+                  <br>
+                  : 0285784750293
+                  <br>
+                  : Muhammad Gofar
+                </ion-col>
+              </ion-row>
+              </p>
+            </ion-col>
+            <ion-col col-1>
+              <button ion-button small clear icon-only [navPush]="editRekening">
+                <ion-icon name="create"></ion-icon>
+              </button>
+            </ion-col>
+          </ion-row>
+    </ion-card-content>
+  </ion-card>
+  
+  <ion-card>
+    <ion-card-content no-padding>
+      <ion-item>
+        <h2>Kirim Sampel</h2>
+        <h3>
+          Laboratorium Pusat Studi Biofarmaka<br>
+          Jl. Taman Kencana No 03<br>
+          Bogor 16251
+        </h3>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-buttons end>
+      <button ion-button [navPush]="beranda">SELESAI</button>
+    </ion-buttons>
 </ion-content>
-<ion-footer>
+<!-- <ion-footer padding>
   <ion-buttons end>
     <button ion-button [navPush]="beranda">SELESAI</button>
   </ion-buttons>
-</ion-footer>
+</ion-footer> -->

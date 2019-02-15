@@ -20,11 +20,6 @@
         </ion-slide>
       
       </ion-slides>
-  
-  <button ion-button full large [navPush]="buatPesanan">
-    BUAT PESANAN
-  </button>
-
   <ion-list no-margin>
     <ion-list-header no-margin>
       <ion-title>Jenis Analisis</ion-title>
@@ -88,5 +83,11 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+
+  <ion-fab right bottom>
+    <button ion-fab [navPush]="buatPesanan">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
 
 </ion-content>
