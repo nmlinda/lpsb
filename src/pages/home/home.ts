@@ -7,6 +7,7 @@ import { HttpHeaders, HttpClient} from '@angular/common/http';
 import { BuatPesananPage } from '../buat-pesanan/buat-pesanan';
 import { KategoriAnalisisPage } from '../kategori-analisis/kategori-analisis';
 import { Data } from '../../provider/data';
+import { PemberitahuanPage } from '../pemberitahuan/pemberitahuan';
 
 @Component({
   selector: 'page-home',
@@ -16,12 +17,13 @@ export class HomePage {
   buatPesanan: any;
   kategoriAnalisis: any ;
   listKategori: any = [];
+  pemberitahuan: any;
   
 
   constructor(public data: Data, public nav: NavController, public httpClient: HttpClient) {
     this.buatPesanan = BuatPesananPage;
     this.kategoriAnalisis = KategoriAnalisisPage;
-
+    this.pemberitahuan = PemberitahuanPage;
     // this.data.getData().then((data)=>
     // {
       

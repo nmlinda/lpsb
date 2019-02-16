@@ -1,0 +1,23 @@
+page-navbar {
+    .navbar_global {
+        width: 100%;
+        height: 10vw;
+        
+    }
+    button {
+        ion-badge {
+            background-color: red;
+            position: absolute;
+            top: -3px;
+            right: -3px;
+            border-radius: 100%;
+        }
+    }
+    #btn {
+        position: relative;
+            width: 42px;
+            top:1px;
+            right: 1px;
+            overflow: visible!important;
+    }
+}

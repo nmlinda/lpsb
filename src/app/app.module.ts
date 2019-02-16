@@ -29,6 +29,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { DetailSampelPage } from '../pages/detail-sampel/detail-sampel';
+import { NavbarPage } from '../pages/navbar/navbar';
+import { CariPage } from '../pages/cari/cari';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,9 @@ import { DetailSampelPage } from '../pages/detail-sampel/detail-sampel';
     DetailPesananPage,
     EditProfilPage,
     EditRekeningPage,
-    DetailSampelPage
+    DetailSampelPage,
+    NavbarPage,
+    CariPage
   ],
   imports: [
     HttpClientModule,
@@ -78,7 +82,9 @@ import { DetailSampelPage } from '../pages/detail-sampel/detail-sampel';
     DetailPesananPage,
     EditProfilPage,
     EditRekeningPage,
-    DetailSampelPage
+    DetailSampelPage,
+    NavbarPage,
+    CariPage
   ],
   providers: [
     Data,

@@ -11,9 +11,8 @@ import { PesananPage } from '../pesanan/pesanan';
 export class TabsPage {
 
   tab1Root = HomePage;
-  tab2Root = PemberitahuanPage;
-  tab3Root = PesananPage;
-  tab4Root = ProfilPage;
+  tab2Root = PesananPage;
+  tab3Root = ProfilPage;
 
   constructor() {
 

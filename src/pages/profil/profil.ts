@@ -3,13 +3,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { EditProfilPage } from '../edit-profil/edit-profil';
 import { EditRekeningPage } from '../edit-rekening/edit-rekening';
 
-/**
- * Generated class for the ProfilPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-profil',
