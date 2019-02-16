@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 
 import { HomePage } from '../home/home';
 import { ProfilPage } from '../profil/profil';
-import { PemberitahuanPage } from '../pemberitahuan/pemberitahuan';
 import { PesananPage } from '../pesanan/pesanan';
 
 @Component({

@@ -27,6 +27,7 @@ export class BuatPesananPage {
   kemasan: string;
   inputAsal: boolean = true;
   asal: string;
+  tutup: boolean = false;
   constructor(public navCtrl: NavController, public navParams: NavParams, 
     public modalCtrl: ModalController) {
     this.reviewPesanan = ReviewPesananPage;
@@ -58,6 +59,8 @@ export class BuatPesananPage {
     this.asal = "*untuk asal IPB";
   }
 
-  
+  sampelCtrl() {
+    this.tutup = !this.tutup;
+  }
 
 }

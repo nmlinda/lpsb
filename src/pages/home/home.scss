@@ -8,5 +8,39 @@ page-home {
             font-weight: normal;
         }
     }
+    .card-utama {
+        width: 100% !important;
+        margin: 0 !important;
+    }
+    .card-item {
+        width: 20%;
+        margin-top: 0;
+        background-color: transparent;
+        webkit-box-shadow: none;
+        box-shadow: none;
+        display: inline-block;
+        white-space: normal;
+        height: 116px;
+    }
     
+    // scroller
+    ion-scroll {
+        width: 100vw;
+        display: inline-block;
+        height: 16vh;
+    }
+
+    .scroll-zoom-wrapper{
+        white-space: nowrap;
+    }
+
+    .options {
+        margin-top: 3vh;
+        height: 10vh;
+        width : 20%;
+        margin: 0;
+    }
+    .tess {
+        line-height: normal;
+    }
 }

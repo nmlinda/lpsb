@@ -19,6 +19,14 @@ export class HomePage {
   listKategori: any = [];
   pemberitahuan: any;
   
+  kategoris = [
+    'Fitokimia',
+    'Logam Berat',
+    'Senyawa Penciri',
+    'Kadar',
+    'Ekstraksi',
+    'Enzim'
+  ];
 
   constructor(public data: Data, public nav: NavController, public httpClient: HttpClient) {
     this.buatPesanan = BuatPesananPage;
