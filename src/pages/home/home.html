@@ -38,7 +38,7 @@
 
         <ion-card-content>
           <ion-scroll scrollX="true" direction="x">
-            <ion-card class="item card-item"  *ngFor="let kategori of kategoris">
+            <ion-card class="item card-item"  *ngFor="let kategori of kategoris" (click)="gotoKategori()">
               <img src="../../assets/imgs/logo.png">
               <p text-center class="tess">
                 {{kategori}}
@@ -49,69 +49,6 @@
         </ion-card-content>
       </ion-card>
 
-  <!-- <ion-list no-margin>
-    <ion-list-header no-margin>
-      <ion-title>Jenis Analisis</ion-title>
-        <button ion-button color="dark" clear icon-only item-right [navPush]="kategoriAnalisis">
-            <ion-icon name='arrow-dropright' is-active="false"></ion-icon>
-          </button>
-    </ion-list-header>
-  </ion-list>
-
-  <ion-grid>
-    <ion-row>
-       <ion-col col-6 *ngFor="let kategori of listKategori.kategoris">
-        <button ion-button full color="light">
-          {{kategori.Kategori}}
-        </button>
-      </ion-col> -->
-      <!-- <ion-col col-6>
-        <button ion-button full color="light">
-          Senyawa Penciri
-        </button>
-      </ion-col>
-      <ion-col col-6>
-          <button ion-button full color="light">
-            Mikrobiologi
-          </button>
-      </ion-col>
-      <ion-col col-6>
-          <button ion-button full color="light">
-            Kadar
-          </button>
-      </ion-col>
-      <ion-col col-6>
-        <button ion-button full color="light">
-          Logam Berat
-        </button>
-      </ion-col>
-      <ion-col col-6>
-        <button ion-button full color="light">
-          Ekstraksi
-        </button>
-      </ion-col>
-      <ion-col col-6>
-        <button ion-button full color="light">
-          Pola KLT
-        </button>
-      </ion-col>
-      <ion-col col-6>
-        <button ion-button full color="light">
-          DPPH
-        </button>
-      </ion-col>
-      <ion-col col-6>
-        <button ion-button full color="light">
-          Enzim
-        </button>
-      </ion-col>
-      <ion-col col-6>
-        <button ion-button full color="light">
-          Lainnya
-        </button>
-      </ion-col>
-    </ion-row>
-  </ion-grid> -->
 
   <ion-fab right bottom>
     <button ion-fab [navPush]="buatPesanan">

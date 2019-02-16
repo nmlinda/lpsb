@@ -52,5 +52,7 @@ export class HomePage {
     // })
     }
 
-
+    gotoKategori(){
+      this.nav.push(KategoriAnalisisPage);
+    }
 }
