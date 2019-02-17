@@ -18,14 +18,14 @@
 
 <ion-content padding>
   <ion-list radio-group no-margin [(ngModel)]="jenisAnalisis">
-    <ion-item-divider color="light">Fitokimia</ion-item-divider>
-    <ion-item>
-      <ion-label>Fitokimia</ion-label>
-      <ion-radio value="Fitokimia"></ion-radio>
+    <!-- <ion-item-divider color="light" *ngFor="let kategori of kategoris.kategori">{{kategori}}</ion-item-divider> -->
+    <ion-item *ngFor="let jenis of analisis">
+      <ion-label>{{jenis}}</ion-label>
+      <ion-radio value={{jenis}} item-left style="margin: 6px;"></ion-radio>
     </ion-item>
-    <ion-item>
+    <!-- <ion-item>
       <ion-label>Antioksidan</ion-label>
       <ion-radio value="Antioksidan"></ion-radio>
-    </ion-item>
+    </ion-item> -->
   </ion-list>
 </ion-content>

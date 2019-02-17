@@ -22,12 +22,19 @@ export class ReviewPesananPage {
   editProfil: any;
   detailSampel: any;
   lamaPengujian: any;
+  hargaPercepatan: boolean = true;
+  harga: number = 420000;
+  harga2: number;
+  kodeUnik: number = 429;
+  totalHarga: number;
+  totalHarga2: number;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.editProfil= EditProfilPage;
     this.editRekening = EditRekeningPage;
     this.detailSampel = DetailSampelPage;
 
     this.lamaPengujian = "1";
+    this.totalHarga = this.harga + this.kodeUnik;
   }
 
   ionViewDidLoad() {
@@ -36,5 +43,10 @@ export class ReviewPesananPage {
   
   checkout(){
     this.navCtrl.push(CheckoutPage);
+  }
+  lamaSelected(){
+    this.hargaPercepatan = !this.hargaPercepatan;
+    this.harga2 = this.harga*2;
+    this.totalHarga2 = this.harga2 + this.kodeUnik;
   }
 }

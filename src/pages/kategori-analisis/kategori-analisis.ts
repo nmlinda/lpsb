@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the KategoriAnalisisPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { DetailAnalisisPage } from '../detail-analisis/detail-analisis';
+import { BuatPesananPage } from '../buat-pesanan/buat-pesanan';
 
 @IonicPage()
 @Component({
@@ -14,12 +9,29 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'kategori-analisis.html',
 })
 export class KategoriAnalisisPage {
-
+  kategori: any;
+  jenisAnalisis = [
+    'Fitokimia',
+    'Alkaloid',
+    'Kuinon',
+    'Flavonoid',
+    'Saponin',
+    'Tanin',
+    'Steroid/Triterpenoid'
+  ];
+  buatPesanan: any;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.kategori = this.navParams.get('data');
+    this.buatPesanan = BuatPesananPage;
   }
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad KategoriAnalisisPage');
+  }
+
+  gotoDetailAnalisis(jenis){
+    this.navCtrl.push(DetailAnalisisPage, { data: jenis });
   }
 
 }

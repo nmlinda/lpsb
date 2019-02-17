@@ -62,18 +62,25 @@
         <ion-label color="primary" stacked>Jenis</ion-label>
         <ion-input type="text" placeholder="Jenis"></ion-input>
         <ion-row>
-          <ion-col col-8>
+          <ion-col col-7>
             <ion-label color="primary" stacked>Kemasan</ion-label>
-            <ion-select [(ngModel)]="kemasan">
+            <ion-select [(ngModel)]="kemasan" (ionChange)="kemasanSelected($event)">
               <ion-option value="pilih" disabled>Pilih</ion-option>
               <ion-option value="Plastik">Plastik</ion-option>
               <ion-option value="Kardus">Kardus</ion-option>
-              <ion-option>Lainnya</ion-option>
+              <ion-option value="lainnya">Lainnya</ion-option>
             </ion-select>
+            <ion-input type="text" *ngIf="kemasanLainnya" placeholder="Ketik kemasan lainnya.."></ion-input>
           </ion-col>
-          <ion-col col-4>
+          <ion-col col-5>
             <ion-label color="primary" stacked>Jumlah</ion-label>
-            <ion-input type="number" placeholder="Jumlah" min="1"></ion-input>
+            <button ion-button icon-only clear no-margin (click)="minJumlah()">
+              <ion-icon name="remove-circle"></ion-icon>
+            </button>
+            <p class="jumlah">{{jumlah}}</p>
+            <button ion-button icon-only clear no-margin (click)="addJumlah()">
+              <ion-icon name="add-circle"></ion-icon>
+            </button>
           </ion-col>
         </ion-row>
       </ion-col>

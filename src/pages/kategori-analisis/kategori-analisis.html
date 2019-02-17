@@ -7,57 +7,37 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Jenis Analisis</ion-title>
+    <ion-grid no-padding>
+      <ion-row>
+        <ion-col col-8 style="padding-top: 4px;">
+          <ion-title>{{kategori}}</ion-title>
+        </ion-col>
+        <ion-col col-4 no-padding>
+            <page-navbar></page-navbar>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-    <ion-item-group>
-        <ion-item-divider color="light"><h2>Fitokimia</h2></ion-item-divider>
-        <ion-item>
-          <h2>
-            Fitokimia
-          </h2>
-          <p>
-            Metode Kuantitatif
-          </p>
-        </ion-item>
-        <ion-item>
-            <h2>
-              Fitokimia
-            </h2>
-            <p>
-              Metode Kuantitatif
-            </p>
-          </ion-item>
-      </ion-item-group>
-    <ion-item-group>
-        <ion-item-divider color="light"><h2>Logam Berat</h2></ion-item-divider>
-        <ion-item>
-            <h2>
-              Fitokimia
-            </h2>
-            <p>
-              Metode Kuantitatif
-            </p>
-          </ion-item>
-          <ion-item>
-              <h2>
-                Fitokimia
-              </h2>
-              <p>
-                Metode Kuantitatif
-              </p>
-            </ion-item>
-            <ion-item>
-                <h2>
-                  Fitokimia
-                </h2>
-                <p>
-                  Metode Kuantitatif
-                </p>
-              </ion-item>
-      </ion-item-group>
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngFor="let jenis of jenisAnalisis" col-6>
+        <ion-card class="card-jenis" center (click)="gotoDetailAnalisis(jenis)">
+          <img src="../../assets/imgs/fitokimia.jpg">
+          <h2>{{jenis}}</h2>
+          <h4>IPB Rp 175.000</h4>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+  <ion-fab right bottom>
+    <button ion-fab [navPush]="buatPesanan">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
 </ion-content>

@@ -28,6 +28,9 @@ export class BuatPesananPage {
   inputAsal: boolean = true;
   asal: string;
   tutup: boolean = false;
+  jumlah: number = 1;
+  kemasanLainnya : boolean = false;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, 
     public modalCtrl: ModalController) {
     this.reviewPesanan = ReviewPesananPage;
@@ -35,6 +38,7 @@ export class BuatPesananPage {
     this.lamaPengujian = 1;
     this.bentuk = 'pilih';
     this.kemasan = 'pilih';
+    
   }
 
   ionViewDidLoad() {
@@ -63,4 +67,22 @@ export class BuatPesananPage {
     this.tutup = !this.tutup;
   }
 
+  kemasanSelected(){
+    if(this.kemasan == "lainnya") {
+      this.kemasanLainnya = true;
+    }
+    else {
+      this.kemasanLainnya = false;
+    }
+  }
+
+  addJumlah(){
+    this.jumlah +=1;
+  }
+
+  minJumlah(){
+    if (this.jumlah > 1) {
+      this.jumlah -=1;
+    }
+  }
 }

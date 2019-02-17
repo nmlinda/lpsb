@@ -38,7 +38,7 @@
 
         <ion-card-content>
           <ion-scroll scrollX="true" direction="x">
-            <ion-card class="item card-item"  *ngFor="let kategori of kategoris" (click)="gotoKategori()">
+            <ion-card class="item card-item"  *ngFor="let kategori of kategoris" (click)="gotoKategori(kategori)">
               <img src="../../assets/imgs/logo.png">
               <p text-center class="tess">
                 {{kategori}}

@@ -31,7 +31,8 @@ import { IonicStorageModule } from '@ionic/storage';
 import { DetailSampelPage } from '../pages/detail-sampel/detail-sampel';
 import { NavbarPage } from '../pages/navbar/navbar';
 import { CariPage } from '../pages/cari/cari';
-
+import { DetailAnalisisPage } from '../pages/detail-analisis/detail-analisis';
+import { GantiPasswordPage } from '../pages/ganti-password/ganti-password';
 @NgModule({
   declarations: [
     MyApp,
@@ -53,7 +54,9 @@ import { CariPage } from '../pages/cari/cari';
     EditRekeningPage,
     DetailSampelPage,
     NavbarPage,
-    CariPage
+    CariPage,
+    DetailAnalisisPage,
+    GantiPasswordPage
   ],
   imports: [
     HttpClientModule,
@@ -84,7 +87,9 @@ import { CariPage } from '../pages/cari/cari';
     EditRekeningPage,
     DetailSampelPage,
     NavbarPage,
-    CariPage
+    CariPage,
+    DetailAnalisisPage,
+    GantiPasswordPage
   ],
   providers: [
     Data,

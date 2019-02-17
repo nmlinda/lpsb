@@ -15,11 +15,22 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 })
 export class ModalPilihAnalisisPage {
   jenisAnalisis: any;
+
+  analisis = [
+    'Fitokimia',
+    'Logam Berat',
+    'Senyawa Penciri',
+    'Kadar',
+    'Ekstraksi',
+    'Enzim'
+  ];
+  kategori: any = [];
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public viewCtrl: ViewController) {
       this.jenisAnalisis = this.navParams.get('data');
+      
   }
-
+  
   ionViewDidLoad() {
     console.log('ionViewDidLoad ModalPilihAnalisisPage', this.navParams.get('data'));
   }

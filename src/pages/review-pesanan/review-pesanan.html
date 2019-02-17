@@ -1,9 +1,4 @@
-<!--
-  Generated template for the ReviewPesananPage page.
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
@@ -70,7 +65,7 @@
       <ion-grid>
         <ion-row>
           <ion-col col-12>
-            <ion-list radio-group no-margin [(ngModel)]="lamaPengujian">
+            <ion-list radio-group no-margin [(ngModel)]="lamaPengujian" (ionChange)="lamaSelected($event)">
               <p no-margin><ion-icon name="time"></ion-icon>
                 <strong>
                 Lama Pengujian
@@ -135,6 +130,9 @@
           <h3 no-margin>
           Harga
           </h3>
+          <h3 *ngIf="hargaPercepatan" no-margin>
+            Percepatan (x2)
+          </h3>
           <h3 no-margin>
           Kode Unik
           </h3>
@@ -146,14 +144,22 @@
         </ion-col>
         <ion-col col-4>
           <h3 no-margin text-right>
-            Rp 480.000
+            Rp {{harga}}
+          </h3>
+          <h3 *ngIf="hargaPercepatan" no-margin text-right>
+              Rp {{harga2}}
           </h3>
           <h3 no-margin text-right>
-            Rp 112
+            Rp {{kodeUnik}}
           </h3>
-          <h2 text-right style="color:#007bff;">
+          <h2 *ngIf="!hargaPercepatan" text-right style="color:#007bff;">
             <strong>
-            Rp 480.112
+            Rp {{totalHarga}}
+          </strong>
+          </h2>
+          <h2 *ngIf="hargaPercepatan" text-right style="color:#007bff;">
+            <strong>
+            Rp {{totalHarga2}}
           </strong>
           </h2>
         </ion-col>

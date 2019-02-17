@@ -52,7 +52,7 @@ export class HomePage {
     // })
     }
 
-    gotoKategori(){
-      this.nav.push(KategoriAnalisisPage);
+    gotoKategori(kategori){
+      this.nav.push(KategoriAnalisisPage,{ data: kategori });
     }
 }
