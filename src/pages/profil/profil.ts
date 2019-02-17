@@ -13,8 +13,6 @@ export class ProfilPage {
   editRekening: any;
   gantiPass: any;
   nama: string;
-  email: string;
-  nama: string;
   institusi: string;
   alamat: string;
   email: string;
