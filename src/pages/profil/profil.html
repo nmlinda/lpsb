@@ -31,11 +31,11 @@
     <ion-col text-center>
       <h1>
         <strong>
-          Muhammad Gofar
+          {{ nama }}
         </strong>
       </h1>
       <h2>
-        gofar@gmail.com
+        {{ email }}
       </h2>
       
     </ion-col>
@@ -47,20 +47,20 @@
         <ion-col col-11>
             <h2>
                 <ion-icon name="call"></ion-icon>
-                081239485753
-              </h2>
+                {{ noHp }}
+            </h2>
             <h2>
                 <ion-icon name="briefcase"></ion-icon>
-                Institut Pertanian Bogor
-              </h2>
-              <h2>
+                {{ institusi }}
+            </h2>
+            <h2>
                 <ion-icon name="home"></ion-icon>
-                Jl. Balebak 2 Bogor
-              </h2>
-              <h2>
+                {{ alamat }}
+            </h2>
+            <h2>
                 <ion-icon name="checkmark-circle-outline"></ion-icon>
-                2454367854
-              </h2>
+                {{ npwp }}
+            </h2>
         </ion-col>
         <ion-col col-1>
           <button ion-button clear icon-only [navPush]="editProfil" >

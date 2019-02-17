@@ -14,20 +14,20 @@
         <ion-row>
         <ion-col col-6>
           <p no-margin>
-            Muhammad Gofar
+            {{ nama }}
             <br>
-            Institut Pertanian Bogor
+            {{ institusi }}
             <br>
-            Jl Balebak 2 Bogor
+            {{ alamat }}
           </p>
         </ion-col>
         <ion-col col-5>
           <p no-margin text-right>
-            gofar@gmail.com
+            {{ email }}
             <br>
-            0813434936694
+            {{ noHp }}
             <br>
-            NPWP: 20857620934
+            NPWP: {{ npwp }}
           </p>
         </ion-col>
         <ion-col col-1>
@@ -90,7 +90,7 @@
       <ion-grid>
         <ion-row>
           <ion-col col-12>
-            <ion-list radio-group no-margin>
+            <ion-list radio-group no-margin [(ngModel)]="sisaSampel">
                 <p no-margin>
                   <ion-icon name="trash"></ion-icon>
                   <strong>Sisa Sampel</strong>

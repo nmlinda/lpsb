@@ -28,6 +28,13 @@ export class ReviewPesananPage {
   kodeUnik: number = 429;
   totalHarga: number;
   totalHarga2: number;
+  nama: string;
+  institusi: string;
+  alamat: string;
+  email: string;
+  noHp: string;
+  npwp: string;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.editProfil= EditProfilPage;
     this.editRekening = EditRekeningPage;
@@ -35,6 +42,12 @@ export class ReviewPesananPage {
 
     this.lamaPengujian = "1";
     this.totalHarga = this.harga + this.kodeUnik;
+    this.nama = "Muhammad Gofar";
+    this.institusi = "Institut Pertanian Bogor";
+    this.alamat = "Jl Balebak 2 Bogor";
+    this.email = "gofar@gmail.com";
+    this.noHp = "0813434936694";
+    this.npwp = "20857620934";
   }
 
   ionViewDidLoad() {

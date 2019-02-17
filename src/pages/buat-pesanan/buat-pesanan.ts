@@ -22,7 +22,6 @@ export class BuatPesananPage {
   reviewPesanan: any;
   jenisAnalisis: any;
   editProfil: any;
-  lamaPengujian: any;
   bentuk: string;
   kemasan: string;
   inputAsal: boolean = true;
@@ -30,12 +29,13 @@ export class BuatPesananPage {
   tutup: boolean = false;
   jumlah: number = 1;
   kemasanLainnya : boolean = false;
-
+  noSampel : number = 1;
+  hargaSampel: number = 0;
+  hargaTotal: number = 0;
   constructor(public navCtrl: NavController, public navParams: NavParams, 
     public modalCtrl: ModalController) {
     this.reviewPesanan = ReviewPesananPage;
     this.editProfil = EditProfilPage;
-    this.lamaPengujian = 1;
     this.bentuk = 'pilih';
     this.kemasan = 'pilih';
     

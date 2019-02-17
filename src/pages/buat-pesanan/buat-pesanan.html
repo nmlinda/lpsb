@@ -41,7 +41,7 @@
     <ion-grid>
       <ion-row>
         <ion-col col-11>
-          <h2>Sampel #1</h2>
+          <h2>Sampel #{{noSampel}}</h2>
         </ion-col>
         <ion-col col-1 text-center>
           <ion-icon *ngIf="!tutup" name="arrow-dropup" color="primary"></ion-icon>
@@ -115,7 +115,7 @@
           <ion-col col-6>
             <ion-item>
               <h2>Harga</h2>
-              <h2>Rp 0</h2>
+              <h2>Rp {{ hargaSampel }}</h2>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -137,7 +137,7 @@
     <ion-row>
       <ion-col col-7>
         <p no-margin>
-          <strong>Harga* : Rp 0</strong><br>
+          <strong>Harga* : Rp {{ totalHarga }}</strong><br>
           {{asal}}
         </p>
       </ion-col>
