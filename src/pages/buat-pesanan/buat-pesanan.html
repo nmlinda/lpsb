@@ -12,7 +12,7 @@
     <ion-grid>
       <ion-row>
         <ion-col col-12>
-          <ion-list radio-group no-margin [(ngModel)]="institusi" (ionChange)="institusiSelected($event)">
+          <ion-list radio-group no-margin [(ngModel)]="institusi">
             <p no-margin><strong>Institusi/Perusahaan</strong></p>
             <ion-item no-padding>
               <ion-label class="labelSisaSampel">Institut Pertanian Bogor</ion-label>
@@ -22,7 +22,7 @@
               <ion-col col-4 no-padding>
                 <ion-item no-padding>
                   <ion-label class="labelSisaSampel">Lainnya: </ion-label>
-                  <ion-radio value="2" item-left value style="margin-right: 6px;" (ionSelect)='onInputAsal()'></ion-radio>
+                  <ion-radio value="2" item-left style="margin-right: 6px;" (ionSelect)='onInputAsal()'></ion-radio>
                 </ion-item>
               </ion-col>
               <ion-col col-8 no-padding>
@@ -99,10 +99,7 @@
           <div *ngIf="!jenisAnalisis">Pilih Jenis Analisis</div>
           <div *ngIf="jenisAnalisis">{{jenisAnalisis}}</div>
         </button>
-        <!-- <ion-item (click)="pilihAnalisis()" [attr.disabled]="analisisModal">
-          <ion-label *ngIf="!jenisAnalisis">Pilih Jenis Analisis</ion-label>
-          <ion-label *ngIf="jenisAnalisis">{{jenisAnalisis}}</ion-label>
-        </ion-item> -->
+  
         <ion-row>
           <ion-col col-6>
             <ion-item>
@@ -123,17 +120,18 @@
             </ion-item>
           </ion-col>
         </ion-row>
+
       </ion-col>
     </ion-row>
   </ion-grid>
   <!-- </ion-card> -->
 
-  <!-- <ion-buttons right block> -->
-  <button ion-button outline block>
+  <div padding>
+  <button ion-button outline block [disabled]="buttonTambahSampel">
     <ion-icon name="add-circle" margin-end></ion-icon>
     Tambah Sampel
   </button>
-  <!-- </ion-buttons>  -->
+</div>
 
 </ion-content>
 <ion-footer style="background-color: white">

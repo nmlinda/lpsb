@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
+import { DetailPesananPage } from '../detail-pesanan/detail-pesanan';
 
 /**
  * Generated class for the CheckoutPage page.
@@ -24,4 +25,7 @@ export class CheckoutPage {
     console.log('ionViewDidLoad CheckoutPage');
   }
 
+  gotoDetailPesanan(){
+    this.navCtrl.push(DetailPesananPage);
+  }
 }

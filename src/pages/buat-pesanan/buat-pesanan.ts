@@ -39,6 +39,7 @@ export class BuatPesananPage {
   cairan: boolean = true;
 
   asal: string;
+  buttonTambahSampel: boolean = true;
 
   //form
   institusi: number;
@@ -64,7 +65,6 @@ export class BuatPesananPage {
       this.editProfil = EditProfilPage;
       this.bentuk = 'pilih';
       this.kemasan = 'pilih';
-
   }
 
   ionViewDidLoad() {
@@ -129,12 +129,9 @@ export class BuatPesananPage {
     modal.present();
   }
 
-  institusiSelected(){
-    this.analisisModal = false;
-  }
-
   onInputAsal() {
     this.inputAsal = false;
+    this.analisisModal = false;
     this.asal = "*untuk asal Non-IPB";
     if(this.bentukSampel.HargaIPB){
       this.hargaSampel = this.bentukSampel.HargaIPB;
@@ -143,6 +140,7 @@ export class BuatPesananPage {
   }
   offInputAsal() {
     this.inputAsal = true;
+    this.analisisModal = false;
     this.asal = "*untuk asal IPB";
     if(this.bentukSampel.HargaNONIPB){
       this.hargaSampel = this.bentukSampel.HargaNONIPB;
