@@ -31,15 +31,18 @@ export class BuatPesananPage {
   tutup: boolean = false;  
   kemasanLainnya: boolean = false;
   noSampel: number = 1;
+  analisisModal: boolean = true;
 
   ekstrak: boolean = true;
   simplisia: boolean = true;
   serbuk: boolean = true;
   cairan: boolean = true;
 
+  asal: string;
 
   //form
-  asal: string;
+  institusi: number;
+  institusiLainnya: string;
   bentuk: string;
   kemasan: string;
   jumlah: number = 1;
@@ -82,10 +85,11 @@ export class BuatPesananPage {
         })
       };
 
-      this.httpClient.get(this.data.BASE_URL + '/getBentukSampel/' + this.idAnalisis, httpOptions).subscribe(data => {
+      this.httpClient.get(this.data.BASE_URL + '/getBentukHargaSampel/' + this.idAnalisis, httpOptions).subscribe(data => {
         let response = data;
         this.bentukSampel = response;
-        // console.log('bentuk ', this.bentukSampel);
+
+        // bentuk
         this.bentukSelect = false;
         console.log(this.bentukSampel.Ekstrak, this.bentukSampel.Simplisia, this.bentukSampel.Cairan,
           this.bentukSampel.Serbuk)
@@ -110,19 +114,40 @@ export class BuatPesananPage {
           this.serbuk = true;
         }
 
+        // harga
+        console.log(this.bentukSampel.HargaIPB, this.bentukSampel.HargaNONIPB)
+        if(this.institusi === 1){
+          this.hargaSampel = this.bentukSampel.HargaIPB;
+        } else {
+          console.log(this.institusi);
+          this.hargaSampel = this.bentukSampel.HargaNONIPB;
+        }
+        this.hargaTotal = this.hargaSampel;
       });
       
     });
     modal.present();
   }
 
+  institusiSelected(){
+    this.analisisModal = false;
+  }
+
   onInputAsal() {
     this.inputAsal = false;
     this.asal = "*untuk asal Non-IPB";
+    if(this.bentukSampel.HargaIPB){
+      this.hargaSampel = this.bentukSampel.HargaIPB;
+      this.hargaTotal = this.hargaSampel;
+    }
   }
   offInputAsal() {
     this.inputAsal = true;
     this.asal = "*untuk asal IPB";
+    if(this.bentukSampel.HargaNONIPB){
+      this.hargaSampel = this.bentukSampel.HargaNONIPB;
+      this.hargaTotal = this.hargaSampel;
+    }
   }
 
   sampelCtrl() {
