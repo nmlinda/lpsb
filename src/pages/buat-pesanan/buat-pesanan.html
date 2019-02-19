@@ -103,12 +103,12 @@
           <ion-col col-6>
             <ion-item>
               <ion-label color="primary" stacked>Bentuk</ion-label>
-              <ion-select [(ngModel)]="bentuk">
+              <ion-select [(ngModel)]="bentuk" [disabled]="bentukSelect">
                 <ion-option value="pilih" disabled>Pilih</ion-option>
-                <ion-option value="Ekstrak">Ekstrak</ion-option>
-                <ion-option value="Simplisia">Simplisia</ion-option>
-                <ion-option value="Serbuk">Serbuk</ion-option>
-                <ion-option value="Cairan">Cairan</ion-option>
+                <ion-option value="Cairan" [disabled]="cairan">Cairan</ion-option>
+                <ion-option value="Ekstrak" [disabled]="ekstrak">Ekstrak</ion-option>
+                <ion-option value="Serbuk" [disabled]="serbuk">Serbuk</ion-option>
+                <ion-option value="Simplisia" [disabled]="simplisia">Simplisia</ion-option>
               </ion-select>
             </ion-item>
           </ion-col>

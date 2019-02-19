@@ -7,12 +7,186 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Detail Pesanan</ion-title>
+    <ion-title>Rincian Pesanan</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+  <ion-card>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-1>
+          <ion-icon name="copy" color="primary"></ion-icon>
+        </ion-col>
+        <ion-col col-11>
+          <h2>Sedang Divalidasi</h2>
+          <p>
+            Pesanan sedang divalidasi oleh sistem.<br>
+            Waktu: 18-02-2019 09:22
+          </p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+  <ion-card>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-1>
+          <ion-icon name="person" color="primary"></ion-icon>
+        </ion-col>
+        <ion-col col-11>
+          <h2>Data Diri</h2>
+          <p>
+            Muhammad Gofar<br>
+            0823275843<br>
+            Jl Balebak 2 Bogor
+          </p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
 
+  <ion-card>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-1>
+          <ion-icon name="disc" color="primary"></ion-icon>
+        </ion-col>
+        <ion-col col-8>
+          <h2>Status Analisis</h2>
+          <p>
+            Pesanan berhasil dibuat.<br>
+            18-02-2019 09:22
+          </p>
+        </ion-col>
+        <ion-col col-3>
+          <button ion-button clear (click)="gotoPelacakan()">
+            lacak
+            <ion-icon name="arrow-forward" color="primary"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+  <ion-card>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-1>
+          <ion-icon name="cash" color="primary"></ion-icon>
+        </ion-col>
+        <ion-col col-11>
+          <h2>Informasi Pembayaran</h2>
+          <ion-row>
+            <ion-col col-8>
+              Subtotal untuk Sampel
+            </ion-col>
+            <ion-col col-4 text-right>
+              Rp 200000
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-8>
+              Kode Unik
+            </ion-col>
+            <ion-col col-4 text-right>
+              Rp 421
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-8>
+              Total
+            </ion-col>
+            <ion-col col-4 text-right>
+              Rp 200421
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+  <ion-card>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-1>
+          <ion-icon name="card" color="primary"></ion-icon>
+        </ion-col>
+        <ion-col col-8>
+          <h2>Metode Pembayaran</h2>
+          <p>
+            Bank BNI
+          </p>
+        </ion-col>
+        <ion-col col-3>
+          <button ion-button clear>
+            lihat
+            <ion-icon name="arrow-forward" color="primary"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+  <ion-card>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-8>
+          <h2>Sampel</h2>
+        </ion-col>
+        <ion-col col-4>
+          <h2 text-right>Rp 20000</h2>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-3>
+          <img src="../../assets/imgs/fitokimia.jpg">
+        </ion-col>
+        <ion-col col-9>
+          <p text-right>
+            Daun<br>
+            Plastik<br>
+            x1<br>
+            Fitokimia<br>
+            Rp 100000
+          </p>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6>
+          Waktu Pemesanan
+        </ion-col>
+        <ion-col col-6 text-right>
+          18-02-2019 09:22
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+  <ion-card>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-6 text-center>
+          <button ion-button outline block (click)="gotoPembayaran()">
+            <ion-icon name="cash"></ion-icon>
+            Bayar Sekarang
+          </button>
+        </ion-col>
+        <ion-col col-6 text-center>
+          <button ion-button outline block (click)="gotoKirimSampel()">
+            <ion-icon name="paper-plane"></ion-icon>
+            Kirim Sampel
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+  <ion-card padding color="light">
+    <button ion-button full color="danger">
+      Batalkan Pesanan
+    </button>
+  </ion-card>
 </ion-content>

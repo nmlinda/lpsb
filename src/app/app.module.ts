@@ -33,6 +33,9 @@ import { NavbarPage } from '../pages/navbar/navbar';
 import { CariPage } from '../pages/cari/cari';
 import { DetailAnalisisPage } from '../pages/detail-analisis/detail-analisis';
 import { GantiPasswordPage } from '../pages/ganti-password/ganti-password';
+import { PelacakanPage } from '../pages/pelacakan/pelacakan';
+import { KirimSampelPage } from '../pages/kirim-sampel/kirim-sampel';
+import { PembayaranPage } from '../pages/pembayaran/pembayaran';
 @NgModule({
   declarations: [
     MyApp,
@@ -56,7 +59,10 @@ import { GantiPasswordPage } from '../pages/ganti-password/ganti-password';
     NavbarPage,
     CariPage,
     DetailAnalisisPage,
-    GantiPasswordPage
+    GantiPasswordPage,
+    PelacakanPage,
+    KirimSampelPage,
+    PembayaranPage
   ],
   imports: [
     HttpClientModule,
@@ -89,7 +95,10 @@ import { GantiPasswordPage } from '../pages/ganti-password/ganti-password';
     NavbarPage,
     CariPage,
     DetailAnalisisPage,
-    GantiPasswordPage
+    GantiPasswordPage,
+    PelacakanPage,
+    KirimSampelPage,
+    PembayaranPage
   ],
   providers: [
     Data,

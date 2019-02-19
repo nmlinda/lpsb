@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { PelacakanPage } from '../pelacakan/pelacakan';
+import { PembayaranPage } from '../pembayaran/pembayaran';
+import { KirimSampelPage } from '../kirim-sampel/kirim-sampel';
 
 /**
  * Generated class for the DetailPesananPage page.
@@ -15,11 +18,22 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class DetailPesananPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public nav: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DetailPesananPage');
   }
 
+  gotoPelacakan(){
+    this.nav.push(PelacakanPage);
+  }
+
+  gotoPembayaran(){
+    this.nav.push(PembayaranPage);
+  }
+
+  gotoKirimSampel(){
+    this.nav.push(KirimSampelPage);
+  }
 }
