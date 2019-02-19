@@ -18,6 +18,10 @@ import { DetailPesananPage } from '../detail-pesanan/detail-pesanan';
 export class PesananPage {
   status: any;
   detailPesanan: any;
+  statusBayar: any;
+  statusKirimSampel: any;
+
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.status = "1";
     this.detailPesanan = DetailPesananPage;
