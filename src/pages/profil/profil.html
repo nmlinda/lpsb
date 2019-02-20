@@ -1,89 +1,64 @@
 <ion-header>
 
   <ion-navbar>
-      <ion-grid no-padding>
-          <ion-row>
-            <ion-col col-8 style="padding-top: 4px;">
-              <ion-title>Profil Saya</ion-title>
-            </ion-col>
-            <ion-col col-4 no-padding>
-                <page-navbar></page-navbar>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
+    <ion-grid no-padding>
+      <ion-row>
+        <ion-col col-8 style="padding-top: 4px;">
+          <ion-title>Profil Saya</ion-title>
+        </ion-col>
+        <ion-col col-4 no-padding>
+          <page-navbar></page-navbar>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content>
-  <ion-card color="light">
-    <ion-col>
-      <ion-item color="light">
-        <button ion-button item-right text-capitalize>Keluar</button>
-      </ion-item>
-    </ion-col>
-    <ion-col>
-      <ion-avatar>
-        <img src="../../assets/imgs/photo-profile.png">
-      </ion-avatar>
-    </ion-col>
-    <ion-col text-center>
-      <h1>
-        <strong>
-          {{ nama }}
-        </strong>
-      </h1>
-      <h2>
-        {{ email }}
-      </h2>
-      
-    </ion-col>
-  </ion-card>
-
   <ion-card>
     <ion-grid>
       <ion-row>
-        <ion-col col-11>
-            <h2>
-                <ion-icon name="call"></ion-icon>
-                {{ noHp }}
-            </h2>
-            <h2>
-                <ion-icon name="briefcase"></ion-icon>
-                {{ institusi }}
-            </h2>
-            <h2>
-                <ion-icon name="home"></ion-icon>
-                {{ alamat }}
-            </h2>
-            <h2>
-                <ion-icon name="checkmark-circle-outline"></ion-icon>
-                {{ npwp }}
-            </h2>
+        <ion-col col-10>
+          <h3>
+            <strong>{{nama}}</strong>
+          </h3>
+          <p>
+            <ion-icon name="mail" margin-end></ion-icon>
+            {{email}}<br>
+            <ion-icon name="call" margin-end></ion-icon>
+            {{noHp}}<br>
+            <ion-icon name="briefcase" margin-end></ion-icon>
+            {{ institusi }}<br>
+            <ion-icon name="home" margin-end></ion-icon>
+            {{ alamat }}<br>
+            <ion-icon name="checkmark-circle-outline" margin-end></ion-icon>
+            NPWP: {{ npwp }}<br>
+          </p>
         </ion-col>
-        <ion-col col-1>
-          <button ion-button clear icon-only [navPush]="editProfil" >
-            <ion-icon name="arrow-dropright"></ion-icon>
+        <ion-col col-2 text-center>
+          <button ion-button clear icon-only [navPush]="editProfil">
+            <ion-icon name="create" color="primary"></ion-icon>
           </button>
         </ion-col>
       </ion-row>
     </ion-grid>
-    
   </ion-card>
-
-  <ion-card>
-    <ion-list>
-      <button ion-item [navPush]="editRekening" style="border-bottom : 1px solid rgb(173, 171, 171)">
-        Rekening Saya
-      </button>
-    </ion-list>
-  </ion-card>
-  <ion-card>
-    <ion-list>
-      <button ion-item [navPush]="gantiPass" style="border-bottom : 1px solid rgb(173, 171, 171)">
-        Ubah Password
-      </button>
-    </ion-list>
-  </ion-card>
+  
+  <ion-item [navPush]="editRekening">
+    <ion-icon name="card" item-start></ion-icon>
+    Rekening Saya
+    <ion-icon name="arrow-dropright" item-end color="primary"></ion-icon>
+  </ion-item>
+  <ion-item [navPush]="gantiPass">
+    <ion-icon name="key" item-start></ion-icon>
+    Ubah Password
+    <ion-icon name="arrow-dropright" item-end color="primary"></ion-icon>
+  </ion-item>
+  <ion-item>
+      <ion-icon name="log-out" item-start></ion-icon>
+      Keluar
+      <ion-icon name="arrow-dropright" item-end color="primary"></ion-icon>
+    </ion-item>
 </ion-content>

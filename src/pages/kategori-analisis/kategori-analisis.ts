@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DetailAnalisisPage } from '../detail-analisis/detail-analisis';
 import { BuatPesananPage } from '../buat-pesanan/buat-pesanan';
+import { CariPage } from '../cari/cari';
 
 @IonicPage()
 @Component({
@@ -32,6 +33,10 @@ export class KategoriAnalisisPage {
 
   gotoDetailAnalisis(jenis){
     this.navCtrl.push(DetailAnalisisPage, { data: jenis });
+  }
+
+  cari(){
+    this.navCtrl.push(CariPage);
   }
 
 }

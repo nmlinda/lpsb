@@ -8,6 +8,7 @@ import { BuatPesananPage } from '../buat-pesanan/buat-pesanan';
 import { KategoriAnalisisPage } from '../kategori-analisis/kategori-analisis';
 import { Data } from '../../provider/data';
 import { PemberitahuanPage } from '../pemberitahuan/pemberitahuan';
+import { CariPage } from '../cari/cari';
 
 @Component({
   selector: 'page-home',
@@ -54,5 +55,9 @@ export class HomePage {
 
     gotoKategori(kategori){
       this.nav.push(KategoriAnalisisPage,{ data: kategori });
+    }
+
+    cari(){
+      this.nav.push(CariPage);
     }
 }

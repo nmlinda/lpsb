@@ -36,12 +36,20 @@
         <ion-col col-1>
           <ion-icon name="person" color="primary"></ion-icon>
         </ion-col>
-        <ion-col col-11>
+        <ion-col col-6>
           <h2>Data Diri</h2>
           <p>
             Muhammad Gofar<br>
             0823275843<br>
             Jl Balebak 2 Bogor
+          </p>
+        </ion-col>
+        <ion-col col-5>
+          <p>
+            <br>
+            gofar@gmail.com<br>
+            082214735692<br>
+            NPWP: 0828324953
           </p>
         </ion-col>
       </ion-row>
@@ -54,18 +62,23 @@
         <ion-col col-1>
           <ion-icon name="disc" color="primary"></ion-icon>
         </ion-col>
-        <ion-col col-8>
+        <ion-col col-9>
           <h2>Status Analisis</h2>
           <p>
-            Pesanan berhasil dibuat.<br>
+            Pesanan selesai dianalisis.<br>
+            18-02-2019 09:22
+          </p>
+          <p>
+            Pesanan sedang dianalisis.<br>
+            18-02-2019 09:22
+          </p>
+          <p>
+            Pesanan sedang dikaji Ulang.<br>
             18-02-2019 09:22
           </p>
         </ion-col>
-        <ion-col col-3>
-          <button ion-button clear (click)="gotoPelacakan()">
-            lacak
-            <ion-icon name="arrow-forward" color="primary"></ion-icon>
-          </button>
+        <ion-col col-2 text-center>
+          <ion-icon name="arrow-dropup" color="primary"></ion-icon>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -108,7 +121,7 @@
     </ion-grid>
   </ion-card>
 
-  <ion-card>
+  <!-- <ion-card>
     <ion-grid>
       <ion-row>
         <ion-col col-1>
@@ -128,7 +141,7 @@
         </ion-col>
       </ion-row>
     </ion-grid>
-  </ion-card>
+  </ion-card> -->
 
   <ion-card>
     <ion-grid>
@@ -156,7 +169,39 @@
       </ion-row>
       <ion-row>
         <ion-col col-6>
-          Waktu Pemesanan
+          No Pesanan
+        </ion-col>
+        <ion-col col-6 text-right>
+          19/II/19
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6>
+          Pesanan Dibuat
+        </ion-col>
+        <ion-col col-6 text-right>
+          18-02-2019 09:22
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6>
+          Pesanan Dibayar
+        </ion-col>
+        <ion-col col-6 text-right>
+          18-02-2019 09:22
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6>
+          Pesanan Selesai
+        </ion-col>
+        <ion-col col-6 text-right>
+          18-02-2019 09:22
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6>
+          Pesanan Dibatalkan
         </ion-col>
         <ion-col col-6 text-right>
           18-02-2019 09:22
@@ -168,8 +213,135 @@
   <ion-card>
     <ion-grid>
       <ion-row>
+        <ion-col col-10>
+          <ion-icon name="document" color="primary" margin-end></ion-icon>
+          Formulir Permohonan Sampel<br>
+          Pesanan tervalidasi: 19-02-2019
+        </ion-col>
+        <ion-col col-2>
+          <button ion-button outline>
+            <ion-icon name="download"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+  <ion-card>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-10>
+          <ion-icon name="checkmark-circle" color="primary" margin-end></ion-icon>
+          Tanda Terima Sampel<br>
+          Sampel diterima: 19-02-2019
+        </ion-col>
+        <ion-col col-2>
+          <button ion-button outline>
+            <ion-icon name="download"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+  <ion-card>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-12>
+          <ion-icon name="ribbon" color="primary" margin-end></ion-icon>
+          Sertifikat Hasil Uji
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6>
+          <button ion-button outline block color="secondary">
+            <ion-icon name="send"></ion-icon>
+            Kirim (COD)
+          </button>
+        </ion-col>
+        <ion-col col-6>
+          <button ion-button outline block>
+            <ion-icon name="download"></ion-icon>
+            Unduh
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+  <ion-card>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-12>
+            <ion-icon name="ribbon" color="primary" margin-end></ion-icon>
+            Sertifikat Hasil Uji
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-10>
+            No Resi: Sedang diproses
+          </ion-col>
+          <ion-col col-2>
+            <button ion-button outline block>
+              <ion-icon name="download"></ion-icon>
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+
+  <ion-card>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-12>
+          <ion-icon name="ribbon" color="primary" margin-end></ion-icon>
+          Sertifikat Hasil Uji
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-10>
+          No Resi: J0832C02S01A21<br>
+          20-02-2019
+          <button ion-button>
+            terima
+          </button>
+        </ion-col>
+        <ion-col col-2>
+          <button ion-button outline block>
+            <ion-icon name="download"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+  <ion-card>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-12>
+          <ion-icon name="flask" color="primary" margin-end></ion-icon>
+          Pengiriman Sisa Sampel (COD)
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-8>
+          No Resi: J0832C02S01A21<br>
+          20-02-2019
+        </ion-col>
+        <ion-col col-4>
+          <button ion-button block outline>
+            Terima
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+  <ion-card>
+    <ion-grid>
+      <ion-row>
         <ion-col col-6 text-center>
-          <button ion-button outline block (click)="gotoPembayaran()">
+          <button ion-button outline block color="secondary" (click)="gotoPembayaran()">
             <ion-icon name="cash"></ion-icon>
             Bayar Sekarang
           </button>
@@ -189,4 +361,26 @@
       Batalkan Pesanan
     </button>
   </ion-card>
+
+  <ion-card padding color="light">
+    <button ion-button full>
+      Beri Ulasan
+    </button>
+  </ion-card>
+
+  <ion-card padding color="light">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-8>
+          Telah diulas pada 19-03-2019
+        </ion-col>
+        <ion-col col-4>
+          <button ion-button outline block>
+            Lihat
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
 </ion-content>

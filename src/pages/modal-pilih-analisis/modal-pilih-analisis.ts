@@ -28,6 +28,7 @@ export class ModalPilihAnalisisPage {
   ];
   kategoris: any = [];
   katalogs: any = [];
+
   constructor(public data: Data, public navCtrl: NavController, public navParams: NavParams,
     public viewCtrl: ViewController, public httpClient: HttpClient) {
       this.jenisAnalisis = this.navParams.get('data');

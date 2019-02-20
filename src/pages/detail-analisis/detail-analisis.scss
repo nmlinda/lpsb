@@ -1,5 +1,13 @@
 page-detail-analisis {
     .img-jenis {
-        width: 100%;
+        border-radius: 50%;
+        width: 150px;
+        padding: 16px;
+        margin: auto;
+        display: block;
+    }
+    h2, p {
+        padding: 4px;
     }
 }
+

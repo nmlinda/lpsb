@@ -13,7 +13,7 @@
           <ion-title>{{kategori}}</ion-title>
         </ion-col>
         <ion-col col-4 no-padding>
-            <page-navbar></page-navbar>
+          <page-navbar></page-navbar>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -23,18 +23,24 @@
 
 
 <ion-content>
+  <ion-searchbar (click)="cari()">
+  </ion-searchbar>
+
   <ion-grid>
     <ion-row>
       <ion-col *ngFor="let jenis of jenisAnalisis" col-6>
-        <ion-card class="card-jenis" center (click)="gotoDetailAnalisis(jenis)">
-          <img src="../../assets/imgs/fitokimia.jpg">
-          <h2>{{jenis}}</h2>
-          <h4>IPB Rp 175.000</h4>
+        <ion-card class="card-jenis" (click)="gotoDetailAnalisis(jenis)">
+          <img src="../../assets/imgs/fitokimia.jpg" class="img-jenis">
+          <h2 text-center text-uppercase><strong>{{jenis}}</strong></h2>
+          <p text-center>
+            IPB Rp 125.000<br>
+            NON-IPB Rp 175.000
+          </p>
         </ion-card>
       </ion-col>
     </ion-row>
   </ion-grid>
-  
+
   <ion-fab right bottom>
     <button ion-fab [navPush]="buatPesanan">
       <ion-icon name="add"></ion-icon>

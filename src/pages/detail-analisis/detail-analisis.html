@@ -13,7 +13,7 @@
           <ion-title>{{jenis}}</ion-title>
         </ion-col>
         <ion-col col-4 no-padding>
-            <page-navbar></page-navbar>
+          <page-navbar></page-navbar>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -22,20 +22,53 @@
 </ion-header>
 
 
-<ion-content>
+<ion-content padding>
+  <ion-card>
     <img src="../../assets/imgs/fitokimia.jpg" class="img-jenis">
-    <h2>{{jenis}}</h2>
-    <p>
+    <h2 text-center text-uppercase>
+      <strong>{{jenis}}</strong>
+    </h2>
+    <p text-center>
       IPB Rp 175.000<br>
       Non-IPB Rp 200.000<br>
+    </p>
+  </ion-card>
+  <ion-list>
+    <ion-item>
+      <h3>Metode</h3>
+    </ion-item>
+    <ion-item>
+      <p>Visualisasi warna<br>
+        Keterangan: Kualitatif
+      </p>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-item>
+      <h3>
+        <ion-icon name="flask"></ion-icon>
+        Pilihan Bentuk Sampel yang Dibutuhkan
+      </h3>
+    </ion-item>
+    <ion-item>
+      <p>Ekstrak<br>Simplisia</p>
+    </ion-item>
+  </ion-list>
+  <!-- <p>
       Metode : Visualisasi warna<br>
       Keterangan : Kualitatif<br>
       Bentuk Sampel : Ekstrak, Simplisia
     </p>
+   
+    <p>
+      <ion-icon name="flask" margin-end></ion-icon>
+      <strong>Bentuk Sampel yang Dibutuhkan:</strong><br>
+      
+    </p> -->
 
-    <ion-fab right bottom>
-        <button ion-fab [navPush]="buatPesanan">
-          <ion-icon name="add"></ion-icon>
-        </button>
-      </ion-fab>
+  <ion-fab right bottom>
+    <button ion-fab [navPush]="buatPesanan">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
 </ion-content>

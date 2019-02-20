@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { PemberitahuanPage } from '../pemberitahuan/pemberitahuan';
-import { CariPage } from '../cari/cari';
+// import { CariPage } from '../cari/cari';
 
 
 @IonicPage()
@@ -18,9 +18,9 @@ export class NavbarPage {
     console.log('ionViewDidLoad NavbarPage');
   }
 
-  cari() {
-    this.navCtrl.push(CariPage);
-  }
+  // cari() {
+  //   this.navCtrl.push(CariPage);
+  // }
 
   pemberitahuan() {
     this.navCtrl.push(PemberitahuanPage);

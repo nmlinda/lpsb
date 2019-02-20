@@ -1,4 +1,3 @@
-
 <ion-header>
   <ion-navbar hideBackButton>
     <ion-grid no-padding>
@@ -7,7 +6,7 @@
           <ion-title>LPSB</ion-title>
         </ion-col>
         <ion-col col-4 no-padding>
-            <page-navbar></page-navbar>
+          <page-navbar></page-navbar>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -15,7 +14,7 @@
 </ion-header>
 
 <ion-content>
-    <ion-slides pager>
+  <!-- <ion-slides pager>
 
         <ion-slide style="background-color:white">
           <h6>Selamat datang di LPSB!</h6>
@@ -29,31 +28,59 @@
           <h2>Slide 3</h2>
         </ion-slide>
       
-      </ion-slides>
+      </ion-slides> -->
 
-      <ion-card no-padding class="card-utama" color="light">
-        <ion-card-header>
-          KATEGORI
-        </ion-card-header>
+  <ion-searchbar (click)="cari()" >
+  </ion-searchbar>
 
-        <ion-card-content>
-          <ion-scroll scrollX="true" direction="x">
-            <ion-card class="item card-item"  *ngFor="let kategori of kategoris" (click)="gotoKategori(kategori)">
-              <img src="../../assets/imgs/logo.png">
-              <p text-center class="tess">
-                {{kategori}}
-              </p>
-            </ion-card>
-          </ion-scroll>
+  <ion-card>
+    <ion-grid>
+      <ion-row [navPush]="buatPesanan">
+        <ion-col col-3 text-center>
+          <ion-icon name="flask" style="font-size: 60px;" color="primary"></ion-icon>
+        </ion-col>
+        <ion-col col-9>
+          <h2><strong>Pesan Jasa Analisis</strong></h2>
+          <p text-wrap>Buat pesanan jasa analisis biofarmaka dan lihat hasilnya pada aplikasi ini!</p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
 
-        </ion-card-content>
-      </ion-card>
+  <ion-card class="card-utama">
+    <ion-card-header>
+      KATEGORI
+    </ion-card-header>
+
+    <ion-card-content no-padding>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-3 *ngFor="let kategori of kategoris" (click)="gotoKategori(kategori)">
+            <img src="../../assets/imgs/logo.png" class="img-card">
+            <p text-center class="tess">
+              {{kategori}}
+            </p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+    <!-- <ion-card-content class="card-flex">
+      <ion-scroll scrollX="true" direction="x">
+        <ion-card class="item card-item" *ngFor="let kategori of kategoris" (click)="gotoKategori(kategori)">
+          <img src="../../assets/imgs/logo.png" class="img-card">
+          <p text-center class="tess">
+            {{kategori}}
+          </p>
+        </ion-card>
+      </ion-scroll>
+    </ion-card-content> -->
+  </ion-card>
 
 
-  <ion-fab right bottom>
+  <!-- <ion-fab right bottom>
     <button ion-fab [navPush]="buatPesanan">
       <ion-icon name="add"></ion-icon>
     </button>
-  </ion-fab>
+  </ion-fab> -->
 
 </ion-content>
