@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 
 /**
- * Generated class for the KirimSampelPage page.
+ * Generated class for the KirimSertifikatPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -10,20 +10,19 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 
 @IonicPage()
 @Component({
-  selector: 'page-kirim-sampel',
-  templateUrl: 'kirim-sampel.html',
+  selector: 'page-kirim-sertifikat',
+  templateUrl: 'kirim-sertifikat.html',
 })
-export class KirimSampelPage {
+export class KirimSertifikatPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad KirimSampelPage');
+    console.log('ionViewDidLoad KirimSertifikatPage');
   }
 
   closeModal(){
     this.viewCtrl.dismiss();
   }
-
 }

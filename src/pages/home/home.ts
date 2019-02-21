@@ -28,11 +28,38 @@ export class HomePage {
     'Ekstraksi',
     'Enzim'
   ];
+  // header : any = [];
+  // header = [
+  //   {
+  //     ID : 1,
+  //     Nama : 'A',
+  //     Jenis : {
+  //       IDj : 1,
+  //       name : 'AA',
+  //       harga: 100000,
+  //     }
+  //   },
+  //   {
+  //     ID : 2,
+  //     Nama : 'B',
+  //     Jenis : [{
+  //       IDj : 2,
+  //       name : 'BA',
+  //       harga: 120000,
+  //     },
+  //     {
+  //       IDj : 2,
+  //       name : 'BA',
+  //       harga: 120000,
+  //     }]
+  //   }
+  // ];
 
   constructor(public data: Data, public nav: NavController, public httpClient: HttpClient) {
     this.buatPesanan = BuatPesananPage;
     this.kategoriAnalisis = KategoriAnalisisPage;
     this.pemberitahuan = PemberitahuanPage;
+    
     // this.data.getData().then((data)=>
     // {
       

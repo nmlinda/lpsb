@@ -7,6 +7,11 @@
 <ion-header>
 
   <ion-navbar>
+     <ion-buttons start>
+          <button ion-button icon-only clear (click)="closeModal()">
+            <ion-icon name="arrow-back"></ion-icon>
+          </button>
+        </ion-buttons>
     <ion-title>Kirim Sampel</ion-title>
   </ion-navbar>
 
@@ -14,7 +19,7 @@
 
 
 <ion-content padding>
-  <ion-card>
+  <!-- <ion-card>
     <ion-list radio-group [(ngModel)]="kirimSampel">
       <p no-margin><strong>Pengiriman sampel melalui:</strong></p>
       <ion-item no-padding>
@@ -28,5 +33,5 @@
       <ion-label>Nomor Resi Pengiriman</ion-label>
       <ion-input type="text"></ion-input>
     </ion-list>
-  </ion-card>
+  </ion-card> -->
 </ion-content>

@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { PelacakanPage } from '../pelacakan/pelacakan';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { PembayaranPage } from '../pembayaran/pembayaran';
 import { KirimSampelPage } from '../kirim-sampel/kirim-sampel';
+import { BatalPesananPage } from '../batal-pesanan/batal-pesanan';
+import { UlasanPage } from '../ulasan/ulasan';
+import { KirimSertifikatPage } from '../kirim-sertifikat/kirim-sertifikat';
 
 /**
  * Generated class for the DetailPesananPage page.
@@ -18,22 +20,36 @@ import { KirimSampelPage } from '../kirim-sampel/kirim-sampel';
 })
 export class DetailPesananPage {
 
-  constructor(public nav: NavController, public navParams: NavParams) {
+  constructor(public nav: NavController, public navParams: NavParams, public modalCtrl: ModalController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DetailPesananPage');
   }
 
-  gotoPelacakan(){
-    this.nav.push(PelacakanPage);
-  }
-
+ 
   gotoPembayaran(){
-    this.nav.push(PembayaranPage);
+    let modal = this.modalCtrl.create(PembayaranPage);
+    modal.present();
   }
 
   gotoKirimSampel(){
-    this.nav.push(KirimSampelPage);
+    let modal = this.modalCtrl.create(KirimSampelPage);
+    modal.present();
+  }
+
+  gotoBatal(){
+    let modal = this.modalCtrl.create(BatalPesananPage);
+    modal.present();
+  }
+
+  gotoUlasan(){
+    let modal = this.modalCtrl.create(UlasanPage);
+    modal.present();
+  }
+
+  gotoKirimSertifikat(){
+    let modal = this.modalCtrl.create(KirimSertifikatPage);
+    modal.present();
   }
 }

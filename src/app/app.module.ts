@@ -33,9 +33,12 @@ import { NavbarPage } from '../pages/navbar/navbar';
 import { CariPage } from '../pages/cari/cari';
 import { DetailAnalisisPage } from '../pages/detail-analisis/detail-analisis';
 import { GantiPasswordPage } from '../pages/ganti-password/ganti-password';
-import { PelacakanPage } from '../pages/pelacakan/pelacakan';
 import { KirimSampelPage } from '../pages/kirim-sampel/kirim-sampel';
 import { PembayaranPage } from '../pages/pembayaran/pembayaran';
+import { BatalPesananPage } from '../pages/batal-pesanan/batal-pesanan';
+import { UlasanPage } from '../pages/ulasan/ulasan';
+import { KirimSertifikatPage } from '../pages/kirim-sertifikat/kirim-sertifikat';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -60,9 +63,11 @@ import { PembayaranPage } from '../pages/pembayaran/pembayaran';
     CariPage,
     DetailAnalisisPage,
     GantiPasswordPage,
-    PelacakanPage,
     KirimSampelPage,
-    PembayaranPage
+    PembayaranPage,
+    BatalPesananPage,
+    UlasanPage,
+    KirimSertifikatPage
   ],
   imports: [
     HttpClientModule,
@@ -96,9 +101,11 @@ import { PembayaranPage } from '../pages/pembayaran/pembayaran';
     CariPage,
     DetailAnalisisPage,
     GantiPasswordPage,
-    PelacakanPage,
     KirimSampelPage,
-    PembayaranPage
+    PembayaranPage,
+    BatalPesananPage,
+    UlasanPage,
+    KirimSertifikatPage
   ],
   providers: [
     Data,
