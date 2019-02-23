@@ -66,9 +66,14 @@
       
     </p> -->
 
-  <ion-fab right bottom>
-    <button ion-fab [navPush]="buatPesanan">
+  <!-- <ion-fab right bottom>
+    <button ion-fab (click)="buatPesanan()">
       <ion-icon name="add"></ion-icon>
     </button>
-  </ion-fab>
+  </ion-fab> -->
 </ion-content>
+<ion-footer padding>
+  <button ion-button block (click)="buatPesanan()">
+    Pesan
+  </button>
+</ion-footer>

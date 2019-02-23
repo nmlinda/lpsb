@@ -1,10 +1,14 @@
 page-kategori-analisis {
+    .grid-content{
+        background-color: whitesmoke;
+    }
     .card-jenis {
         //margin: 0;
         display: inline-block;
         margin-left: auto;
         margin-right: auto;
         display: block;
+        padding: 4px;
     }
     .img-jenis {
         margin-top: 4px;

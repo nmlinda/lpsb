@@ -4,7 +4,6 @@ import { NavController } from 'ionic-angular';
 //import { Data } from '../../provider/data';
 import { HttpHeaders, HttpClient} from '@angular/common/http';
 
-import { BuatPesananPage } from '../buat-pesanan/buat-pesanan';
 import { KategoriAnalisisPage } from '../kategori-analisis/kategori-analisis';
 import { Data } from '../../provider/data';
 import { PemberitahuanPage } from '../pemberitahuan/pemberitahuan';
@@ -56,7 +55,7 @@ export class HomePage {
   // ];
 
   constructor(public data: Data, public nav: NavController, public httpClient: HttpClient) {
-    this.buatPesanan = BuatPesananPage;
+    this.buatPesanan = KategoriAnalisisPage;
     this.kategoriAnalisis = KategoriAnalisisPage;
     this.pemberitahuan = PemberitahuanPage;
     

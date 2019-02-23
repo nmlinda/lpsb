@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DetailAnalisisPage } from '../detail-analisis/detail-analisis';
 import { BuatPesananPage } from '../buat-pesanan/buat-pesanan';
 import { CariPage } from '../cari/cari';
+import { BuatPesanan2Page } from '../buat-pesanan2/buat-pesanan2';
 
 @IonicPage()
 @Component({
@@ -39,4 +40,7 @@ export class KategoriAnalisisPage {
     this.navCtrl.push(CariPage);
   }
 
+  gotoBuatPesanan(){
+    this.navCtrl.push(BuatPesanan2Page);
+  }
 }

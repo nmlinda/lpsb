@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { BuatPesananPage } from '../buat-pesanan/buat-pesanan';
+import { BuatPesanan2Page } from '../buat-pesanan2/buat-pesanan2';
 /**
  * Generated class for the DetailAnalisisPage page.
  *
@@ -15,14 +15,15 @@ import { BuatPesananPage } from '../buat-pesanan/buat-pesanan';
 })
 export class DetailAnalisisPage {
   jenis: any;
-  buatPesanan: any;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.jenis = this.navParams.get('data');
-    this.buatPesanan = BuatPesananPage;
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DetailAnalisisPage');
   }
 
+  buatPesanan(){
+    this.navCtrl.push(BuatPesanan2Page);
+  }
 }

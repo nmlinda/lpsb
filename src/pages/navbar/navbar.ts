@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { PemberitahuanPage } from '../pemberitahuan/pemberitahuan';
+import { KeranjangPage } from '../keranjang/keranjang';
 // import { CariPage } from '../cari/cari';
 
 
@@ -24,6 +25,9 @@ export class NavbarPage {
 
   pemberitahuan() {
     this.navCtrl.push(PemberitahuanPage);
+  }
+  keranjang(){
+    this.navCtrl.push(KeranjangPage);
   }
 
 }

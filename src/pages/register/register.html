@@ -1,0 +1,68 @@
+<ion-content padding>
+  <div class="title">
+    <h1 text-center>LPSB</h1>
+  </div>
+  <form (ngSubmit)="signup()" [formGroup]="signupform" novalidate>
+    <ion-list>
+      <ion-item>
+        <ion-label floating>Nama Lengkap</ion-label>
+        <ion-input type="text" [(ngModel)]="userData.name" formControlName="name"
+          [class.error1]="!signupform.controls.name.valid && signupform.controls.name.dirty"></ion-input>
+      </ion-item>
+      <ion-item no-lines
+        *ngIf="( signupform.get('name').hasError('minlength') || signupform.get('name').hasError('maxlength') ||signupform.get('name').hasError('pattern') ||signupform.get('name').hasError('required') ) && signupform.get('name').touched">
+        <div class="error" *ngIf="signupform.get('name').hasError('required') && signupform.get('name').touched">
+          Masukkan Nama Lengkap anda
+        </div>
+        <div class="error" *ngIf="signupform.get('name').hasError('minlength') && signupform.get('name').touched">
+          Minimal 4 karakter
+        </div>
+        <div class="error" *ngIf="signupform.get('name').hasError('pattern') && signupform.get('name').touched">
+          Gunakan karakter alphabet
+        </div>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Email</ion-label>
+        <ion-input type="email" [(ngModel)]="userData.email" formControlName="email"
+          [class.error1]="!signupform.controls.email.valid && signupform.controls.email.dirty"></ion-input>
+      </ion-item>
+      <ion-item no-lines
+        *ngIf="( signupform.get('email').hasError('minlength') || signupform.get('email').hasError('pattern') ||signupform.get('email').hasError('required') ) && signupform.get('email').touched">
+        <div class="error" *ngIf="signupform.get('email').hasError('required') && signupform.get('email').touched">
+          Masukkan email anda
+        </div>
+        <div class="error" *ngIf="signupform.get('email').hasError('pattern') && signupform.get('email').touched">
+          Email tidak valid
+        </div>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Password</ion-label>
+        <ion-input type="password" [(ngModel)]="userData.password" formControlName="password"
+          [class.error1]="!signupform.controls.password.valid && signupform.controls.password.dirty"></ion-input>
+      </ion-item>
+      <ion-item no-lines
+        *ngIf="( signupform.get('password').hasError('minlength') || signupform.get('password').hasError('maxlength') ||signupform.get('password').hasError('required') ) && signupform.get('password').touched">
+        <div class="error"
+          *ngIf="signupform.get('password').hasError('required') && signupform.get('password').touched">
+          Masukkan password anda
+        </div>
+        <div class="error"
+          *ngIf="signupform.get('password').hasError('minlength') && signupform.get('password').touched">
+          Minimal 6 karakter
+        </div>
+      </ion-item>
+    </ion-list>
+
+    <button type="submit" ion-button block [disabled]="signupform.invalid">
+      Daftar
+    </button>
+  </form>
+</ion-content>
+<ion-footer>
+  <p text-center>
+    Sudah punya akun?
+    <strong><a (click)="gotoLogin()"> Masuk.</a></strong>
+  </p>
+</ion-footer>

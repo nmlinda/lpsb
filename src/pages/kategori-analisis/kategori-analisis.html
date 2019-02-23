@@ -26,16 +26,19 @@
   <ion-searchbar (click)="cari()">
   </ion-searchbar>
 
-  <ion-grid>
+  <ion-grid class="grid-content" no-padding>
     <ion-row>
-      <ion-col *ngFor="let jenis of jenisAnalisis" col-6>
-        <ion-card class="card-jenis" (click)="gotoDetailAnalisis(jenis)">
+      <ion-col *ngFor="let jenis of jenisAnalisis" col-6 no-padding>
+        <ion-card class="card-jenis" (click)="gotoDetailAnalisis(jenis)"  text-center>
           <img src="../../assets/imgs/fitokimia.jpg" class="img-jenis">
-          <h2 text-center text-uppercase><strong>{{jenis}}</strong></h2>
-          <p text-center>
+          <h2 text-uppercase><strong>{{jenis}}</strong></h2>
+          <p>
             IPB Rp 125.000<br>
             NON-IPB Rp 175.000
           </p>
+          <button ion-button outline (click)="gotoBuatPesanan()" stop-event="click">
+            Pesan
+          </button>
         </ion-card>
       </ion-col>
     </ion-row>

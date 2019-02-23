@@ -1,0 +1,50 @@
+<ion-content padding>
+  <div class="title">
+    <h1 text-center>LPSB</h1>
+  </div>
+  <form (ngSubmit)="login()" [formGroup]="loginform" novalidate>
+    <ion-list>
+      <ion-item>
+        <ion-label floating>Email</ion-label>
+        <ion-input type="email" [(ngModel)]="userData.email" formControlName="email"
+          [class.error1]="!loginform.controls.email.valid && loginform.controls.email.dirty"></ion-input>
+      </ion-item>
+      <ion-item no-lines
+        *ngIf="( loginform.get('email').hasError('minlength') || loginform.get('email').hasError('pattern') ||loginform.get('email').hasError('required') ) && loginform.get('email').touched">
+        <div class="error" *ngIf="loginform.get('email').hasError('required') && loginform.get('email').touched">
+          Masukkan email anda
+        </div>
+        <div class="error" *ngIf="loginform.get('email').hasError('pattern') && loginform.get('email').touched">
+          Email tidak valid
+        </div>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Password</ion-label>
+        <ion-input type="password" [(ngModel)]="userData.password" formControlName="password"
+          [class.error1]="!loginform.controls.password.valid && loginform.controls.password.dirty"></ion-input>
+      </ion-item>
+      <ion-item no-lines
+        *ngIf="( loginform.get('password').hasError('minlength') || loginform.get('password').hasError('maxlength') ||loginform.get('password').hasError('required') ) && loginform.get('password').touched">
+        <div class="error"
+          *ngIf="loginform.get('password').hasError('required') && loginform.get('password').touched">
+          Masukkan password anda
+        </div>
+        <div class="error"
+          *ngIf="loginform.get('password').hasError('minlength') && loginform.get('password').touched">
+          Minimal 6 karakter
+        </div>
+      </ion-item>
+    </ion-list>
+
+    <button type="submit" ion-button block [disabled]="loginform.invalid">
+      Masuk
+    </button>
+  </form>
+</ion-content>
+<ion-footer>
+  <p text-center>
+    Belum punya akun?
+    <strong><a (click)="gotoDaftar()"> Daftar.</a></strong>
+  </p>
+</ion-footer>

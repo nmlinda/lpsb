@@ -38,6 +38,10 @@ import { PembayaranPage } from '../pages/pembayaran/pembayaran';
 import { BatalPesananPage } from '../pages/batal-pesanan/batal-pesanan';
 import { UlasanPage } from '../pages/ulasan/ulasan';
 import { KirimSertifikatPage } from '../pages/kirim-sertifikat/kirim-sertifikat';
+import { BuatPesanan2Page } from '../pages/buat-pesanan2/buat-pesanan2';
+import { KeranjangPage } from '../pages/keranjang/keranjang';
+import { LoginPage } from '../pages/login/login';
+import { RegisterPage } from '../pages/register/register';
 
 @NgModule({
   declarations: [
@@ -67,7 +71,11 @@ import { KirimSertifikatPage } from '../pages/kirim-sertifikat/kirim-sertifikat'
     PembayaranPage,
     BatalPesananPage,
     UlasanPage,
-    KirimSertifikatPage
+    KirimSertifikatPage,
+    BuatPesanan2Page,
+    KeranjangPage,
+    LoginPage,
+    RegisterPage
   ],
   imports: [
     HttpClientModule,
@@ -105,7 +113,11 @@ import { KirimSertifikatPage } from '../pages/kirim-sertifikat/kirim-sertifikat'
     PembayaranPage,
     BatalPesananPage,
     UlasanPage,
-    KirimSertifikatPage
+    KirimSertifikatPage,
+    BuatPesanan2Page,
+    KeranjangPage,
+    LoginPage,
+    RegisterPage
   ],
   providers: [
     Data,
