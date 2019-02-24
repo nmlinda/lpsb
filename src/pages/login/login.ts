@@ -63,7 +63,7 @@ export class LoginPage {
       let response = data;
       this.logins = response;
       console.log(response);
-      if (this.logins.success == true) {        
+      if (this.logins.success == true) {
         this.data.login(this.logins, this.logins.api_token); // simpan response ke local storage
         this.navCtrl.setRoot(TabsPage);
         loading.dismiss();
@@ -80,34 +80,12 @@ export class LoginPage {
 
     });
   }
-  //   this.http.post(this.data.BASE_URL + "/login", input, httpOptions).subscribe(data => {
-  //   let response = data.json();
-  //   console.log(response);
-  //   if (response.status == "200") {
-  //     //console.log(response);
-  //     this.data.login(response.data, "login");//masukin data ke localstorage
-  //     this.gotoBeranda();
-  //     loading.dismiss();
-  //   }
-  //   else {
-  //     console.log(response);
-  //     loading.dismiss();
-  //     let alert = this.alertCtrl.create({
-  //       title: 'Gagal Masuk',
-  //       subTitle: 'Email atau Password salah',
-  //       buttons: ['OK']
-  //     });
-  //     alert.present();
-  //   }
 
-  // });
-// }
+  gotoDaftar() {
+    this.navCtrl.push(RegisterPage);
+  }
 
-gotoDaftar() {
-  this.navCtrl.push(RegisterPage);
-}
-
-gotoBeranda(){
-  this.navCtrl.push(HomePage);
-}
+  gotoBeranda() {
+    this.navCtrl.push(HomePage);
+  }
 }

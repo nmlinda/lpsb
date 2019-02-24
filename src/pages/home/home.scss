@@ -1,8 +1,10 @@
 page-home {
-  body{
-      background-color: gainsboro;
+  .content{
+    background-color: whitesmoke;
   }
-  
+  .search-bar{
+    background-color: white !important;
+  }
     ion-slides {
     height: 15vh;
   }
@@ -51,5 +53,6 @@ page-home {
   }
   .tess {
     line-height: normal;
+    white-space: normal;
   }
 }

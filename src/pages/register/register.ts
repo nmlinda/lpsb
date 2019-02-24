@@ -1,14 +1,18 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Data } from '../../provider/data';
+import { Http } from '@angular/http';
+import { TabsPage } from '../tabs/tabs';
 
-/**
- * Generated class for the RegisterPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    // 'Authorization': 'Bearer '+data.api_token
+  })
+};
 
 @IonicPage()
 @Component({
@@ -19,13 +23,21 @@ export class RegisterPage {
   signupform: FormGroup;
   userData = { "name": "", "password": "", "email": "" };
 
+  logins: any = [];
   // submitted = false;
   nama: string;
   email: string;
   password: string;
   daftarButton = true;
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  regis :any = [];
+  constructor(
+    public navCtrl: NavController,
+    public alertCtrl: AlertController,
+    public loadCtrl: LoadingController,
+    public navParams: NavParams,
+    public http: Http,
+    public httpClient: HttpClient,
+    public data: Data) {
   }
 
   ngOnInit() {
@@ -46,6 +58,9 @@ export class RegisterPage {
   }
 
   signup() {
+    let loading = this.loadCtrl.create({
+      content: 'memuat..'
+    });
     let input = {
       nama: this.userData.name,
       email: this.userData.email,
@@ -53,5 +68,25 @@ export class RegisterPage {
     };
 
     console.log(input);
+    this.httpClient.post(this.data.BASE_URL + '/register', input, httpOptions).subscribe(data => {
+      let response = data;
+      this.regis = response;
+      console.log(response);
+      if (this.regis.success == true) {
+        this.data.login(this.regis, this.regis.api_token); // simpan response ke local storage
+        this.navCtrl.setRoot(TabsPage);
+        loading.dismiss();
+      }
+      else {
+        loading.dismiss();
+        let alert = this.alertCtrl.create({
+          title: 'Gagal Masuk',
+          subTitle: 'Silahkan coba lagi.',
+          buttons: ['OK']
+        });
+        alert.present();
+      }
+
+    });
   }
 }

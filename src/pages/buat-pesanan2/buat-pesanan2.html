@@ -21,10 +21,10 @@
           <img src="../../assets/imgs/fitokimia.jpg">
         </ion-col>
         <ion-col col-9>
-          <h2 text-uppercase>Fitokimia</h2>
+          <h2 text-uppercase>{{ namaJenis }}</h2>
           <h4>
-            IPB Rp 200.000<br>
-            NON-IPB Rp 250.000
+            IPB Rp {{ hargaIPB }}<br>
+            NON-IPB Rp {{ hargaNONIPB }}
           </h4>
           <h4 text-right>
             INFO
@@ -69,7 +69,7 @@
           </ion-item>
         </ion-col>
         <ion-col col-6>
-          <ion-input type="text" placeholder="Ketik kemasan lainnya.."></ion-input>
+          <ion-input type="text" placeholder="Ketik kemasan lainnya.." *ngIf="kemasanLain"></ion-input>
         </ion-col>
       </ion-row>
       <ion-row>

@@ -13,7 +13,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="content">
   <!-- <ion-slides pager>
 
         <ion-slide style="background-color:white">
@@ -30,14 +30,14 @@
       
       </ion-slides> -->
 
-  <ion-searchbar (click)="cari()" >
+  <ion-searchbar (click)="cari()" class="search-bar">
   </ion-searchbar>
 
   <ion-card>
     <ion-grid>
-      <ion-row [navPush]="buatPesanan">
-        <ion-col col-3 text-center>
-          <ion-icon name="flask" style="font-size: 60px;" color="primary"></ion-icon>
+      <ion-row (click)="gotoKategori()">
+        <ion-col col-3 text-center align-self-center>
+          <ion-icon name="flask" style="font-size: 10vh;" color="primary"></ion-icon>
         </ion-col>
         <ion-col col-9>
           <h2><strong>Pesan Jasa Analisis</strong></h2>
@@ -55,10 +55,10 @@
     <ion-card-content no-padding>
       <ion-grid>
         <ion-row>
-          <ion-col col-3 *ngFor="let kategori of listKategori" (click)="gotoKategori(kategori)">
+          <ion-col col-3 *ngFor="let item of kategori" (click)="gotoKategori(item.IDKategori)">
             <img src="../../assets/imgs/logo.png" class="img-card">
-            <p text-center class="tess">
-              {{kategori}}
+            <p text-center class="tess" text-wrap>
+              {{item.Kategori}}
             </p>
           </ion-col>
         </ion-row>

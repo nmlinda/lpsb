@@ -1,16 +1,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-grid no-padding>
-      <ion-row>
-        <ion-col col-8 style="padding-top: 4px;">
-          <ion-title>Profil Saya</ion-title>
-        </ion-col>
-        <ion-col col-4 no-padding>
-          <page-navbar></page-navbar>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+    <ion-title text-center>Profil Saya</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -21,21 +12,35 @@
     <ion-grid>
       <ion-row>
         <ion-col col-10>
-          <h3>
-            <strong>{{nama}}</strong>
-          </h3>
-          <p>
+          <h1>
+            {{nama}}
+          </h1>
+          <h2>
             <ion-icon name="mail" margin-end></ion-icon>
-            {{email}}<br>
+            <span *ngIf="email">{{email}}<br></span>
+            <span *ngIf="!email">-<br></span>
+          </h2>
+          <h2>
             <ion-icon name="call" margin-end></ion-icon>
-            {{noHp}}<br>
+            <span *ngIf="noHp">{{noHp}}<br></span>
+            <span *ngIf="!noHp">-<br></span>
+          </h2>
+          <h2>
             <ion-icon name="briefcase" margin-end></ion-icon>
-            {{ institusi }}<br>
+            <span *ngIf="institusi">{{institusi}}<br></span>
+            <span *ngIf="!institusi">-<br></span>
+          </h2>
+          <h2>
             <ion-icon name="home" margin-end></ion-icon>
-            {{ alamat }}<br>
+            <span *ngIf="alamat">{{alamat}}<br></span>
+            <span *ngIf="!alamat">-<br></span>
+          </h2>
+          <h2>
             <ion-icon name="checkmark-circle-outline" margin-end></ion-icon>
-            NPWP: {{ npwp }}<br>
-          </p>
+            NPWP:
+            <span *ngIf="npwp">{{npwp}}<br></span>
+            <span *ngIf="!npwp">-<br></span>
+          </h2>
         </ion-col>
         <ion-col col-2 text-center>
           <button ion-button clear icon-only [navPush]="editProfil">
@@ -45,7 +50,7 @@
       </ion-row>
     </ion-grid>
   </ion-card>
-  
+
   <ion-item [navPush]="editRekening">
     <ion-icon name="card" item-start></ion-icon>
     Rekening Saya
@@ -57,8 +62,8 @@
     <ion-icon name="arrow-dropright" item-end color="primary"></ion-icon>
   </ion-item>
   <ion-item (click)="logout()">
-      <ion-icon name="log-out" item-start></ion-icon>
-      Keluar
-      <ion-icon name="arrow-dropright" item-end color="primary"></ion-icon>
-    </ion-item>
+    <ion-icon name="log-out" item-start></ion-icon>
+    Keluar
+    <ion-icon name="arrow-dropright" item-end color="primary"></ion-icon>
+  </ion-item>
 </ion-content>
