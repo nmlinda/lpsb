@@ -20,27 +20,37 @@
   <ion-list>
     <ion-item>
       <ion-label stacked>Nama Lengkap</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input type="text" [(ngModel)]="nama"></ion-input>
     </ion-item>
-    <ion-item>
+    <ion-list radio-group no-margin [(ngModel)]="institusi">
       <ion-label stacked>Institusi/Perusahaan</ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
+      <ion-item no-padding>
+        <ion-label class="labelSisaSampel">Institut Pertanian Bogor</ion-label>
+        <ion-radio value="1" item-left style="margin: 6px;" (ionSelect)='offInputAsal()'></ion-radio>
+      </ion-item>
+      <ion-item no-padding>
+        <ion-label class="labelSisaSampel">Lainnya: </ion-label>
+        <ion-radio value="2" item-left style="margin-right: 6px;" (ionSelect)='onInputAsal()'></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-input type="text" [(ngModel)]="institusiLain" [disabled]="inputInstitusi"></ion-input>
+      </ion-item>
+    </ion-list>
     <ion-item>
       <ion-label stacked>Alamat</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input type="text" [(ngModel)]="alamat"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label stacked>No HP</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input type="number" [(ngModel)]="noHp"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label stacked>Email</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input type="email" [(ngModel)]="email"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label stacked>No NPWP</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input type="text" [(ngModel)]="npwp"></ion-input>
     </ion-item>
   </ion-list>
 </ion-content>

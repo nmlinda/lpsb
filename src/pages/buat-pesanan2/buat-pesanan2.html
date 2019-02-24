@@ -33,7 +33,7 @@
       </ion-row>
     </ion-grid>
   </ion-card>
-
+  <!-- <form [formGroup]="pesanform" novalidate> -->
   <ion-card>
     <ion-grid>
       <ion-row>
@@ -52,15 +52,17 @@
       </ion-row>
       <ion-row>
         <ion-col col-12>
+          <ion-item>
           <ion-label color="primary" stacked>Jenis</ion-label>
-          <ion-input type="text" placeholder="Jenis"></ion-input>
+          <ion-input type="text" placeholder="Jenis" [(ngModel)]="jenisSampel"></ion-input>
+        </ion-item>
         </ion-col>
       </ion-row>
       <ion-row justify-content-center align-items-center style="height: 100%">
         <ion-col col-6>
           <ion-item>
             <ion-label color="primary" stacked>Kemasan</ion-label>
-            <ion-select [(ngModel)]="kemasan">
+            <ion-select [(ngModel)]="kemasan" (ionChange)="kemasanChange($event)">
               <ion-option value="pilih" disabled>Pilih</ion-option>
               <ion-option value="Plastik">Plastik</ion-option>
               <ion-option value="Kardus">Kardus</ion-option>
@@ -68,12 +70,13 @@
             </ion-select>
           </ion-item>
         </ion-col>
-        <ion-col col-6>
-          <ion-input type="text" placeholder="Ketik kemasan lainnya.." *ngIf="kemasanLain"></ion-input>
+        <ion-col col-6 style="margin-top: 20px;">
+          <ion-input type="text" placeholder="Ketik kemasan lainnya.." [(ngModel)]="kemasanlain" 
+          *ngIf="kemasanLain"></ion-input>
         </ion-col>
       </ion-row>
       <ion-row>
-        <ion-col col-6>
+        <ion-col col-7>
           <ion-item>
             <ion-label color="primary" stacked>Bentuk</ion-label>
             <ion-select [(ngModel)]="bentuk" [disabled]="bentukSelect">
@@ -85,19 +88,29 @@
             </ion-select>
           </ion-item>
         </ion-col>
-        <ion-col col-6  justify-content-center align-items-center>
+        <ion-col col-5 justify-content-center align-items-center>
           <ion-label color="primary" stacked>Jumlah</ion-label>
-          <button ion-button icon-only clear no-margin (click)="minJumlah()">
-            <ion-icon name="remove-circle"></ion-icon>
-          </button>
-          <h4 class="jumlah">{{jumlah}}</h4>
-          <button ion-button icon-only clear no-margin (click)="addJumlah()">
-            <ion-icon name="add-circle"></ion-icon>
-          </button>
+          <ion-row>
+            <ion-col col-4 text-right no-padding>
+              <button ion-button icon-only clear no-margin (click)="minJumlah()">
+                <ion-icon name="remove-circle"></ion-icon>
+              </button>
+            </ion-col>
+            <ion-col col-4 text-center style="margin-top: 10px"  no-padding>
+              <h4 class="jumlah">{{jumlah}}</h4>
+            </ion-col>
+            <ion-col col-4 text-left no-padding>
+              <button ion-button icon-only clear no-margin (click)="addJumlah()">
+                <ion-icon name="add-circle"></ion-icon>
+              </button>
+            </ion-col>
+          </ion-row>
         </ion-col>
       </ion-row>
     </ion-grid>
   </ion-card>
+
+<!-- </form> -->
 </ion-content>
 
 <ion-footer style="background-color: white">

@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { KeranjangPage } from '../keranjang/keranjang';
 import { HomePage } from '../home/home';
 import { Data } from '../../provider/data';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { DetailAnalisisPage } from '../detail-analisis/detail-analisis';
 
 /**
  * Generated class for the BuatPesanan2Page page.
@@ -18,6 +19,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   templateUrl: 'buat-pesanan2.html',
 })
 export class BuatPesanan2Page {
+
   // info jenis analisis
   IDjenis: any;
   jenisAnalisis: any;
@@ -32,6 +34,7 @@ export class BuatPesanan2Page {
   Simplisia: boolean = false;
 
   //form
+  jenisSampel: any;
   kemasan: any;
   kemasanLain: boolean = false;
   bentuk: any;
@@ -44,6 +47,7 @@ export class BuatPesanan2Page {
     public data: Data,
     public navCtrl: NavController,
     public navParams: NavParams,
+    public alertCtrl: AlertController,
     public httpClient: HttpClient) {
 
     this.kemasan = 'pilih';
@@ -70,19 +74,19 @@ export class BuatPesanan2Page {
           this.hargaNONIPB = this.jenisAnalisis.HargaNONIPB;
           this.metode = this.jenisAnalisis.Metode;
           this.keterangan = this.jenisAnalisis.Keterangan;
-          if(this.jenisAnalisis.Cairan === 1){
+          if (this.jenisAnalisis.Cairan === 1) {
             this.Cairan = true;
             this.cairan = false;
           }
-          if(this.jenisAnalisis.Ekstrak === 1){
+          if (this.jenisAnalisis.Ekstrak === 1) {
             this.Ekstrak = true;
             this.ekstrak = false;
           }
-          if(this.jenisAnalisis.Serbuk === 1){
+          if (this.jenisAnalisis.Serbuk === 1) {
             this.Serbuk = true;
             this.serbuk = false;
           }
-          if(this.jenisAnalisis.Simplisia === 1){
+          if (this.jenisAnalisis.Simplisia === 1) {
             this.Simplisia = true;
             this.simplisia = false;
           }
@@ -95,6 +99,15 @@ export class BuatPesanan2Page {
     console.log('ionViewDidLoad BuatPesanan2Page');
   }
 
+  kemasanChange() {
+    if (this.kemasan == "lainnya") {
+      this.kemasanLain = true;
+    }
+    else {
+      this.kemasanLain = false;
+    }
+  }
+
   addJumlah() {
     this.jumlah += 1;
   }
@@ -105,12 +118,13 @@ export class BuatPesanan2Page {
     }
   }
 
-  tambahKeranjang(){
-    this.navCtrl.push(HomePage);
+  tambahKeranjang() {
+    this.navCtrl.push(DetailAnalisisPage, { data: this.IDjenis });
   }
 
-  gotoKeranjang(){
+  gotoKeranjang() {
     this.navCtrl.push(KeranjangPage);
   }
+
 
 }

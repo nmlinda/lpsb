@@ -14,7 +14,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'detail-sampel.html',
 })
 export class DetailSampelPage {
-
+  listJenisAnalisis = [
+    'Fitokimia',
+    'Tanin'
+  ];
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 

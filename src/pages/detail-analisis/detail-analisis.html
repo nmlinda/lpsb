@@ -22,8 +22,8 @@
 </ion-header>
 
 
-<ion-content padding>
-  <ion-card>
+<ion-content>
+  <ion-card color="light">
     <img src="../../assets/imgs/fitokimia.jpg" class="img-jenis">
     <h2 text-center text-uppercase>
       <strong>{{ namaJenis }}</strong>
@@ -33,31 +33,51 @@
       Non-IPB Rp {{ hargaNONIPB }}<br>
     </p>
   </ion-card>
-  <ion-list>
-    <ion-item>
-      <h3>Metode</h3>
-    </ion-item>
-    <ion-item>
-      <p>{{ metode }}<br>
-        Keterangan: {{ keterangan }}
-      </p>
-    </ion-item>
-  </ion-list>
-  <ion-list>
-    <ion-item>
-      <h3>
-        <ion-icon name="flask"></ion-icon>
-        Pilihan Bentuk Sampel yang Dibutuhkan
-      </h3>
-    </ion-item>
-    <ion-item>
-      <p *ngIf="cairan">Cairan</p>
-      <p *ngIf="ekstrak">Ekstrak</p>
-      <p *ngIf="serbuk">Serbuk</p>
-      <p *ngIf="simplisia">Simplisia</p>
-    </ion-item>
-  </ion-list>
+  <ion-card>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-1 align-self-center no-padding text-center>
+          <ion-icon name="flask"></ion-icon>
+        </ion-col>
+        <ion-col col-11 no-padding>
+          <p>
+            <strong>Metode</strong><br>
+          </p>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-1 no-padding>
 
+        </ion-col>
+        <ion-col col-11 no-padding>
+          <p>{{ metode }}<br>
+            Keterangan: {{ keterangan }}
+          </p>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-1 align-self-center no-padding text-center>
+          <ion-icon name="checkmark-circle"></ion-icon>
+        </ion-col>
+        <ion-col col-11 no-padding>
+          <p>
+            <strong>Pilihan Bentuk Sampel yang Dibutuhkan</strong><br>
+          </p>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-1 no-padding>
+
+        </ion-col>
+        <ion-col col-11 no-padding>
+          <p *ngIf="cairan">Cairan</p>
+          <p *ngIf="ekstrak">Ekstrak</p>
+          <p *ngIf="serbuk">Serbuk</p>
+          <p *ngIf="simplisia">Simplisia</p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
 </ion-content>
 <ion-footer padding>
   <button ion-button block (click)="buatPesanan()">
