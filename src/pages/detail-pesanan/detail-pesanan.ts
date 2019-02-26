@@ -19,7 +19,15 @@ import { KirimSertifikatPage } from '../kirim-sertifikat/kirim-sertifikat';
   templateUrl: 'detail-pesanan.html',
 })
 export class DetailPesananPage {
-
+  statusAnalisis = [
+    'Pesanan selesai dianalisis.',
+    'Pesanan sedang dianalisis.',
+    'Pesanan sedang dikaji ulang.'
+  ];
+  first = this.statusAnalisis[0];
+  sisa = this.statusAnalisis.filter(cart =>
+    cart !== this.first);
+  moreStatus: boolean = false;
   constructor(public nav: NavController, public navParams: NavParams, public modalCtrl: ModalController) {
   }
 
@@ -27,6 +35,9 @@ export class DetailPesananPage {
     console.log('ionViewDidLoad DetailPesananPage');
   }
 
+  showStatus(){
+    this.moreStatus = !this.moreStatus;
+  }
  
   gotoPembayaran(){
     let modal = this.modalCtrl.create(PembayaranPage);
