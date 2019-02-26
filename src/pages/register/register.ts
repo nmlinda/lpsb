@@ -62,9 +62,9 @@ export class RegisterPage {
       content: 'memuat..'
     });
     let input = {
-      nama: this.userData.name,
-      email: this.userData.email,
-      password: this.userData.password
+      Nama: this.userData.name,
+      Email: this.userData.email,
+      Password: this.userData.password
     };
 
     console.log(input);

@@ -7,7 +7,7 @@ import { GantiPasswordPage } from '../ganti-password/ganti-password';
 // import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 import { LoginPage } from '../login/login';
 import { Data } from '../../provider/data';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 @IonicPage()
 @Component({
   selector: 'page-profil',

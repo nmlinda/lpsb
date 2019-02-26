@@ -9,7 +9,7 @@
   <ion-navbar>
     <ion-title>Rekening Saya</ion-title>
     <ion-buttons end>
-      <button ion-button>Simpan</button>
+      <button ion-button (click)="simpan()" [disabled]="rekform.invalid">Simpan</button>
     </ion-buttons>
   </ion-navbar>
 
@@ -17,18 +17,40 @@
 
 
 <ion-content padding>
-  <ion-list>
-    <ion-item>
-      <ion-label stacked>Nama Bank</ion-label>
-      <ion-input type="text" [(ngModel)]="namaBank"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label stacked>No Rekening</ion-label>
-      <ion-input type="text" [(ngModel)]="noRekening"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label stacked>Nama Nasabah</ion-label>
-      <ion-input type="text" [(ngModel)]="namaNasabah"></ion-input>
-    </ion-item>
-  </ion-list>
+  <form [formGroup]="rekform" novalidate>
+    <ion-list>
+      <ion-item>
+        <ion-label stacked>Nama Bank</ion-label>
+        <ion-input type="text" [(ngModel)]="rekData.namaBank" formControlName="namaBank"
+          [class.error1]="!rekform.controls.namaBank.valid && rekform.controls.namaBank.dirty"></ion-input>
+      </ion-item>
+      <ion-item no-lines *ngIf="rekform.get('namaBank').hasError('required') && rekform.get('namaBank').touched">
+        <div class="error" *ngIf="rekform.get('namaBank').hasError('required') && rekform.get('namaBank').touched">
+          Masukkan Nama Bank
+        </div>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>No Rekening</ion-label>
+        <ion-input type="number" [(ngModel)]="rekData.noRekening" formControlName="noRekening"
+          [class.error1]="!rekform.controls.noRekening.valid && rekform.controls.noRekening.dirty"></ion-input>
+      </ion-item>
+      <ion-item no-lines *ngIf="rekform.get('noRekening').hasError('required') && rekform.get('noRekening').touched">
+        <div class="error" *ngIf="rekform.get('noRekening').hasError('required') && rekform.get('noRekening').touched">
+          Masukkan No Rekening
+        </div>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>Nama Bank</ion-label>
+        <ion-input type="text" [(ngModel)]="rekData.namaNasabah" formControlName="namaNasabah"
+          [class.error1]="!rekform.controls.namaNasabah.valid && rekform.controls.namaNasabah.dirty"></ion-input>
+      </ion-item>
+      <ion-item no-lines *ngIf="rekform.get('namaNasabah').hasError('required') && rekform.get('namaNasabah').touched">
+        <div class="error" *ngIf="rekform.get('namaNasabah').hasError('required') && rekform.get('namaNasabah').touched">
+          Masukkan Nama Nasabah
+        </div>
+      </ion-item>
+    </ion-list>
+  </form>
 </ion-content>

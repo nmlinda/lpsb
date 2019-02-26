@@ -1,17 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { KeranjangPage } from '../keranjang/keranjang';
-import { HomePage } from '../home/home';
 import { Data } from '../../provider/data';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DetailAnalisisPage } from '../detail-analisis/detail-analisis';
-
-/**
- * Generated class for the BuatPesanan2Page page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @IonicPage()
 @Component({
@@ -19,8 +12,19 @@ import { DetailAnalisisPage } from '../detail-analisis/detail-analisis';
   templateUrl: 'buat-pesanan2.html',
 })
 export class BuatPesanan2Page {
+  pesanform: FormGroup;
+  pesanData = {
+    "namaJenis": "",
+    "kemasan": "",
+    "kemasanLainnya": "",
+    "bentuk": "",
+    "jumlah": ""
+  };
+  
+  kemasan2: string;
 
   // info jenis analisis
+  info: boolean = true;
   IDjenis: any;
   jenisAnalisis: any;
   namaJenis: string;
@@ -34,24 +38,23 @@ export class BuatPesanan2Page {
   Simplisia: boolean = false;
 
   //form
-  jenisSampel: any;
-  kemasan: any;
   kemasanLain: boolean = false;
-  bentuk: any;
-  jumlah: number = 1;
   ekstrak: boolean = true;
   simplisia: boolean = true;
   serbuk: boolean = true;
   cairan: boolean = true;
+
+  keranjang: any;
   constructor(
     public data: Data,
     public navCtrl: NavController,
+    public loadCtrl: LoadingController,
     public navParams: NavParams,
     public alertCtrl: AlertController,
     public httpClient: HttpClient) {
 
-    this.kemasan = 'pilih';
-    this.bentuk = 'pilih';
+    this.pesanData.kemasan = 'pilih';
+    this.pesanData.bentuk = 'pilih';
     this.IDjenis = this.navParams.get('data');
     console.log(this.navParams.get('data'))
     this.data.getData().then((data) => {
@@ -99,32 +102,127 @@ export class BuatPesanan2Page {
     console.log('ionViewDidLoad BuatPesanan2Page');
   }
 
+  ngOnInit() {
+    this.pesanform = new FormGroup({
+      namaJenis: new FormControl('', [Validators.required]),
+      kemasan: new FormControl('', [Validators.required]),
+      kemasanLainnya: new FormControl('', [Validators.required]),
+      bentuk: new FormControl('', [Validators.required]),
+      jumlah: new FormControl('', [Validators.required]),
+    });
+  }
+
   kemasanChange() {
-    if (this.kemasan == "lainnya") {
+    if (this.pesanData.kemasan == "lainnya") {
       this.kemasanLain = true;
+      this.pesanform.controls['kemasanLainnya'].enable();
     }
     else {
       this.kemasanLain = false;
+      this.pesanform.controls['kemasanLainnya'].disable();
     }
   }
 
-  addJumlah() {
-    this.jumlah += 1;
-  }
-
-  minJumlah() {
-    if (this.jumlah > 1) {
-      this.jumlah -= 1;
+  tambahKeranjang(){
+    let loading = this.loadCtrl.create({
+      content: 'memuat..'
+    });
+    if (this.pesanData.kemasan === "lainnya") {
+      this.kemasan2 = this.pesanData.kemasanLainnya;
     }
-  }
+    else {
+      this.kemasan2 = this.pesanData.kemasan;
+    }
+    let input = JSON.stringify({
+      "IDKatalog": this.IDjenis,
+      "JenisSampel": this.pesanData.namaJenis,
+      "Kemasan": this.kemasan2,
+      "BentukSampel": this.pesanData.bentuk,
+      "Jumlah": this.pesanData.jumlah,
+    });
 
-  tambahKeranjang() {
-    this.navCtrl.push(DetailAnalisisPage, { data: this.IDjenis });
+    this.data.getData().then((data) => {
+
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + data.api_token
+        })
+      };
+
+      this.httpClient.post(this.data.BASE_URL + '/tambahItemKeranjang', input, httpOptions).subscribe(data => {
+        let response = data;
+        this.keranjang = response;
+        console.log(response);
+        if (this.keranjang.Status == 201) {
+          loading.dismiss();
+          this.navCtrl.push(DetailAnalisisPage, { data: this.IDjenis });
+        }
+        else {
+          loading.dismiss();
+          let alert = this.alertCtrl.create({
+            title: 'Buat pesanan gagal',
+            subTitle: 'Silahkan coba lagi.',
+            buttons: ['OK']
+          });
+          alert.present();
+        }
+      });
+    })
+
   }
 
   gotoKeranjang() {
-    this.navCtrl.push(KeranjangPage);
+    let loading = this.loadCtrl.create({
+      content: 'memuat..'
+    });
+    if (this.pesanData.kemasan === "lainnya") {
+      this.kemasan2 = this.pesanData.kemasanLainnya;
+    }
+    else {
+      this.kemasan2 = this.pesanData.kemasan;
+    }
+
+    let input = JSON.stringify({
+      "IDKatalog": this.IDjenis,
+      "JenisSampel": this.pesanData.namaJenis,
+      "Kemasan": this.kemasan2,
+      "BentukSampel": this.pesanData.bentuk,      
+      "Jumlah": this.pesanData.jumlah,
+    });
+
+    this.data.getData().then((data) => {
+
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + data.api_token
+        })
+      };
+
+      this.httpClient.post(this.data.BASE_URL + '/tambahItemKeranjang', input, httpOptions).subscribe(data => {
+        let response = data;
+        this.keranjang = response;
+        console.log(response);
+        if (this.keranjang.Status == 201) {
+          loading.dismiss();
+          this.navCtrl.push(KeranjangPage);
+        }
+        else {
+          loading.dismiss();
+          let alert = this.alertCtrl.create({
+            title: 'Buat pesanan gagal',
+            subTitle: 'Silahkan coba lagi.',
+            buttons: ['OK']
+          });
+          alert.present();
+        }
+      });
+    })
+
   }
 
-
+  showInfo() {
+    this.info = !this.info;
+  }
 }

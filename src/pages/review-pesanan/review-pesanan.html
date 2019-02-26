@@ -1,4 +1,3 @@
-
 <ion-header>
 
   <ion-navbar>
@@ -9,9 +8,9 @@
 
 
 <ion-content>
-    <ion-card color="light" [navPush]="editProfil">
-      <ion-grid>
-        <ion-row>
+  <ion-card color="light" [navPush]="editProfil">
+    <ion-grid>
+      <ion-row>
         <ion-col col-6>
           <p no-margin>
             {{ nama }}
@@ -36,90 +35,92 @@
           </button>
         </ion-col>
       </ion-row>
-      </ion-grid>
-    </ion-card>
-    
-    <ion-card>
-      <ion-grid>
-          <ion-row>
-              <ion-col col-11>
-                <p no-margin>
-                  <ion-icon name="flask"></ion-icon>
-                  <strong>Sampel</strong>
-                  <br>
-                  1. Daun - Fitokimia
-                  <br>
-                  2. Daun - Antioksidan
-                </p>
-              </ion-col>
-              <ion-col col-1>
-                <button ion-button clear icon-only [navPush]="detailSampel">
-                  <ion-icon name="more"></ion-icon>
-                </button>
-              </ion-col>
-            </ion-row>
-      </ion-grid>
-    </ion-card>
-
-    <ion-card>
-      <ion-grid>
-        <ion-row>
-          <ion-col col-12>
-            <ion-list radio-group no-margin [(ngModel)]="lamaPengujian" (ionChange)="lamaSelected($event)">
-              <p no-margin><ion-icon name="time"></ion-icon>
-                <strong>
-                Lama Pengujian
-                </strong>
-              </p>          
-              <ion-item>
-                <ion-label class="labelSisaSampel">Biasa (14 Hari)</ion-label>
-                <ion-radio value="1" item-left style="margin: 6px;" ></ion-radio>
-              </ion-item>
-            
-              <ion-item>
-                <ion-label class="labelSisaSampel">Percepatan (7 Hari)</ion-label>
-                <ion-radio value="2" item-left style="margin: 6px;" ></ion-radio>
-              </ion-item>
-            </ion-list>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card>
-
-    <ion-card>
-      <ion-grid>
-        <ion-row>
-          <ion-col col-12>
-            <ion-list radio-group no-margin [(ngModel)]="sisaSampel">
-                <p no-margin>
-                  <ion-icon name="trash"></ion-icon>
-                  <strong>Sisa Sampel</strong>
-                </p>          
-                <ion-item>
-                  <ion-label class="labelSisaSampel">Akan diambil setelah pengujian selesai</ion-label>
-                  <ion-radio value="1" item-left style="margin: 6px;" ></ion-radio>
-                </ion-item>
-              
-                <ion-item>
-                  <ion-label class="labelSisaSampel">Akan ditinggalkan dan dalam 3 bulan ke depan akan dimusnahkan</ion-label>
-                  <ion-radio value="2" item-left style="margin: 6px;" ></ion-radio>
-                </ion-item>
-            </ion-list>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card>
+    </ion-grid>
+  </ion-card>
 
   <ion-card>
     <ion-grid>
-        <ion-row>
-            <ion-col col-4>
-              <p no-margin><strong>Keterangan</strong></p>
-            </ion-col>
-            <ion-col col-8>
-              <ion-input type="text" placeholder="Tulis Keterangan.." text-right></ion-input>
-            </ion-col>
-          </ion-row>
+      <ion-row>
+        <ion-col col-11>
+          <p no-margin>
+            <ion-icon name="flask"></ion-icon>
+            <strong>Sampel</strong>
+            <br>
+            1. Daun - Fitokimia
+            <br>
+            2. Daun - Antioksidan
+          </p>
+        </ion-col>
+        <ion-col col-1>
+          <button ion-button clear icon-only [navPush]="detailSampel">
+            <ion-icon name="more"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+  <ion-card>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-12>
+          <ion-list radio-group no-margin [(ngModel)]="lamaPengujian" (ionChange)="lamaSelected($event)">
+            <p no-margin>
+              <ion-icon name="time"></ion-icon>
+              <strong>
+                Lama Pengujian
+              </strong>
+            </p>
+            <ion-item>
+              <ion-label class="labelSisaSampel">Biasa (14 Hari)</ion-label>
+              <ion-radio value="1" item-left style="margin: 6px;"></ion-radio>
+            </ion-item>
+
+            <ion-item>
+              <ion-label class="labelSisaSampel">Percepatan (7 Hari)</ion-label>
+              <ion-radio value="2" item-left style="margin: 6px;"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+  <ion-card>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-12>
+          <ion-list radio-group no-margin [(ngModel)]="sisaSampel">
+            <p no-margin>
+              <ion-icon name="trash"></ion-icon>
+              <strong>Sisa Sampel</strong>
+            </p>
+            <ion-item>
+              <ion-label class="labelSisaSampel">Akan diambil setelah pengujian selesai</ion-label>
+              <ion-radio value="1" item-left style="margin: 6px;"></ion-radio>
+            </ion-item>
+
+            <ion-item>
+              <ion-label class="labelSisaSampel">Akan ditinggalkan dan dalam 3 bulan ke depan akan dimusnahkan
+              </ion-label>
+              <ion-radio value="2" item-left style="margin: 6px;"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+  <ion-card>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-4>
+          <p no-margin><strong>Keterangan</strong></p>
+        </ion-col>
+        <ion-col col-8>
+          <ion-input type="text" placeholder="Tulis Keterangan.." text-right></ion-input>
+        </ion-col>
+      </ion-row>
     </ion-grid>
   </ion-card>
 
@@ -127,48 +128,54 @@
     <ion-grid>
       <ion-row>
         <ion-col col-8>
-          <h3 no-margin>
-          Harga
+          <h3 no-margin *ngIf="IPB">
+            Harga IPB
+          </h3>
+          <h3 no-margin *ngIf="!IPB">
+            Harga NONIPB
           </h3>
           <h3 *ngIf="hargaPercepatan" no-margin>
             Percepatan (x2)
           </h3>
           <h3 no-margin>
-          Kode Unik
+            Kode Unik
           </h3>
           <h2>
             <strong>
-            Total
+              Total
             </strong>
           </h2>
         </ion-col>
         <ion-col col-4>
-          <h3 no-margin text-right>
-            Rp {{harga}}
+          <h3 no-margin text-right *ngIf="IPB">
+            Rp {{hargaIPB}}
+          </h3>
+          <h3 no-margin text-right *ngIf="!IPB">
+            Rp {{hargaNONIPB}}
           </h3>
           <h3 *ngIf="hargaPercepatan" no-margin text-right>
-              Rp {{harga2}}
+            Rp {{harga}}
           </h3>
           <h3 no-margin text-right>
             Rp {{kodeUnik}}
           </h3>
           <h2 *ngIf="!hargaPercepatan" text-right style="color:#007bff;">
             <strong>
-            Rp {{totalHarga}}
-          </strong>
+              Rp {{totalHarga}}
+            </strong>
           </h2>
           <h2 *ngIf="hargaPercepatan" text-right style="color:#007bff;">
             <strong>
-            Rp {{totalHarga2}}
-          </strong>
+              Rp {{totalHarga2}}
+            </strong>
           </h2>
         </ion-col>
       </ion-row>
-      
+
     </ion-grid>
   </ion-card>
 
   <ion-buttons end>
-      <button ion-button color="primary" (click)="checkout()" margin>Checkout</button>
-    </ion-buttons>
+    <button ion-button color="primary" (click)="checkout()" margin>Checkout</button>
+  </ion-buttons>
 </ion-content>

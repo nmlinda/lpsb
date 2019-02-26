@@ -14,36 +14,59 @@
 
 
 <ion-content>
-  <ion-card *ngFor="let jenisAnalisis of listJenisAnalisis">
-    <ion-grid>
-      <ion-row>
-        <ion-col col-10>
-          <ion-item no-padding>
-          <ion-label>{{jenisAnalisis}}</ion-label>
-          <ion-checkbox style="margin-right: 9px" checked></ion-checkbox>
-        </ion-item>
-        </ion-col>
-        <ion-col col-2>
-          <ion-item text-right>
-            <ion-icon name="close"></ion-icon>
-          </ion-item>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col col-3>
-          <img src="../../assets/imgs/fitokimia.jpg">
-        </ion-col>
-        <ion-col col-9>
-          <p>
-            Daun (1)<br>
-            Kemasan: Plastik<br>
-            IPB Rp 90000<br>
-            NON-IPB Rp 100000
-          </p>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-card>
+  <div *ngIf="listKeranjang">
+    <ion-card>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-12>
+            <ion-item no-padding>
+              <ion-label>{{itemChecked.length}} Terpilih</ion-label>
+              <ion-checkbox style="margin-right: 9px" (click)="selectAllCart()" [checked]="allCart"></ion-checkbox>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+    <ion-card *ngFor="let keranjang of listKeranjang">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-10>
+            <ion-item no-padding>
+              <ion-label>{{ keranjang.JenisAnalisis }} ({{ keranjang.Metode }})</ion-label>
+              <ion-checkbox style="margin-right: 9px" [(ngModel)]="keranjang.checked" 
+              (click)="selectCart(keranjang)">
+              </ion-checkbox>
+            </ion-item>
+          </ion-col>
+          <ion-col col-2>
+            <ion-item text-right>
+              <ion-icon name="close"></ion-icon>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-3>
+            <img src="../../assets/imgs/fitokimia.jpg" (click)="gotoAnalisisDetail(keranjang.Jenisnalisis)">
+          </ion-col>
+          <ion-col col-9>
+            <p>
+              {{ keranjang.JenisSampel }} ({{ keranjang.Jumlah }})<br>
+              Kemasan: {{ keranjang.Kemasan }}<br>
+              Bentuk: {{ keranjang.BentukSampel }}<br>
+              IPB Rp {{ keranjang.HargaIPB }}<br>
+              NON-IPB Rp {{ keranjang.HargaNONIPB }}
+            </p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  </div>
+
+  <div *ngIf="panjang === 0">
+    <h5 text-center padding>
+      Anda belum melakukan pesanan. <a (click)="gotoAllKatalog()">Pesan sekarang.</a>
+    </h5>
+  </div>
 </ion-content>
 
 <ion-footer style="background-color: white">
@@ -51,13 +74,15 @@
     <ion-row>
       <ion-col col-7>
         <h6 no-margin>
-          <strong>Harga IPB : Rp 200000<br>
-            Harga NONIPB: Rp 250000</strong>
-          </h6>
+          <strong>Harga IPB : Rp {{ hargaIPB }}<br>
+            Harga NONIPB: Rp {{ hargaNONIPB }}</strong>
+        </h6>
       </ion-col>
       <ion-col col-5>
         <ion-buttons end>
-          <button ion-button color="primary" (click)="gotoReviewPesanan()">Berikutnya</button>
+          <button ion-button color="primary" (click)="gotoReviewPesanan()" [disabled]="nextButton">
+            Berikutnya
+          </button>
         </ion-buttons>
       </ion-col>
     </ion-row>

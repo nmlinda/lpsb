@@ -4,6 +4,7 @@ import { CheckoutPage } from '../checkout/checkout';
 import { EditProfilPage } from '../edit-profil/edit-profil';
 import { EditRekeningPage } from '../edit-rekening/edit-rekening';
 import { DetailSampelPage } from '../detail-sampel/detail-sampel';
+import { Data } from '../../provider/data';
 
 /**
  * Generated class for the ReviewPesananPage page.
@@ -18,6 +19,10 @@ import { DetailSampelPage } from '../detail-sampel/detail-sampel';
   templateUrl: 'review-pesanan.html',
 })
 export class ReviewPesananPage {
+  sampel: any = [];
+  hargaIPB: number = 0;
+  hargaNONIPB: number = 0;
+  IPB: boolean;
   editRekening: any;
   editProfil: any;
   detailSampel: any;
@@ -35,19 +40,42 @@ export class ReviewPesananPage {
   noHp: string;
   npwp: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public data: Data) {
     this.editProfil= EditProfilPage;
     this.editRekening = EditRekeningPage;
     this.detailSampel = DetailSampelPage;
+    
+    this.sampel = this.navParams.get('data');
+    
+    this.data.getData().then((data) => {
+      this.nama = data.Nama;
+      this.institusi = data.Perusahaan;
+      this.alamat = data.Alamat;
+      this.email = data.Email;
+      this.noHp = data.NoHP;
+      this.npwp = data.NoIdentitas;
+    })
 
     this.lamaPengujian = "1";
     this.totalHarga = this.harga + this.kodeUnik;
-    this.nama = "Muhammad Gofar";
-    this.institusi = "Institut Pertanian Bogor";
-    this.alamat = "Jl Balebak 2 Bogor";
-    this.email = "gofar@gmail.com";
-    this.noHp = "0813434936694";
-    this.npwp = "20857620934";
+    for(var i=0; i<this.sampel.length; i++){
+      this.hargaIPB += this.sampel[i].HargaIPB;
+      this.hargaNONIPB += this.sampel[i].HargaNONIPB;
+    }
+    if(this.institusi == "Institut Pertanian Bogor" && this.institusi){
+      this.IPB = true;
+    } else{
+      this.IPB = false;
+    }
+    // this.nama = "Muhammad Gofar";
+    // this.institusi = "Institut Pertanian Bogor";
+    // this.alamat = "Jl Balebak 2 Bogor";
+    // this.email = "gofar@gmail.com";
+    // this.noHp = "0813434936694";
+    // this.npwp = "20857620934";
   }
 
   ionViewDidLoad() {

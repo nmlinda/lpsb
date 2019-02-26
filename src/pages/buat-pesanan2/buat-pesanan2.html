@@ -20,110 +20,152 @@
         <ion-col col-3>
           <img src="../../assets/imgs/fitokimia.jpg">
         </ion-col>
-        <ion-col col-9>
-          <h2 text-uppercase>{{ namaJenis }}</h2>
+        <ion-col col-8>
+          <h2 text-uppercase><strong>{{ namaJenis }}</strong></h2>
           <h4>
             IPB Rp {{ hargaIPB }}<br>
             NON-IPB Rp {{ hargaNONIPB }}
           </h4>
-          <h4 text-right>
-            INFO
+          <h4 *ngIf="!info">
+            <strong>Metode :</strong>
+            <br> {{ metode }}<br>
+            <strong>Keterangan:</strong>
+            <br> {{ keterangan }}<br>
+            <strong>Bentuk Sampel:</strong><br>
+            <div *ngIf="cairan">Cairan<br></div>
+            <div *ngIf="ekstrak">Ekstrak<br></div>
+            <div *ngIf="serbuk">Serbuk<br></div>
+            <div *ngIf="simplisia">Simplisia<br></div>
           </h4>
         </ion-col>
+        <ion-col col-1 (click)="showInfo()">
+          <ion-icon *ngIf="info" name="arrow-dropdown" color="primary"></ion-icon>
+          <ion-icon *ngIf="!info" name="arrow-dropup" color="primary"></ion-icon>
+        </ion-col>
       </ion-row>
     </ion-grid>
   </ion-card>
-  <!-- <form [formGroup]="pesanform" novalidate> -->
   <ion-card>
     <ion-grid>
-      <ion-row>
-        <ion-col col-12>
-          <h2>
-            <strong>Sampel</strong>
-          </h2>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col col-12>
-          <p no-margin>
-            Kondisi Sampel
-          </p>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col col-12>
-          <ion-item>
-          <ion-label color="primary" stacked>Jenis</ion-label>
-          <ion-input type="text" placeholder="Jenis" [(ngModel)]="jenisSampel"></ion-input>
-        </ion-item>
-        </ion-col>
-      </ion-row>
-      <ion-row justify-content-center align-items-center style="height: 100%">
-        <ion-col col-6>
-          <ion-item>
-            <ion-label color="primary" stacked>Kemasan</ion-label>
-            <ion-select [(ngModel)]="kemasan" (ionChange)="kemasanChange($event)">
-              <ion-option value="pilih" disabled>Pilih</ion-option>
-              <ion-option value="Plastik">Plastik</ion-option>
-              <ion-option value="Kardus">Kardus</ion-option>
-              <ion-option value="lainnya">Lainnya</ion-option>
-            </ion-select>
-          </ion-item>
-        </ion-col>
-        <ion-col col-6 style="margin-top: 20px;">
-          <ion-input type="text" placeholder="Ketik kemasan lainnya.." [(ngModel)]="kemasanlain" 
-          *ngIf="kemasanLain"></ion-input>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col col-7>
-          <ion-item>
-            <ion-label color="primary" stacked>Bentuk</ion-label>
-            <ion-select [(ngModel)]="bentuk" [disabled]="bentukSelect">
-              <ion-option value="pilih" disabled>Pilih</ion-option>
-              <ion-option value="Cairan" [disabled]="cairan">Cairan</ion-option>
-              <ion-option value="Ekstrak" [disabled]="ekstrak">Ekstrak</ion-option>
-              <ion-option value="Serbuk" [disabled]="serbuk">Serbuk</ion-option>
-              <ion-option value="Simplisia" [disabled]="simplisia">Simplisia</ion-option>
-            </ion-select>
-          </ion-item>
-        </ion-col>
-        <ion-col col-5 justify-content-center align-items-center>
-          <ion-label color="primary" stacked>Jumlah</ion-label>
-          <ion-row>
-            <ion-col col-4 text-right no-padding>
-              <button ion-button icon-only clear no-margin (click)="minJumlah()">
-                <ion-icon name="remove-circle"></ion-icon>
-              </button>
-            </ion-col>
-            <ion-col col-4 text-center style="margin-top: 10px"  no-padding>
-              <h4 class="jumlah">{{jumlah}}</h4>
-            </ion-col>
-            <ion-col col-4 text-left no-padding>
-              <button ion-button icon-only clear no-margin (click)="addJumlah()">
-                <ion-icon name="add-circle"></ion-icon>
-              </button>
-            </ion-col>
-          </ion-row>
-        </ion-col>
-      </ion-row>
+      <form [formGroup]="pesanform" novalidate>
+        <ion-row>
+          <ion-col col-12>
+            <h2>
+              <strong>Sampel</strong>
+            </h2>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12>
+            <p no-margin>
+              Kondisi Sampel
+            </p>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12>
+            <ion-item>
+              <ion-label color="primary" stacked>Jenis</ion-label>
+              <ion-input type="text" [(ngModel)]="pesanData.namaJenis" formControlName="namaJenis" placeholder="Jenis"
+                [class.error1]="!pesanform.controls.namaJenis.valid && pesanform.controls.namaJenis.dirty"></ion-input>
+            </ion-item>
+            <ion-item no-lines
+              *ngIf="pesanform.get('namaJenis').hasError('required') && pesanform.get('namaJenis').touched">
+              <div class="error"
+                *ngIf="pesanform.get('namaJenis').hasError('required') && pesanform.get('namaJenis').touched">
+                Masukkan jenis sampel
+              </div>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row justify-content-center align-items-center style="height: 100%">
+          <ion-col col-6>
+            <ion-item>
+              <ion-label color="primary" stacked>Kemasan</ion-label>
+              <ion-select (ionChange)="kemasanChange($event)" [(ngModel)]="pesanData.kemasan" formControlName="kemasan"
+                [class.error1]="!pesanform.controls.kemasan.valid && pesanform.controls.kemasan.dirty">
+                <ion-option value="pilih" disabled>Pilih</ion-option>
+                <ion-option value="Plastik">Plastik</ion-option>
+                <ion-option value="Kardus">Kardus</ion-option>
+                <ion-option value="lainnya">Lainnya</ion-option>
+              </ion-select>
+            </ion-item>
+            <ion-item no-lines
+              *ngIf="pesanform.get('kemasan').hasError('required') && pesanform.get('kemasan').touched">
+              <div class="error"
+                *ngIf="pesanform.get('kemasan').hasError('required') && pesanform.get('kemasan').touched">
+                Pilih kemasan
+              </div>
+            </ion-item>
+          </ion-col>
+          <ion-col col-6 style="margin-top: 20px;">
+            <!-- <ion-item> -->
+              <ion-input type="text" placeholder="Ketik kemasan lainnya.." *ngIf="kemasanLain"
+                [(ngModel)]="pesanData.kemasanLainnya" formControlName="kemasanLainnya"
+                [class.error1]="!pesanform.controls.kemasanLainnya.valid && pesanform.controls.kemasanLainnya.dirty">
+              </ion-input>
+            <!-- </ion-item> -->
+            <ion-item no-lines
+              *ngIf="pesanform.get('kemasanLainnya').hasError('required') && pesanform.get('kemasanLainnya').touched">
+              <div class="error"
+                *ngIf="pesanform.get('kemasanLainnya').hasError('required') && pesanform.get('kemasanLainnya').touched">
+                Masukkan kemasan sampel
+              </div>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-7>
+            <ion-item>
+              <ion-label color="primary" stacked>Bentuk</ion-label>
+              <ion-select [disabled]="bentukSelect" [(ngModel)]="pesanData.bentuk" formControlName="bentuk"
+              [class.error1]="!pesanform.controls.bentuk.valid && pesanform.controls.bentuk.dirty">
+                <ion-option value="pilih" disabled>Pilih</ion-option>
+                <ion-option value="Cairan" [disabled]="cairan">Cairan</ion-option>
+                <ion-option value="Ekstrak" [disabled]="ekstrak">Ekstrak</ion-option>
+                <ion-option value="Serbuk" [disabled]="serbuk">Serbuk</ion-option>
+                <ion-option value="Simplisia" [disabled]="simplisia">Simplisia</ion-option>
+              </ion-select>
+            </ion-item>
+            <ion-item no-lines
+              *ngIf="pesanform.get('bentuk').hasError('required') && pesanform.get('bentuk').touched">
+              <div class="error"
+                *ngIf="pesanform.get('bentuk').hasError('required') && pesanform.get('bentuk').touched">
+                Pilih bentuk sampel
+              </div>
+            </ion-item>
+          </ion-col>
+          <ion-col col-5>
+            <ion-item>
+              <ion-label color="primary" stacked>Jumlah</ion-label>
+              <ion-input type="text" [(ngModel)]="pesanData.jumlah" formControlName="jumlah" placeholder="e.g. 10 gr"
+                [class.error1]="!pesanform.controls.jumlah.valid && pesanform.controls.jumlah.dirty"></ion-input>
+            </ion-item>
+            <ion-item no-lines
+              *ngIf="pesanform.get('jumlah').hasError('required') && pesanform.get('jumlah').touched">
+              <div class="error"
+                *ngIf="pesanform.get('jumlah').hasError('required') && pesanform.get('jumlah').touched">
+                Masukkan jumlah
+              </div>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </form>
     </ion-grid>
   </ion-card>
-
-<!-- </form> -->
 </ion-content>
 
 <ion-footer style="background-color: white">
   <ion-grid>
     <ion-row>
       <ion-col col-3>
-        <button ion-button outline block icon-only (click)="tambahKeranjang()">
+        <button ion-button outline block icon-only (click)="tambahKeranjang()" [disabled]="pesanform.invalid">
           <ion-icon name="cart"></ion-icon>
         </button>
       </ion-col>
       <ion-col col-9>
         <ion-buttons end>
-          <button ion-button block color="primary" (click)="gotoKeranjang()">Pesan Sekarang</button>
+          <button ion-button block color="primary" (click)="gotoKeranjang()" [disabled]="pesanform.invalid">Pesan Sekarang</button>
         </ion-buttons>
       </ion-col>
     </ion-row>

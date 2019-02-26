@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { PemberitahuanPage } from '../pemberitahuan/pemberitahuan';
 import { KeranjangPage } from '../keranjang/keranjang';
+import { Data } from '../../provider/data';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 // import { CariPage } from '../cari/cari';
 
 
@@ -11,8 +13,42 @@ import { KeranjangPage } from '../keranjang/keranjang';
   templateUrl: 'navbar.html',
 })
 export class NavbarPage {
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    
+  responses: any = [];
+  keranjangs: any = [];
+  jumlahKeranjang: number = 0;
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public alertCtrl: AlertController,
+    public data: Data,
+    public httpClient: HttpClient) {
+    this.data.getData().then((data) => {
+
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + data.api_token
+        })
+      };
+
+      this.httpClient.get(this.data.BASE_URL + '/getKeranjang', httpOptions).subscribe(data => {
+        let response = data;
+        this.responses = response;
+        console.log(response);
+        if (this.responses.Status == 200) {
+          this.keranjangs = this.responses.keranjang;
+          this.jumlahKeranjang = this.keranjangs.length;
+        }
+        else {
+          let alert = this.alertCtrl.create({
+            title: 'Gagal memuat',
+            subTitle: 'Silahkan coba lagi.',
+            buttons: ['OK']
+          });
+          alert.present();
+        }
+      });
+    })
   }
 
   ionViewDidLoad() {
