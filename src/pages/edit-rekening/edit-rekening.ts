@@ -33,7 +33,7 @@ export class EditRekeningPage {
     public httpClient: HttpClient,
     public alertCtrl: AlertController,
     public data: Data) {
-      this.data.getData().then((data)=>
+      this.data.getRekening().then((data)=>
       {
         this.rekData.namaNasabah = data.NamaRekening;
         this.rekData.namaBank = data.NamaBank;
@@ -74,13 +74,13 @@ export class EditRekeningPage {
         this.simpanRek = response;
         console.log(response);
         if (this.simpanRek.Status === 200) {
-          // this.data.login(this.logins, this.logins.api_token); // simpan response ke local storage
+          this.data.setRekening(this.simpanRek); // simpan response ke local storage
           this.navCtrl.push(ProfilPage);
         }
         else {
           let alert = this.alertCtrl.create({
             title: 'Gagal Menyimpan',
-            subTitle: 'SIlahkan coba lagi',
+            subTitle: 'Silahkan coba lagi',
             buttons: ['OK']
           });
           alert.present();

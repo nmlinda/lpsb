@@ -13,27 +13,26 @@ export class Data {
 
   }
 
-  login(data_user: any, api_token) {
+  login(data_user: any) {
     this.storage.set(this.HAS_LOGGED_IN, true);
     this.storage.set('data_user', data_user);
-    this.storage.set('api_token', api_token);
   }
 
   logout() {
     this.storage.remove(this.HAS_LOGGED_IN);
     this.storage.remove('data_user');
-    this.storage.remove('api_token');
+    this.storage.remove('data_rek');
   }
 
-  // setRekening(data_rek: any) {
-  //   this.storage.set('data_user', data_rek);
-  // }
+  setRekening(data_rek: any) {
+    this.storage.set('data_rek', data_rek);
+  }
 
-  // getRekening() {
-  //   return this.storage.get('data_rek').then((val) => {
-  //     return val;
-  //   });
-  // }
+  getRekening() {
+    return this.storage.get('data_rek').then((val) => {
+      return val;
+    });
+  }
 
   //   setTipeKegiatan(id_tipe_kegiatan: number){
   //     this.storage.set('id_tipe_kegiatan', id_tipe_kegiatan);

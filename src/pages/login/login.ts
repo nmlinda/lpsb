@@ -64,7 +64,7 @@ export class LoginPage {
       this.logins = response;
       console.log(response);
       if (this.logins.success == true) {
-        this.data.login(this.logins, this.logins.api_token); // simpan response ke local storage
+        this.data.login(this.logins); // simpan response ke local storage
         this.navCtrl.setRoot(TabsPage);
         loading.dismiss();
       }

@@ -45,7 +45,7 @@ export class KategoriAnalisisPage {
             let response = data;
             this.katalogs = response;
             this.listKatalog = this.katalogs.katalogs;
-            this.kategori = this.idKategori;
+            this.kategori = this.katalogs.NamaKategori;
             console.log(response);
 
             this.panjang = this.listKatalog.length;

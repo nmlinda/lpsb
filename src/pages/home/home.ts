@@ -42,6 +42,10 @@ export class HomePage {
         'Authorization': 'Bearer '+ data.api_token
         })
       };
+      this.httpClient.get(this.data.BASE_URL + '/getInfoRekening', httpOptions).subscribe(data => {
+        let response = data;
+        this.data.setRekening(response);
+      })
   
       this.httpClient.get(this.data.BASE_URL+'/getAllKategori/', httpOptions).subscribe(data =>{
        let response = data;

@@ -51,7 +51,7 @@ export class ProfilPage {
       this.alamat = data.Alamat;
       this.email = data.Email;
       this.noHp = data.NoHP;
-      this.npwp = data.NoIdentitas;
+      this.npwp = data.NoNPWP;
     })
   }
 

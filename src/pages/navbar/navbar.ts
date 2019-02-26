@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
-import { PemberitahuanPage } from '../pemberitahuan/pemberitahuan';
+// import { PemberitahuanPage } from '../pemberitahuan/pemberitahuan';
 import { KeranjangPage } from '../keranjang/keranjang';
 import { Data } from '../../provider/data';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-// import { CariPage } from '../cari/cari';
 
 
 @IonicPage()
@@ -55,13 +54,9 @@ export class NavbarPage {
     console.log('ionViewDidLoad NavbarPage');
   }
 
-  // cari() {
-  //   this.navCtrl.push(CariPage);
+  // pemberitahuan() {
+  //   this.navCtrl.push(PemberitahuanPage);
   // }
-
-  pemberitahuan() {
-    this.navCtrl.push(PemberitahuanPage);
-  }
   keranjang(){
     this.navCtrl.push(KeranjangPage);
   }

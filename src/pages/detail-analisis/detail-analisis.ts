@@ -21,6 +21,7 @@ export class DetailAnalisisPage {
   namaJenis: string;
   hargaIPB: number;
   hargaNONIPB: number;
+  kategori: string;
   metode: string;
   keterangan: string;
   cairan: boolean = false;
@@ -52,6 +53,8 @@ export class DetailAnalisisPage {
           this.namaJenis = this.jenisAnalisis.JenisAnalisis;
           this.hargaIPB = this.jenisAnalisis.HargaIPB;
           this.hargaNONIPB = this.jenisAnalisis.HargaNONIPB;
+          this.kategori = this.jenisAnalisis.Kategori;
+          console.log(this.kategori)
           this.metode = this.jenisAnalisis.Metode;
           this.keterangan = this.jenisAnalisis.Keterangan;
           if(this.jenisAnalisis.Cairan === 1){

@@ -14,7 +14,7 @@
 
 
 <ion-content>
-  <div *ngIf="listKeranjang">
+  <div *ngIf="listKeranjang.length > 0">
     <ion-card>
       <ion-grid>
         <ion-row>
@@ -33,26 +33,27 @@
           <ion-col col-10>
             <ion-item no-padding>
               <ion-label>{{ keranjang.JenisAnalisis }} ({{ keranjang.Metode }})</ion-label>
-              <ion-checkbox style="margin-right: 9px" [(ngModel)]="keranjang.checked" 
-              (click)="selectCart(keranjang)">
+              <ion-checkbox style="margin-right: 9px" [(ngModel)]="keranjang.checked" (click)="selectCart(keranjang)">
               </ion-checkbox>
             </ion-item>
           </ion-col>
           <ion-col col-2>
-            <ion-item text-right>
+            <ion-item text-right (click)="hapusItem(keranjang)">
               <ion-icon name="close"></ion-icon>
             </ion-item>
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col col-3>
-            <img src="../../assets/imgs/fitokimia.jpg" (click)="gotoAnalisisDetail(keranjang.Jenisnalisis)">
+            <img src="../../assets/imgs/fitokimia.jpg" (click)="gotoAnalisisDetail(keranjang.IDItem)">
           </ion-col>
           <ion-col col-9>
             <p>
               {{ keranjang.JenisSampel }} ({{ keranjang.Jumlah }})<br>
               Kemasan: {{ keranjang.Kemasan }}<br>
-              Bentuk: {{ keranjang.BentukSampel }}<br>
+              Bentuk: {{ keranjang.BentukSampel }}
+            </p>
+            <p text-right>
               IPB Rp {{ keranjang.HargaIPB }}<br>
               NON-IPB Rp {{ keranjang.HargaNONIPB }}
             </p>
@@ -62,7 +63,7 @@
     </ion-card>
   </div>
 
-  <div *ngIf="panjang === 0">
+  <div *ngIf="listKeranjang.length == 0">
     <h5 text-center padding>
       Anda belum melakukan pesanan. <a (click)="gotoAllKatalog()">Pesan sekarang.</a>
     </h5>
@@ -74,8 +75,8 @@
     <ion-row>
       <ion-col col-7>
         <h6 no-margin>
-          <strong>Harga IPB : Rp {{ hargaIPB }}<br>
-            Harga NONIPB: Rp {{ hargaNONIPB }}</strong>
+          Harga IPB : <strong>Rp {{ hargaIPB }}<br></strong>
+            Harga NONIPB: <strong>Rp {{ hargaNONIPB }}</strong>
         </h6>
       </ion-col>
       <ion-col col-5>

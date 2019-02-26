@@ -73,7 +73,7 @@ export class RegisterPage {
       this.regis = response;
       console.log(response);
       if (this.regis.success == true) {
-        this.data.login(this.regis, this.regis.api_token); // simpan response ke local storage
+        this.data.login(this.regis); // simpan response ke local storage
         this.navCtrl.setRoot(TabsPage);
         loading.dismiss();
       }
