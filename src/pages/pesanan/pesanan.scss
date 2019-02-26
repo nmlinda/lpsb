@@ -1,28 +1,43 @@
 page-pesanan {
-        .swiper-slide {
-        overflow-y: scroll;
-        display: block;
-        }
-        
-        ion-segment {
-            display: block;
-            white-space: nowrap;
-            font-size: 0;
-            overflow: auto;
-        
-            &::-webkit-scrollbar {
-                width: 0;
-                height: 0;
-                display: none;
-            }
-        
-            ion-segment-button.segment-button {
-                display: inline-block;
-                min-width: 120px;
-                width: auto;
-            }
-        }
-        /*
+  .content {
+    background-color: whitesmoke;
+  }
+  .header-text {
+    font-size: 16px;
+  }
+  .item {
+    border-bottom: 1px solid #dedede;
+    margin-bottom: 10px;
+  }
+  .label .label-md{
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
+  .swiper-slide {
+    overflow-y: scroll;
+    display: block;
+  }
+
+  ion-segment {
+    background-color: white;
+    display: block;
+    white-space: nowrap;
+    font-size: 0;
+    overflow: auto;
+
+    &::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+      display: none;
+    }
+
+    ion-segment-button.segment-button {
+      display: inline-block;
+      min-width: 120px;
+      width: auto;
+    }
+  }
+  /*
         ion-segment-button.segment-button {
             display: inline-block!important;
             min-width: 100px!important;

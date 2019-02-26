@@ -29,7 +29,7 @@ export class KeranjangPage {
   // kondisi
   nextButton: boolean = true;
   allCart: boolean = false;
-  
+
   hargaIPB: number = 0;
   hargaNONIPB: number = 0;
   hargaIPBall: number = 0;
@@ -157,30 +157,6 @@ export class KeranjangPage {
   }
 
   hapusItem(keranjang) {
-    //hapus object dari array
-    this.itemChecked = this.itemChecked.filter(cart =>
-      cart.IDItem !== keranjang.IDItem);
-    console.log(this.itemChecked)
-    this.itemAllChecked = this.itemChecked;
-
-    this.listKeranjang = this.listKeranjang.filter(cart =>
-      cart.IDItem !== keranjang.IDItem);
-    console.log(this.listKeranjang)
-    
-    //update harga
-    this.hargaIPB = 0;
-    this.hargaNONIPB = 0;
-    for (var i = 0; i < this.itemChecked.length; i++) {
-      this.hargaIPB += this.itemChecked[i].HargaIPB;
-      this.hargaNONIPB += this.itemChecked[i].HargaNONIPB;
-    }
-
-    // cart kosong
-    if(this.itemChecked.length < 1){
-      this.nextButton = true;
-      this.allCart = false;
-    }
-
     //hapus dari db
     this.data.getData().then((data) => {
 
@@ -193,21 +169,44 @@ export class KeranjangPage {
       let input = JSON.stringify({
         "IDItem": keranjang.IDItem
       });
-        this.httpClient.post(this.data.BASE_URL + '/hapusItem', input, httpOptions).subscribe(data => {
-          let response = data;
-          this.hapus = response;
-          if (this.hapus.Status == 200) {
-            console.log(keranjang)
+      this.httpClient.post(this.data.BASE_URL + '/hapusItem', input, httpOptions).subscribe(data => {
+        let response = data;
+        this.hapus = response;
+        if (this.hapus.Status == 200) {
+          //hapus object dari array
+          this.itemChecked = this.itemChecked.filter(cart =>
+            cart.IDItem !== keranjang.IDItem);
+          console.log(this.itemChecked)
+          this.itemAllChecked = this.itemChecked;
+
+          this.listKeranjang = this.listKeranjang.filter(cart =>
+            cart.IDItem !== keranjang.IDItem);
+          console.log(this.listKeranjang)
+
+          //update harga
+          this.hargaIPB = 0;
+          this.hargaNONIPB = 0;
+          for (var i = 0; i < this.itemChecked.length; i++) {
+            this.hargaIPB += this.itemChecked[i].HargaIPB;
+            this.hargaNONIPB += this.itemChecked[i].HargaNONIPB;
           }
-          else {
-            let alert = this.alertCtrl.create({
-              title: 'Gagal Menghapus Pesanan',
-              subTitle: 'Silahkan coba lagi.',
-              buttons: ['OK']
-            });
-            alert.present();
+
+          // cart kosong
+          if (this.itemChecked.length < 1) {
+            this.nextButton = true;
+            this.allCart = false;
           }
-        })
+
+        }
+        else {
+          let alert = this.alertCtrl.create({
+            title: 'Gagal Menghapus Pesanan',
+            subTitle: 'Silahkan coba lagi.',
+            buttons: ['OK']
+          });
+          alert.present();
+        }
+      })
     })
   }
 
