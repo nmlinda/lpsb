@@ -139,31 +139,8 @@ export class ReviewPesananPage {
             });
   
             console.log(input)
-            const httpOptions = {
-              headers: new HttpHeaders({
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + data.api_token
-              })
-            };
-            this.httpClient.post(this.data.BASE_URL + '/pesanItem', input, httpOptions).subscribe(data => {
-              let response = data;
-              this.pesanan = response;
-              console.log(response);
-              if (this.pesanan.Status == 200) {
-                loading.dismiss();
-                this.navCtrl.push(CheckoutPage);
-              }
-              else {
-                loading.dismiss();
-                let alert = this.alertCtrl.create({
-                  title: 'Checkout gagal',
-                  subTitle: 'Silahkan coba lagi.',
-                  buttons: ['OK']
-                });
-                alert.present();
-              }
-            });
-      
+            
+            this.navCtrl.push(CheckoutPage);
           })
           
          

@@ -17,15 +17,18 @@ import { DetailPesananPage } from '../detail-pesanan/detail-pesanan';
 })
 export class CheckoutPage {
   beranda: any;
+  date : Date;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.beranda = HomePage;
+    this.date = new Date();
+    this.date.setDate(this.date.getDate() + 3);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CheckoutPage');
   }
 
-  gotoDetailPesanan(){
+  gotoDetailPesanan() {
     this.navCtrl.push(DetailPesananPage);
   }
 }
