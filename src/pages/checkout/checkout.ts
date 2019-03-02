@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { DetailPesananPage } from '../detail-pesanan/detail-pesanan';
+import { TabsPage } from '../tabs/tabs';
 
 /**
  * Generated class for the CheckoutPage page.
@@ -16,10 +17,10 @@ import { DetailPesananPage } from '../detail-pesanan/detail-pesanan';
   templateUrl: 'checkout.html',
 })
 export class CheckoutPage {
-  beranda: any;
-  date : Date;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.beranda = HomePage;
+  date: Date;
+  constructor(public navCtrl: NavController,
+    public viewCtrl: ViewController,
+     public navParams: NavParams) {
     this.date = new Date();
     this.date.setDate(this.date.getDate() + 3);
   }
@@ -29,6 +30,15 @@ export class CheckoutPage {
   }
 
   gotoDetailPesanan() {
-    this.navCtrl.push(DetailPesananPage);
+    this.viewCtrl.dismiss().then(() => {
+      this.navCtrl.setRoot(TabsPage);
+      this.navCtrl.push(DetailPesananPage);
+  });
+  }
+
+  gotoBeranda() {
+    this.viewCtrl.dismiss().then(() => {
+      this.navCtrl.setRoot(TabsPage);
+  });
   }
 }

@@ -72,11 +72,18 @@ export class ReviewPesananPage {
       if (data.Perusahaan == "Institut Pertanian Bogor" && data.Perusahaan) {
         this.IPB = true;
         this.harga = this.hargaIPB;
+        for (var i = 0; i < this.sampel.length; i++) {
+          this.sampel[i].Harga = this.sampel[i].HargaIPB;
+        }
       } else if (data.Perusahaan) {
         this.IPB = true;
         this.harga = this.hargaNONIPB;
+        for (var i = 0; i < this.sampel.length; i++) {
+          this.sampel[i].Harga = this.sampel[i].HargaNONIPB;
+        }
       }
       this.totalHarga = this.harga + this.kodeUnik;
+      
     })
 
     this.lamaPengujian = "1";
@@ -99,9 +106,15 @@ export class ReviewPesananPage {
       if (data.Perusahaan == "Institut Pertanian Bogor" && data.Perusahaan) {
         this.IPB = true;
         this.harga = this.hargaIPB;
+        for (var i = 0; i < this.sampel.length; i++) {
+          this.sampel[i].Harga = this.sampel[i].HargaIPB;
+        }
       } else if (data.Perusahaan) {
         this.IPB = true;
         this.harga = this.hargaNONIPB;
+        for (var i = 0; i < this.sampel.length; i++) {
+          this.sampel[i].Harga = this.sampel[i].HargaNONIPB;
+        }
       }
       this.totalHarga = this.harga + this.kodeUnik;
     });
@@ -111,8 +124,7 @@ export class ReviewPesananPage {
 
   detailSampel() {
     let modal = this.modalCtrl.create(ModalDetailSampelPage, { data: this.sampel });
-    modal.present()
-      ;
+    modal.present();
   }
 
   checkout() {
@@ -132,15 +144,41 @@ export class ReviewPesananPage {
               "lama_pengujian": this.lamaPengujian,
               "sisa_sampel": this.sisaSampel,
               "harga_total": this.totalHarga,
-              "keterangan": this.keterangan,
+              "Keterangan": this.keterangan,
               "data_user": this.data_user,
               "data_rek": this.data_rek,
               "listKeranjang": this.sampel,
             });
   
             console.log(input)
-            
-            this.navCtrl.push(CheckoutPage);
+            const httpOptions = {
+              headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + data.api_token
+              })
+            };
+      
+            this.httpClient.post(this.data.BASE_URL + '/pesanItem', input, httpOptions).subscribe(data => {
+              let response = data;
+              this.pesanan = response;
+              console.log(response);
+              if (this.pesanan.status == 500) {
+                loading.dismiss();
+                let modal = this.modalCtrl.create(CheckoutPage);
+                modal.present();
+    
+              }
+              else {
+                loading.dismiss();
+                let alert = this.alertCtrl.create({
+                  title: 'Checkout gagal',
+                  subTitle: 'Silahkan coba lagi.',
+                  buttons: ['OK']
+                });
+                alert.present();
+              }
+            });
+
           })
           
          
