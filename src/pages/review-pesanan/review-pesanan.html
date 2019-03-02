@@ -8,23 +8,29 @@
 
 
 <ion-content>
-  <ion-card color="light" [navPush]="editProfil">
+  
+  <ion-card color="light" (click)="editProfil()">
     <ion-grid>
       <ion-row>
         <ion-col col-6>
           <p no-margin>
+            <ion-icon name="person"></ion-icon>
             {{ nama }}
             <br>
+            <ion-icon name="briefcase"></ion-icon>
             {{ institusi }}
             <br>
+            <ion-icon name="home"></ion-icon>
             {{ alamat }}
           </p>
         </ion-col>
         <ion-col col-5>
           <p no-margin text-right>
             {{ email }}
+            <ion-icon name="mail"></ion-icon>
             <br>
             {{ noHp }}
+            <ion-icon name="call"></ion-icon>
             <br>
             NPWP: {{ npwp }}
           </p>
@@ -36,6 +42,9 @@
         </ion-col>
       </ion-row>
     </ion-grid>
+  </ion-card>
+  <ion-card padding-left *ngIf="!dataDiri">
+    <p style="color:red">Lengkapi data diri anda</p>
   </ion-card>
 
   <ion-card>
@@ -52,7 +61,7 @@
           </p>
         </ion-col>
         <ion-col col-1>
-          <button ion-button clear icon-only [navPush]="detailSampel">
+          <button ion-button clear icon-only (click)="detailSampel">
             <ion-icon name="more"></ion-icon>
           </button>
         </ion-col>
@@ -105,6 +114,10 @@
               </ion-label>
               <ion-radio value="2" item-left style="margin: 6px;"></ion-radio>
             </ion-item>
+
+            <ion-item *ngIf="!sisaSampelSelected">
+                <p style="color:red">Pilih aksi terhadap sisa sampel</p>
+            </ion-item>
           </ion-list>
         </ion-col>
       </ion-row>
@@ -118,7 +131,7 @@
           <p no-margin><strong>Keterangan</strong></p>
         </ion-col>
         <ion-col col-8>
-          <ion-input type="text" placeholder="Tulis Keterangan.." text-right></ion-input>
+          <ion-input type="text" [(ngModel)]="keterangan" placeholder="Tulis Keterangan.." text-right></ion-input>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -129,15 +142,12 @@
       <ion-row>
         <ion-col col-8>
           <h3 no-margin *ngIf="IPB">
-            Harga IPB
-          </h3>
-          <h3 no-margin *ngIf="!IPB">
-            Harga NONIPB
+            Harga
           </h3>
           <h3 *ngIf="hargaPercepatan" no-margin>
             Percepatan (x2)
           </h3>
-          <h3 no-margin>
+          <h3 no-margin *ngIf="IPB">
             Kode Unik
           </h3>
           <h2>
@@ -148,25 +158,17 @@
         </ion-col>
         <ion-col col-4>
           <h3 no-margin text-right *ngIf="IPB">
-            Rp {{hargaIPB}}
-          </h3>
-          <h3 no-margin text-right *ngIf="!IPB">
-            Rp {{hargaNONIPB}}
-          </h3>
-          <h3 *ngIf="hargaPercepatan" no-margin text-right>
             Rp {{harga}}
           </h3>
-          <h3 no-margin text-right>
+          <h3 *ngIf="hargaPercepatan" no-margin text-right>
+            Rp {{harga2x}}
+          </h3>
+          <h3 no-margin text-right *ngIf="IPB">
             Rp {{kodeUnik}}
           </h3>
-          <h2 *ngIf="!hargaPercepatan" text-right style="color:#007bff;">
+          <h2 text-right style="color:#007bff;">
             <strong>
               Rp {{totalHarga}}
-            </strong>
-          </h2>
-          <h2 *ngIf="hargaPercepatan" text-right style="color:#007bff;">
-            <strong>
-              Rp {{totalHarga2}}
             </strong>
           </h2>
         </ion-col>

@@ -42,6 +42,8 @@ import { BuatPesanan2Page } from '../pages/buat-pesanan2/buat-pesanan2';
 import { KeranjangPage } from '../pages/keranjang/keranjang';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
+import { ModalDetailSampelPage } from '../pages/modal-detail-sampel/modal-detail-sampel';
+import { ModalEditProfilPage } from '../pages/modal-edit-profil/modal-edit-profil';
 
 @NgModule({
   declarations: [
@@ -75,7 +77,9 @@ import { RegisterPage } from '../pages/register/register';
     BuatPesanan2Page,
     KeranjangPage,
     LoginPage,
-    RegisterPage
+    RegisterPage,
+    ModalDetailSampelPage,
+    ModalEditProfilPage
   ],
   imports: [
     HttpClientModule,
@@ -117,7 +121,9 @@ import { RegisterPage } from '../pages/register/register';
     BuatPesanan2Page,
     KeranjangPage,
     LoginPage,
-    RegisterPage
+    RegisterPage,
+    ModalDetailSampelPage,
+    ModalEditProfilPage
   ],
   providers: [
     Data,
