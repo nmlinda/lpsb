@@ -25,7 +25,10 @@ export class PesananPage {
   pesanan: any = [];
   pesanans: any = [];
   statusUtama: number;
-
+  belumDianalisis: any = [];
+  dianalisis: any = [];
+  selesai: any = [];
+  batal: any = [];
   constructor(
     public navCtrl: NavController, 
     public data: Data,
@@ -50,7 +53,22 @@ export class PesananPage {
         console.log(response);
         if (this.pesanan.Status == 200) {
           this.pesanans = this.pesanan.AllPesanan;
-          
+          console.log('pesanan', this.pesanans.length)
+          console.log('bd', this.belumDianalisis.length)
+          for (var i = 0; i < this.pesanans.length; i++) {
+            if (this.pesanans[i].StatusUtama == 1 || this.pesanans[i].StatusUtama == 2){
+              this.belumDianalisis.push(this.pesanans[i]);
+            }
+            else if(this.pesanans[i].StatusUtama == 3 || this.pesanans[i].StatusUtama == 4){
+              this.dianalisis.push(this.pesanans[i]);
+            }
+            else if(this.pesanans[i].StatusUtama == 5){
+              this.selesai.push(this.pesanans[i]);
+            }
+            else if(this.pesanans[i].StatusUtama == 6 || this.pesanans[i].StatusUtama == 7){
+              this.batal.push(this.pesanans[i]);
+            }
+          }
         }
         else {
          let alert = this.alertCtrl.create({

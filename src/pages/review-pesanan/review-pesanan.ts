@@ -27,8 +27,8 @@ export class ReviewPesananPage {
   harga: number = 0;
   harga2x: number = 0;
   kodeUnik: number = 429;
-  totalHarga: number;
-  totalHarga2: number;
+  totalHarga: number = 0;
+  totalHarga2: number = 0;
   nama: string;
   institusi: string;
   alamat: string;
@@ -40,7 +40,7 @@ export class ReviewPesananPage {
   keterangan: string;
   dataDiri: boolean = true;
   data_user: any = [];
-  data_rek: any= [];
+  data_rek: any = [];
   pesanan: any = [];
   constructor(
     public navCtrl: NavController,
@@ -78,12 +78,12 @@ export class ReviewPesananPage {
       } else if (data.Perusahaan) {
         this.IPB = true;
         this.harga = this.hargaNONIPB;
-        for (var i = 0; i < this.sampel.length; i++) {
-          this.sampel[i].Harga = this.sampel[i].HargaNONIPB;
+        for (var j = 0; j < this.sampel.length; j++) {
+          this.sampel[j].Harga = this.sampel[j].HargaNONIPB;
         }
       }
       this.totalHarga = this.harga + this.kodeUnik;
-      
+
     })
 
     this.lamaPengujian = "1";
@@ -97,26 +97,28 @@ export class ReviewPesananPage {
   editProfil() {
     let modal = this.modalCtrl.create(ModalEditProfilPage);
     modal.onDidDismiss((data) => {
-      this.nama = data.Nama;
-      this.institusi = data.Perusahaan;
-      this.alamat = data.Alamat;
-      this.email = data.Email;
-      this.noHp = data.NoHP;
-      this.npwp = data.NoIdentitas;
-      if (data.Perusahaan == "Institut Pertanian Bogor" && data.Perusahaan) {
-        this.IPB = true;
-        this.harga = this.hargaIPB;
-        for (var i = 0; i < this.sampel.length; i++) {
-          this.sampel[i].Harga = this.sampel[i].HargaIPB;
+      if (data) {
+        this.nama = data.Nama;
+        this.institusi = data.Perusahaan;
+        this.alamat = data.Alamat;
+        this.email = data.Email;
+        this.noHp = data.NoHP;
+        this.npwp = data.NoNPWP;
+        if (data.Perusahaan == "Institut Pertanian Bogor" && data.Perusahaan) {
+          this.IPB = true;
+          this.harga = this.hargaIPB;
+          for (var k = 0; k < this.sampel.length; k++) {
+            this.sampel[k].Harga = this.sampel[k].HargaIPB;
+          }
+        } else if (data.Perusahaan) {
+          this.IPB = true;
+          this.harga = this.hargaNONIPB;
+          for (var l = 0; l < this.sampel.length; l++) {
+            this.sampel[l].Harga = this.sampel[l].HargaNONIPB;
+          }
         }
-      } else if (data.Perusahaan) {
-        this.IPB = true;
-        this.harga = this.hargaNONIPB;
-        for (var i = 0; i < this.sampel.length; i++) {
-          this.sampel[i].Harga = this.sampel[i].HargaNONIPB;
-        }
+        this.totalHarga = this.harga + this.kodeUnik;
       }
-      this.totalHarga = this.harga + this.kodeUnik;
     });
     modal.present();
 
@@ -149,7 +151,7 @@ export class ReviewPesananPage {
               "data_rek": this.data_rek,
               "listKeranjang": this.sampel,
             });
-  
+
             console.log(input)
             const httpOptions = {
               headers: new HttpHeaders({
@@ -157,7 +159,7 @@ export class ReviewPesananPage {
                 'Authorization': 'Bearer ' + data.api_token
               })
             };
-      
+
             this.httpClient.post(this.data.BASE_URL + '/pesanItem', input, httpOptions).subscribe(data => {
               let response = data;
               this.pesanan = response;
@@ -166,7 +168,7 @@ export class ReviewPesananPage {
                 loading.dismiss();
                 let modal = this.modalCtrl.create(CheckoutPage);
                 modal.present();
-    
+
               }
               else {
                 loading.dismiss();
@@ -180,36 +182,36 @@ export class ReviewPesananPage {
             });
 
           })
-          
-         
-          
-          
+
+
+
+
         })
-          
-          
-        }
-      else {
-            this.sisaSampelSelected = false;
-          }
-    }
-      else {
-        this.dataDiri = false;
-        if (this.sisaSampel) {
-          this.sisaSampelSelected = true;
-        } else {
-          this.sisaSampelSelected = false;
-        }
-      }
 
+
+      }
+      else {
+        this.sisaSampelSelected = false;
+      }
+    }
+    else {
+      this.dataDiri = false;
+      if (this.sisaSampel) {
+        this.sisaSampelSelected = true;
+      } else {
+        this.sisaSampelSelected = false;
+      }
     }
 
-    lamaSelected() {
-      if (this.lamaPengujian == 1) {
-        this.totalHarga = this.harga + this.kodeUnik;
-      }
-      else {
-        this.harga2x = this.harga * 2;
-        this.totalHarga = this.harga2x + this.kodeUnik;
-      }
+  }
+
+  lamaSelected() {
+    if (this.lamaPengujian == 1) {
+      this.totalHarga = this.harga + this.kodeUnik;
+    }
+    else {
+      this.harga2x = this.harga * 2;
+      this.totalHarga = this.harga2x + this.kodeUnik;
     }
   }
+}

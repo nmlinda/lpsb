@@ -44,24 +44,19 @@ export class EditProfilPage {
     public httpClient: HttpClient) {
     this.data.getData().then((data) => {
       this.profilData.nama = data.Nama;
-      this.profilData.institusi = data.Perusahaan;
       if (data.Perusahaan == "Institut Pertanian Bogor") {
         this.profilData.institusi = 1;
-        this.profilData.noIdentitas = data.NoIdentitas;
-        this.IPB = true;
-        this.profilform.controls['institusiLain'].disable();
-        this.profilform.controls['noIdentitas'].enable();
+        this.IPB = true;        
       } else if (data.Perusahaan) {
         this.profilData.institusi = 2;
-        this.institusiLain = data.Perusahaan;
+        this.profilData.institusiLain = data.Perusahaan;
         this.institusiLain = true;
-        this.profilform.controls['institusiLain'].enable();
-        this.profilform.controls['noIdentitas'].disable();
       }
       this.profilData.email = data.Email;
       this.profilData.alamat = data.Alamat;
       this.profilData.noHp = data.NoHP;
       this.profilData.npwp = data.NoNPWP;
+      this.profilData.noIdentitas = data.NoIdentitas;
     })
 
   }
@@ -74,13 +69,13 @@ export class EditProfilPage {
     let EMAILPATTERN = '^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$';
     this.profilform = new FormGroup({
       nama: new FormControl('', [Validators.required]),
-      institusi: new FormControl('', [Validators.required]),
-      institusiLain: new FormControl('', [Validators.required]),
-      noIdentitas: new FormControl('', [Validators.required]),
-      alamat: new FormControl('', [Validators.required]),
-      noHp: new FormControl('', [Validators.required]),
+      institusi: new FormControl(''),
+      institusiLain: new FormControl(''),
+      noIdentitas: new FormControl(''),
+      alamat: new FormControl(''),
+      noHp: new FormControl(''),
       email: new FormControl('', [Validators.required, Validators.pattern(EMAILPATTERN)]),
-      npwp: new FormControl('', [Validators.required]),
+      npwp: new FormControl(''),
     });
   }
 
@@ -88,13 +83,9 @@ export class EditProfilPage {
     if (this.profilData.institusi == 1) {
       this.IPB = true;
       this.institusiLain = false;
-      this.profilform.controls['institusiLain'].disable();
-      this.profilform.controls['noIdentitas'].enable();
     } else if (this.profilData.institusi == 2) {
       this.institusiLain = true;
       this.IPB = false;
-      this.profilform.controls['institusiLain'].enable();
-      this.profilform.controls['noIdentitas'].disable();
     }
   }
 

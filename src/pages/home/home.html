@@ -2,7 +2,7 @@
   <ion-navbar hideBackButton>
     <ion-grid no-padding>
       <ion-row>
-        <ion-col col-8 style="padding-top: 4px;">
+        <ion-col col-8 style="padding-top: 4px;" text-left>
           <ion-title>LPSB</ion-title>
         </ion-col>
         <ion-col col-4 no-padding>
@@ -55,7 +55,7 @@
     <ion-card-content no-padding>
       <ion-grid>
         <ion-row>
-          <ion-col col-3 *ngFor="let item of kategori" (click)="gotoKategori(item.IDKategori)">
+          <ion-col col-3 *ngFor="let item of kategori" (click)="gotoKategori(item.IDKategori)" class="kategori-col">
             <img src="../../assets/imgs/logo.png" class="img-card">
             <p text-center class="tess" text-wrap>
               {{item.Kategori}}

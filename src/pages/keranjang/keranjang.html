@@ -30,14 +30,14 @@
     <ion-card *ngFor="let keranjang of listKeranjang">
       <ion-grid>
         <ion-row>
-          <ion-col col-10>
+          <ion-col col-9>
             <ion-item no-padding>
               <ion-label>{{ keranjang.JenisAnalisis }} ({{ keranjang.Metode }})</ion-label>
               <ion-checkbox style="margin-right: 9px" [(ngModel)]="keranjang.checked" (click)="selectCart(keranjang)">
               </ion-checkbox>
             </ion-item>
           </ion-col>
-          <ion-col col-2>
+          <ion-col col-3>
             <ion-item text-right (click)="hapusItem(keranjang)">
               <ion-icon name="close"></ion-icon>
             </ion-item>
@@ -74,10 +74,10 @@
   <ion-grid>
     <ion-row>
       <ion-col col-7>
-        <h6 no-margin>
+        <p no-margin>
           Harga IPB : <strong>Rp {{ hargaIPB }}<br></strong>
             Harga NONIPB: <strong>Rp {{ hargaNONIPB }}</strong>
-        </h6>
+        </p>
       </ion-col>
       <ion-col col-5>
         <ion-buttons end>

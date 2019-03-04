@@ -34,69 +34,34 @@
       <ion-item>
         <ion-icon name="briefcase" item-start color="primary"></ion-icon>
         <ion-label stacked>Institusi/Perusahaan</ion-label>
-        <ion-select (ionChange)="institusiChange($event)" [(ngModel)]="profilData.institusi" formControlName="institusi"
-          [class.error1]="!profilform.controls.institusi.valid && profilform.controls.institusi.dirty">
+        <ion-select (ionChange)="institusiChange($event)" [(ngModel)]="profilData.institusi"
+          formControlName="institusi">
           <ion-option value="1">Institut Pertanian Bogor</ion-option>
           <ion-option value="2">Lainnya</ion-option>
         </ion-select>
-        <ion-item no-lines
-          *ngIf="profilform.get('institusi').hasError('required') && profilform.get('institusi').touched">
-          <div class="error"
-            *ngIf="profilform.get('institusi').hasError('required') && profilform.get('institusi').touched">
-            Pilih institusi
-          </div>
-        </ion-item>
 
         <ion-input *ngIf="institusiLain" type="text" placeholder="e.g. PT Abadi" [(ngModel)]="profilData.institusiLain"
-          formControlName="institusiLain"
-          [class.error1]="!profilform.controls.institusiLain.valid && profilform.controls.institusiLain.dirty">
-        </ion-input>
-        <ion-item no-lines
-          *ngIf="profilform.get('institusiLain').hasError('required') && profilform.get('institusiLain').touched">
-          <div class="error"
-            *ngIf="profilform.get('institusiLain').hasError('required') && profilform.get('institusiLain').touched">
-            Masukkan Institusi Lain
-          </div>
-        </ion-item>
+          formControlName="institusiLain"></ion-input>
 
       </ion-item>
+
       <ion-item *ngIf="IPB">
         <ion-icon name="finger-print" item-start color="primary"></ion-icon>
         <ion-label stacked>NIM/NIK IPB</ion-label>
         <ion-input type="text" [(ngModel)]="profilData.noIdentitas" placeholder="e.g. G64150049"
-          formControlName="noIdentitas"
-          [class.error1]="!profilform.controls.noIdentitas.valid && profilform.controls.noIdentitas.dirty"></ion-input>
-      </ion-item>
-      <ion-item no-lines
-        *ngIf="profilform.get('noIdentitas').hasError('required') && profilform.get('noIdentitas').touched">
-        <div class="error"
-          *ngIf="profilform.get('noIdentitas').hasError('required') && profilform.get('noIdentitas').touched">
-          Masukkan NIM/NIK IPB
-        </div>
+          formControlName="noIdentitas"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-icon name="home" item-start color="primary"></ion-icon>
         <ion-label stacked>Alamat</ion-label>
-        <ion-textarea type="email" [(ngModel)]="profilData.alamat" formControlName="alamat"
-          [class.error1]="!profilform.controls.alamat.valid && profilform.controls.alamat.dirty"></ion-textarea>
-      </ion-item>
-      <ion-item no-lines *ngIf="profilform.get('alamat').hasError('required') && profilform.get('alamat').touched">
-        <div class="error" *ngIf="profilform.get('alamat').hasError('required') && profilform.get('alamat').touched">
-          Masukkan Alamat
-        </div>
+        <ion-textarea type="email" [(ngModel)]="profilData.alamat" formControlName="alamat"></ion-textarea>
       </ion-item>
 
       <ion-item>
         <ion-icon name="call" item-start color="primary"></ion-icon>
         <ion-label stacked>No HP</ion-label>
-        <ion-input type="number" [(ngModel)]="profilData.noHp" formControlName="noHp"
-          [class.error1]="!profilform.controls.noHp.valid && profilform.controls.noHp.dirty"></ion-input>
-      </ion-item>
-      <ion-item no-lines *ngIf="profilform.get('noHp').hasError('required') && profilform.get('noHp').touched">
-        <div class="error" *ngIf="profilform.get('noHp').hasError('required') && profilform.get('noHp').touched">
-          Masukkan No HP
-        </div>
+        <ion-input type="number" [(ngModel)]="profilData.noHp" max="12" formControlName="noHp"></ion-input>
       </ion-item>
 
       <ion-item>
@@ -118,13 +83,7 @@
       <ion-item>
         <ion-icon name="checkmark-circle-outline" item-start color="primary"></ion-icon>
         <ion-label stacked>No NPWP</ion-label>
-        <ion-input type="number" [(ngModel)]="profilData.npwp" formControlName="npwp"
-          [class.error1]="!profilform.controls.npwp.valid && profilform.controls.npwp.dirty"></ion-input>
-      </ion-item>
-      <ion-item no-lines *ngIf="profilform.get('npwp').hasError('required') && profilform.get('npwp').touched">
-        <div class="error" *ngIf="profilform.get('npwp').hasError('required') && profilform.get('npwp').touched">
-          Masukkan No NPWP
-        </div>
+        <ion-input type="number" [(ngModel)]="profilData.npwp" formControlName="npwp"></ion-input>
       </ion-item>
 
     </ion-list>

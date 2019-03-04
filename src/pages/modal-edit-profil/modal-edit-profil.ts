@@ -53,7 +53,8 @@ export class ModalEditProfilPage {
         this.profilform.controls['noIdentitas'].enable();
       } else if (data.Perusahaan) {
         this.profilData.institusi = 2;
-        this.institusiLain = data.Perusahaan;
+        this.profilData.institusiLain = data.Perusahaan;
+        this.profilData.noIdentitas = data.NoIdentitas;
         this.institusiLain = true;
         this.profilform.controls['institusiLain'].enable();
         this.profilform.controls['noIdentitas'].disable();

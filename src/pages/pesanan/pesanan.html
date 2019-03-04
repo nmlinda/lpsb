@@ -32,14 +32,20 @@
   <div [ngSwitch]="status">
 
     <div *ngSwitchCase="1">
-
+        <div *ngIf="belumDianalisis.length == 0">
+            <h6 text-center class="no-pesanan">
+              <ion-icon name="cart" style="font-size: 70px;"></ion-icon><br>
+              Tidak ada pesanan
+            </h6>
+          </div>
       <!-- status = 1 (pesanan dibuat) -->
       <!-- status = 2 (pesanan divalidasi) & statusBayar = 0 & statusKirimSampel = 0 -->
       <!-- status = 2 & statusBayar = 1 & statusKirimSampel = 0 -->
       <!-- status = 2 & statusBayar = 0 & statusKirimSampel = 1 -->
       <!-- status = 2 & statusBayar = 1 & statusKirimSampel = 1 -->
-      <div *ngFor="let item of pesanans">
-        <ion-card *ngIf="item.StatusUtama == 1 || item.StatusUtama == 2">
+      <div *ngFor="let item of belumDianalisis">
+      
+        <ion-card>
           <ion-item>
             <ion-grid no-padding>
               <ion-row>
@@ -133,10 +139,16 @@
     </div>
 
     <div *ngSwitchCase="2">
+        <div *ngIf="dianalisis.length == 0">
+            <h6 text-center class="no-pesanan">
+              <ion-icon name="cart" style="font-size: 70px;"></ion-icon><br>
+              Tidak ada pesanan
+            </h6>
+          </div>
       <!-- status = 3 (dikaji ulang) -->
       <!-- status = 4 (dianalisis) -->
-      <div *ngFor="let item of pesanans">
-        <ion-card *ngIf="item.StatusUtama == 3 || item.StatusUtama == 4">
+      <div *ngFor="let item of dianalisis">
+        <ion-card>
           <ion-item>
             <ion-grid no-padding>
               <ion-row>
@@ -212,10 +224,15 @@
     </div>
 
     <div *ngSwitchCase="3">
-
+        <div *ngIf="selesai.length == 0">
+            <h6 text-center class="no-pesanan">
+              <ion-icon name="cart" style="font-size: 70px;"></ion-icon><br>
+              Tidak ada pesanan
+            </h6>
+          </div>
       <!-- status = 5 (Selesai) -->
-      <div *ngFor="let item of pesanans">
-        <ion-card *ngIf="item.StatusUtama == 5">
+      <div *ngFor="let item of selesai">
+        <ion-card>
           <ion-item>
             <ion-grid no-padding>
               <ion-row>
@@ -297,7 +314,7 @@
         </ion-card>
       </div>
 
-      <ion-card>
+      <!-- <ion-card>
         <ion-card-header>
           <ion-grid no-padding>
             <ion-row>
@@ -370,10 +387,10 @@
             </ion-row>
           </ion-grid>
         </ion-card-content>
-      </ion-card>
+      </ion-card> -->
 
       <!-- status = 5 (Selesai) & statusSisaSampel = 1 -->
-      <ion-card>
+      <!-- <ion-card>
         <ion-card-header>
           <ion-grid no-padding>
             <ion-row>
@@ -446,10 +463,10 @@
             </ion-row>
           </ion-grid>
         </ion-card-content>
-      </ion-card>
+      </ion-card> -->
 
       <!-- status = 5 (Selesai) & statusSertifikat = 1 -->
-      <ion-card>
+      <!-- <ion-card>
         <ion-card-header>
           <ion-grid no-padding>
             <ion-row>
@@ -522,10 +539,10 @@
             </ion-row>
           </ion-grid>
         </ion-card-content>
-      </ion-card>
+      </ion-card> -->
 
       <!-- status = 6 (Sudah diulas) -->
-      <ion-card>
+      <!-- <ion-card>
         <ion-card-header>
           <ion-grid no-padding>
             <ion-row>
@@ -598,14 +615,19 @@
             </ion-row>
           </ion-grid>
         </ion-card-content>
-      </ion-card>
+      </ion-card> -->
 
     </div>
 
     <div *ngSwitchCase="4">
-
-      <div *ngFor="let item of pesanans">
-        <ion-card *ngIf="item.StatusUtama == 0">
+        <div *ngIf="batal.length == 0">
+            <h6 text-center class="no-pesanan">
+              <ion-icon name="cart" style="font-size: 70px;"></ion-icon><br>
+              Tidak ada pesanan
+            </h6>
+          </div>
+      <div *ngFor="let item of batal">
+        <ion-card>
           <ion-item>
             <ion-grid no-padding>
               <ion-row>
@@ -669,7 +691,7 @@
         </ion-card>
       </div>
       <!-- status = 0 (dibatalkan) -->
-      <ion-card>
+      <!-- <ion-card>
         <ion-card-header>
           <ion-grid no-padding>
             <ion-row>
@@ -731,11 +753,11 @@
             </ion-row>
           </ion-grid>
         </ion-card-content>
-      </ion-card>
+      </ion-card> -->
 
 
       <!-- status = 0 (dibatalkan) -->
-      <ion-card>
+      <!-- <ion-card>
         <ion-card-header>
           <ion-grid no-padding>
             <ion-row>
@@ -797,7 +819,7 @@
             </ion-row>
           </ion-grid>
         </ion-card-content>
-      </ion-card>
+      </ion-card> -->
 
     </div>
 
