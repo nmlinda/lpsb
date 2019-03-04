@@ -34,542 +34,269 @@
     <div *ngSwitchCase="1">
 
       <!-- status = 1 (pesanan dibuat) -->
-      <ion-card>
-        <ion-card-header>
-          <ion-grid no-padding>
-            <ion-row>
-              <ion-col col-6>
-                <h2>
-                  #12/II/2019
-                </h2>
-              </ion-col>
-              <ion-col col-6>
-                <h3 text-right>
-                  Sedang divalidasi
-                </h3>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-card-header>
-        <ion-card-content>
-          <ion-grid no-padding>
-            <ion-row>
-              <ion-col col-8>
-                <p>
-                  <strong>Kondisi Sampel</strong><br>
-                  Nama: Daun<br>
-                  Kemasan: Plastik<br>
-                  (x1)<br>
-                  <strong>Fitokimia</strong><br>
-                  Bentuk: Simplisia<br>
-                </p>
-              </ion-col>
-              <ion-col col-4>
-                <img src="../../assets/imgs/fitokimia.jpg" class="img-jenis">
-                <h3 text-right>
-                  <strong>Rp 300000</strong>
-                </h3>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col col-12>
-                <p text-center>Tampilkan 2 Sampel Lagi
-                  <ion-icon name="arrow-dropdown"></ion-icon>
-                </p>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col col-6>
-                <p>Pesanan dibuat</p>
-              </ion-col>
-              <ion-col col-6>
-                <p text-right>19-03-2019 11:03</p>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col col-12>
-                <ion-buttons end>
-                  <button ion-button color="primary" [navPush]="detailPesanan">
-                    Lihat Rincian
-                  </button>
-                </ion-buttons>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-card-content>
-      </ion-card>
-
       <!-- status = 2 (pesanan divalidasi) & statusBayar = 0 & statusKirimSampel = 0 -->
-      <ion-card>
-        <ion-item>
-          <ion-grid no-padding>
-            <ion-row>
-              <ion-col col-6>
-                <h2>
-                  <strong>Total: Rp 200000</strong>
-                </h2>
-              </ion-col>
-              <ion-col col-6>
-                <h3 text-right>
-                  Belum Dibayar
-                </h3>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-item>
-        <ion-card-content>
-          <ion-grid no-padding>
-            <ion-row>
-              <ion-col col-2>
-                <img src="../../assets/imgs/fitokimia.jpg" class="img-jenis">
-                <!-- <h3 text-right>
-                  <strong>Rp 300000</strong>
-                </h3> -->
-              </ion-col>
-              <ion-col col-5>
-                <p margin-left class="header-text">
-                  Fitokimia
-                </p>
-              </ion-col>
-              <ion-col col-5 >
-                <p margin-left text-right>
-                  Daun (10gr)<br>
-                  Kemasan: Plastik<br>
-                  Bentuk: Simplisia<br>
-                </p>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col col-12>
-                <p text-center>Tampilkan 2 Sampel Lagi
-                  <ion-icon name="arrow-dropdown"></ion-icon>
-                </p>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col col-6>
-                <p>Pesanan tervalidasi</p>
-              </ion-col>
-              <ion-col col-6>
-                <p text-right>19-03-2019 11:03</p>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col col-12>
-                <ion-buttons end>
-                  <button ion-button color="primary" [navPush]="detailPesanan">
-                    Lihat Rincian
-                  </button>
-                </ion-buttons>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-card-content>
-      </ion-card>
-
       <!-- status = 2 & statusBayar = 1 & statusKirimSampel = 0 -->
-      <ion-card>
-        <ion-card-header>
-          <ion-grid no-padding>
-            <ion-row>
-              <ion-col col-6>
-                <h2>
-                  #12/II/2019
-                </h2>
-              </ion-col>
-              <ion-col col-6>
-                <h3 text-right>
-                  Sampel Belum Dikirim
-                </h3>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-card-header>
-        <ion-card-content>
-          <ion-grid no-padding>
-            <ion-row>
-              <ion-col col-8>
-                <p>
-                  <strong>Kondisi Sampel</strong><br>
-                  Nama: Daun<br>
-                  Kemasan: Plastik<br>
-                  (x1)<br>
-                  <strong>Fitokimia</strong><br>
-                  Bentuk: Simplisia<br>
-                </p>
-              </ion-col>
-              <ion-col col-4>
-                <img src="../../assets/imgs/fitokimia.jpg" class="img-jenis">
-                <h3 text-right>
-                  <strong>Rp 300000</strong>
-                </h3>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col col-12>
-                <p text-center>Tampilkan 2 Sampel Lagi
-                  <ion-icon name="arrow-dropdown"></ion-icon>
-                </p>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col col-6>
-                <p>Pesanan dibayar</p>
-              </ion-col>
-              <ion-col col-6>
-                <p text-right>19-03-2019 11:03</p>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col col-12>
-                <ion-buttons end>
-                  <button ion-button color="primary" [navPush]="detailPesanan">
-                    Lihat Rincian
-                  </button>
-                </ion-buttons>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-card-content>
-      </ion-card>
-
       <!-- status = 2 & statusBayar = 0 & statusKirimSampel = 1 -->
-      <ion-card>
-        <ion-card-header>
-          <ion-grid no-padding>
-            <ion-row>
-              <ion-col col-6>
-                <h2>
-                  #12/II/2019
-                </h2>
-              </ion-col>
-              <ion-col col-6>
-                <h3 text-right>
-                  Belum Dibayar
-                </h3>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-card-header>
-        <ion-card-content>
-          <ion-grid no-padding>
-            <ion-row>
-              <ion-col col-8>
-                <p>
-                  <strong>Kondisi Sampel</strong><br>
-                  Nama: Daun<br>
-                  Kemasan: Plastik<br>
-                  (x1)<br>
-                  <strong>Fitokimia</strong><br>
-                  Bentuk: Simplisia<br>
-                </p>
-              </ion-col>
-              <ion-col col-4>
-                <img src="../../assets/imgs/fitokimia.jpg" class="img-jenis">
-                <h3 text-right>
-                  <strong>Rp 300000</strong>
-                </h3>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col col-12>
-                <p text-center>Tampilkan 2 Sampel Lagi
-                  <ion-icon name="arrow-dropdown"></ion-icon>
-                </p>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col col-6>
-                <p>Sampel diterima</p>
-              </ion-col>
-              <ion-col col-6>
-                <p text-right>19-03-2019 11:03</p>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col col-12>
-                <ion-buttons end>
-                  <button ion-button color="primary" [navPush]="detailPesanan">
-                    Lihat Rincian
-                  </button>
-                </ion-buttons>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-card-content>
-      </ion-card>
-
       <!-- status = 2 & statusBayar = 1 & statusKirimSampel = 1 -->
-      <ion-card>
-        <ion-card-header>
-          <ion-grid no-padding>
-            <ion-row>
-              <ion-col col-6>
-                <h2>
-                  #12/II/2019
-                </h2>
-              </ion-col>
-              <ion-col col-6>
-                <h3 text-right>
-                  Menunggu Analisis
-                </h3>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-card-header>
-        <ion-card-content>
-          <ion-grid no-padding>
-            <ion-row>
-              <ion-col col-8>
-                <p>
-                  <strong>Kondisi Sampel</strong><br>
-                  Nama: Daun<br>
-                  Kemasan: Plastik<br>
-                  (x1)<br>
-                  <strong>Fitokimia</strong><br>
-                  Bentuk: Simplisia<br>
-                </p>
-              </ion-col>
-              <ion-col col-4>
-                <img src="../../assets/imgs/fitokimia.jpg" class="img-jenis">
-                <h3 text-right>
-                  <strong>Rp 300000</strong>
-                </h3>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col col-12>
-                <p text-center>Tampilkan 2 Sampel Lagi
-                  <ion-icon name="arrow-dropdown"></ion-icon>
-                </p>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col col-6>
-                <p>Pesanan dibayar</p>
-              </ion-col>
-              <ion-col col-6>
-                <p text-right>19-03-2019 11:03</p>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col col-12>
-                <ion-buttons end>
-                  <button ion-button color="primary" [navPush]="detailPesanan">
-                    Lihat Rincian
-                  </button>
-                </ion-buttons>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-card-content>
-      </ion-card>
+      <div *ngFor="let item of pesanans">
+        <ion-card *ngIf="item.StatusUtama == 1 || item.StatusUtama == 2">
+          <ion-item>
+            <ion-grid no-padding>
+              <ion-row>
+                <ion-col col-6>
+                  <h2>
+                    <strong>Total: Rp {{item.HargaTotal}}</strong>
+                  </h2>
+                </ion-col>
+                <ion-col col-6>
+                  <h3 text-right *ngIf="item.StatusUtama == 1">
+                    Sedang Divalidasi
+                  </h3>
+                  <h3 text-right *ngIf="item.StatusUtama == 2 && item.status_pembayaran == 0 && status_pengiriman == 0">
+                    Belum Dibayar
+                  </h3>
+                  <h3 text-right *ngIf="item.StatusUtama == 2 && item.status_pembayaran == 1 && status_pengiriman == 0">
+                    Sampel Belum Dikirim
+                  </h3>
+                  <h3 text-right *ngIf="item.StatusUtama == 2 && item.status_pembayaran == 0 && status_pengiriman == 1">
+                    Belum Dibayar
+                  </h3>
+                  <h3 text-right *ngIf="item.StatusUtama == 2 && item.status_pembayaran == 1 && status_pengiriman == 1">
+                    Menunggu Analisis
+                  </h3>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+          <ion-card-content>
+            <ion-grid no-padding>
+              <ion-row>
+                <ion-col col-2>
+                  <img src="../../assets/imgs/fitokimia.jpg" class="img-jenis">
+                </ion-col>
+                <ion-col col-5>
+                  <p margin-left class="header-text">
+                    Fitokimia
+                  </p>
+                </ion-col>
+                <ion-col col-5>
+                  <p margin-left text-right>
+                    Daun (10gr)<br>
+                    Kemasan: Plastik<br>
+                    Bentuk: Simplisia<br>
+                  </p>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-12>
+                  <p text-center>Tampilkan 2 Sampel Lagi
+                    <ion-icon name="arrow-dropdown"></ion-icon>
+                  </p>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-6 *ngIf="item.status_pembayaran != 1 && status_pengiriman != 1">
+                  <p *ngIf="item.StatusUtama == 1">
+                    Pesanan dibuat
+                  </p>
+                  <p *ngIf="item.StatusUtama == 2 && item.status_pembayaran == 0 && status_pengiriman == 0">
+                    Pesanan divalidasi
+                  </p>
+                  <p *ngIf="item.StatusUtama == 2 && item.status_pembayaran == 1 && status_pengiriman == 0">
+                    Pesanan dibayar
+                  </p>
+                  <p *ngIf="item.StatusUtama == 2 && item.status_pembayaran == 0 && status_pengiriman == 1">
+                    Sampel diterima
+                  </p>
+                  <p *ngIf="item.StatusUtama == 2 && item.status_pembayaran == 1 && status_pengiriman == 1">
+                    Pesanan divalidasi
+                  </p>
+                </ion-col>
+                <ion-col col-6 *ngIf="item.status_pembayaran != 1 && status_pengiriman != 1">
+                  <p text-right>{{item.WaktuStatusTerbaru | date: 'dd-MM-yyyy H:mm'}}</p>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-12>
+                  <ion-buttons end>
+                    <button ion-button color="primary" [navPush]="detailPesanan">
+                      Lihat Rincian
+                    </button>
+                  </ion-buttons>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </div>
 
-      <ion-card>
-        <ion-card-header>
-          <ion-grid no-padding>
-            <ion-row>
-              <ion-col col-6>
-                <h2>
-                  #12/II/2019
-                </h2>
-              </ion-col>
-              <ion-col col-6>
-                <h3 text-right>
-                  Menunggu Analisis
-                </h3>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-card-header>
-        <ion-card-content>
-          <ion-grid no-padding>
-            <ion-row>
-              <ion-col col-8>
-                <p>
-                  <strong>Kondisi Sampel</strong><br>
-                  Nama: Daun<br>
-                  Kemasan: Plastik<br>
-                  (x1)<br>
-                  <strong>Fitokimia</strong><br>
-                  Bentuk: Simplisia<br>
-                </p>
-              </ion-col>
-              <ion-col col-4>
-                <img src="../../assets/imgs/fitokimia.jpg" class="img-jenis">
-                <h3 text-right>
-                  <strong>Rp 300000</strong>
-                </h3>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col col-12>
-                <p text-center>Tampilkan 2 Sampel Lagi
-                  <ion-icon name="arrow-dropdown"></ion-icon>
-                </p>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col col-6>
-                <p>Sampel diterima</p>
-              </ion-col>
-              <ion-col col-6>
-                <p text-right>19-03-2019 11:03</p>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col col-12>
-                <ion-buttons end>
-                  <button ion-button color="primary" [navPush]="detailPesanan">
-                    Lihat Rincian
-                  </button>
-                </ion-buttons>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-card-content>
-      </ion-card>
     </div>
 
     <div *ngSwitchCase="2">
-
       <!-- status = 3 (dikaji ulang) -->
-      <ion-card>
-        <ion-card-header>
-          <ion-grid no-padding>
-            <ion-row>
-              <ion-col col-6>
-                <h2>
-                  #12/II/2019
-                </h2>
-              </ion-col>
-              <ion-col col-6>
-                <h3 text-right>
-                  Dikaji Ulang
-                </h3>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-card-header>
-        <ion-card-content>
-          <ion-grid no-padding>
-            <ion-row>
-              <ion-col col-8>
-                <p>
-                  <strong>Kondisi Sampel</strong><br>
-                  Nama: Daun<br>
-                  Kemasan: Plastik<br>
-                  (x1)<br>
-                  <strong>Fitokimia</strong><br>
-                  Bentuk: Simplisia<br>
-                </p>
-              </ion-col>
-              <ion-col col-4>
-                <img src="../../assets/imgs/fitokimia.jpg" class="img-jenis">
-                <h3 text-right>
-                  <strong>Rp 300000</strong>
-                </h3>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col col-12>
-                <p text-center>Tampilkan 2 Sampel Lagi
-                  <ion-icon name="arrow-dropdown"></ion-icon>
-                </p>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col col-6>
-                <p>Pesanan dibayar</p>
-              </ion-col>
-              <ion-col col-6>
-                <p text-right>19-03-2019 11:03</p>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col col-12>
-                <ion-buttons end>
-                  <button ion-button color="primary" [navPush]="detailPesanan">
-                    Lihat Rincian
-                  </button>
-                </ion-buttons>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-card-content>
-      </ion-card>
-
       <!-- status = 4 (dianalisis) -->
-      <ion-card>
-        <ion-card-header>
-          <ion-grid no-padding>
-            <ion-row>
-              <ion-col col-6>
-                <h2>
-                  #12/II/2019
-                </h2>
-              </ion-col>
-              <ion-col col-6>
-                <h3 text-right>
-                  Dianalisis
-                </h3>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-card-header>
-        <ion-card-content>
-          <ion-grid no-padding>
-            <ion-row>
-              <ion-col col-8>
-                <p>
-                  <strong>Kondisi Sampel</strong><br>
-                  Nama: Daun<br>
-                  Kemasan: Plastik<br>
-                  (x1)<br>
-                  <strong>Fitokimia</strong><br>
-                  Bentuk: Simplisia<br>
-                </p>
-              </ion-col>
-              <ion-col col-4>
-                <img src="../../assets/imgs/fitokimia.jpg" class="img-jenis">
-                <h3 text-right>
-                  <strong>Rp 300000</strong>
-                </h3>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col col-12>
-                <p text-center>Tampilkan 2 Sampel Lagi
-                  <ion-icon name="arrow-dropdown"></ion-icon>
-                </p>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col col-6>
-                <p>Kaji Ulang</p>
-              </ion-col>
-              <ion-col col-6>
-                <p text-right>19-03-2019 11:03</p>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col col-12>
-                <ion-buttons end>
-                  <button ion-button color="primary" [navPush]="detailPesanan">
-                    Lihat Rincian
-                  </button>
-                </ion-buttons>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-card-content>
-      </ion-card>
+      <div *ngFor="let item of pesanans">
+        <ion-card *ngIf="item.StatusUtama == 3 || item.StatusUtama == 4">
+          <ion-item>
+            <ion-grid no-padding>
+              <ion-row>
+                <ion-col col-6>
+                  <h2>
+                    <strong>Total: Rp {{item.HargaTotal}}</strong>
+                  </h2>
+                </ion-col>
+                <ion-col col-6>
+                  <h3 text-right *ngIf="item.StatusUtama == 3">
+                    Dikaji Ulang
+                  </h3>
+                  <h3 text-right *ngIf="item.StatusUtama == 4">
+                    Dianalisis
+                  </h3>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+          <ion-card-content>
+            <ion-grid no-padding>
+              <ion-row>
+                <ion-col col-2>
+                  <img src="../../assets/imgs/fitokimia.jpg" class="img-jenis">
+                </ion-col>
+                <ion-col col-5>
+                  <p margin-left class="header-text">
+                    Fitokimia
+                  </p>
+                </ion-col>
+                <ion-col col-5>
+                  <p margin-left text-right>
+                    Daun (10gr)<br>
+                    Kemasan: Plastik<br>
+                    Bentuk: Simplisia<br>
+                  </p>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-12>
+                  <p text-center>Tampilkan 2 Sampel Lagi
+                    <ion-icon name="arrow-dropdown"></ion-icon>
+                  </p>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-6>
+                  <p *ngIf="item.StatusUtama == 3">
+                    Pesanan sedang dikaji ulang
+                  </p>
+                  <p *ngIf="item.StatusUtama == 4">
+                    Pesanan sedang dianalisis
+                  </p>
+                </ion-col>
+                <ion-col col-6>
+                  <p text-right>{{item.WaktuStatusTerbaru | date: 'dd-MM-yyyy H:mm'}}</p>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-12>
+                  <ion-buttons end>
+                    <button ion-button color="primary" [navPush]="detailPesanan">
+                      Lihat Rincian
+                    </button>
+                  </ion-buttons>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </div>
 
     </div>
 
     <div *ngSwitchCase="3">
 
       <!-- status = 5 (Selesai) -->
+      <div *ngFor="let item of pesanans">
+        <ion-card *ngIf="item.StatusUtama == 5">
+          <ion-item>
+            <ion-grid no-padding>
+              <ion-row>
+                <ion-col col-6>
+                  <h2>
+                    <strong>Total: Rp {{item.HargaTotal}}</strong>
+                  </h2>
+                </ion-col>
+                <ion-col col-6>
+                  <h3 text-right>
+                    Selesai
+                  </h3>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+          <ion-card-content>
+            <ion-grid no-padding>
+              <ion-row>
+                <ion-col col-2>
+                  <img src="../../assets/imgs/fitokimia.jpg" class="img-jenis">
+                </ion-col>
+                <ion-col col-5>
+                  <p margin-left class="header-text">
+                    Fitokimia
+                  </p>
+                </ion-col>
+                <ion-col col-5>
+                  <p margin-left text-right>
+                    Daun (10gr)<br>
+                    Kemasan: Plastik<br>
+                    Bentuk: Simplisia<br>
+                  </p>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-12>
+                  <p text-center>Tampilkan 2 Sampel Lagi
+                    <ion-icon name="arrow-dropdown"></ion-icon>
+                  </p>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-6>
+                  <p>
+                    Pesanan selesai
+                  </p>
+                </ion-col>
+                <ion-col col-6>
+                  <p text-right>{{item.WaktuStatusTerbaru | date: 'dd-MM-yyyy H:mm'}}</p>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-12>
+                  <ion-buttons end>
+                    <button ion-button color="primary" [navPush]="detailPesanan">
+                      Lihat Rincian
+                    </button>
+                  </ion-buttons>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-8>
+                  <p *ngIf="item.status_ulasan == 0">
+                    Beri ulasan
+                  </p>
+                  <p *ngIf="item.status_ulasan == 1">
+                    Lihat ulasan anda
+                  </p>
+                </ion-col>
+                <ion-col col-4 text-right>
+                  <button ion-button text-capitalize>
+                    Ulasan
+                  </button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </div>
+
       <ion-card>
         <ion-card-header>
           <ion-grid no-padding>
@@ -877,6 +604,70 @@
 
     <div *ngSwitchCase="4">
 
+      <div *ngFor="let item of pesanans">
+        <ion-card *ngIf="item.StatusUtama == 0">
+          <ion-item>
+            <ion-grid no-padding>
+              <ion-row>
+                <ion-col col-6>
+                  <h2>
+                    <strong>Total: Rp {{item.HargaTotal}}</strong>
+                  </h2>
+                </ion-col>
+                <ion-col col-6>
+                  <h3 text-right>
+                    Dibatalkan
+                  </h3>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+          <ion-card-content>
+            <ion-grid no-padding>
+              <ion-row>
+                <ion-col col-2>
+                  <img src="../../assets/imgs/fitokimia.jpg" class="img-jenis">
+                </ion-col>
+                <ion-col col-5>
+                  <p margin-left class="header-text">
+                    Fitokimia
+                  </p>
+                </ion-col>
+                <ion-col col-5>
+                  <p margin-left text-right>
+                    Daun (10gr)<br>
+                    Kemasan: Plastik<br>
+                    Bentuk: Simplisia<br>
+                  </p>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-12>
+                  <p text-center>Tampilkan 2 Sampel Lagi
+                    <ion-icon name="arrow-dropdown"></ion-icon>
+                  </p>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-12>
+                  <ion-row>
+                    <ion-col col-6>
+                      <p>Dibatalkan anda</p>
+                    </ion-col>
+                    <ion-col col-6>
+                      <ion-buttons end>
+                        <button ion-button color="primary" [navPush]="detailPesanan">
+                          Lihat Rincian
+                        </button>
+                      </ion-buttons>
+                    </ion-col>
+                  </ion-row>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </div>
       <!-- status = 0 (dibatalkan) -->
       <ion-card>
         <ion-card-header>

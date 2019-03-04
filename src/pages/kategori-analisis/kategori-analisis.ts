@@ -66,7 +66,7 @@ export class KategoriAnalisisPage {
           })
         };
 
-        this.httpClient.get(this.data.BASE_URL + '/getAllKatalog/', httpOptions).subscribe(data => {
+        this.httpClient.get(this.data.BASE_URL + '/getAllKatalogUmum/', httpOptions).subscribe(data => {
           let response = data;
           this.katalogs = response;
           this.listKatalog = this.katalogs.katalogs;
