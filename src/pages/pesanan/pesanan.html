@@ -32,19 +32,14 @@
   <div [ngSwitch]="status">
 
     <div *ngSwitchCase="1">
-        <div *ngIf="belumDianalisis.length == 0">
-            <h6 text-center class="no-pesanan">
-              <ion-icon name="cart" style="font-size: 70px;"></ion-icon><br>
-              Tidak ada pesanan
-            </h6>
-          </div>
-      <!-- status = 1 (pesanan dibuat) -->
-      <!-- status = 2 (pesanan divalidasi) & statusBayar = 0 & statusKirimSampel = 0 -->
-      <!-- status = 2 & statusBayar = 1 & statusKirimSampel = 0 -->
-      <!-- status = 2 & statusBayar = 0 & statusKirimSampel = 1 -->
-      <!-- status = 2 & statusBayar = 1 & statusKirimSampel = 1 -->
+      <div *ngIf="belumDianalisis.length == 0">
+        <h6 text-center class="no-pesanan">
+          <ion-icon name="cart" style="font-size: 70px;"></ion-icon><br>
+          Tidak ada pesanan
+        </h6>
+      </div>
+
       <div *ngFor="let item of belumDianalisis">
-      
         <ion-card>
           <ion-item>
             <ion-grid no-padding>
@@ -76,20 +71,20 @@
           </ion-item>
           <ion-card-content>
             <ion-grid no-padding>
-              <ion-row>
+              <ion-row *ngFor="let sampel of item.Sampel">
                 <ion-col col-2>
                   <img src="../../assets/imgs/fitokimia.jpg" class="img-jenis">
                 </ion-col>
-                <ion-col col-5>
-                  <p margin-left class="header-text">
-                    Fitokimia
+                <ion-col col-4>
+                  <p margin-left class="header-text" text-capitalize>
+                    {{ sampel.JenisAnalisis }}
                   </p>
                 </ion-col>
-                <ion-col col-5>
+                <ion-col col-6>
                   <p margin-left text-right>
-                    Daun (10gr)<br>
-                    Kemasan: Plastik<br>
-                    Bentuk: Simplisia<br>
+                    {{ sampel.JenisSampel }} ({{sampel.Jumlah}})<br>
+                    Kemasan: {{sampel.Kemasan}}<br>
+                    Bentuk: {{sampel.BentukSampel}}<br>
                   </p>
                 </ion-col>
               </ion-row>
@@ -139,12 +134,12 @@
     </div>
 
     <div *ngSwitchCase="2">
-        <div *ngIf="dianalisis.length == 0">
-            <h6 text-center class="no-pesanan">
-              <ion-icon name="cart" style="font-size: 70px;"></ion-icon><br>
-              Tidak ada pesanan
-            </h6>
-          </div>
+      <div *ngIf="dianalisis.length == 0">
+        <h6 text-center class="no-pesanan">
+          <ion-icon name="cart" style="font-size: 70px;"></ion-icon><br>
+          Tidak ada pesanan
+        </h6>
+      </div>
       <!-- status = 3 (dikaji ulang) -->
       <!-- status = 4 (dianalisis) -->
       <div *ngFor="let item of dianalisis">
@@ -224,12 +219,12 @@
     </div>
 
     <div *ngSwitchCase="3">
-        <div *ngIf="selesai.length == 0">
-            <h6 text-center class="no-pesanan">
-              <ion-icon name="cart" style="font-size: 70px;"></ion-icon><br>
-              Tidak ada pesanan
-            </h6>
-          </div>
+      <div *ngIf="selesai.length == 0">
+        <h6 text-center class="no-pesanan">
+          <ion-icon name="cart" style="font-size: 70px;"></ion-icon><br>
+          Tidak ada pesanan
+        </h6>
+      </div>
       <!-- status = 5 (Selesai) -->
       <div *ngFor="let item of selesai">
         <ion-card>
@@ -620,12 +615,13 @@
     </div>
 
     <div *ngSwitchCase="4">
-        <div *ngIf="batal.length == 0">
-            <h6 text-center class="no-pesanan">
-              <ion-icon name="cart" style="font-size: 70px;"></ion-icon><br>
-              Tidak ada pesanan
-            </h6>
-          </div>
+      <div *ngIf="batal.length == 0">
+        <h6 text-center class="no-pesanan">
+          <ion-icon name="cart" style="font-size: 70px;"></ion-icon><br>
+          Tidak ada pesanan
+        </h6>
+      </div>
+      
       <div *ngFor="let item of batal">
         <ion-card>
           <ion-item>

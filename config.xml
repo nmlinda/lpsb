@@ -19,8 +19,13 @@
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="3000" />
+    
+    <preference name="ShowSplashScreen" value="false"/>
+    <preference name="AutoHideSplashScreen" value="false" />
+    <preference name="auto-hide-splash-screen" value="false" />
     <platform name="android">
         <allow-intent href="market:*" />
+        <preference name="loadUrlTimeoutValue" value="700000" />
         <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
         <icon density="mdpi" src="resources/android/icon/drawable-mdpi-icon.png" />
         <icon density="hdpi" src="resources/android/icon/drawable-hdpi-icon.png" />
@@ -80,7 +85,7 @@
     <plugin name="cordova-plugin-statusbar" spec="2.4.2" />
     <plugin name="cordova-plugin-device" spec="2.0.2" />
     <plugin name="cordova-plugin-splashscreen" spec="5.0.2" />
-    <plugin name="cordova-plugin-ionic-webview" spec="^3.0.0" />
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
-    <engine name="android" spec="^7.1.4" />
+    <plugin name="cordova-plugin-ionic-webview" spec="^1.2.1" />
+    <engine name="android" spec="~7.1.4" />
 </widget>
