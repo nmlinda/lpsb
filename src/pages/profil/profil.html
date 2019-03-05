@@ -16,27 +16,27 @@
             {{nama}}
           </h1>
           <h2>
-            <ion-icon name="mail" margin-end></ion-icon>
+            <ion-icon name="mail" margin-end color="primary"></ion-icon>
             <span *ngIf="email">{{email}}<br></span>
             <span *ngIf="!email">-<br></span>
           </h2>
           <h2>
-            <ion-icon name="call" margin-end></ion-icon>
+            <ion-icon name="call" margin-end color="primary"></ion-icon>
             <span *ngIf="noHp">{{noHp}}<br></span>
             <span *ngIf="!noHp">-<br></span>
           </h2>
           <h2>
-            <ion-icon name="briefcase" margin-end></ion-icon>
+            <ion-icon name="briefcase" margin-end color="primary"></ion-icon>
             <span *ngIf="institusi">{{institusi}}<br></span>
             <span *ngIf="!institusi">-<br></span>
           </h2>
           <h2>
-            <ion-icon name="home" margin-end></ion-icon>
+            <ion-icon name="home" margin-end color="primary"></ion-icon>
             <span *ngIf="alamat">{{alamat}}<br></span>
             <span *ngIf="!alamat">-<br></span>
           </h2>
           <h2>
-            <ion-icon name="checkmark-circle-outline" margin-end></ion-icon>
+            <ion-icon name="checkmark-circle-outline" margin-end color="primary"></ion-icon>
             NPWP:
             <span *ngIf="npwp">{{npwp}}<br></span>
             <span *ngIf="!npwp">-<br></span>
@@ -52,17 +52,17 @@
   </ion-card>
 
   <ion-item [navPush]="editRekening">
-    <ion-icon name="card" item-start></ion-icon>
+    <ion-icon name="card" item-start color="primary"></ion-icon>
     Rekening Saya
     <ion-icon name="arrow-dropright" item-end color="primary"></ion-icon>
   </ion-item>
   <ion-item [navPush]="gantiPass">
-    <ion-icon name="key" item-start></ion-icon>
+    <ion-icon name="key" item-start color="primary"></ion-icon>
     Ubah Password
     <ion-icon name="arrow-dropright" item-end color="primary"></ion-icon>
   </ion-item>
   <ion-item (click)="logout()">
-    <ion-icon name="log-out" item-start></ion-icon>
+    <ion-icon name="log-out" item-start color="primary"></ion-icon>
     Keluar
     <ion-icon name="arrow-dropright" item-end color="primary"></ion-icon>
   </ion-item>

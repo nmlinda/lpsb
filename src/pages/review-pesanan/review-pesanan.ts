@@ -166,8 +166,7 @@ export class ReviewPesananPage {
               console.log(response);
               if (this.pesanan.status == 500) {
                 loading.dismiss();
-                let modal = this.modalCtrl.create(CheckoutPage);
-                modal.present();
+                this.navCtrl.push(CheckoutPage);
 
               }
               else {

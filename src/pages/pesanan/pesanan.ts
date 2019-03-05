@@ -15,9 +15,10 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 @Component({
   selector: 'page-pesanan',
   templateUrl: 'pesanan.html',
-  
+
 })
 export class PesananPage {
+  sisa = "";
   status: any;
   detailPesanan: any;
   statusBayar: any;
@@ -29,8 +30,10 @@ export class PesananPage {
   dianalisis: any = [];
   selesai: any = [];
   batal: any = [];
+  bd1st: any = [];
+  bdSisa: any = [];
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     public data: Data,
     public alertCtrl: AlertController,
     public httpClient: HttpClient,
@@ -56,22 +59,40 @@ export class PesananPage {
           console.log('pesanan', this.pesanans.length)
           console.log('bd', this.belumDianalisis.length)
           for (var i = 0; i < this.pesanans.length; i++) {
-            if (this.pesanans[i].StatusUtama == 1 || this.pesanans[i].StatusUtama == 2){
+            if (this.pesanans[i].StatusUtama == 1 || this.pesanans[i].StatusUtama == 2) {
               this.belumDianalisis.push(this.pesanans[i]);
+
+              if (this.belumDianalisis) {
+                 this.bd1st = this.belumDianalisis[i].Sampel;
+
+                for (var j = 0; j < this.bd1st.length; j++) {
+                  if (j == 0) {
+                    this.belumDianalisis[i].awal = this.belumDianalisis[i].Sampel[j];
+                  }
+                  this.bdSisa = this.belumDianalisis[i].Sampel;
+                  this.belumDianalisis[i].sisa = this.bdSisa.filter(sampel =>
+                    sampel !== this.belumDianalisis[i].awal);
+                }
+              }
+
             }
-            else if(this.pesanans[i].StatusUtama == 3 || this.pesanans[i].StatusUtama == 4){
+            else if (this.pesanans[i].StatusUtama == 3 || this.pesanans[i].StatusUtama == 4) {
               this.dianalisis.push(this.pesanans[i]);
             }
-            else if(this.pesanans[i].StatusUtama == 5){
+            else if (this.pesanans[i].StatusUtama == 5) {
               this.selesai.push(this.pesanans[i]);
             }
-            else if(this.pesanans[i].StatusUtama == 6 || this.pesanans[i].StatusUtama == 7){
+            else if (this.pesanans[i].StatusUtama == 6 || this.pesanans[i].StatusUtama == 7) {
               this.batal.push(this.pesanans[i]);
             }
+
+
           }
+          console.log(this.belumDianalisis)
+
         }
         else {
-         let alert = this.alertCtrl.create({
+          let alert = this.alertCtrl.create({
             title: 'Buat pesanan gagal',
             subTitle: 'Silahkan coba lagi.',
             buttons: ['OK']
@@ -85,5 +106,11 @@ export class PesananPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad PesananPage');
   }
-  
+
+  showSampel(item){
+    this.sisa = item.awal.JenisSampel;
+  }
+  hideSampel(item){
+    this.sisa = "";
+  }
 }

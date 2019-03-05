@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
-import { HomePage } from '../home/home';
+// import { HomePage } from '../home/home';
 import { DetailPesananPage } from '../detail-pesanan/detail-pesanan';
 import { TabsPage } from '../tabs/tabs';
 
@@ -30,10 +30,7 @@ export class CheckoutPage {
   }
 
   gotoDetailPesanan() {
-    this.viewCtrl.dismiss().then(() => {
-      this.navCtrl.setRoot(TabsPage);
-      this.navCtrl.push(DetailPesananPage);
-  });
+    this.navCtrl.push(DetailPesananPage);
   }
 
   gotoBeranda() {
