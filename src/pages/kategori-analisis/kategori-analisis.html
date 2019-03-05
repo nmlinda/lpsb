@@ -32,9 +32,9 @@
         <ion-card class="card-jenis" (click)="gotoDetailAnalisis(item.IDKatalog)"  text-center>
           <img src="../../assets/imgs/fitokimia.jpg" class="img-jenis">
           <h2 text-uppercase><strong>{{item.JenisAnalisis}}</strong></h2>
-          <p>
-            IPB Rp {{item.HargaIPB}}<br>
-            NON-IPB {{item.HargaNONIPB}}
+          <p class="text-content">
+            IPB Rp {{item.HargaIPB | number:0 }}<br>
+            NON-IPB {{item.HargaNONIPB | number:0 }}
           </p>
         </ion-card>
       </ion-col>

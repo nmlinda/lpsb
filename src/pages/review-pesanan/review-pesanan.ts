@@ -164,9 +164,13 @@ export class ReviewPesananPage {
               let response = data;
               this.pesanan = response;
               console.log(response);
-              if (this.pesanan.status == 500) {
+              if (this.pesanan.status == 0) {
                 loading.dismiss();
-                this.navCtrl.push(CheckoutPage);
+                let currentIndex = this.navCtrl.getActive().index;
+                  this.navCtrl.push(CheckoutPage).then(() => {
+                    this.navCtrl.remove(currentIndex);
+                    this.navCtrl.remove(currentIndex-1);
+                  });
 
               }
               else {

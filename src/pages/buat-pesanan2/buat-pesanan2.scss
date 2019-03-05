@@ -11,4 +11,12 @@ page-buat-pesanan2 {
     color: rgb(75, 75, 75);
     border-bottom: 1px solid #ff0000;
   }
+  .footer {
+    position: fixed;
+    z-index: 1;
+    bottom: 0;
+    width: 100%;
+    background-color: white;
+    padding: 0;
+  }
 }

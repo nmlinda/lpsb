@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, AlertController, ViewController } from 'ionic-angular';
 import { Data } from '../../provider/data';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ProfilPage } from '../profil/profil';
+// import { ProfilPage } from '../profil/profil';
 
 /**
  * Generated class for the EditProfilPage page.
@@ -40,6 +40,7 @@ export class EditProfilPage {
     public navCtrl: NavController,
     public loadCtrl: LoadingController,
     public navParams: NavParams,
+    public viewCtrl: ViewController,
     public alertCtrl: AlertController,
     public httpClient: HttpClient) {
     this.data.getData().then((data) => {
@@ -117,7 +118,7 @@ export class EditProfilPage {
         console.log(response);
         if (this.profils.Status === 200) {
           this.data.login(this.profils); // simpan response ke local storage
-          this.navCtrl.push(ProfilPage);
+          this.viewCtrl.dismiss(this.profils);
         }
         else {
           let alert = this.alertCtrl.create({
@@ -131,6 +132,9 @@ export class EditProfilPage {
       });
 
     })
-
+  }
+  
+  closeModal() {
+    this.viewCtrl.dismiss();
   }
 }

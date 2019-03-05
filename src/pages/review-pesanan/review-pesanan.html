@@ -160,17 +160,17 @@
         </ion-col>
         <ion-col col-4>
           <h3 no-margin text-right *ngIf="IPB">
-            Rp {{harga}}
+            Rp {{harga | number:0 }}
           </h3>
           <h3 *ngIf="hargaPercepatan" no-margin text-right>
-            Rp {{harga2x}}
+            Rp {{harga2x | number:0 }}
           </h3>
           <h3 no-margin text-right *ngIf="IPB">
-            Rp {{kodeUnik}}
+            Rp {{kodeUnik | number:0 }}
           </h3>
           <h2 text-right style="color:#007bff;" class="head" *ngIf="IPB">
             <strong>
-              Rp {{totalHarga}}
+              Rp {{totalHarga | number:0 }}
             </strong>
           </h2>
         </ion-col>

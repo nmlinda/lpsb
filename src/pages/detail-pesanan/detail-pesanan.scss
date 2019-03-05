@@ -21,7 +21,7 @@ page-detail-pesanan {
     content: "";
     position: absolute;
     width: 2px;
-    background-color: #337ab7;
+    background-color: gray;
     top: 17px;
     bottom: 0px;
     left: 5%;
@@ -79,15 +79,19 @@ page-detail-pesanan {
   }
   /* Make sure all circles are at the same spot */
   .right::after {
-    left: 6px;
+    left: 7px;
   }
   /* Make sure all circles are at the same spot */
   .right2::after {
-    left: 4px;
+    left: 5px;
   }
 
   /* Make all right containers behave like the left ones */
   .right {
     left: 0%;
+  }
+
+  .line{
+    border-bottom: 1px solid gainsboro;
   }
 }

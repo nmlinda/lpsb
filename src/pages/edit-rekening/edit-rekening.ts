@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ViewController } from 'ionic-angular';
 import { Data } from '../../provider/data';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -19,27 +19,27 @@ import { ProfilPage } from '../profil/profil';
 })
 export class EditRekeningPage {
   rekform: FormGroup;
-  rekData = { 
+  rekData = {
     "namaNasabah": "",
     "namaBank": "",
     "noRekening": "",
-     };
+  };
   simpanRek: any = [];
- 
+
 
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     public navParams: NavParams,
+    public viewCtrl: ViewController,
     public httpClient: HttpClient,
     public alertCtrl: AlertController,
     public data: Data) {
-      this.data.getRekening().then((data)=>
-      {
-        this.rekData.namaNasabah = data.NamaRekening;
-        this.rekData.namaBank = data.NamaBank;
-        this.rekData.noRekening = data.NoRekening; 
-        
-      })  
+    this.data.getRekening().then((data) => {
+      this.rekData.namaNasabah = data.NamaRekening;
+      this.rekData.namaBank = data.NamaBank;
+      this.rekData.noRekening = data.NoRekening;
+
+    })
 
   }
 
@@ -55,18 +55,17 @@ export class EditRekeningPage {
     });
   }
 
-  simpan(){
+  simpan() {
     let input = JSON.stringify({
       "NamaRekening": this.rekData.namaNasabah,
       "NamaBank": this.rekData.namaBank,
       "NoRekening": this.rekData.noRekening
     });
-    this.data.getData().then((data)=>
-    {
+    this.data.getData().then((data) => {
       const httpOptions = {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer '+data.api_token
+          'Authorization': 'Bearer ' + data.api_token
         })
       };
       this.httpClient.post(this.data.BASE_URL + '/simpanRekening', input, httpOptions).subscribe(data => {
@@ -75,7 +74,7 @@ export class EditRekeningPage {
         console.log(response);
         if (this.simpanRek.Status === 200) {
           this.data.setRekening(this.simpanRek); // simpan response ke local storage
-          this.navCtrl.push(ProfilPage);
+          this.viewCtrl.dismiss();
         }
         else {
           let alert = this.alertCtrl.create({
@@ -85,11 +84,15 @@ export class EditRekeningPage {
           });
           alert.present();
         }
-  
-      });
-      
-    })  
 
+      });
+
+    })
+
+  }
+
+  closeModal() {
+    this.viewCtrl.dismiss();
   }
 
 }

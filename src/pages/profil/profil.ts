@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { App, IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
+import { App, IonicPage, NavController, NavParams, LoadingController, AlertController, ModalController } from 'ionic-angular';
 import { EditProfilPage } from '../edit-profil/edit-profil';
 import { EditRekeningPage } from '../edit-rekening/edit-rekening';
 import { GantiPasswordPage } from '../ganti-password/ganti-password';
@@ -14,11 +14,7 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: 'profil.html',
 })
 export class ProfilPage {
-  editProfil: any;
-  editRekening: any;
-  gantiPass: any;
-
-  nama: string;
+    nama: string;
   institusi: string;
   alamat: string;
 
@@ -31,19 +27,16 @@ export class ProfilPage {
     public loadCtrl: LoadingController,
     public alertCtrl: AlertController,
     public httpClient: HttpClient,
+    public modalCtrl: ModalController,
     public data: Data,
     public app: App) {
-
-    this.editProfil = EditProfilPage;
-    this.editRekening = EditRekeningPage;
-    this.gantiPass = GantiPasswordPage;
-
-    this.nama = "Muhammad Gofar";
-    this.institusi = "Institut Pertanian Bogor";
-    this.alamat = "Jl Balebak 2 Bogor";
-    this.email = "gofar@gmail.com";
-    this.noHp = "0813434936694";
-    this.npwp = "20857620934";
+   
+    // this.nama = "Muhammad Gofar";
+    // this.institusi = "Institut Pertanian Bogor";
+    // this.alamat = "Jl Balebak 2 Bogor";
+    // this.email = "gofar@gmail.com";
+    // this.noHp = "0813434936694";
+    // this.npwp = "20857620934";
 
     this.data.getData().then((data) => {
       this.nama = data.Nama;
@@ -82,6 +75,30 @@ export class ProfilPage {
       ]
     });
     confirm.present();
+  }
+
+  editProfil() {
+    let modal = this.modalCtrl.create(EditProfilPage);
+    modal.onDidDismiss((data) => {
+      console.log('data', data)
+      this.nama = data.Nama;
+      this.institusi = data.Perusahaan;
+      this.alamat = data.Alamat;
+      this.email = data.Email;
+      this.noHp = data.NoHP;
+      this.npwp = data.NoNPWP;
+      });
+    modal.present();
+  }
+  
+  editRekening(){
+    let modal = this.modalCtrl.create(EditRekeningPage);
+    modal.present();
+  }
+
+  gantiPass(){
+    let modal = this.modalCtrl.create(GantiPasswordPage);
+    modal.present();
   }
 
 }

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 // import { HomePage } from '../home/home';
-import { DetailPesananPage } from '../detail-pesanan/detail-pesanan';
+// import { DetailPesananPage } from '../detail-pesanan/detail-pesanan';
 import { TabsPage } from '../tabs/tabs';
 
 /**
@@ -29,9 +29,16 @@ export class CheckoutPage {
     console.log('ionViewDidLoad CheckoutPage');
   }
 
-  gotoDetailPesanan() {
-    this.navCtrl.push(DetailPesananPage);
-  }
+  // gotoDetailPesanan() {
+
+  //   let currentIndex = this.navCtrl.getActive().index;
+  //   this.navCtrl.push(DetailPesananPage).then(() => {
+  //     // this.navCtrl.remove(currentIndex);
+  //     this.navCtrl.remove(currentIndex-1);
+  //     this.navCtrl.remove(currentIndex-2);
+  //     this.navCtrl.remove(currentIndex-3);
+  //   });
+  // }
 
   gotoBeranda() {
     this.viewCtrl.dismiss().then(() => {

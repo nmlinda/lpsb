@@ -54,8 +54,8 @@
               Bentuk: {{ keranjang.BentukSampel }}
             </p>
             <p text-right>
-              IPB Rp {{ keranjang.HargaIPB }}<br>
-              NON-IPB Rp {{ keranjang.HargaNONIPB }}
+              IPB Rp {{ keranjang.HargaIPB | number:0 }}<br>
+              NON-IPB Rp {{ keranjang.HargaNONIPB | number:0 }}
             </p>
           </ion-col>
         </ion-row>
@@ -64,9 +64,11 @@
   </div>
 
   <div *ngIf="listKeranjang.length == 0">
-    <h5 text-center padding>
-      Anda belum melakukan pesanan. <a (click)="gotoAllKatalog()">Pesan sekarang.</a>
-    </h5>
+    <h6 text-center class="no-cart">
+      <ion-icon name="cart" style="font-size: 70px;"></ion-icon><br>
+      Anda belum melakukan pesanan.<br>
+      <a (click)="gotoAllKatalog()">Pesan sekarang.</a>
+    </h6>
   </div>
 </ion-content>
 
@@ -75,8 +77,8 @@
     <ion-row>
       <ion-col col-7>
         <p no-margin>
-          Harga IPB : <strong>Rp {{ hargaIPB }}<br></strong>
-            Harga NONIPB: <strong>Rp {{ hargaNONIPB }}</strong>
+          Harga IPB : <strong>Rp {{ hargaIPB| number:0  }}<br></strong>
+            Harga NONIPB: <strong>Rp {{ hargaNONIPB| number:0  }}</strong>
         </p>
       </ion-col>
       <ion-col col-5>

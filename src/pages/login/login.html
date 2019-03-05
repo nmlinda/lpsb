@@ -1,11 +1,12 @@
-<ion-content padding>
+<ion-content>
   <div class="title">
     <h1 text-center>LPSB</h1>
   </div>
-  <form (ngSubmit)="login()" [formGroup]="loginform" novalidate>
+  <form (ngSubmit)="login()" [formGroup]="loginform" novalidate padding>
     <ion-list>
       <ion-item>
-        <ion-label floating>Email</ion-label>
+        <ion-icon name="mail" item-end color="primary"></ion-icon>
+        <ion-label stacked>Email</ion-label>
         <ion-input type="email" [(ngModel)]="userData.email" formControlName="email"
           [class.error1]="!loginform.controls.email.valid && loginform.controls.email.dirty"></ion-input>
       </ion-item>
@@ -20,18 +21,17 @@
       </ion-item>
 
       <ion-item>
-        <ion-label floating>Password</ion-label>
+        <ion-icon name="key" item-end color="primary"></ion-icon>
+        <ion-label stacked>Password</ion-label>
         <ion-input type="password" [(ngModel)]="userData.password" formControlName="password"
           [class.error1]="!loginform.controls.password.valid && loginform.controls.password.dirty"></ion-input>
       </ion-item>
       <ion-item no-lines
         *ngIf="( loginform.get('password').hasError('minlength') || loginform.get('password').hasError('maxlength') ||loginform.get('password').hasError('required') ) && loginform.get('password').touched">
-        <div class="error"
-          *ngIf="loginform.get('password').hasError('required') && loginform.get('password').touched">
+        <div class="error" *ngIf="loginform.get('password').hasError('required') && loginform.get('password').touched">
           Masukkan password anda
         </div>
-        <div class="error"
-          *ngIf="loginform.get('password').hasError('minlength') && loginform.get('password').touched">
+        <div class="error" *ngIf="loginform.get('password').hasError('minlength') && loginform.get('password').touched">
           Minimal 6 karakter
         </div>
       </ion-item>
@@ -41,10 +41,17 @@
       Masuk
     </button>
   </form>
+
+  <div class="footer">
+    <p text-center>
+      Belum punya akun?
+      <strong><a (click)="gotoDaftar()"> Daftar.</a></strong>
+    </p>
+  </div>
 </ion-content>
-<ion-footer>
+<!-- <ion-footer>
   <p text-center>
     Belum punya akun?
     <strong><a (click)="gotoDaftar()"> Daftar.</a></strong>
   </p>
-</ion-footer>
+</ion-footer> -->

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
-import { KeranjangPage } from '../keranjang/keranjang';
+// import { KeranjangPage } from '../keranjang/keranjang';
 import { Data } from '../../provider/data';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DetailAnalisisPage } from '../detail-analisis/detail-analisis';
@@ -20,7 +20,7 @@ export class BuatPesanan2Page {
     "bentuk": "",
     "jumlah": ""
   };
-  
+
   kemasan2: string;
 
   // info jenis analisis
@@ -123,7 +123,7 @@ export class BuatPesanan2Page {
     }
   }
 
-  tambahKeranjang(){
+  tambahKeranjang() {
     let loading = this.loadCtrl.create({
       content: 'memuat..'
     });
@@ -156,7 +156,12 @@ export class BuatPesanan2Page {
         console.log(response);
         if (this.keranjang.Status == 201) {
           loading.dismiss();
-          this.navCtrl.push(DetailAnalisisPage, { data: this.IDjenis });
+          let currentIndex = this.navCtrl.getActive().index;
+          this.navCtrl.push(DetailAnalisisPage, { data: this.IDjenis }).then(() => {
+            this.navCtrl.remove(currentIndex);
+            this.navCtrl.remove(currentIndex-1);
+          });
+          // this.navCtrl.push(DetailAnalisisPage, { data: this.IDjenis });
         }
         else {
           loading.dismiss();
@@ -187,7 +192,7 @@ export class BuatPesanan2Page {
       "IDKatalog": this.IDjenis,
       "JenisSampel": this.pesanData.namaJenis,
       "Kemasan": this.kemasan2,
-      "BentukSampel": this.pesanData.bentuk,      
+      "BentukSampel": this.pesanData.bentuk,
       "Jumlah": this.pesanData.jumlah,
     });
 
@@ -206,7 +211,10 @@ export class BuatPesanan2Page {
         console.log(response);
         if (this.keranjang.Status == 201) {
           loading.dismiss();
-          this.navCtrl.push(KeranjangPage);
+          let currentIndex = this.navCtrl.getActive().index;
+          this.navCtrl.push(DetailAnalisisPage,).then(() => {
+            this.navCtrl.remove(currentIndex);
+          });
         }
         else {
           loading.dismiss();

@@ -7,10 +7,21 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Data Diri</ion-title>
-    <ion-buttons end>
-      <button ion-button (click)="simpan()" [disabled]="profilform.invalid">Simpan</button>
-    </ion-buttons>
+    <ion-grid no-padding>
+      <ion-row>
+        <ion-col col-2 no-padding>
+          <button ion-button (click)="closeModal()" clear icon-only>
+            <ion-icon name="arrow-back"></ion-icon>
+          </button>
+        </ion-col>
+        <ion-col col-6 no-padding align-self-center>
+          <ion-title>Data Diri</ion-title>
+        </ion-col>
+        <ion-col col-4 no-padding text-right>
+          <button ion-button clear (click)="simpan()" [disabled]="profilform.invalid">Simpan</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-navbar>
 
 </ion-header>

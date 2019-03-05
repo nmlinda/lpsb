@@ -9,5 +9,26 @@ page-detail-analisis {
     h2, p {
         padding: 4px;
     }
+    .sub-head{
+        font-size: 16px !important;
+        color: black;
+        border-bottom: 2px solid whitesmoke;
+    }
+    .text-content{
+        font-size: 14px !important;
+        color: black;
+    }
+    .head{
+        font-size: 18px !important;
+        color: black;
+    }
+    .footer {
+        position: fixed;
+        z-index: 1;
+        bottom: 0;
+        width: 100%;
+        background-color: white;
+        padding: 0;
+      }
 }
 

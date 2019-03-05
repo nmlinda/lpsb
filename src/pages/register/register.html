@@ -1,11 +1,12 @@
-<ion-content padding>
+<ion-content >
   <div class="title">
     <h1 text-center>LPSB</h1>
   </div>
-  <form (ngSubmit)="signup()" [formGroup]="signupform" novalidate>
+  <form (ngSubmit)="signup()" [formGroup]="signupform" novalidate padding>
     <ion-list>
       <ion-item>
-        <ion-label floating>Nama Lengkap</ion-label>
+        <ion-icon name="person" item-end color="primary"></ion-icon>
+        <ion-label stacked>Nama Lengkap</ion-label>
         <ion-input type="text" [(ngModel)]="userData.name" formControlName="name"
           [class.error1]="!signupform.controls.name.valid && signupform.controls.name.dirty"></ion-input>
       </ion-item>
@@ -23,7 +24,8 @@
       </ion-item>
 
       <ion-item>
-        <ion-label floating>Email</ion-label>
+        <ion-icon name="mail" item-end color="primary"></ion-icon>
+        <ion-label stacked>Email</ion-label>
         <ion-input type="email" [(ngModel)]="userData.email" formControlName="email"
           [class.error1]="!signupform.controls.email.valid && signupform.controls.email.dirty"></ion-input>
       </ion-item>
@@ -38,7 +40,8 @@
       </ion-item>
 
       <ion-item>
-        <ion-label floating>Password</ion-label>
+        <ion-icon name="key" item-end color="primary"></ion-icon>
+        <ion-label stacked>Password</ion-label>
         <ion-input type="password" [(ngModel)]="userData.password" formControlName="password"
           [class.error1]="!signupform.controls.password.valid && signupform.controls.password.dirty"></ion-input>
       </ion-item>
@@ -59,10 +62,17 @@
       Daftar
     </button>
   </form>
+
+  <div class="footer">
+    <p text-center>
+      Sudah punya akun?
+      <strong><a (click)="gotoLogin()"> Masuk.</a></strong>
+    </p>
+  </div>
 </ion-content>
-<ion-footer>
+<!-- <ion-footer>
   <p text-center>
     Sudah punya akun?
     <strong><a (click)="gotoLogin()"> Masuk.</a></strong>
   </p>
-</ion-footer>
+</ion-footer> -->

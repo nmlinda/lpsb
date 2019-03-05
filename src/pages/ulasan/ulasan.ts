@@ -16,6 +16,7 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 export class UlasanPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) {
+    console.log(this.navParams.get('data'))
   }
 
   ionViewDidLoad() {
