@@ -182,29 +182,29 @@ export class ReviewPesananPage {
               })
             };
 
-            // this.httpClient.post(this.data.BASE_URL + '/pesanItem', input, httpOptions).subscribe(data => {
-            //   let response = data;
-            //   this.pesanan = response;
-            //   console.log(response);
-            //   // if (this.pesanan.status == 0) {
-            //     loading.dismiss();
+            this.httpClient.post(this.data.BASE_URL + '/pesanItem', input, httpOptions).subscribe(data => {
+              let response = data;
+              this.pesanan = response;
+              console.log(response);
+              if (this.pesanan.status == 0) {
+                loading.dismiss();
                 let currentIndex = this.navCtrl.getActive().index;
                   this.navCtrl.push(CheckoutPage).then(() => {
                     this.navCtrl.remove(currentIndex);
                     this.navCtrl.remove(currentIndex-1);
                   });
 
-              // }
-              // else {
-              //   loading.dismiss();
-              //   let alert = this.alertCtrl.create({
-              //     title: 'Checkout gagal',
-              //     subTitle: 'Silahkan coba lagi.',
-              //     buttons: ['OK']
-              //   });
-              //   alert.present();
-              // }
-            // });
+              }
+              else {
+                loading.dismiss();
+                let alert = this.alertCtrl.create({
+                  title: 'Checkout gagal',
+                  subTitle: 'Silahkan coba lagi.',
+                  buttons: ['OK']
+                });
+                alert.present();
+              }
+            });
 
           })
 

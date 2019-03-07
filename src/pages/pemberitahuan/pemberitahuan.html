@@ -13,22 +13,26 @@
 </ion-header>
 
 
-<ion-content padding>
-  <ion-list no-margin>
-    <!-- <ion-item no-padding class="dibaca" [navPush]="detailPesanan">
-      <h3>Pesanan Dibatalkan</h3>
-      <h4>Pesanan <a href="">I/II/13</a> telah dibatalkan karena pembayaran Anda tidak dapat diverifikasi.</h4>
-      <p>23 Feb 2019 10:22</p>
+<ion-content>
+  <ion-list no-margin *ngIf="notif.length > 0">
+    <ion-item class="dibaca" *ngFor="let item of notif" (click)="detailPesanan(item.IDPemberitahuan, item.IDPesanan)">
+      <h3 class="head" *ngIf="item.IDStatus == 2">Pesanan Anda Tervalidasi
+      </h3>
+      <h4 class="sub-head">
+        <span *ngIf="item.IDStatus == 7">Pesanan <a href="">I/II/13</a> telah dibatalkan karena pembayaran Anda tidak
+          dapat diverifikasi.</span>
+        <span *ngIf="item.IDStatus == 2">Pesanan <a href="">I/II/13</a> telah divalidasi. Segera kirim sampel dan
+          lakukan pembayaran sebelum {{item.WaktuPemberitahuan  | date: 'dd-MM-yyyy'}}.</span>
+      </h4>
+      <p>{{item.WaktuPemberitahuan  | date: 'dd-MM-yyyy HH:mm'}}</p>
     </ion-item>
-    <ion-item no-padding>
-      <h3>Pesanan No. 19/II/19 sedang dianalisis.</h3>
-      <p>23 Feb 2019 10:22</p>
-    </ion-item> -->
-    <div class="no-notif">
-      <h6 text-center>
-        <ion-icon name="notifications" style="font-size: 70px;"></ion-icon><br>
-        Belum ada pemberitahuan.
-      </h6>
-    </div>
+
   </ion-list>
+  <div class="no-notif" *ngIf="notif.length == 0">
+    <h6 text-center>
+      <ion-icon name="notifications" style="font-size: 70px;"></ion-icon><br>
+      Belum ada pemberitahuan.
+    </h6>
+  </div>
+
 </ion-content>

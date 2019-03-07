@@ -24,10 +24,6 @@ export class ModalDetailSampelPage {
     public viewCtrl: ViewController,
     public data: Data,
     public navParams: NavParams) {
-
-    // this.hargaIPB += this.sampel[i].HargaIPB;
-    // this.hargaNONIPB += this.sampel[i].HargaNONIPB;
-
     this.data.getData().then((data_user) => {
       this.sampel = this.navParams.get('data');
       for (var i = 0; i < this.sampel.length; i++) {

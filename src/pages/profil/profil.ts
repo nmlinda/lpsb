@@ -38,6 +38,14 @@ export class ProfilPage {
     // this.noHp = "0813434936694";
     // this.npwp = "20857620934";
 
+    
+  }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad ProfilPage');
+  }
+
+  ionViewWillEnter(){
     this.data.getData().then((data) => {
       this.nama = data.Nama;
       this.institusi = data.Perusahaan;
@@ -46,10 +54,6 @@ export class ProfilPage {
       this.noHp = data.NoHP;
       this.npwp = data.NoNPWP;
     })
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ProfilPage');
   }
 
   logout() {

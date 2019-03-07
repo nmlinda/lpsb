@@ -112,7 +112,7 @@
                 </span>
               </span>
 
-              <ion-row *ngIf="item.sisa.length != 0">
+              <ion-row *ngIf="item.Sampel.length != 1">
                 <ion-col col-12 text-center>
                   <p *ngIf="!item.show">
                     <a (click)="showSampel(item)">
@@ -238,7 +238,7 @@
                   </ion-row>
                 </span>
               </span>
-              <ion-row *ngIf="item.sisa.length != 0">
+              <ion-row *ngIf="item.Sampel.length != 1">
                 <ion-col col-12>
                   <p text-center>
                     <a (click)="showSampel(item)" *ngIf="sisa == ''">
@@ -349,7 +349,7 @@
                   </ion-row>
                 </span>
               </span>
-              <ion-row *ngIf="item.sisa.length != 0">
+              <ion-row *ngIf="item.Sampel.length != 1">
                 <ion-col col-12 text-center>
                   <!-- <p text-center> -->
                   <a (click)="showSampel(item)">
@@ -781,7 +781,7 @@
                   </ion-row>
                 </span>
               </span>
-              <ion-row *ngIf="item.sisa.length != 0">
+              <ion-row *ngIf="item.Sampel.length != 1">
                 <ion-col col-12>
                   <p text-center>
                     <a (click)="showSampel(item)" *ngIf="sisa == ''">
