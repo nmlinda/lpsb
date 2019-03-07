@@ -8,10 +8,10 @@
 
 
 <ion-content>
-  <ion-card>
-    <ion-grid>
-      <ion-row>
-        <ion-col col-10>
+  <ion-card >
+    <ion-grid class="card-grey">
+      <ion-row class="card-grey">
+        <ion-col col-10 class="card-grey">
           <h1>
             {{nama}}
           </h1>
@@ -42,7 +42,7 @@
             <span *ngIf="!npwp">-<br></span>
           </h2>
         </ion-col>
-        <ion-col col-2 text-center>
+        <ion-col col-2 text-center class="card-grey">
           <button ion-button clear icon-only (click)="editProfil()">
             <ion-icon name="create" color="primary"></ion-icon>
           </button>

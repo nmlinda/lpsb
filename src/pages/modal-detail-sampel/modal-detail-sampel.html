@@ -41,8 +41,9 @@
               Bentuk:{{item.BentukSampel}}
             </p>
             <p text-right>
-              IPB Rp {{item.HargaIPB | number:0 }}<br>
-              NON-IPB Rp {{item.HargaNONIPB | number:0 }}
+                Rp {{item.Harga | number:0 }}
+              <!-- IPB Rp {{item.HargaIPB | number:0 }}<br>
+              NON-IPB Rp {{item.HargaNONIPB | number:0 }} -->
             </p>
           </ion-col>
         </ion-row>
@@ -57,10 +58,11 @@
       <h5 no-margin>Total</h5>
     </ion-col>
     <ion-col col-6>
-      <h5 text-right no-margin>
-          IPB Rp {{hargaIPB | number:0 }}<br>
-          NON-IPB Rp {{hargaNONIPB | number:0 }}
-      </h5>
+      <h6 text-right no-margin>
+          Rp {{harga | number:0 }}
+          <!-- IPB Rp {{hargaIPB | number:0 }}<br>
+          NON-IPB Rp {{hargaNONIPB | number:0 }} -->
+      </h6>
     </ion-col>
   </ion-row>
 </ion-grid>

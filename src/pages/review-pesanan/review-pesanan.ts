@@ -70,7 +70,19 @@ export class ReviewPesananPage {
       }
 
       if (data.Perusahaan == "Institut Pertanian Bogor" && data.Perusahaan) {
-        this.IPB = true;
+        this.IPB = true;if (data.Perusahaan == "Institut Pertanian Bogor" && data.Perusahaan) {
+          this.IPB = true;
+          this.harga = this.hargaIPB;
+          for (var k = 0; k < this.sampel.length; k++) {
+            this.sampel[k].Harga = this.sampel[k].HargaIPB;
+          }
+        } else if (data.Perusahaan) {
+          this.IPB = true;
+          this.harga = this.hargaNONIPB;
+          for (var l = 0; l < this.sampel.length; l++) {
+            this.sampel[l].Harga = this.sampel[l].HargaNONIPB;
+          }
+        }
         this.harga = this.hargaIPB;
         for (var i = 0; i < this.sampel.length; i++) {
           this.sampel[i].Harga = this.sampel[i].HargaIPB;
@@ -94,6 +106,7 @@ export class ReviewPesananPage {
     console.log('ionViewDidLoad ReviewPesananPage');
   }
 
+  
   editProfil() {
     let modal = this.modalCtrl.create(ModalEditProfilPage);
     modal.onDidDismiss((data) => {
@@ -116,6 +129,11 @@ export class ReviewPesananPage {
           for (var l = 0; l < this.sampel.length; l++) {
             this.sampel[l].Harga = this.sampel[l].HargaNONIPB;
           }
+        }
+        if (data.Nama && data.Perusahaan && data.Alamat && data.Email && data.NoHP && data.NoNPWP) {
+          this.dataDiri = true;
+        } else {
+          this.dataDiri = false;
         }
         this.totalHarga = this.harga + this.kodeUnik;
       }
@@ -143,13 +161,17 @@ export class ReviewPesananPage {
           this.data.getRekening().then((data2) => {
             this.data_rek = data2;
             let input = JSON.stringify({
-              "lama_pengujian": this.lamaPengujian,
-              "sisa_sampel": this.sisaSampel,
-              "harga_total": this.totalHarga,
-              "Keterangan": this.keterangan,
-              "data_user": this.data_user,
-              "data_rek": this.data_rek,
-              "listKeranjang": this.sampel,
+              lama_pengujian: this.lamaPengujian,
+              sisa_sampel: this.sisaSampel,
+              harga_total: this.totalHarga,
+              Keterangan: this.keterangan,
+              data_user: this.data_user,
+              data_rek: {
+                NamaBank: this.data_rek.NamaBank,
+                NoRekening: this.data_rek.NoRekening,
+                NamaRekening: this.data_rek.NamaRekening,
+              },
+              listKeranjang: this.sampel,
             });
 
             console.log(input)
@@ -160,29 +182,29 @@ export class ReviewPesananPage {
               })
             };
 
-            this.httpClient.post(this.data.BASE_URL + '/pesanItem', input, httpOptions).subscribe(data => {
-              let response = data;
-              this.pesanan = response;
-              console.log(response);
-              if (this.pesanan.status == 0) {
-                loading.dismiss();
+            // this.httpClient.post(this.data.BASE_URL + '/pesanItem', input, httpOptions).subscribe(data => {
+            //   let response = data;
+            //   this.pesanan = response;
+            //   console.log(response);
+            //   // if (this.pesanan.status == 0) {
+            //     loading.dismiss();
                 let currentIndex = this.navCtrl.getActive().index;
                   this.navCtrl.push(CheckoutPage).then(() => {
                     this.navCtrl.remove(currentIndex);
                     this.navCtrl.remove(currentIndex-1);
                   });
 
-              }
-              else {
-                loading.dismiss();
-                let alert = this.alertCtrl.create({
-                  title: 'Checkout gagal',
-                  subTitle: 'Silahkan coba lagi.',
-                  buttons: ['OK']
-                });
-                alert.present();
-              }
-            });
+              // }
+              // else {
+              //   loading.dismiss();
+              //   let alert = this.alertCtrl.create({
+              //     title: 'Checkout gagal',
+              //     subTitle: 'Silahkan coba lagi.',
+              //     buttons: ['OK']
+              //   });
+              //   alert.present();
+              // }
+            // });
 
           })
 

@@ -30,6 +30,9 @@ export class KeranjangPage {
   nextButton: boolean = true;
   allCart: boolean = false;
 
+  harga: number = 0;
+  totalHarga: number = 0;
+
   hargaIPB: number = 0;
   hargaNONIPB: number = 0;
   hargaIPBall: number = 0;
@@ -51,8 +54,8 @@ export class KeranjangPage {
         })
       };
 
-      this.httpClient.get(this.data.BASE_URL + '/getKeranjang', httpOptions).subscribe(data => {
-        let response = data;
+      this.httpClient.get(this.data.BASE_URL + '/getKeranjang', httpOptions).subscribe(data2 => {
+        let response = data2;
         this.keranjangs = response;
         console.log(response);
         if (this.keranjangs.Status == 200) {
@@ -61,19 +64,29 @@ export class KeranjangPage {
           if (this.panjang > 0) {
             for (var i = 0; i < this.panjang; i++) {
               // harga total semua item
-              this.hargaIPB += this.listKeranjang[i].HargaIPB;
-              this.hargaNONIPB += this.listKeranjang[i].HargaNONIPB;
+              if (data.Perusahaan == "Institut Pertanian Bogor") {
+                this.harga += this.listKeranjang[i].HargaIPB;
+                this.listKeranjang[i].Harga = this.listKeranjang[i].HargaIPB;
+              }
+              else {
+                this.harga += this.listKeranjang[i].HargaNONIPB;
+                this.listKeranjang[i].Harga = this.listKeranjang[i].HargaNONIPB;
+              }
+              // this.hargaIPB += this.listKeranjang[i].HargaIPB;
+              // this.hargaNONIPB += this.listKeranjang[i].HargaNONIPB;
               // pilih semua cart
               this.listKeranjang[i].checked = true;
               this.itemChecked.push(this.listKeranjang[i]);
             }
+            console.log(this.itemChecked)
 
             this.allCart = true;
             this.itemAllChecked = this.itemChecked;
             this.nextButton = false;
 
-            this.hargaIPBall = this.hargaIPB;
-            this.hargaNONIPBall = this.hargaNONIPB;
+            this.totalHarga = this.harga;
+            // this.hargaIPBall = this.hargaIPB;
+            // this.hargaNONIPBall = this.hargaNONIPB;
           }
         }
         else {
@@ -90,6 +103,23 @@ export class KeranjangPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad KeranjangPage');
+  }
+
+  ionViewWillEnter() {
+    this.harga = 0;
+    this.data.getData().then((data) => {
+      for (var i = 0; i < this.panjang; i++) {
+        if (data.Perusahaan == "Institut Pertanian Bogor") {
+          this.harga += this.listKeranjang[i].HargaIPB;
+          this.listKeranjang[i].Harga = this.listKeranjang[i].HargaIPB;
+        }
+        else {
+          this.harga += this.listKeranjang[i].HargaNONIPB;
+          this.listKeranjang[i].Harga = this.listKeranjang[i].HargaNONIPB;
+        }
+      }
+    })
+
   }
 
   selectCart(data) {
@@ -112,6 +142,7 @@ export class KeranjangPage {
     } else {
       this.allCart = false;
     }
+    this.harga = 0;
     this.hargaIPB = 0;
     this.hargaNONIPB = 0;
     // gada yg kepilih
@@ -121,8 +152,9 @@ export class KeranjangPage {
       // ada yg kepilih
       this.nextButton = false;
       for (var i = 0; i < this.itemChecked.length; i++) {
-        this.hargaIPB += this.itemChecked[i].HargaIPB;
-        this.hargaNONIPB += this.itemChecked[i].HargaNONIPB;
+        // this.hargaIPB += this.itemChecked[i].HargaIPB;
+        // this.hargaNONIPB += this.itemChecked[i].HargaNONIPB;
+        this.harga += this.itemChecked[i].Harga;
       }
     }
 
@@ -139,8 +171,9 @@ export class KeranjangPage {
       this.itemChecked = this.itemAllChecked;
       this.nextButton = false;
       this.allCart = true;
-      this.hargaIPB = this.hargaIPBall;
-      this.hargaNONIPB = this.hargaNONIPBall;
+      this.harga = this.totalHarga;
+      // this.hargaIPB = this.hargaIPBall;
+      // this.hargaNONIPB = this.hargaNONIPBall;
     }
     // no item
     else {
@@ -150,8 +183,9 @@ export class KeranjangPage {
       this.itemChecked = [];
       this.allCart = false;
       this.nextButton = true;
-      this.hargaIPB = 0;
-      this.hargaNONIPB = 0;
+      // this.hargaIPB = 0;
+      // this.hargaNONIPB = 0;
+      this.harga = 0;
     }
 
   }
@@ -169,8 +203,8 @@ export class KeranjangPage {
       let input = JSON.stringify({
         "IDItem": keranjang.IDItem
       });
-      this.httpClient.post(this.data.BASE_URL + '/hapusItem', input, httpOptions).subscribe(data => {
-        let response = data;
+      this.httpClient.post(this.data.BASE_URL + '/hapusItem', input, httpOptions).subscribe(data2 => {
+        let response = data2;
         this.hapus = response;
         if (this.hapus.Status == 200) {
           //hapus object dari array
@@ -184,11 +218,19 @@ export class KeranjangPage {
           console.log(this.listKeranjang)
 
           //update harga
-          this.hargaIPB = 0;
-          this.hargaNONIPB = 0;
+          // this.hargaIPB = 0;
+          // this.hargaNONIPB = 0;
+          this.harga = 0;
           for (var i = 0; i < this.itemChecked.length; i++) {
-            this.hargaIPB += this.itemChecked[i].HargaIPB;
-            this.hargaNONIPB += this.itemChecked[i].HargaNONIPB;
+            // this.hargaIPB += this.itemChecked[i].HargaIPB;
+            // this.hargaNONIPB += this.itemChecked[i].HargaNONIPB;
+            if (data.Perusahaan == "Institut Pertanian Bogor") {
+              this.harga += this.itemChecked[i].HargaIPB;
+            }
+            else {
+              this.harga += this.itemChecked[i].HargaNONIPB;
+            }
+
           }
 
           // cart kosong

@@ -54,8 +54,9 @@
               Bentuk: {{ keranjang.BentukSampel }}
             </p>
             <p text-right>
-              IPB Rp {{ keranjang.HargaIPB | number:0 }}<br>
-              NON-IPB Rp {{ keranjang.HargaNONIPB | number:0 }}
+                Rp {{ keranjang.Harga | number:0 }}
+              <!-- IPB Rp {{ keranjang.HargaIPB | number:0 }}<br>
+              NON-IPB Rp {{ keranjang.HargaNONIPB | number:0 }} -->
             </p>
           </ion-col>
         </ion-row>
@@ -77,8 +78,9 @@
     <ion-row>
       <ion-col col-7>
         <p no-margin>
-          Harga IPB : <strong>Rp {{ hargaIPB| number:0  }}<br></strong>
-            Harga NONIPB: <strong>Rp {{ hargaNONIPB| number:0  }}</strong>
+            Total Harga: <strong>Rp {{ harga | number:0  }}<br></strong>
+          <!-- Harga IPB : <strong>Rp {{ hargaIPB| number:0  }}<br></strong>
+            Harga NONIPB: <strong>Rp {{ hargaNONIPB| number:0  }}</strong> -->
         </p>
       </ion-col>
       <ion-col col-5>

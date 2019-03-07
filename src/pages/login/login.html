@@ -7,7 +7,7 @@
       <ion-item>
         <ion-icon name="mail" item-end color="primary"></ion-icon>
         <ion-label stacked>Email</ion-label>
-        <ion-input type="email" [(ngModel)]="userData.email" formControlName="email"
+        <ion-input type="email" [(ngModel)]="userData.email" formControlName="email" placeholder="Email"
           [class.error1]="!loginform.controls.email.valid && loginform.controls.email.dirty"></ion-input>
       </ion-item>
       <ion-item no-lines
@@ -23,7 +23,7 @@
       <ion-item>
         <ion-icon name="key" item-end color="primary"></ion-icon>
         <ion-label stacked>Password</ion-label>
-        <ion-input type="password" [(ngModel)]="userData.password" formControlName="password"
+        <ion-input type="password" [(ngModel)]="userData.password" formControlName="password" placeholder="password"
           [class.error1]="!loginform.controls.password.valid && loginform.controls.password.dirty"></ion-input>
       </ion-item>
       <ion-item no-lines
@@ -37,7 +37,7 @@
       </ion-item>
     </ion-list>
 
-    <button type="submit" ion-button block [disabled]="loginform.invalid">
+    <button type="submit" ion-button block [disabled]="loginform.invalid" >
       Masuk
     </button>
   </form>

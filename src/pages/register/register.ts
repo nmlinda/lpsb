@@ -21,7 +21,13 @@ const httpOptions = {
 })
 export class RegisterPage {
   signupform: FormGroup;
-  userData = { "name": "", "password": "", "email": "" };
+  userData = { 
+    "name": "", 
+    "institusi": 0,
+    "institusiLain": "",
+    "noIdentitas": "",
+    "password": "", 
+    "email": "" };
 
   logins: any = [];
   // submitted = false;
@@ -29,6 +35,10 @@ export class RegisterPage {
   email: string;
   password: string;
   daftarButton = true;
+
+  institusi: string;
+  institusiLain: boolean = false;
+  IPB: boolean = false;
   regis :any = [];
   constructor(
     public navCtrl: NavController,
@@ -46,11 +56,28 @@ export class RegisterPage {
       password: new FormControl('', [Validators.required, Validators.minLength(6)]),
       name: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(4), Validators.maxLength(30)]),
       email: new FormControl('', [Validators.required, Validators.pattern(EMAILPATTERN)]),
+      institusi: new FormControl('', [Validators.required]),
+      institusiLain: new FormControl('', [Validators.required]),
+      noIdentitas: new FormControl('', [Validators.required]),
     });
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RegisterPage');
+  }
+
+  institusiChange() {
+    if (this.userData.institusi == 1) {
+      this.IPB = true;
+      this.institusiLain = false;
+      this.signupform.controls['institusiLain'].disable();
+      this.signupform.controls['noIdentitas'].enable();
+    } else if (this.userData.institusi == 2) {
+      this.institusiLain = true;
+      this.IPB = false;
+      this.signupform.controls['institusiLain'].enable();
+      this.signupform.controls['noIdentitas'].disable();
+    }
   }
 
   gotoLogin() {
@@ -61,10 +88,17 @@ export class RegisterPage {
     let loading = this.loadCtrl.create({
       content: 'memuat..'
     });
+    if(this.userData.institusi == 1){
+      this.institusi = "Institut Pertanian Bogor";
+    } else if(this.userData.institusi == 2){
+      this.institusi = this.userData.institusiLain;
+    }
     let input = {
       Nama: this.userData.name,
       Email: this.userData.email,
-      Password: this.userData.password
+      Password: this.userData.password,
+      Perusahaan: this.institusi,
+      NoIdentitas: this.userData.noIdentitas,
     };
 
     console.log(input);
