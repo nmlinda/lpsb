@@ -5,6 +5,7 @@ import { Data } from '../../provider/data';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DetailAnalisisPage } from '../detail-analisis/detail-analisis';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { KeranjangPage } from '../keranjang/keranjang';
 
 @IonicPage()
 @Component({
@@ -212,7 +213,7 @@ export class BuatPesanan2Page {
         if (this.keranjang.Status == 201) {
           loading.dismiss();
           let currentIndex = this.navCtrl.getActive().index;
-          this.navCtrl.push(DetailAnalisisPage,).then(() => {
+          this.navCtrl.push(KeranjangPage).then(() => {
             this.navCtrl.remove(currentIndex);
           });
         }

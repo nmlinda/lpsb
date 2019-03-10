@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { BuatPesanan2Page } from '../buat-pesanan2/buat-pesanan2';
 import { Data } from '../../provider/data';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { KategoriAnalisisPage } from '../kategori-analisis/kategori-analisis';
 /**
  * Generated class for the DetailAnalisisPage page.
  *
@@ -21,6 +22,7 @@ export class DetailAnalisisPage {
   namaJenis: string;
   hargaIPB: number;
   hargaNONIPB: number;
+  idKategori: number;
   kategori: string;
   metode: string;
   keterangan: string;
@@ -54,6 +56,7 @@ export class DetailAnalisisPage {
           this.hargaIPB = this.jenisAnalisis.HargaIPB;
           this.hargaNONIPB = this.jenisAnalisis.HargaNONIPB;
           this.kategori = this.jenisAnalisis.Kategori;
+          this.idKategori = this.jenisAnalisis.IDKategori;
           console.log(this.kategori)
           this.metode = this.jenisAnalisis.Metode;
           this.keterangan = this.jenisAnalisis.Keterangan;
@@ -80,5 +83,9 @@ export class DetailAnalisisPage {
 
   buatPesanan() {
     this.navCtrl.push(BuatPesanan2Page, { data: this.IDjenis });
+  }
+
+  gotoKategori(){
+    this.navCtrl.push(KategoriAnalisisPage, { data: this.idKategori});
   }
 }

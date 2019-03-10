@@ -20,13 +20,13 @@
         <ion-col col-3>
           <img src="../../assets/imgs/fitokimia.jpg">
         </ion-col>
-        <ion-col col-8>
+        <ion-col col-9>
           <h2 text-uppercase><strong>{{ namaJenis }}</strong></h2>
-          <h4>
-            IPB Rp {{ hargaIPB }}<br>
-            NON-IPB Rp {{ hargaNONIPB }}
+          <h4 class="primary">
+            IPB Rp {{ hargaIPB | number:0 }}<br>
+            NON-IPB Rp {{ hargaNONIPB | number:0 }}
           </h4>
-          <h4 *ngIf="!info">
+          <!-- <h4 *ngIf="!info">
             <strong>Metode :</strong>
             <br> {{ metode }}<br>
             <strong>Keterangan:</strong>
@@ -36,12 +36,12 @@
             <div *ngIf="Ekstrak">Ekstrak<br></div>
             <div *ngIf="Serbuk">Serbuk<br></div>
             <div *ngIf="Simplisia">Simplisia<br></div>
-          </h4>
+          </h4> -->
         </ion-col>
-        <ion-col col-1 (click)="showInfo()">
+        <!-- <ion-col col-1 (click)="showInfo()">
           <ion-icon *ngIf="info" name="arrow-dropdown" color="primary"></ion-icon>
           <ion-icon *ngIf="!info" name="arrow-dropup" color="primary"></ion-icon>
-        </ion-col>
+        </ion-col> -->
       </ion-row>
     </ion-grid>
   </ion-card>
@@ -151,11 +151,21 @@
       </form>
     </ion-grid>
   </ion-card>
-  <div class="footer" scrollY="false">
-    <button ion-button full icon-only no-margin (click)="tambahKeranjang()" [disabled]="pesanform.invalid">
-      <ion-icon name="cart"></ion-icon> Tambah ke Keranjang
-    </button>
-  </div>
+
+  <ion-grid class="footer">
+    <ion-row>
+      <ion-col col-5>
+        <button ion-button block outline text-capitalize color="orange" (click)="gotoKeranjang()" [disabled]="pesanform.invalid">
+          Pesan Sekarang
+        </button>
+      </ion-col>
+    <ion-col col-7>
+      <button ion-button block text-capitalize (click)="tambahKeranjang()" color="orange" [disabled]="pesanform.invalid">
+        Tambah ke Keranjang
+      </button>
+    </ion-col>
+  </ion-row>
+  </ion-grid>
 </ion-content>
 <!-- 
 <ion-footer style="background-color: white" no-shadow>

@@ -41,7 +41,8 @@ export class DetailPesananPage {
   sampel_lain: boolean = false;
 
   status_utama: string;
-  ket_status: string;
+  ket_status_utama: string;
+  waktu_status_utama: Date;
 
   constructor(public nav: NavController, 
     public navParams: NavParams,
@@ -81,14 +82,31 @@ export class DetailPesananPage {
 
           if(this.status.StatusUtama == 1){
             this.status_utama = "Menunggu Validasi";
-            this.ket_status = "Pesanan sedang divalidasi oleh sistem.";
+            this.ket_status_utama = "Pesanan sedang divalidasi oleh sistem.";
+            this.waktu_status_utama = this.status.WaktuPesananDibuat;
           }
           else if(this.status.StatusUtama == 2){
-            this.status_utama = "Pesanan Tervalidasi";
-            this.ket_status = "Pesanan telah tervalidasi oleh sistem.";
-          }
-          
-        
+            if(this.status.StatusKirimSampel == 1 && this.status.StatusPembayaran == 1){
+              this.status_utama = "Pesanan Tervalidasi";
+              this.ket_status_utama = "Pesanan telah tervalidasi oleh sistem.";
+              this.waktu_status_utama = this.status.WaktuValidasiPesanan;
+            }
+            else if(this.status.StatusKirimSampel == 2 && this.status.StatusPembayaran == 1){
+              this.status_utama = "Sampel Diterima";
+              this.ket_status_utama = "Pengiriman sampel telah diterima.";
+              this.waktu_status_utama = this.status.WaktuKirimSampel;
+            }
+            else if(this.status.StatusKirimSampel == 1 && this.status.StatusPembayaran == 2){
+              this.status_utama = "Pembayaran Tervalidasi";
+              this.ket_status_utama = "Pembayaran telah tervalidasi oleh sistem.";
+              this.waktu_status_utama = this.status.WaktuPembayaran;
+            }
+            else{
+              this.status_utama = "Menunggu Analisis";
+              this.ket_status_utama = "Menunggu proses analisis pesanan.";
+              this.waktu_status_utama = this.status.WaktuStatusUtama;
+            }       
+          }        
         }
         else{
           let alert = this.alertCtrl.create({

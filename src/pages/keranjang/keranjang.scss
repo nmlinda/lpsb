@@ -8,4 +8,27 @@ page-keranjang {
     padding-left: 5%;
     color: gray;
   }
+  .card-box{
+    margin-right: 0px;
+    margin-left: 0px;
+    margin-top: 0px;
+    width: 100%;
+  }
+  .price-title{
+    color: gray;
+    font-size: 14px;
+  }
+  .price{
+    color: #FF6B21;
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+  }
+  .price-item{
+    color: #FF6B21;
+    font-weight: bold;
+    font-size: 16px;
+  }
+
 }

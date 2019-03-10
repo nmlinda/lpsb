@@ -53,16 +53,16 @@
                   <h3 text-right *ngIf="item.StatusUtama == 1">
                     Sedang Divalidasi
                   </h3>
-                  <h3 text-right *ngIf="item.StatusUtama == 2 && item.status_pembayaran == 0 && status_pengiriman == 0">
+                  <h3 text-right *ngIf="item.StatusUtama == 2 && item.status_pembayaran == 0 && item.status_pengiriman == 0">
                     Belum Dibayar
                   </h3>
-                  <h3 text-right *ngIf="item.StatusUtama == 2 && item.status_pembayaran == 1 && status_pengiriman == 0">
+                  <h3 text-right *ngIf="item.StatusUtama == 2 && item.status_pembayaran == 1 && item.status_pengiriman == 0">
                     Sampel Belum Dikirim
                   </h3>
-                  <h3 text-right *ngIf="item.StatusUtama == 2 && item.status_pembayaran == 0 && status_pengiriman == 1">
+                  <h3 text-right *ngIf="item.StatusUtama == 2 && item.status_pembayaran == 0 && item.status_pengiriman == 1">
                     Belum Dibayar
                   </h3>
-                  <h3 text-right *ngIf="item.StatusUtama == 2 && item.status_pembayaran == 1 && status_pengiriman == 1">
+                  <h3 text-right *ngIf="item.StatusUtama == 2 && item.status_pembayaran == 1 && item.status_pengiriman == 1">
                     Menunggu Analisis
                   </h3>
                 </ion-col>

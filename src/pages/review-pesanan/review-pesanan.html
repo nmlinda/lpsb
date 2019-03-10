@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Review Pesanan</ion-title>
+    <ion-title>Checkout</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -9,28 +9,28 @@
 
 <ion-content>
 
-  <ion-card color="light" (click)="editProfil()">
+  <ion-card (click)="editProfil()" padding>
+    <ion-card-header class="head-card" no-padding>
+      <p>Data Diri</p>
+    </ion-card-header>
     <ion-grid>
       <ion-row>
-        <ion-col col-6>
+        <ion-col col-11>
           <p no-margin class="text-content">
             <ion-icon name="person" color="primary"></ion-icon>
-            {{ nama }}
+            <strong>{{ nama }}</strong>
             <br>
             <ion-icon name="briefcase" color="primary"></ion-icon>
             {{ institusi }}
             <br>
             <ion-icon name="home" color="primary"></ion-icon>
             {{ alamat }}
-          </p>
-        </ion-col>
-        <ion-col col-5>
-          <p no-margin text-right class="text-content">
-            {{ email }}
-            <ion-icon name="mail" color="primary"></ion-icon>
             <br>
-            {{ noHp }}
+            <ion-icon name="mail" color="primary"></ion-icon>
+            {{ email }}
+            <br>
             <ion-icon name="call" color="primary"></ion-icon>
+            {{ noHp }}
             <br>
             NPWP: {{ npwp }}
           </p>
@@ -72,7 +72,8 @@
     <ion-grid>
       <ion-row>
         <ion-col col-12>
-          <ion-list radio-group no-margin [(ngModel)]="lamaPengujian" (ionChange)="lamaSelected($event)">
+          <ion-list radio-group no-margin [(ngModel)]="lamaPengujian" (ionChange)="lamaSelected($event)"
+          interface="action-sheet">
             <p no-margin class="sub-head">
               <ion-icon name="time" color="primary"></ion-icon>
               Lama Pengujian
@@ -130,8 +131,8 @@
             Keterangan
           </p>
         </ion-col>
-      <!-- </ion-row> -->
-      <!-- <ion-row> -->
+        <!-- </ion-row> -->
+        <!-- <ion-row> -->
         <ion-col col-8>
           <ion-input type="text" [(ngModel)]="keterangan" placeholder="Tulis Keterangan.." text-right></ion-input>
         </ion-col>

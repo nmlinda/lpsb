@@ -15,7 +15,7 @@
 
 <ion-content>
   <div *ngIf="listKeranjang.length > 0">
-    <ion-card>
+    <ion-card class="card-box">
       <ion-grid>
         <ion-row>
           <ion-col col-12>
@@ -30,31 +30,31 @@
     <ion-card *ngFor="let keranjang of listKeranjang">
       <ion-grid>
         <ion-row>
-          <ion-col col-9>
+          <ion-col col-11>
             <ion-item no-padding>
-              <ion-label>{{ keranjang.JenisAnalisis }} ({{ keranjang.Metode }})</ion-label>
+              <ion-label><strong>{{ keranjang.JenisAnalisis }} ({{ keranjang.Metode }})</strong></ion-label>
               <ion-checkbox style="margin-right: 9px" [(ngModel)]="keranjang.checked" (click)="selectCart(keranjang)">
               </ion-checkbox>
             </ion-item>
           </ion-col>
-          <ion-col col-3>
-            <ion-item text-right (click)="hapusItem(keranjang)">
+          <ion-col col-1 no-padding align-self-center>
+            <ion-item text-right (click)="hapusItem(keranjang)" no-padding>
               <ion-icon name="close"></ion-icon>
             </ion-item>
           </ion-col>
         </ion-row>
         <ion-row>
-          <ion-col col-3>
+          <ion-col col-2>
             <img src="../../assets/imgs/fitokimia.jpg" (click)="gotoAnalisisDetail(keranjang.IDItem)">
           </ion-col>
-          <ion-col col-9>
+          <ion-col col-10>
             <p>
               {{ keranjang.JenisSampel }} ({{ keranjang.Jumlah }})<br>
               Kemasan: {{ keranjang.Kemasan }}<br>
               Bentuk: {{ keranjang.BentukSampel }}
             </p>
-            <p text-right>
-                Rp {{ keranjang.Harga | number:0 }}
+            <p text-right class="price-item">
+              Rp {{ keranjang.Harga | number:0 }}
               <!-- IPB Rp {{ keranjang.HargaIPB | number:0 }}<br>
               NON-IPB Rp {{ keranjang.HargaNONIPB | number:0 }} -->
             </p>
@@ -77,18 +77,19 @@
   <ion-grid>
     <ion-row>
       <ion-col col-7>
-        <p no-margin>
-            Total Harga: <strong>Rp {{ harga | number:0  }}<br></strong>
+        <p no-margin class="price-title">
+          Total Harga
           <!-- Harga IPB : <strong>Rp {{ hargaIPB| number:0  }}<br></strong>
             Harga NONIPB: <strong>Rp {{ hargaNONIPB| number:0  }}</strong> -->
         </p>
+        <p class="price">
+          Rp {{ harga | number:0  }}
+        </p>
       </ion-col>
       <ion-col col-5>
-        <ion-buttons end>
-          <button ion-button color="primary" (click)="gotoReviewPesanan()" [disabled]="nextButton">
-            Berikutnya
+          <button block ion-button text-capitalize color="orange" (click)="gotoReviewPesanan()" [disabled]="nextButton">
+            Checkout
           </button>
-        </ion-buttons>
       </ion-col>
     </ion-row>
   </ion-grid>

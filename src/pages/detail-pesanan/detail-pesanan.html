@@ -15,26 +15,26 @@
 
 <ion-content>
   <ion-card>
-    <ion-grid>
+    <ion-grid class=" space">
       <ion-row>
-        <ion-col col-1 align-self-right text-right>
-          <ion-icon name="copy" color="primary"></ion-icon>
+        <ion-col col-1 align-self-right text-right class="status_utama">
+          <ion-icon name="copy" class="text-utama"></ion-icon>
         </ion-col>
-        <ion-col col-11>
-          <h2>
+        <ion-col col-11 class="status_utama">
+          <h2 class="text-utama">
             {{status_utama}}
           </h2>
 
         </ion-col>
       </ion-row>
       <ion-row>
-        <ion-col col-1>
+        <ion-col col-1 class="status_utama">
 
         </ion-col>
-        <ion-col col-11>
-          <p *ngIf="status.StatusUtama == 1">
-            {{ket_status}}<br>
-            Waktu: {{ status.WaktuPesananDibuat | date: 'dd-MM-yyyy HH:mm' }}
+        <ion-col col-11 class="status_utama">
+          <p class="text-utama">
+            {{ket_status_utama }}<br>
+            Waktu: {{ waktu_status_utama | date: 'dd-MM-yyyy HH:mm' }}
           </p>
         </ion-col>
       </ion-row>

@@ -5,18 +5,23 @@ page-review-pesanan {
     }
     ion-card{
         width: 100% !important;
-        margin: 0 !important;
+        margin-top: 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
     }
     .sub-head{
         font-size: 16px !important;
         color: black;
     }
     .text-content{
-        font-size: 14px !important;
-        color: black;
+        font-size: 16px !important;
+        color: gray;
     }
     .head{
         font-size: 18px !important;
         color: black;
+    }
+    .head-card{
+        border-bottom: 1px solid gainsboro;
     }
 }
