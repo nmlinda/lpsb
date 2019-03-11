@@ -26,6 +26,10 @@ export class TabsPage {
     public httpClient: HttpClient,
     public alertCtrl: AlertController,
   ) {
+    
+  }
+
+  ionViewWillEnter(){
     this.data.getData().then((data) => {
 
       const httpOptions = {

@@ -20,6 +20,7 @@ import { KategoriAnalisisPage } from '../kategori-analisis/kategori-analisis';
 })
 export class KeranjangPage {
   // simpan array
+  responses: any = [];
   itemChecked: any = [];
   itemAllChecked: any = [];
   keranjangs: any = [];
@@ -121,6 +122,7 @@ export class KeranjangPage {
     })
 
   }
+
 
   selectCart(data) {
     // push to cart

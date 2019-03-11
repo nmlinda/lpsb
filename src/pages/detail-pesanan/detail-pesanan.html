@@ -355,21 +355,21 @@
           </button>
         </ion-col>
       </ion-row>
-      <ion-row class="line2 line">
+      <ion-row class="line2">
         <ion-col col-12>
           <button ion-button full color="danger" (click)="gotoBatal()">
             Batalkan Pesanan
           </button>
         </ion-col>
       </ion-row>
-      <ion-row>
+      <ion-row class="line" *ngIf="!status.WaktuUlasan && StatusUtama == 5">
         <ion-col col-12>
           <button ion-button full (click)="gotoUlasan()">
             Beri Ulasan
           </button>
         </ion-col>
       </ion-row>
-      <ion-row>
+      <ion-row class="line" *ngIf="status.WaktuUlasan && StatusUtama == 5">
         <ion-col col-8 align-self-center>
           Telah diulas pada {{ status.WaktuUlasan | date: 'dd-MM-yyyy' }}
         </ion-col>

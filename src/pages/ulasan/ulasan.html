@@ -19,14 +19,17 @@
 
 
 <ion-content padding>
-  <h6>
+  <h6 *ngIf="!ulas">
     Berikan ulasan anda terhadap pesanan di aplikasi ini
   </h6>
+  <h6 *ngIf="ulas">
+    Ulasan anda terhadap pesanan di aplikasi ini
+  </h6>
   <ion-item class="inputan" no-padding>
-    <ion-textarea placeholder="Tulis ulasan anda... " rows="4" cols="20" autofocus="true"></ion-textarea>
+    <ion-textarea placeholder="Tulis ulasan anda... " rows="4" cols="20" autofocus="true" [(ngModel)]="ulasan" [disabled]="ulas"></ion-textarea>
   </ion-item>
-  <ion-buttons end padding-top>
-    <button ion-button>
+  <ion-buttons end padding-top *ngIf="!ulas">
+    <button ion-button text-capitalize (click)="kirim()">
       Kirim
     </button>
   </ion-buttons>

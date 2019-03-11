@@ -53,16 +53,20 @@
                   <h3 text-right *ngIf="item.StatusUtama == 1">
                     Sedang Divalidasi
                   </h3>
-                  <h3 text-right *ngIf="item.StatusUtama == 2 && item.status_pembayaran == 0 && item.status_pengiriman == 0">
+                  <h3 text-right
+                    *ngIf="item.StatusUtama == 2 && item.status_pembayaran == 1 && item.status_pengiriman == 1">
                     Belum Dibayar
                   </h3>
-                  <h3 text-right *ngIf="item.StatusUtama == 2 && item.status_pembayaran == 1 && item.status_pengiriman == 0">
+                  <h3 text-right
+                    *ngIf="item.StatusUtama == 2 && item.status_pembayaran == 2 && item.status_pengiriman == 1">
                     Sampel Belum Dikirim
                   </h3>
-                  <h3 text-right *ngIf="item.StatusUtama == 2 && item.status_pembayaran == 0 && item.status_pengiriman == 1">
+                  <h3 text-right
+                    *ngIf="item.StatusUtama == 2 && item.status_pembayaran == 1 && item.status_pengiriman == 2">
                     Belum Dibayar
                   </h3>
-                  <h3 text-right *ngIf="item.StatusUtama == 2 && item.status_pembayaran == 1 && item.status_pengiriman == 1">
+                  <h3 text-right
+                    *ngIf="item.StatusUtama == 2 && item.status_pembayaran == 2 && item.status_pengiriman == 2">
                     Menunggu Analisis
                   </h3>
                 </ion-col>
@@ -129,24 +133,15 @@
                 </ion-col>
               </ion-row>
               <ion-row>
-                <ion-col col-6 *ngIf="item.status_pembayaran != 1 && status_pengiriman != 1">
-                  <p *ngIf="item.StatusUtama == 1">
-                    Pesanan dibuat
-                  </p>
-                  <p *ngIf="item.StatusUtama == 2 && item.status_pembayaran == 0 && status_pengiriman == 0">
-                    Pesanan divalidasi
-                  </p>
-                  <p *ngIf="item.StatusUtama == 2 && item.status_pembayaran == 1 && status_pengiriman == 0">
+                <ion-col col-6 *ngIf="item.status_pembayaran == 2 || status_pengiriman == 2">
+                  <p *ngIf="item.status_pembayaran == 2">
                     Pesanan dibayar
                   </p>
-                  <p *ngIf="item.StatusUtama == 2 && item.status_pembayaran == 0 && status_pengiriman == 1">
+                  <p *ngIf="item.status_pengiriman == 2">
                     Sampel diterima
                   </p>
-                  <p *ngIf="item.StatusUtama == 2 && item.status_pembayaran == 1 && status_pengiriman == 1">
-                    Pesanan divalidasi
-                  </p>
                 </ion-col>
-                <ion-col col-6 *ngIf="item.status_pembayaran != 1 && status_pengiriman != 1">
+                <ion-col col-6 *ngIf="item.status_pembayaran == 2 || status_pengiriman == 2">
                   <p text-right>{{item.WaktuStatusTerbaru | date: 'dd-MM-yyyy HH:mm'}}</p>
                 </ion-col>
               </ion-row>

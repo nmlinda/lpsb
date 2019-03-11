@@ -89,7 +89,7 @@ export class DetailPesananPage {
           else if(this.status.StatusUtama == 2){
             if(this.status.StatusKirimSampel == 1 && this.status.StatusPembayaran == 1){
               this.status_utama = "Pesanan Tervalidasi";
-              this.ket_status_utama = "Pesanan telah tervalidasi oleh sistem.";
+              this.ket_status_utama = "Segera lakukan pembayaran dan pengiriman sampel.";
               this.waktu_status_utama = this.status.WaktuValidasiPesanan;
             }
             else if(this.status.StatusKirimSampel == 2 && this.status.StatusPembayaran == 1){
@@ -135,12 +135,16 @@ export class DetailPesananPage {
   }
  
   gotoPembayaran(){
-    let modal = this.modalCtrl.create(PembayaranPage);
+    let modal = this.modalCtrl.create(PembayaranPage , {
+      id: this.idPesanan,
+      harga: this.pesanan.HargaTotal,
+      waktu: this.status.WaktuPesananDibuat });
     modal.present();
   }
 
   gotoKirimSampel(){
-    let modal = this.modalCtrl.create(KirimSampelPage);
+    let modal = this.modalCtrl.create(KirimSampelPage,{
+      id: this.idPesanan});
     modal.present();
   }
 
@@ -150,7 +154,8 @@ export class DetailPesananPage {
   }
 
   gotoUlasan(){
-    let modal = this.modalCtrl.create(UlasanPage , {data: this.idPesanan});
+    console.log(this.status.WaktuUlasan)
+    let modal = this.modalCtrl.create(UlasanPage , {idPesanan: this.idPesanan, waktu: this.status.WaktuUlasan});
     modal.present();
   }
 
@@ -185,9 +190,9 @@ export class DetailPesananPage {
   }
   toastUnduhSertif() {
     let toast = this.toastCtrl.create({
-      message: 'Sertifikat berhasil diunduh',
+      message: 'Berhasil diunduh',
       duration: 3000,
-      position: 'bottom'
+      position: 'top'
     });
 
     toast.onDidDismiss(() => {

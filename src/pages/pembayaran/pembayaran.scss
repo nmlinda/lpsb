@@ -1,3 +1,38 @@
 page-pembayaran {
+  .price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #FF6B21;
+  }
+  .head {
+    font-size: 18px;
+    border-bottom: 1px solid gainsboro;
+  }
+  .text-item {
+    font-size: 14px;
+  }
+  .info {
+    background-color: whitesmoke;
+    margin-top: 10px;
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+  }
+  .text-info {
+    color: rgb(100, 97, 97);
+    margin: 10px;
+  }
+  .item-input .label-md {
+    color: black;
+    font-size: 14px;
+  }
+  .error {
+    color: rgb(223, 62, 62);
+    font-size: 11px;
+  }
 
+  .error1 {
+    color: rgb(75, 75, 75);
+    border-bottom: 1px solid #ff0000;
+  }
 }
