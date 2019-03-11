@@ -1,7 +1,9 @@
 page-detail-pesanan {
   ion-card {
     width: 100% !important;
-    margin: 0 !important;
+    margin-top: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
   }
   ion-icon {
     margin-inline-end: 4px;
@@ -21,7 +23,7 @@ page-detail-pesanan {
     content: "";
     position: absolute;
     width: 2px;
-    background-color: gray;
+    background-color: gainsboro;
     top: 17px;
     bottom: 0px;
     left: 5%;
@@ -52,8 +54,8 @@ page-detail-pesanan {
     width: 15px;
     height: 15px;
     right: -17px;
-    background-color: white;
-    border: 1px solid #337ab7;
+    background-color: gainsboro;
+    // border: 1px solid gainsboro;
     top: 15px;
     border-radius: 50%;
     z-index: 1;
@@ -66,8 +68,8 @@ page-detail-pesanan {
     height: 15px;
     right: -17px;
 
-    background-color: #337ab7;
-    border: 3px solid #cce2f7;
+    background-color: #66A652;
+    // border: 1px solid rgb(137, 224, 110);
     top: 15px;
     border-radius: 50%;
     z-index: 1;
@@ -79,11 +81,11 @@ page-detail-pesanan {
   }
   /* Make sure all circles are at the same spot */
   .right::after {
-    left: 7px;
+    left: 8px;
   }
   /* Make sure all circles are at the same spot */
   .right2::after {
-    left: 5px;
+    left: 8px;
   }
 
   /* Make all right containers behave like the left ones */
@@ -94,10 +96,29 @@ page-detail-pesanan {
   .line{
     border-bottom: 1px solid gainsboro;
   }
-  .status_utama {
-    background-color: #619E09;
+  .line{
+    border-bottom: 1px solid gainsboro;
   }
+  .line2{
+    border-top: 1px solid gainsboro;
+  }
+  // .status_utama {
+  //   background-color: #619E09;
+  // }
   .text-utama {
-    color: white;
+    font-weight: bold;
+    margin-bottom: 0;
+  }
+  .head{
+    font-size: 16px;
+    border-bottom: 1px solid gainsboro;
+    padding-bottom: 4px;
+  }
+  .text-content{
+    color: gray;
+  }
+  .text-item{
+    padding-left: 8px;
+    color: gray;
   }
 }

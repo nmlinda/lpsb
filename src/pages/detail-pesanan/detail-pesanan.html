@@ -13,12 +13,12 @@
 </ion-header>
 
 
-<ion-content>
+<ion-content style="background-color: whitesmoke;">
   <ion-card>
     <ion-grid class=" space">
       <ion-row>
         <ion-col col-1 align-self-right text-right class="status_utama">
-          <ion-icon name="copy" class="text-utama"></ion-icon>
+          <ion-icon name="copy" color="primary"></ion-icon>
         </ion-col>
         <ion-col col-11 class="status_utama">
           <h2 class="text-utama">
@@ -32,7 +32,7 @@
 
         </ion-col>
         <ion-col col-11 class="status_utama">
-          <p class="text-utama">
+          <p>
             {{ket_status_utama }}<br>
             Waktu: {{ waktu_status_utama | date: 'dd-MM-yyyy HH:mm' }}
           </p>
@@ -43,16 +43,13 @@
   <ion-card>
     <ion-grid>
       <ion-row>
-        <ion-col col-1 text-right align-self-center>
-          <ion-icon name="person" color="primary"></ion-icon>
-        </ion-col>
-        <ion-col col-11>
-          <h2>Data Diri</h2>
+        <ion-col col-12>
+          <h2 class="head">Data Diri</h2>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col col-7>
-          <p>
+          <p class="text-content">
             <ion-icon name="person" color="primary"></ion-icon>
             {{data_user.NamaLengkap}}<br>
             <ion-icon name="briefcase" color="primary"></ion-icon>
@@ -62,7 +59,7 @@
           </p>
         </ion-col>
         <ion-col col-5>
-          <p>
+          <p class="text-content">
             <ion-icon name="mail" color="primary"></ion-icon>
             {{data_user.Email}}<br>
             <ion-icon name="call" color="primary"></ion-icon>
@@ -76,10 +73,7 @@
   <ion-card>
     <ion-grid>
       <ion-row>
-        <ion-col col-1 text-right align-self-center>
-          <ion-icon name="disc" color="primary"></ion-icon>
-        </ion-col>
-        <ion-col col-10>
+        <ion-col col-11>
           <h2>Status Analisis</h2>
         </ion-col>
         <ion-col col-1 text-center>
@@ -115,7 +109,7 @@
     <ion-grid>
       <ion-row>
         <ion-col col-1 text-right align-self-center>
-          <ion-icon name="cash" color="primary"></ion-icon>
+          <ion-icon name="cash" color="orange"></ion-icon>
         </ion-col>
         <ion-col col-11>
           <h2>Informasi Pembayaran</h2>
@@ -126,7 +120,7 @@
 
         </ion-col>
         <ion-col col-7>
-          Subtotal
+          Sub total
         </ion-col>
         <ion-col col-4 text-right>
           Rp {{ pesanan.HargaTotal-429| number:0 }}
@@ -147,10 +141,10 @@
         <ion-col col-1>
 
         </ion-col>
-        <ion-col col-7>
+        <ion-col col-7 style="font-weight: bold">
           Total
         </ion-col>
-        <ion-col col-4 text-right>
+        <ion-col col-4 text-right style="color:#FF6B21; font-weight: bold">
           Rp {{ pesanan.HargaTotal | number:0}}
         </ion-col>
       </ion-row>
@@ -159,14 +153,6 @@
 
   <ion-card>
     <ion-grid>
-      <ion-row>
-        <ion-col col-1 text-right align-self-center>
-          <ion-icon name="clipboard" color="primary"></ion-icon>
-        </ion-col>
-        <ion-col col-11>
-          <h2>Sampel</h2>
-        </ion-col>
-      </ion-row>
       <ion-row class="line">
         <ion-col col-2>
           <img src="../../assets/imgs/fitokimia.jpg">
@@ -270,50 +256,39 @@
   <ion-card>
     <ion-grid>
       <ion-row>
-        <ion-col col-1 text-right align-self-center>
+        <!-- <ion-col col-1 text-right align-self-center>
           <ion-icon name="document" color="primary"></ion-icon>
-        </ion-col>
-        <ion-col col-11>
+        </ion-col> -->
+        <ion-col col-9>
           <h2>Formulir Permohonan Sampel</h2>
         </ion-col>
+        <ion-col col-3 text-right>
+          <p>
+            <strong><a (click)="toastUnduhSertif()">Unduh</a></strong>
+          </p>
+        </ion-col>
       </ion-row>
       <ion-row>
-        <ion-col col-1 text-right>
-
-        </ion-col>
-        <ion-col col-9>
+        <ion-col col-12 class="text-item">
           Pesanan tervalidasi: {{ status.WaktuValidasiPesanan | date: 'dd-MM-yyyy HH:mm' }}
         </ion-col>
-        <ion-col col-2>
-          <button ion-button clear icon-only>
-            <ion-icon name="download"></ion-icon>
-          </button>
-        </ion-col>
       </ion-row>
-    </ion-grid>
-  </ion-card>
-
-  <ion-card>
-    <ion-grid>
-      <ion-row>
-        <ion-col col-1 text-right align-self-center>
+      <ion-row class="line2">
+        <!-- <ion-col col-1 text-right align-self-center>
           <ion-icon name="checkmark-circle" color="primary"></ion-icon>
-        </ion-col>
-        <ion-col col-11>
+        </ion-col> -->
+        <ion-col col-9>
           <h2>Tanda Terima Sampel</h2>
         </ion-col>
+        <ion-col col-3 text-right>
+          <p>
+            <strong><a (click)="toastUnduhSertif()">Unduh</a></strong>
+          </p>
+        </ion-col>
       </ion-row>
       <ion-row>
-        <ion-col col-1 text-right>
-
-        </ion-col>
-        <ion-col col-9>
+        <ion-col col-12 class="text-item">
           Sampel diterima: {{ status.WaktuKirimSampel | date: 'dd-MM-yyyy HH:mm' }}
-        </ion-col>
-        <ion-col col-2>
-          <button ion-button clear icon-only>
-            <ion-icon name="download"></ion-icon>
-          </button>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -326,54 +301,37 @@
         <ion-col col-1 text-right align-self-center>
           <ion-icon name="ribbon" color="primary"></ion-icon>
         </ion-col>
-        <ion-col col-11>
-          <h2>Sertifikat Hasil Uji</h2>
+        <ion-col col-8>
+          <h2><strong>Sertifikat Hasil Uji</strong></h2>
+        </ion-col>
+        <ion-col col-3 text-right>
+          <p>
+            <strong><a (click)="lihatSertif()">Lihat</a></strong>
+          </p>
         </ion-col>
       </ion-row>
       <ion-row>
-        <ion-col col-1 text-right>
-
-        </ion-col>
-        <!-- <ion-col>
-          No Resi: J0832C02S01A21<br>
-          20-02-2019
-          <br>
+        <ion-col col-12 class="text-item">
+          No Resi: J0832C02S01A21
           <div>
             Diterima: {{ status.WaktuTerimaSertifikat | date: 'dd-MM-yyyy HH:mm' }}
           </div>
-        </ion-col> -->
-        <ion-col col-11 text-right>
-          <button ion-button clear icon-only>
-            <ion-icon name="download"></ion-icon>
-          </button>
         </ion-col>
       </ion-row>
-    </ion-grid>
-  </ion-card>
-
-  <ion-card>
-    <ion-grid>
-      <ion-row>
-        <ion-col col-1 text-right align-self-center>
-          <ion-icon name="flask" color="primary"></ion-icon>
-        </ion-col>
+      <ion-row class="line2">
         <ion-col col-11>
           <h2>Pengiriman Sisa Sampel (COD)</h2>
         </ion-col>
       </ion-row>
       <ion-row>
-        <ion-col col-1 text-right>
-
-        </ion-col>
-        <ion-col col-7>
-          No Resi: J0832C02S01A21<br>
-          <br>
-          <div *ngIf="status.StatusSisaSampel == 3">
+        <ion-col col-8 class="text-item">
+          No Resi: J0832C02S01A21
+          <div>
             Diterima: {{ status.WaktuTerimaSisa | date: 'dd-MM-yyyy HH:mm' }}
           </div>
         </ion-col>
         <ion-col col-4>
-          <button ion-button block outline>
+          <button ion-button block outline text-capitalize>
             Terima
           </button>
         </ion-col>
@@ -381,45 +339,42 @@
     </ion-grid>
   </ion-card>
 
-  <ion-card>
+  <ion-card no-margin>
     <ion-grid>
       <ion-row>
         <ion-col col-6 text-center>
-          <button ion-button outline block color="secondary" (click)="gotoPembayaran()">
+          <button ion-button outline block color="orange" (click)="gotoPembayaran()" text-capitalize>
             <ion-icon name="cash"></ion-icon>
             Bayar Sekarang
           </button>
         </ion-col>
         <ion-col col-6 text-center>
-          <button ion-button outline block (click)="gotoKirimSampel()">
+          <button ion-button outline block (click)="gotoKirimSampel()" text-capitalize>
             <ion-icon name="paper-plane"></ion-icon>
             Kirim Sampel
           </button>
         </ion-col>
       </ion-row>
-    </ion-grid>
-  </ion-card>
-
-  <ion-card padding color="light">
-    <button ion-button full color="danger" (click)="gotoBatal()">
-      Batalkan Pesanan
-    </button>
-  </ion-card>
-
-  <ion-card padding color="light">
-    <button ion-button full (click)="gotoUlasan()">
-      Beri Ulasan
-    </button>
-  </ion-card>
-
-  <ion-card padding color="light">
-    <ion-grid>
+      <ion-row class="line2 line">
+        <ion-col col-12>
+          <button ion-button full color="danger" (click)="gotoBatal()">
+            Batalkan Pesanan
+          </button>
+        </ion-col>
+      </ion-row>
       <ion-row>
-        <ion-col col-8>
+        <ion-col col-12>
+          <button ion-button full (click)="gotoUlasan()">
+            Beri Ulasan
+          </button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-8 align-self-center>
           Telah diulas pada {{ status.WaktuUlasan | date: 'dd-MM-yyyy' }}
         </ion-col>
         <ion-col col-4>
-          <button ion-button outline block (click)="gotoUlasan()">
+          <button ion-button outline block (click)="gotoUlasan()" text-capitalize>
             Lihat
           </button>
         </ion-col>

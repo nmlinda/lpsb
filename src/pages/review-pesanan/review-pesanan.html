@@ -7,38 +7,40 @@
 </ion-header>
 
 
-<ion-content>
+<ion-content style="background-color: gainsboro">
 
   <ion-card (click)="editProfil()" padding>
-    <ion-card-header class="head-card" no-padding>
-      <p>Data Diri</p>
-    </ion-card-header>
-    <ion-grid>
-      <ion-row>
-        <ion-col col-11>
-          <p no-margin class="text-content">
-            <ion-icon name="person" color="primary"></ion-icon>
-            <strong>{{ nama }}</strong>
-            <br>
-            <ion-icon name="briefcase" color="primary"></ion-icon>
-            {{ institusi }}
-            <br>
-            <ion-icon name="home" color="primary"></ion-icon>
-            {{ alamat }}
-            <br>
-            <ion-icon name="mail" color="primary"></ion-icon>
-            {{ email }}
-            <br>
-            <ion-icon name="call" color="primary"></ion-icon>
-            {{ noHp }}
-            <br>
-            NPWP: {{ npwp }}
-          </p>
+    <ion-grid no-padding>
+      <ion-row class="head-card">
+        <ion-col col-11 align-self-center>
+          <p style="font-size:16px">Data Diri</p>
         </ion-col>
         <ion-col col-1>
           <button ion-button small clear icon-only>
             <ion-icon name="create"></ion-icon>
           </button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12>
+          <p no-margin class="text-data-diri">
+            <ion-icon name="person" color="primary" style="margin-right: 10px"></ion-icon>
+            <strong>{{ nama }}</strong>
+            <br>
+            <ion-icon name="briefcase" color="primary" style="margin-right: 10px"></ion-icon>
+            {{ institusi }}
+            <br>
+            <ion-icon name="home" color="primary" style="margin-right: 10px"></ion-icon>
+            {{ alamat }}
+            <br>
+            <ion-icon name="mail" color="primary" style="margin-right: 10px"></ion-icon>
+            {{ email }}
+            <br>
+            <ion-icon name="call" color="primary" style="margin-right: 10px"></ion-icon>
+            {{ noHp }}
+            <br>
+            NPWP: {{ npwp }}
+          </p>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -49,108 +51,123 @@
 
   <ion-card>
     <ion-grid>
-      <ion-row>
-        <ion-col col-11>
+      <ion-row class="head-card">
+        <ion-col col-10 align-self-center>
           <p no-margin class="sub-head">
-            <ion-icon name="flask" color="primary"></ion-icon>
             Pesanan
           </p>
-          <p *ngFor="let item of sampel; let i = index" no-margin text-capitalize class="text-content">
-            {{i+1}}. {{ item.JenisSampel }} - {{ item.JenisAnalisis }}
-          </p>
         </ion-col>
-        <ion-col col-1>
+        <ion-col col-2 text-right>
           <button ion-button clear icon-only (click)="detailSampel()">
             <ion-icon name="more"></ion-icon>
           </button>
         </ion-col>
       </ion-row>
-    </ion-grid>
-  </ion-card>
-
-  <ion-card>
-    <ion-grid>
-      <ion-row>
+      <ion-row class="head-card">
         <ion-col col-12>
-          <ion-list radio-group no-margin [(ngModel)]="lamaPengujian" (ionChange)="lamaSelected($event)"
-          interface="action-sheet">
-            <p no-margin class="sub-head">
-              <ion-icon name="time" color="primary"></ion-icon>
-              Lama Pengujian
-            </p>
-            <ion-item>
-              <ion-label class="labelSisaSampel">Biasa (14 Hari)</ion-label>
-              <ion-radio value="1" item-left style="margin: 6px;"></ion-radio>
-            </ion-item>
-
-            <ion-item>
-              <ion-label class="labelSisaSampel">Percepatan (7 Hari)</ion-label>
-              <ion-radio value="2" item-left style="margin: 6px;"></ion-radio>
-            </ion-item>
-          </ion-list>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-card>
-
-  <ion-card>
-    <ion-grid>
-      <ion-row>
-        <ion-col col-12>
-          <ion-list radio-group no-margin [(ngModel)]="sisaSampel">
-            <p no-margin class="sub-head">
-              <ion-icon name="trash" color="primary"></ion-icon>
-              Sisa Sampel
-            </p>
-            <ion-item>
-              <ion-label class="labelSisaSampel">Akan diambil setelah pengujian selesai</ion-label>
-              <ion-radio value="1" item-left style="margin: 6px;"></ion-radio>
-            </ion-item>
-
-            <ion-item>
-              <ion-label class="labelSisaSampel">Akan ditinggalkan dan dalam 3 bulan ke depan akan dimusnahkan
-              </ion-label>
-              <ion-radio value="2" item-left style="margin: 6px;"></ion-radio>
-            </ion-item>
-
-            <ion-item *ngIf="!sisaSampelSelected">
-              <p style="color:red">Pilih aksi terhadap sisa sampel</p>
-            </ion-item>
-          </ion-list>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-card>
-
-  <ion-card>
-    <ion-grid>
-      <ion-row>
-        <ion-col col-4>
-          <p no-margin class="sub-head">
-            <ion-icon name="paper" color="primary"></ion-icon>
-            Keterangan
+          <p *ngFor="let item of sampel; let i = index" no-margin text-capitalize class="text-content">
+            {{i+1}}. {{ item.JenisSampel }} - {{ item.JenisAnalisis }}
           </p>
         </ion-col>
-        <!-- </ion-row> -->
-        <!-- <ion-row> -->
+      </ion-row>
+      <ion-row>
         <ion-col col-8>
-          <ion-input type="text" [(ngModel)]="keterangan" placeholder="Tulis Keterangan.." text-right></ion-input>
+          <h3 no-margin class="text-content" style="color:gray">
+            Sub Total ({{sampel.length}} Sampel)
+          </h3>
+        </ion-col>
+        <ion-col col-4>
+          <h3 no-margin text-right class="sub-head">
+            Rp {{harga | number:0 }}
+          </h3>
         </ion-col>
       </ion-row>
     </ion-grid>
   </ion-card>
 
   <ion-card>
+    <ion-grid class="grid-item">
+      <ion-row>
+        <ion-col col-9 align-self-center>
+          <p no-margin class="sub-head">
+            <!-- <ion-icon name="time" color="primary" style="margin-right: 10px"></ion-icon> -->
+            Lama Pengujian
+          </p>
+        </ion-col>
+        <ion-col col-3>
+          <button ion-button text-capitalize block outline (click)="pilihLama()">
+            Ubah
+          </button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12>
+          <p *ngIf="lamaPengujian == 1" class="text-content">
+            Biasa (14 Hari Kerja)
+          </p>
+          <p *ngIf="lamaPengujian == 2" class="text-content">
+            Percepatan (7 Hari Kerja)
+          </p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-grid class="grid-item">
+      <ion-row>
+        <ion-col col-9 align-self-center>
+          <p no-margin class="sub-head">
+            <!-- <ion-icon name="trash" color="primary" style="margin-right: 10px"></ion-icon> -->
+            Sisa Sampel
+          </p>
+        </ion-col>
+        <ion-col col-3>
+          <button ion-button text-capitalize block (click)="pilihSisa()" *ngIf="!sisaSampel">
+            Pilih
+          </button>
+          <button ion-button text-capitalize block (click)="pilihSisa()" *ngIf="sisaSampel" outline>
+            Ubah
+          </button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12>
+          <p *ngIf="sisaSampel == 1" class="text-content">
+            Akan diambil setelah pengujian selesai
+          </p>
+          <p *ngIf="sisaSampel == 2" text-wrap class="text-content">
+            Akan ditinggalkan dan dalam 3 bulan ke depan akan dimusnahkan
+          </p>
+          <ion-item *ngIf="!sisaSampelSelected">
+            <p style="color:red">Pilih aksi terhadap sisa sampel</p>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col col-12>
+          <p no-margin class="sub-head">
+            <ion-icon name="paper" color="primary" style="margin-right: 10px"></ion-icon>
+            Keterangan (opsional)
+          </p>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12>
+          <ion-input type="text" [(ngModel)]="keterangan" placeholder="Tulis Keterangan.."></ion-input>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+  <ion-card no-margin>
     <ion-grid>
       <ion-row>
         <ion-col col-8>
-          <h3 no-margin *ngIf="IPB">
-            Harga
+          <h3 no-margin *ngIf="IPB" class="sub-head">
+            Sub Total <span *ngIf="hargaPercepatan">(Percepatan)</span>
           </h3>
-          <h3 *ngIf="hargaPercepatan" no-margin>
-            Percepatan (x2)
-          </h3>
-          <h3 no-margin *ngIf="IPB">
+          <h3 no-margin *ngIf="IPB" class="sub-head">
             Kode Unik
           </h3>
           <h2 class="head">
@@ -160,27 +177,31 @@
           </h2>
         </ion-col>
         <ion-col col-4>
-          <h3 no-margin text-right *ngIf="IPB">
+          <h3 no-margin text-right *ngIf="IPB && !hargaPercepatan" class="sub-head">
             Rp {{harga | number:0 }}
           </h3>
-          <h3 *ngIf="hargaPercepatan" no-margin text-right>
+          <h3 *ngIf="IPB && hargaPercepatan" no-margin text-right class="sub-head">
             Rp {{harga2x | number:0 }}
           </h3>
-          <h3 no-margin text-right *ngIf="IPB">
+          <h3 no-margin text-right *ngIf="IPB" class="sub-head">
             Rp {{kodeUnik | number:0 }}
           </h3>
-          <h2 text-right style="color:#007bff;" class="head" *ngIf="IPB">
+          <h2 text-right style="color:#FF6B21;" class="head" *ngIf="IPB">
             <strong>
               Rp {{totalHarga | number:0 }}
             </strong>
+          </h2>
+          <h2 text-right style="color:#FF6B21;" class="head" *ngIf="!IPB">
+            <strong>-</strong>-
           </h2>
         </ion-col>
       </ion-row>
 
     </ion-grid>
   </ion-card>
-
   <ion-buttons end>
-    <button ion-button color="primary" (click)="checkout()" margin>Checkout</button>
+    <button ion-button text-capitalize color="orange" (click)="checkout()" margin>Pesan</button>
   </ion-buttons>
+
+
 </ion-content>

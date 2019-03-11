@@ -70,7 +70,7 @@ export class PesananPage {
             if (this.pesanans[i].StatusUtama == 1 || this.pesanans[i].StatusUtama == 2) {
               this.pesanans[i].show = false;
               this.belumDianalisis.push(this.pesanans[i]);
-      
+              
               if (this.belumDianalisis) {
                 this.sampel = this.belumDianalisis[i].Sampel;
                 for (var j = 0; j < this.sampel.length; j++) {
@@ -82,6 +82,8 @@ export class PesananPage {
                     sampel !== this.belumDianalisis[i].awal);
                 }
               }
+
+            
       
             }
             else if (this.pesanans[i].StatusUtama == 3 || this.pesanans[i].StatusUtama == 4) {

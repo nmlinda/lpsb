@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, LoadingController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, LoadingController, AlertController, ActionSheetController, ToastController } from 'ionic-angular';
 import { CheckoutPage } from '../checkout/checkout';
 import { Data } from '../../provider/data';
 import { ModalEditProfilPage } from '../modal-edit-profil/modal-edit-profil';
@@ -24,6 +24,7 @@ export class ReviewPesananPage {
   hargaNONIPB: number = 0;
   IPB: boolean;
   lamaPengujian: any;
+  hargaPercepatan: boolean = false;
   harga: number = 0;
   harga2x: number = 0;
   kodeUnik: number = 429;
@@ -46,8 +47,10 @@ export class ReviewPesananPage {
     public navCtrl: NavController,
     public modalCtrl: ModalController,
     public navParams: NavParams,
+    public actionSheetCtrl: ActionSheetController,
     public loadCtrl: LoadingController,
     public alertCtrl: AlertController,
+    public toastCtrl: ToastController,
     public httpClient: HttpClient,
     public data: Data) {
 
@@ -70,7 +73,7 @@ export class ReviewPesananPage {
       }
 
       if (data.Perusahaan == "Institut Pertanian Bogor" && data.Perusahaan) {
-        this.IPB = true;if (data.Perusahaan == "Institut Pertanian Bogor" && data.Perusahaan) {
+        this.IPB = true; if (data.Perusahaan == "Institut Pertanian Bogor" && data.Perusahaan) {
           this.IPB = true;
           this.harga = this.hargaIPB;
           for (var k = 0; k < this.sampel.length; k++) {
@@ -106,7 +109,7 @@ export class ReviewPesananPage {
     console.log('ionViewDidLoad ReviewPesananPage');
   }
 
-  
+
   editProfil() {
     let modal = this.modalCtrl.create(ModalEditProfilPage);
     modal.onDidDismiss((data) => {
@@ -189,10 +192,10 @@ export class ReviewPesananPage {
               if (this.pesanan.status == 0) {
                 loading.dismiss();
                 let currentIndex = this.navCtrl.getActive().index;
-                  this.navCtrl.push(CheckoutPage).then(() => {
-                    this.navCtrl.remove(currentIndex);
-                    this.navCtrl.remove(currentIndex-1);
-                  });
+                this.navCtrl.push(CheckoutPage).then(() => {
+                  this.navCtrl.remove(currentIndex);
+                  this.navCtrl.remove(currentIndex - 1);
+                });
 
               }
               else {
@@ -213,10 +216,10 @@ export class ReviewPesananPage {
 
         })
 
-
       }
       else {
         this.sisaSampelSelected = false;
+        this.toastSisa();
       }
     }
     else {
@@ -225,18 +228,112 @@ export class ReviewPesananPage {
         this.sisaSampelSelected = true;
       } else {
         this.sisaSampelSelected = false;
+        this.toastDiri();
       }
     }
 
   }
 
-  lamaSelected() {
-    if (this.lamaPengujian == 1) {
-      this.totalHarga = this.harga + this.kodeUnik;
-    }
-    else {
-      this.harga2x = this.harga * 2;
-      this.totalHarga = this.harga2x + this.kodeUnik;
-    }
+  pilihSisa() {
+    const actionSheet = this.actionSheetCtrl.create({
+      title: 'Pilih aksi untuk sisa sampel',
+      buttons: [
+        {
+          text: 'Akan diambil setelah pengujian selesai',
+          handler: () => {
+            this.sisaSampel = 1;
+          }
+        }, {
+          text: 'Akan ditinggalkan dan dalam 3 bulan ke depan akan dimusnahkan',
+          handler: () => {
+            this.sisaSampel = 2;
+          }
+        }, {
+          text: 'Kembali',
+          role: 'cancel',
+          icon: 'close',
+          handler: () => {
+            console.log('Back clicked');
+          }
+        }
+      ]
+    });
+    actionSheet.present();
+  }
+
+  pilihLama() {
+    const actionSheet = this.actionSheetCtrl.create({
+      title: 'Pilih Lama Pengujian',
+      subTitle: 'Durasi dihitung sejak analisis dimulai',
+      buttons: [
+        {
+          text: 'Biasa (14 Hari Kerja)',
+          handler: () => {
+            this.lamaPengujian = 1;
+            this.totalHarga = this.harga + this.kodeUnik;
+            this.hargaPercepatan = false;
+          }
+        }, {
+          text: 'Percepatan (7 Hari Kerja)',
+          handler: () => {
+            this.lamaPengujian = 2;
+            this.harga2x = this.harga * 2;
+            this.totalHarga = this.harga2x + this.kodeUnik;
+            this.hargaPercepatan = true;
+            this.toastPercepatan();
+          }
+        }, {
+          text: 'Kembali',
+          role: 'cancel',
+          icon: 'close',
+          handler: () => {
+            console.log('Back clicked');
+          }
+        }
+      ]
+    });
+    actionSheet.present();
+  }
+
+  toastSisa() {
+    let toast = this.toastCtrl.create({
+      message: 'Pastikan Anda telah melengkapi aksi untuk sisa sampel',
+      duration: 3000,
+      position: 'bottom'
+    });
+
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+
+    toast.present();
+  }
+
+  toastDiri() {
+    let toast = this.toastCtrl.create({
+      message: 'Pastikan Anda telah melengkapi data diri anda',
+      duration: 3000,
+      position: 'bottom'
+    });
+
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+
+    toast.present();
+  }
+
+  toastPercepatan() {
+    let toast = this.toastCtrl.create({
+      message: 'Harga sub total menjadi dua kali lipat',
+      duration: 3000,
+      position: 'bottom'
+    });
+
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+
+    toast.present();
   }
 }

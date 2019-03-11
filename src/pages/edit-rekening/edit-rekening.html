@@ -31,8 +31,8 @@
   <form [formGroup]="rekform" novalidate>
     <ion-list>
       <ion-item>
-        <ion-label stacked>Nama Bank</ion-label>
-        <ion-input type="text" [(ngModel)]="rekData.namaBank" formControlName="namaBank"
+        <ion-label stacked class="labelForm">Nama Bank</ion-label>
+        <ion-input type="text" [(ngModel)]="rekData.namaBank" formControlName="namaBank" placeholder="Contoh: BNI"
           [class.error1]="!rekform.controls.namaBank.valid && rekform.controls.namaBank.dirty"></ion-input>
       </ion-item>
       <ion-item no-lines *ngIf="rekform.get('namaBank').hasError('required') && rekform.get('namaBank').touched">
@@ -42,8 +42,8 @@
       </ion-item>
 
       <ion-item>
-        <ion-label stacked>No Rekening</ion-label>
-        <ion-input type="number" [(ngModel)]="rekData.noRekening" formControlName="noRekening"
+        <ion-label stacked class="labelForm">No. Rekening</ion-label>
+        <ion-input type="number" [(ngModel)]="rekData.noRekening" formControlName="noRekening" placeholder="Contoh: 123456789"
           [class.error1]="!rekform.controls.noRekening.valid && rekform.controls.noRekening.dirty"></ion-input>
       </ion-item>
       <ion-item no-lines *ngIf="rekform.get('noRekening').hasError('required') && rekform.get('noRekening').touched">
@@ -53,8 +53,8 @@
       </ion-item>
 
       <ion-item>
-        <ion-label stacked>Nama Nasabah</ion-label>
-        <ion-input type="text" [(ngModel)]="rekData.namaNasabah" formControlName="namaNasabah"
+        <ion-label stacked class="labelForm">Nama Pemilik Rekening</ion-label>
+        <ion-input type="text" [(ngModel)]="rekData.namaNasabah" formControlName="namaNasabah" placeholder="Contoh: Muhammad Gofar"
           [class.error1]="!rekform.controls.namaNasabah.valid && rekform.controls.namaNasabah.dirty"></ion-input>
       </ion-item>
       <ion-item no-lines *ngIf="rekform.get('namaNasabah').hasError('required') && rekform.get('namaNasabah').touched">
@@ -64,4 +64,10 @@
       </ion-item>
     </ion-list>
   </form>
+
+  <ion-card class="info">
+    <p class="text-info">
+      Masukkan info terkait rekening di atas sesuai pada buku tabungan.
+    </p>
+  </ion-card>
 </ion-content>

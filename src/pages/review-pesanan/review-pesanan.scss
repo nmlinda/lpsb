@@ -15,6 +15,10 @@ page-review-pesanan {
     }
     .text-content{
         font-size: 16px !important;
+        margin-left: 10px;
+    }
+    .text-data-diri{
+        font-size: 16px !important;
         color: gray;
     }
     .head{
@@ -22,6 +26,10 @@ page-review-pesanan {
         color: black;
     }
     .head-card{
+        border-bottom: 1px solid gainsboro;
+        margin-bottom: 8px;
+    }
+    .grid-item{
         border-bottom: 1px solid gainsboro;
     }
 }

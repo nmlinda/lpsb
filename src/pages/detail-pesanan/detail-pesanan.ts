@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, AlertController, ToastController } from 'ionic-angular';
 import { PembayaranPage } from '../pembayaran/pembayaran';
 import { KirimSampelPage } from '../kirim-sampel/kirim-sampel';
 import { BatalPesananPage } from '../batal-pesanan/batal-pesanan';
@@ -47,6 +47,7 @@ export class DetailPesananPage {
   constructor(public nav: NavController, 
     public navParams: NavParams,
     public alertCtrl: AlertController,
+    public toastCtrl: ToastController,
     public httpClient: HttpClient,
     public data: Data,
     public modalCtrl: ModalController) {
@@ -156,5 +157,43 @@ export class DetailPesananPage {
   gotoKirimSertifikat(){
     let modal = this.modalCtrl.create(KirimSertifikatPage);
     modal.present();
+  }
+
+  lihatSertif(){
+    let alert = this.alertCtrl.create({
+      title: 'Serifikat Hasil Uji',
+      message: 'Jika Anda menginginkan pengiriman berkas sertifikat, pilih Kirim',
+      buttons: [
+        {
+          text: 'Kirim (COD)',
+          role: 'cancel',
+          handler: () => {
+            console.log('Kirim sertif');
+          }
+        },
+        {
+          text: 'Unduh',
+          role: 'cancel',
+          handler: () => {
+            console.log('Unduh sertif');
+            this.toastUnduhSertif();
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+  toastUnduhSertif() {
+    let toast = this.toastCtrl.create({
+      message: 'Sertifikat berhasil diunduh',
+      duration: 3000,
+      position: 'bottom'
+    });
+
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+
+    toast.present();
   }
 }
