@@ -9,6 +9,7 @@
 
 <ion-content style="background-color: gainsboro">
 
+  <!-- DATA DIRI -->
   <ion-card (click)="editProfil()" padding>
     <ion-grid no-padding>
       <ion-row class="head-card">
@@ -45,9 +46,9 @@
       </ion-row>
     </ion-grid>
   </ion-card>
-  <ion-card padding-left *ngIf="!dataDiri">
-    <p style="color:red">Lengkapi data diri anda</p>
-  </ion-card>
+  <!-- <ion-card padding-left *ngIf="!dataDiri"> -->
+    <p padding-left *ngIf="!dataDiri" style="color:red">Lengkapi data diri anda</p>
+  <!-- </ion-card> -->
 
   <ion-card>
     <ion-grid>
@@ -130,10 +131,10 @@
       </ion-row>
       <ion-row>
         <ion-col col-12>
-          <p *ngIf="sisaSampel == 1" class="text-content">
+          <p *ngIf="sisaSampel == 1" text-wrap class="text-content">
             Akan diambil setelah pengujian selesai
           </p>
-          <p *ngIf="sisaSampel == 2" text-wrap class="text-content">
+          <p *ngIf="sisaSampel == 0" text-wrap class="text-content">
             Akan ditinggalkan dan dalam 3 bulan ke depan akan dimusnahkan
           </p>
           <ion-item *ngIf="!sisaSampelSelected">
@@ -160,6 +161,7 @@
     </ion-grid>
   </ion-card>
 
+  <!-- HARGA -->
   <ion-card no-margin>
     <ion-grid>
       <ion-row>

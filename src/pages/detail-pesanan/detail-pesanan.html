@@ -14,22 +14,23 @@
 
 
 <ion-content style="background-color: whitesmoke;">
-  <ion-card>
+
+  <!-- STATUS UTAMA -->
+  <ion-card *ngIf="status.WaktuPesananDibuat">
     <ion-grid class=" space">
       <ion-row>
         <ion-col col-1 align-self-right text-right class="status_utama">
-          <ion-icon name="copy" color="primary"></ion-icon>
+          <ion-icon name="copy" color="primary" *ngIf="status.StatusUtama <= 5"></ion-icon>
+          <ion-icon name="copy" color="danger" *ngIf="status.StatusUtama > 5"></ion-icon>
         </ion-col>
         <ion-col col-11 class="status_utama">
           <h2 class="text-utama">
             {{status_utama}}
           </h2>
-
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col col-1 class="status_utama">
-
         </ion-col>
         <ion-col col-11 class="status_utama">
           <p>
@@ -40,7 +41,9 @@
       </ion-row>
     </ion-grid>
   </ion-card>
-  <ion-card>
+
+  <!-- DATA DIRI -->
+  <ion-card *ngIf="status.WaktuPesananDibuat">
     <ion-grid>
       <ion-row>
         <ion-col col-12>
@@ -70,7 +73,9 @@
       </ion-row>
     </ion-grid>
   </ion-card>
-  <ion-card>
+
+  <!-- STATUS ANALISIS -->
+  <ion-card *ngIf="status.StatusUtama >= 3 && status.StatusUtama <= 5">
     <ion-grid>
       <ion-row>
         <ion-col col-11>
@@ -86,15 +91,15 @@
           <div class="timeline">
             <div class="container2 right2">
               <div class="content statusA">
-                <p>{{ first }}<br>
-                  18-02-2019 09:29</p>
+                <p>{{ awal.status }}<br>
+                  {{ awal.waktu | date: 'dd-MM-yyyy HH:mm' }}</p>
               </div>
             </div>
             <div *ngIf="moreStatus">
               <div class="container right" *ngFor="let status of sisa">
                 <div class="content statusA">
-                  <p>{{ status }}<br>
-                    18-02-2019 09:29</p>
+                  <p>{{ status.status }}<br>
+                    {{ status.waktu | date: 'dd-MM-yyyy HH:mm' }}</p>
                 </div>
               </div>
             </div>
@@ -105,7 +110,8 @@
     </ion-grid>
   </ion-card>
 
-  <ion-card>
+  <!-- INFORMASI PEMBAYARAN -->
+  <ion-card *ngIf="status.WaktuPesananDibuat">
     <ion-grid>
       <ion-row>
         <ion-col col-1 text-right align-self-center>
@@ -120,10 +126,14 @@
 
         </ion-col>
         <ion-col col-7>
-          Sub total
+          Sub total <span *ngIf="pesanan.Percepatan == 2">(percepatan)</span>
         </ion-col>
         <ion-col col-4 text-right>
-          Rp {{ pesanan.HargaTotal-429| number:0 }}
+          <span *ngIf="pesanan.Percepatan == 1"> Rp {{ pesanan.HargaTotal-kodeUnik| number:0 }}</span>
+          <span *ngIf="pesanan.Percepatan == 2">
+            Rp ({{ (pesanan.HargaTotal-kodeUnik) / 2 }})x2<br>
+            Rp {{ pesanan.HargaTotal - kodeUnik}}
+          </span>
         </ion-col>
       </ion-row>
       <ion-row>
@@ -134,7 +144,7 @@
           Kode Unik
         </ion-col>
         <ion-col col-4 text-right>
-          Rp 429
+          Rp {{ kodeUnik }}
         </ion-col>
       </ion-row>
       <ion-row>
@@ -151,7 +161,8 @@
     </ion-grid>
   </ion-card>
 
-  <ion-card>
+  <!-- PESANAN -->
+  <ion-card *ngIf="status.WaktuPesananDibuat">
     <ion-grid>
       <ion-row class="line">
         <ion-col col-2>
@@ -209,16 +220,23 @@
           </p>
         </ion-col>
       </ion-row>
-
-      <ion-row>
+      <ion-row *ngIf="pesanan.Keterangan">
         <ion-col col-6>
+          Keterangan
+        </ion-col>
+        <ion-col col-6 text-right>
+          {{ pesanan.Keterangan }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6 *ngIf="status.WaktuPesananDibuat">
           No Pesanan
         </ion-col>
         <ion-col col-6 text-right>
           {{ pesanan.NoPesanan }}
         </ion-col>
       </ion-row>
-      <ion-row>
+      <ion-row *ngIf="status.WaktuPesananDibuat">
         <ion-col col-6>
           Pesanan Dibuat
         </ion-col>
@@ -226,7 +244,7 @@
           {{ status.WaktuPesananDibuat | date: 'dd-MM-yyyy HH:mm' }}
         </ion-col>
       </ion-row>
-      <ion-row *ngIf="status.StatusPembayaran == 2">
+      <ion-row *ngIf="status.StatusPembayaran == 3">
         <ion-col col-6>
           Pesanan Dibayar
         </ion-col>
@@ -253,18 +271,16 @@
     </ion-grid>
   </ion-card>
 
-  <ion-card>
+  <!-- FORMULIR PERMOHONAN SAMPEL & TANDA TERIMA SAMPEL-->
+  <ion-card *ngIf="status.StatusUtama == 2">
     <ion-grid>
       <ion-row>
-        <!-- <ion-col col-1 text-right align-self-center>
-          <ion-icon name="document" color="primary"></ion-icon>
-        </ion-col> -->
         <ion-col col-9>
           <h2>Formulir Permohonan Sampel</h2>
         </ion-col>
         <ion-col col-3 text-right>
           <p>
-            <strong><a (click)="toastUnduhSertif()">Unduh</a></strong>
+            <strong><a (click)="toastUnduh()">Unduh</a></strong>
           </p>
         </ion-col>
       </ion-row>
@@ -273,20 +289,18 @@
           Pesanan tervalidasi: {{ status.WaktuValidasiPesanan | date: 'dd-MM-yyyy HH:mm' }}
         </ion-col>
       </ion-row>
-      <ion-row class="line2">
-        <!-- <ion-col col-1 text-right align-self-center>
-          <ion-icon name="checkmark-circle" color="primary"></ion-icon>
-        </ion-col> -->
+
+      <ion-row class="line2" *ngIf="status.StatusKirimSampel == 3">
         <ion-col col-9>
           <h2>Tanda Terima Sampel</h2>
         </ion-col>
         <ion-col col-3 text-right>
           <p>
-            <strong><a (click)="toastUnduhSertif()">Unduh</a></strong>
+            <strong><a (click)="toastUnduh()">Unduh</a></strong>
           </p>
         </ion-col>
       </ion-row>
-      <ion-row>
+      <ion-row *ngIf="status.StatusKirimSampel == 3">
         <ion-col col-12 class="text-item">
           Sampel diterima: {{ status.WaktuKirimSampel | date: 'dd-MM-yyyy HH:mm' }}
         </ion-col>
@@ -294,8 +308,8 @@
     </ion-grid>
   </ion-card>
 
-
-  <ion-card>
+  <!-- SERTIFIKAT HASIL UJI -->
+  <ion-card *ngIf="status.StatusUtama == 5">
     <ion-grid>
       <ion-row>
         <ion-col col-1 text-right align-self-center>
@@ -306,32 +320,47 @@
         </ion-col>
         <ion-col col-3 text-right>
           <p>
-            <strong><a (click)="lihatSertif()">Lihat</a></strong>
+            <strong>
+              <a (click)="lihatSertif()" *ngIf="status.StatusKirimSertifikat == 0">Lihat</a>
+              <a (click)="toastUnduh()" *ngIf="status.StatusKirimSertifikat > 0">Unduh</a>
+            </strong>
           </p>
         </ion-col>
       </ion-row>
-      <ion-row>
-        <ion-col col-12 class="text-item">
+      <ion-row *ngIf="status.StatusKirimSertifikat > 0">
+        <ion-col col-12 class="text-item" *ngIf="status.StatusKirimSertifikat == 1">
+          Menunggu pengiriman
+        </ion-col>
+        <ion-col col-8 class="text-item" *ngIf="status.StatusKirimSertifikat > 1">
           No Resi: J0832C02S01A21
-          <div>
+          <div *ngIf="status.StatusKirimSertifikat == 3">
             Diterima: {{ status.WaktuTerimaSertifikat | date: 'dd-MM-yyyy HH:mm' }}
           </div>
         </ion-col>
+        <ion-col col-4 *ngIf="status.StatusKirimSertifikat == 2">
+          <button ion-button block outline text-capitalize (click)="ubahStatus('terimaSertif')">
+            Terima
+          </button>
+        </ion-col>
       </ion-row>
-      <ion-row class="line2">
+
+      <ion-row class="line2" *ngIf="status.StatusSisaSampel > 0 && status.StatusUtama == 5">
         <ion-col col-11>
           <h2>Pengiriman Sisa Sampel (COD)</h2>
         </ion-col>
       </ion-row>
-      <ion-row>
-        <ion-col col-8 class="text-item">
+      <ion-row *ngIf="status.StatusSisaSampel > 0 && status.StatusUtama == 5">
+        <ion-col col-12 class="text-item" *ngIf="status.StatusSisaSampel == 1">
+          Menunggu pengiriman
+        </ion-col>
+        <ion-col col-8 class="text-item" *ngIf="status.StatusSisaSampel > 1">
           No Resi: J0832C02S01A21
-          <div>
+          <div *ngIf="status.StatusSisaSampel == 3">
             Diterima: {{ status.WaktuTerimaSisa | date: 'dd-MM-yyyy HH:mm' }}
           </div>
         </ion-col>
-        <ion-col col-4>
-          <button ion-button block outline text-capitalize>
+        <ion-col col-4 *ngIf="!status.WaktuTerimaSisa && status.StatusSisaSampel == 2">
+          <button ion-button block outline text-capitalize (click)="ubahStatus('terimaSisa')">
             Terima
           </button>
         </ion-col>
@@ -339,42 +368,43 @@
     </ion-grid>
   </ion-card>
 
-  <ion-card no-margin>
+  <!-- BUTTON -->
+  <ion-card no-margin *ngIf="status.StatusUtama < 6">
     <ion-grid>
-      <ion-row>
-        <ion-col col-6 text-center>
-          <button ion-button outline block color="orange" (click)="gotoPembayaran()" text-capitalize>
+      <ion-row *ngIf="status.StatusUtama < 3">
+        <ion-col col-6 text-center *ngIf="status.StatusPembayaran !== 3">
+          <button ion-button outline block color="orange" (click)="goto('pembayaran')" text-capitalize>
             <ion-icon name="cash"></ion-icon>
             Bayar Sekarang
           </button>
         </ion-col>
-        <ion-col col-6 text-center>
-          <button ion-button outline block (click)="gotoKirimSampel()" text-capitalize>
+        <ion-col col-6 text-center *ngIf="status.StatusKirimSampel !== 3">
+          <button ion-button outline block (click)="goto('kirimSampel')" text-capitalize>
             <ion-icon name="paper-plane"></ion-icon>
             Kirim Sampel
           </button>
         </ion-col>
       </ion-row>
-      <ion-row class="line2">
+      <ion-row class="line2" *ngIf="status.StatusUtama < 3">
         <ion-col col-12>
-          <button ion-button full color="danger" (click)="gotoBatal()">
+          <button ion-button full color="danger" (click)="goto('batal')">
             Batalkan Pesanan
           </button>
         </ion-col>
       </ion-row>
-      <ion-row class="line" *ngIf="!status.WaktuUlasan && StatusUtama == 5">
+      <ion-row *ngIf="!status.WaktuUlasan && status.StatusUtama == 5">
         <ion-col col-12>
-          <button ion-button full (click)="gotoUlasan()">
+          <button ion-button full (click)="goto('ulasan')">
             Beri Ulasan
           </button>
         </ion-col>
       </ion-row>
-      <ion-row class="line" *ngIf="status.WaktuUlasan && StatusUtama == 5">
+      <ion-row *ngIf="status.WaktuUlasan && status.StatusUtama == 5">
         <ion-col col-8 align-self-center>
           Telah diulas pada {{ status.WaktuUlasan | date: 'dd-MM-yyyy' }}
         </ion-col>
         <ion-col col-4>
-          <button ion-button outline block (click)="gotoUlasan()" text-capitalize>
+          <button ion-button outline block (click)="goto('ulasan')" text-capitalize>
             Lihat
           </button>
         </ion-col>

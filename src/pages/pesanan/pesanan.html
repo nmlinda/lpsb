@@ -148,7 +148,7 @@
               <ion-row>
                 <ion-col col-12>
                   <ion-buttons end>
-                    <button ion-button color="primary" (click)="detailPesanan(item.IDPesanan)">
+                    <button ion-button text-capitalize color="primary" (click)="detailPesanan(item.IDPesanan)">
                       Lihat Rincian
                     </button>
                   </ion-buttons>
@@ -161,6 +161,7 @@
 
     </div>
 
+    <!-- DIANALISIS -->
     <div *ngSwitchCase="2">
       <div *ngIf="dianalisis.length == 0">
         <h6 text-center class="no-pesanan">
@@ -168,8 +169,7 @@
           Tidak ada pesanan
         </h6>
       </div>
-      <!-- status = 3 (dikaji ulang) -->
-      <!-- status = 4 (dianalisis) -->
+
       <div *ngFor="let item of dianalisis">
         <ion-card>
           <ion-item>
@@ -207,7 +207,7 @@
                     <br>
                   </p>
                   <p text-right>
-                    Rp 200000
+                    Rp {{ item.awal.HargaSampel | number:0 }}
                   </p>
                 </ion-col>
               </ion-row>
@@ -227,7 +227,7 @@
                         <br>
                       </p>
                       <p text-right>
-                        Rp 200000
+                        Rp {{ sampel.HargaSampel | number:0 }}
                       </p>
                     </ion-col>
                   </ion-row>
@@ -250,10 +250,10 @@
               <ion-row>
                 <ion-col col-6>
                   <p *ngIf="item.StatusUtama == 3">
-                    Pesanan sedang dikaji ulang
+                    Pesanan dikaji ulang
                   </p>
                   <p *ngIf="item.StatusUtama == 4">
-                    Pesanan sedang dianalisis
+                    Pesanan dianalisis
                   </p>
                 </ion-col>
                 <ion-col col-6>
@@ -263,7 +263,7 @@
               <ion-row>
                 <ion-col col-12>
                   <ion-buttons end>
-                    <button ion-button color="primary" [navPush]="detailPesanan">
+                    <button ion-button text-capitalize color="primary" (click)="detailPesanan(item.IDPesanan)">
                       Lihat Rincian
                     </button>
                   </ion-buttons>
@@ -283,7 +283,7 @@
           Tidak ada pesanan
         </h6>
       </div>
-      <!-- status = 5 (Selesai) -->
+      <!-- SELESAI -->
       <div *ngFor="let item of selesai">
         <ion-card>
           <ion-item>
@@ -318,7 +318,7 @@
                     <br>
                   </p>
                   <p text-right>
-                    Rp 200000
+                    Rp {{ item.awal.HargaSampel | number:0 }}
                   </p>
                 </ion-col>
               </ion-row>
@@ -338,7 +338,7 @@
                         <br>
                       </p>
                       <p text-right>
-                        Rp 200000
+                        Rp {{ sampel.HargaSampel | number:0 }}
                       </p>
                     </ion-col>
                   </ion-row>
@@ -377,25 +377,10 @@
               <ion-row>
                 <ion-col col-12>
                   <ion-buttons end>
-                    <button ion-button color="primary" [navPush]="detailPesanan">
+                    <button ion-button text-capitalize color="primary" (click)="detailPesanan(item.IDPesanan)">
                       Lihat Rincian
                     </button>
                   </ion-buttons>
-                </ion-col>
-              </ion-row>
-              <ion-row>
-                <ion-col col-8>
-                  <p *ngIf="item.status_ulasan == 0">
-                    Beri ulasan
-                  </p>
-                  <p *ngIf="item.status_ulasan == 1">
-                    Lihat ulasan anda
-                  </p>
-                </ion-col>
-                <ion-col col-4 text-right>
-                  <button ion-button text-capitalize>
-                    Ulasan
-                  </button>
                 </ion-col>
               </ion-row>
             </ion-grid>
@@ -458,7 +443,7 @@
             <ion-row>
               <ion-col col-12>
                 <ion-buttons end>
-                  <button ion-button color="primary" [navPush]="detailPesanan">
+                  <button ion-button text-capitalize color="primary" (click)="detailPesanan(item.IDPesanan)">
                     Lihat Rincian
                   </button>
                 </ion-buttons>
@@ -469,7 +454,7 @@
                 <p>Beri ulasan sebelum 19-01-2019</p>
               </ion-col>
               <ion-col col-4 text-right>
-                <button ion-button text-capitalize>
+                <button ion-button text-capitalize text-capitalize>
                   Ulasan
                 </button>
               </ion-col>
@@ -534,7 +519,7 @@
             <ion-row>
               <ion-col col-12>
                 <ion-buttons end>
-                  <button ion-button color="primary" [navPush]="detailPesanan">
+                  <button ion-button text-capitalize color="primary" (click)="detailPesanan(item.IDPesanan)">
                     Lihat Rincian
                   </button>
                 </ion-buttons>
@@ -545,7 +530,7 @@
                 <p>Beri ulasan sebelum 19-01-2019</p>
               </ion-col>
               <ion-col col-4 text-right>
-                <button ion-button text-capitalize>
+                <button ion-button text-capitalize text-capitalize>
                   Ulasan
                 </button>
               </ion-col>
@@ -610,7 +595,7 @@
             <ion-row>
               <ion-col col-12>
                 <ion-buttons end>
-                  <button ion-button color="primary" [navPush]="detailPesanan">
+                  <button ion-button text-capitalize color="primary" (click)="detailPesanan(item.IDPesanan)">
                     Lihat Rincian
                   </button>
                 </ion-buttons>
@@ -621,7 +606,7 @@
                 <p>Beri ulasan sebelum 19-01-2019</p>
               </ion-col>
               <ion-col col-4 text-right>
-                <button ion-button text-capitalize>
+                <button ion-button text-capitalize text-capitalize>
                   Ulasan
                 </button>
               </ion-col>
@@ -686,7 +671,7 @@
             <ion-row>
               <ion-col col-12>
                 <ion-buttons end>
-                  <button ion-button color="primary" [navPush]="detailPesanan">
+                  <button ion-button text-capitalize color="primary" (click)="detailPesanan(item.IDPesanan)">
                     Lihat Rincian
                   </button>
                 </ion-buttons>
@@ -697,7 +682,7 @@
                 <p>Lihat ulasan anda</p>
               </ion-col>
               <ion-col col-4 text-right>
-                <button ion-button text-capitalize>
+                <button ion-button text-capitalize text-capitalize>
                   Ulasan
                 </button>
               </ion-col>
@@ -750,7 +735,7 @@
                     <br>
                   </p>
                   <p text-right>
-                    Rp 200000
+                    Rp {{ item.awal.HargaSampel | number:0 }}
                   </p>
                 </ion-col>
               </ion-row>
@@ -770,7 +755,7 @@
                         <br>
                       </p>
                       <p text-right>
-                        Rp 200000
+                        Rp {{ sampel.HargaSampel | number:0 }}
                       </p>
                     </ion-col>
                   </ion-row>
@@ -793,12 +778,12 @@
               <ion-row>
                 <ion-col col-12>
                   <ion-row>
-                    <ion-col col-6>
+                    <ion-col col-6  align-self-center>
                       <p>Dibatalkan anda</p>
                     </ion-col>
                     <ion-col col-6>
                       <ion-buttons end>
-                        <button ion-button color="primary" [navPush]="detailPesanan">
+                        <button ion-button text-capitalize color="primary" (click)="detailPesanan(item.IDPesanan)">
                           Lihat Rincian
                         </button>
                       </ion-buttons>
@@ -863,7 +848,7 @@
                   </ion-col>
                   <ion-col col-6>
                     <ion-buttons end>
-                      <button ion-button color="primary" [navPush]="detailPesanan">
+                      <button ion-button text-capitalize color="primary" (click)="detailPesanan(item.IDPesanan)">
                         Lihat Rincian
                       </button>
                     </ion-buttons>
@@ -929,7 +914,7 @@
                   </ion-col>
                   <ion-col col-6>
                     <ion-buttons end>
-                      <button ion-button color="primary" [navPush]="detailPesanan">
+                      <button ion-button text-capitalize color="primary" (click)="detailPesanan(item.IDPesanan)">
                         Lihat Rincian
                       </button>
                     </ion-buttons>

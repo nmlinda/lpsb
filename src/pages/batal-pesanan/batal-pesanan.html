@@ -27,24 +27,22 @@
     <ion-list radio-group no-margin [(ngModel)]="alasan">
       <ion-item no-padding>
         <ion-label class="label">Saya salah memasukkan input</ion-label>
-        <ion-radio value="1" item-left></ion-radio>
+        <ion-radio value="Saya salah memasukkan input" item-left style="margin: 6px;"></ion-radio>
       </ion-item>
       <ion-item no-padding>
         <ion-label class="label">Saya ingin mengubah data pesanan</ion-label>
-        <ion-radio value="2" item-left></ion-radio>
+        <ion-radio value="Saya ingin mengubah data pesanan" item-left style="margin: 6px;"></ion-radio>
       </ion-item>
       <ion-item no-padding>
         <ion-label class="label">Lainnya</ion-label>
-        <ion-radio value="2" item-left></ion-radio>
-      </ion-item>
-
-      <ion-item>
-        <ion-input type="text" [disabled]="inputAsal" [(ngModel)]="institusiLainnya"></ion-input>
+        <ion-radio value="lain" item-left style="margin: 6px;" (ionSelect)="lainnya()"></ion-radio>
+  
+        <ion-input  *ngIf="alasanLain" type="text" [(ngModel)]="alasanLainnya" autofocus="true"></ion-input>
       </ion-item>
     </ion-list>
   </div>
   <div class="footer" scrollY="false">
-    <button ion-button full icon-only no-margin>
+    <button ion-button full color="danger" no-margin (click)="batal()">
       Batalkan
     </button>
   </div>

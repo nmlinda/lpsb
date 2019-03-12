@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { Data } from '../../provider/data';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 /**
  * Generated class for the CariPage page.
@@ -14,8 +16,37 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'cari.html',
 })
 export class CariPage {
+  katalogs: any = [];
+  katalog: any = [];
+  listKatalog: any = [];
+  panjang: any;
+  cariAnalisis: string;
+  constructor(public navCtrl: NavController,
+    public data: Data,
+    public alertCtrl: AlertController,
+    public httpClient: HttpClient,
+     public navParams: NavParams) {
+    this.data.getData().then((data) => {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + data.api_token
+        })
+      };
+
+      this.httpClient.get(this.data.BASE_URL + '/getAllKatalogUmum/', httpOptions).subscribe(data => {
+        let response = data;
+        this.katalogs = response;
+        this.listKatalog = this.katalogs.katalogs;
+        console.log(response);
+
+        this.panjang = this.listKatalog.length;
+        for (var i = 0; i < this.panjang; i++) {
+          this.katalog[i] = this.listKatalog[i];
+        }
+      });
+    })
   }
 
   ionViewDidLoad() {

@@ -44,6 +44,7 @@ import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 import { ModalDetailSampelPage } from '../pages/modal-detail-sampel/modal-detail-sampel';
 import { ModalEditProfilPage } from '../pages/modal-edit-profil/modal-edit-profil';
+import { CariPipe } from '../pipes/cari/cari';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,8 @@ import { ModalEditProfilPage } from '../pages/modal-edit-profil/modal-edit-profi
     LoginPage,
     RegisterPage,
     ModalDetailSampelPage,
-    ModalEditProfilPage
+    ModalEditProfilPage,
+    CariPipe
   ],
   imports: [
     HttpClientModule,

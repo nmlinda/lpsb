@@ -23,12 +23,12 @@
 
 
 <ion-content class="grid-content">
-  <ion-searchbar (click)="cari()" class="search-bar">
+  <ion-searchbar (click)="cari()" class="search-bar" [(ngModel)]="cariAnalisis">
   </ion-searchbar>
 
   <ion-grid  no-padding>
     <ion-row>
-      <ion-col *ngFor="let item of katalog" col-6 no-padding>
+      <ion-col *ngFor="let item of katalog | cari : cariAnalisis" col-6 no-padding>
         <ion-card class="card-jenis" (click)="gotoDetailAnalisis(item.IDKatalog)"  text-center>
           <img src="../../assets/imgs/fitokimia.jpg" class="img-jenis">
           <h2 text-uppercase><strong>{{item.JenisAnalisis}}</strong></h2>
