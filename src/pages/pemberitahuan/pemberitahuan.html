@@ -15,17 +15,33 @@
 
 <ion-content>
   <ion-list no-margin *ngIf="notif.length > 0">
-    <ion-item class="dibaca" *ngFor="let item of notif" (click)="detailPesanan(item.IDPemberitahuan, item.IDPesanan)">
-      <h3 class="head" *ngIf="item.IDStatus == 2">Pesanan Anda Tervalidasi
-      </h3>
-      <h4 class="sub-head">
-        <span *ngIf="item.IDStatus == 7">Pesanan <a href="">I/II/13</a> telah dibatalkan karena pembayaran Anda tidak
-          dapat diverifikasi.</span>
-        <span *ngIf="item.IDStatus == 2">Pesanan <a href="">I/II/13</a> telah divalidasi. Segera kirim sampel dan
-          lakukan pembayaran sebelum {{item.WaktuPemberitahuan  | date: 'dd-MM-yyyy'}}.</span>
-      </h4>
-      <p>{{item.WaktuPemberitahuan  | date: 'dd-MM-yyyy HH:mm'}}</p>
-    </ion-item>
+    <div *ngFor="let item of notif">
+      <ion-item class="dibaca" *ngIf="item.Dilihat == 0" (click)="detailPesanan(item.IDPemberitahuan, item.IDPesanan)">
+        <h3 class="head">{{ item.judul }}
+        </h3>
+        <h4 class="sub-head">
+          {{item.pesan}}
+          <!-- <span *ngIf="item.IDStatus == 7">Pesanan <a href="">I/II/13</a> telah dibatalkan karena pembayaran Anda tidak
+                dapat diverifikasi.</span>
+              <span *ngIf="item.IDStatus == 2">Pesanan <a href="">I/II/13</a> telah divalidasi. Segera kirim sampel dan
+                lakukan pembayaran sebelum {{item.WaktuPemberitahuan  | date: 'dd-MM-yyyy'}}.</span> -->
+        </h4>
+        <p>{{item.WaktuPemberitahuan  | date: 'dd-MM-yyyy HH:mm'}}</p>
+      </ion-item>
+      <ion-item class="belum-dibaca" *ngIf="item.Dilihat == 1" (click)="detailPesanan(item.IDPemberitahuan, item.IDPesanan)">
+          <h3 class="head">{{ item.judul }}
+          </h3>
+          <h4 class="sub-head">
+            {{item.pesan}}
+            <!-- <span *ngIf="item.IDStatus == 7">Pesanan <a href="">I/II/13</a> telah dibatalkan karena pembayaran Anda tidak
+              dapat diverifikasi.</span>
+            <span *ngIf="item.IDStatus == 2">Pesanan <a href="">I/II/13</a> telah divalidasi. Segera kirim sampel dan
+              lakukan pembayaran sebelum {{item.WaktuPemberitahuan  | date: 'dd-MM-yyyy'}}.</span> -->
+          </h4>
+          <p>{{item.WaktuPemberitahuan  | date: 'dd-MM-yyyy HH:mm'}}</p>
+        </ion-item>
+    </div>
+
 
   </ion-list>
   <div class="no-notif" *ngIf="notif.length == 0">

@@ -49,6 +49,42 @@ export class PemberitahuanPage {
         console.log(response);
         if (this.notif.Pemberitahuans) {
           this.notif = this.notif.Pemberitahuans;
+          for (var i = 0; i < this.notif.length; i++) {
+            if(this.notif[i].IDStatus == 2){
+              this.notif[i].judul = 'Pesanan Divalidasi';
+              this.notif[i].pesan = 'Pesanan '+this.notif[i].IDPesanan+' telah divalidasi. Segera kirim sampel dan lakukan pembayaran.';
+            } 
+            else if(this.notif[i].IDStatus == 3){
+              this.notif[i].judul = 'Pesanan Dikaji Ulang';
+              this.notif[i].pesan = 'Pesanan '+this.notif[i].IDPesanan+' sedang dikaji ulang.';
+            }
+            else if(this.notif[i].IDStatus == 4){
+              this.notif[i].judul = 'Pesanan Dianalisis';
+              this.notif[i].pesan = 'Pesanan '+this.notif[i].IDPesanan+' sedang dianalisis.';
+            }
+            else if(this.notif[i].IDStatus == 5){
+              this.notif[i].judul = 'Pesanan Selesai';
+              this.notif[i].pesan = 'Pesanan '+this.notif[i].IDPesanan+' telah selesai. Silahkan unduh sertifikat hasil uji';
+            }
+            else if(this.notif[i].IDStatus == 6){
+              this.notif[i].judul = 'Pesanan Dibatalkan';
+              this.notif[i].pesan = 'Pesanan '+this.notif[i].IDPesanan+' telah dibatalkan oleh Anda.';
+            }
+            else if(this.notif[i].IDStatus == 7){
+              this.notif[i].judul = 'Pesanan Dibatalkan';
+              this.notif[i].pesan = 'Pesanan '+this.notif[i].IDPesanan+' telah dibatalkan oleh Sistem.';
+            }
+            else if(this.notif[i].IDStatus == 52){
+              this.notif[i].judul = 'Sertifikat Dikirim';
+              this.notif[i].pesan = 'Sertifikat pesanan '+this.notif[i].IDPesanan+' telah dikirim.';
+            }
+            else if(this.notif[i].IDStatus == 51){
+              this.notif[i].judul = 'Sisa Sampel Dikirim';
+              this.notif[i].pesan = 'Sisa sampel pesanan '+this.notif[i].IDPesanan+' telah dikirim.';
+            }
+           
+          }
+          console.log(this.notif)
 
         } else {
           let alert = this.alertCtrl.create({
@@ -76,7 +112,7 @@ export class PemberitahuanPage {
         IDPemberitahuan: id_notif,
       });
 
-      this.httpClient.post(this.data.BASE_URL + '/readPemberitahuan',input, httpOptions).subscribe(data => {
+      this.httpClient.post(this.data.BASE_URL + '/readPemberitahuan', input, httpOptions).subscribe(data => {
         this.response = data;
         if (this.response.Status == 200) {
           console.log(this.response)
