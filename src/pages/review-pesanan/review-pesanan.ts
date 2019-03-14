@@ -152,7 +152,7 @@ export class ReviewPesananPage {
 
   checkout() {
     if (this.nama && this.institusi && this.alamat && this.email && this.noHp && this.npwp) {
-      if (this.sisaSampel) {
+      if (this.sisaSampel >= 0) {
         this.sisaSampelSelected = true;
         this.dataDiri = true;
         let loading = this.loadCtrl.create({
@@ -167,7 +167,7 @@ export class ReviewPesananPage {
               lama_pengujian: this.lamaPengujian,
               sisa_sampel: this.sisaSampel,
               harga_total: this.totalHarga,
-              Keterangan: this.keterangan,
+              KeteranganPesanan: this.keterangan,
               data_user: this.data_user,
               data_rek: {
                 NamaBank: this.data_rek.NamaBank,
@@ -216,8 +216,7 @@ export class ReviewPesananPage {
 
         })
 
-      }
-      else {
+      }else{
         this.sisaSampelSelected = false;
         this.toastSisa();
       }
@@ -246,7 +245,7 @@ export class ReviewPesananPage {
         }, {
           text: 'Akan ditinggalkan dan dalam 3 bulan ke depan akan dimusnahkan',
           handler: () => {
-            this.sisaSampel = 2;
+            this.sisaSampel = 0;
           }
         }, {
           text: 'Kembali',

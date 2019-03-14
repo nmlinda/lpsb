@@ -41,8 +41,8 @@ export class CheckoutPage {
   // }
 
   gotoBeranda() {
-    this.viewCtrl.dismiss().then(() => {
-      this.navCtrl.setRoot(TabsPage);
-  });
+    // this.viewCtrl.dismiss().then(() => {
+      this.navCtrl.push(TabsPage);
+  // });
   }
 }

@@ -52,35 +52,43 @@ export class PemberitahuanPage {
           for (var i = 0; i < this.notif.length; i++) {
             if(this.notif[i].IDStatus == 2){
               this.notif[i].judul = 'Pesanan Divalidasi';
-              this.notif[i].pesan = 'Pesanan '+this.notif[i].IDPesanan+' telah divalidasi. Segera kirim sampel dan lakukan pembayaran.';
+              this.notif[i].pesan = 'Pesanan No. '+this.notif[i].NoPesanan+' telah divalidasi. Segera kirim sampel dan lakukan pembayaran.';
             } 
+            else if(this.notif[i].IDStatus == 21){
+              this.notif[i].judul = 'Pembayaran tervalidasi';
+              this.notif[i].pesan = 'Pesanan No. '+this.notif[i].NoPesanan+' sudah dibayar.';
+            }
+            else if(this.notif[i].IDStatus == 22){
+              this.notif[i].judul = 'Sampel diterima';
+              this.notif[i].pesan = 'Sampel No. '+this.notif[i].NoPesanan+' sudah diterima.';
+            }
             else if(this.notif[i].IDStatus == 3){
               this.notif[i].judul = 'Pesanan Dikaji Ulang';
-              this.notif[i].pesan = 'Pesanan '+this.notif[i].IDPesanan+' sedang dikaji ulang.';
+              this.notif[i].pesan = 'Pesanan No. '+this.notif[i].NoPesanan+' sedang dikaji ulang.';
             }
             else if(this.notif[i].IDStatus == 4){
               this.notif[i].judul = 'Pesanan Dianalisis';
-              this.notif[i].pesan = 'Pesanan '+this.notif[i].IDPesanan+' sedang dianalisis.';
+              this.notif[i].pesan = 'Pesanan No. '+this.notif[i].NoPesanan+' sedang dianalisis.';
             }
             else if(this.notif[i].IDStatus == 5){
               this.notif[i].judul = 'Pesanan Selesai';
-              this.notif[i].pesan = 'Pesanan '+this.notif[i].IDPesanan+' telah selesai. Silahkan unduh sertifikat hasil uji';
+              this.notif[i].pesan = 'Pesanan No. '+this.notif[i].NoPesanan+' telah selesai. Silahkan unduh sertifikat hasil uji';
             }
             else if(this.notif[i].IDStatus == 6){
               this.notif[i].judul = 'Pesanan Dibatalkan';
-              this.notif[i].pesan = 'Pesanan '+this.notif[i].IDPesanan+' telah dibatalkan oleh Anda.';
+              this.notif[i].pesan = 'Pesanan No. '+this.notif[i].NoPesanan+' telah dibatalkan oleh Anda.';
             }
             else if(this.notif[i].IDStatus == 7){
               this.notif[i].judul = 'Pesanan Dibatalkan';
-              this.notif[i].pesan = 'Pesanan '+this.notif[i].IDPesanan+' telah dibatalkan oleh Sistem.';
+              this.notif[i].pesan = 'Pesanan No. '+this.notif[i].NoPesanan+' telah dibatalkan oleh Sistem.';
             }
             else if(this.notif[i].IDStatus == 52){
               this.notif[i].judul = 'Sertifikat Dikirim';
-              this.notif[i].pesan = 'Sertifikat pesanan '+this.notif[i].IDPesanan+' telah dikirim.';
+              this.notif[i].pesan = 'Sertifikat pesanan No. '+this.notif[i].NoPesanan+' telah dikirim.';
             }
             else if(this.notif[i].IDStatus == 51){
               this.notif[i].judul = 'Sisa Sampel Dikirim';
-              this.notif[i].pesan = 'Sisa sampel pesanan '+this.notif[i].IDPesanan+' telah dikirim.';
+              this.notif[i].pesan = 'Sisa sampel pesanan No. '+this.notif[i].NoPesanan+' telah dikirim.';
             }
            
           }

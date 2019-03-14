@@ -35,6 +35,7 @@
         <ion-col col-11 class="status_utama">
           <p>
             {{ket_status_utama }}<br>
+            <span *ngIf="status.StatusUtama ==7"></span>
             Waktu: {{ waktu_status_utama | date: 'dd-MM-yyyy HH:mm' }}
           </p>
         </ion-col>
@@ -332,7 +333,7 @@
           Menunggu pengiriman
         </ion-col>
         <ion-col col-8 class="text-item" *ngIf="status.StatusKirimSertifikat > 1">
-          No Resi: J0832C02S01A21
+          No Resi: {{ status.ResiPengirimanSertif }}
           <div *ngIf="status.StatusKirimSertifikat == 3">
             Diterima: {{ status.WaktuTerimaSertifikat | date: 'dd-MM-yyyy HH:mm' }}
           </div>
@@ -354,7 +355,7 @@
           Menunggu pengiriman
         </ion-col>
         <ion-col col-8 class="text-item" *ngIf="status.StatusSisaSampel > 1">
-          No Resi: J0832C02S01A21
+          No Resi: {{ status.ResiPengirimanSisa }}
           <div *ngIf="status.StatusSisaSampel == 3">
             Diterima: {{ status.WaktuTerimaSisa | date: 'dd-MM-yyyy HH:mm' }}
           </div>
@@ -371,21 +372,21 @@
   <!-- BUTTON -->
   <ion-card no-margin *ngIf="status.StatusUtama < 6">
     <ion-grid>
-      <ion-row *ngIf="status.StatusUtama < 3">
-        <ion-col col-6 text-center *ngIf="status.StatusPembayaran !== 3">
+      <ion-row *ngIf="status.StatusUtama == 2">
+        <ion-col col-6 text-center *ngIf="status.StatusPembayaran == 1">
           <button ion-button outline block color="orange" (click)="goto('pembayaran')" text-capitalize>
             <ion-icon name="cash"></ion-icon>
             Bayar Sekarang
           </button>
         </ion-col>
-        <ion-col col-6 text-center *ngIf="status.StatusKirimSampel !== 3">
+        <ion-col col-6 text-center *ngIf="status.StatusKirimSampel == 1">
           <button ion-button outline block (click)="goto('kirimSampel')" text-capitalize>
             <ion-icon name="paper-plane"></ion-icon>
             Kirim Sampel
           </button>
         </ion-col>
       </ion-row>
-      <ion-row class="line2" *ngIf="status.StatusUtama < 3">
+      <ion-row class="" *ngIf="status.StatusUtama == 1">
         <ion-col col-12>
           <button ion-button full color="danger" (click)="goto('batal')">
             Batalkan Pesanan

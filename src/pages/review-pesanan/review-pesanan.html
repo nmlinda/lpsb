@@ -121,10 +121,10 @@
           </p>
         </ion-col>
         <ion-col col-3>
-          <button ion-button text-capitalize block (click)="pilihSisa()" *ngIf="!sisaSampel">
+          <button ion-button text-capitalize block (click)="pilihSisa()" *ngIf="sisaSampel != 1 && sisaSampel != 0">
             Pilih
           </button>
-          <button ion-button text-capitalize block (click)="pilihSisa()" *ngIf="sisaSampel" outline>
+          <button ion-button text-capitalize block (click)="pilihSisa()" *ngIf="sisaSampel >= 0" outline>
             Ubah
           </button>
         </ion-col>

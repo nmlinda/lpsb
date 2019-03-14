@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, ViewController, AlertController, T
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Data } from '../../provider/data';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { DetailPesananPage } from '../detail-pesanan/detail-pesanan';
 
 /**
  * Generated class for the PembayaranPage page.
@@ -86,8 +87,11 @@ export class PembayaranPage {
         this.simpanRek = response;
         console.log(response);
         if (this.simpanRek.Status === 200) {
-          this.data.setRekening(this.simpanRek); // simpan response ke local storage
-          this.viewCtrl.dismiss();
+          let currentIndex = this.navCtrl.getActive().index;
+          this.navCtrl.push(DetailPesananPage, { data: this.idPesanan }).then(() => {
+            this.navCtrl.remove(currentIndex);
+            // this.navCtrl.remove(currentIndex-1);
+          });
         }
         else {
           let alert = this.alertCtrl.create({

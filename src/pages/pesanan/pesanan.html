@@ -132,19 +132,19 @@
                   </p>
                 </ion-col>
               </ion-row>
-              <ion-row>
-                <ion-col col-6 *ngIf="item.status_pembayaran == 2 || status_pengiriman == 2">
-                  <p *ngIf="item.status_pembayaran == 2">
+              <!-- <ion-row *ngIf="item.status_pembayaran != 3 && status_pengiriman != 3">
+                <ion-col col-6 >
+                  <p *ngIf="item.status_pembayaran == 3">
                     Pesanan dibayar
                   </p>
-                  <p *ngIf="item.status_pengiriman == 2">
+                  <p *ngIf="item.status_pengiriman == 3">
                     Sampel diterima
                   </p>
                 </ion-col>
-                <ion-col col-6 *ngIf="item.status_pembayaran == 2 || status_pengiriman == 2">
+                <ion-col col-6>
                   <p text-right>{{item.WaktuStatusTerbaru | date: 'dd-MM-yyyy HH:mm'}}</p>
                 </ion-col>
-              </ion-row>
+              </ion-row> -->
               <ion-row>
                 <ion-col col-12>
                   <ion-buttons end>

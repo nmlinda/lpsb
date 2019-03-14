@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, AlertController, ToastController } from 'ionic-angular';
 import { Data } from '../../provider/data';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { DetailPesananPage } from '../detail-pesanan/detail-pesanan';
 
 /**
  * Generated class for the KirimSampelPage page.
@@ -17,8 +18,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class KirimSampelPage {
   idPesanan: any;
+  statusKirim: any;
   kirimJasa: boolean = false;
   kirimSampel: any = [];
+  getResi: any = [];
   noResi: string;
   kirim: string;
 
@@ -29,25 +32,67 @@ export class KirimSampelPage {
     public toastCtrl: ToastController,
     public alertCtrl: AlertController,
     public viewCtrl: ViewController) {
-    this.idPesanan = this.navParams.get('id');
-    console.log(this.idPesanan)
+    
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad KirimSampelPage');
   }
 
-  closeModal(){
+  ionViewWillEnter() {
+    this.idPesanan = this.navParams.get('id');
+    this.statusKirim = this.navParams.get('statusKirim');
+    console.log(this.idPesanan, this.statusKirim)
+    if (this.statusKirim == 2) {
+      let input = JSON.stringify({
+        IDPesanan: this.idPesanan
+      });
+      this.data.getData().then((data) => {
+        const httpOptions = {
+          headers: new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + data.api_token
+          })
+        };
+        this.httpClient.post(this.data.BASE_URL + '/kirimSampel', input, httpOptions).subscribe(data => {
+          let response = data;
+          console.log(response)
+          if(response){
+            this.getResi = response;
+            this.setResi(this.getResi.Resi);
+          }else{
+            let alert = this.alertCtrl.create({
+              title: 'Silahkan coba lagi',
+              buttons: ['OK']
+            });
+            alert.present();
+          }
+        })
+      });
+    }
+  }
+
+  setResi(resi){
+    if(resi == '-KirimSendiri'){
+      this.kirimSampel = 1;
+    }else if(resi){
+      this.kirimSampel = 2;
+      this.jasaSelected();
+      this.noResi = resi;
+    }
+  }
+
+  closeModal() {
     this.viewCtrl.dismiss();
   }
 
-  jasaSelected(){
+  jasaSelected() {
     this.kirimJasa = true;
   }
 
-  simpan(){
-    if(this.kirimSampel){
-      if(this.kirimSampel == 1){
+  simpan() {
+    if (this.kirimSampel) {
+      if (this.kirimSampel == 1) {
         this.noResi = '-KirimSendiri';
       }
       let input = JSON.stringify({
@@ -66,7 +111,11 @@ export class KirimSampelPage {
           this.kirimSampel = response;
           console.log(response);
           if (this.kirimSampel.Status === 200) {
-            this.viewCtrl.dismiss();
+            let currentIndex = this.navCtrl.getActive().index;
+            this.navCtrl.push(DetailPesananPage, { data: this.idPesanan }).then(() => {
+              this.navCtrl.remove(currentIndex);
+              // this.navCtrl.remove(currentIndex-1);
+            });
           }
           else {
             let alert = this.alertCtrl.create({
@@ -76,16 +125,16 @@ export class KirimSampelPage {
             });
             alert.present();
           }
-  
+
         });
       })
     }
-    else if(!this.noResi){
+    else if (!this.noResi) {
       this.toastValidator();
     }
   }
 
-  toastValidator(){
+  toastValidator() {
     let toast = this.toastCtrl.create({
       message: 'Pastikan Anda telah melengkapi informasi metode pengiriman',
       duration: 3000,

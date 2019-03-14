@@ -50,6 +50,7 @@ export class PesananPage {
     this.dianalisis = [];
     this.selesai = [];
     this.batal = [];
+    status = "1";
 
     this.data.getData().then((data) => {
 

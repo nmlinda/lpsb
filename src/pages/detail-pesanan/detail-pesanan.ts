@@ -84,22 +84,33 @@ export class DetailPesananPage {
             this.waktu_status_utama = this.status.WaktuPesananDibuat;
           }
           else if (this.status.StatusUtama == 2) {
-            if (this.status.StatusKirimSampel == 1 && this.status.StatusPembayaran == 1) {
+            if (this.status.StatusKirimSampel < 3 && this.status.StatusPembayaran < 3) {
               this.status_utama = "Pesanan Tervalidasi";
-              this.ket_status_utama = "Segera lakukan pembayaran dan pengiriman sampel.";
+              if(this.status.StatusKirimSampel == 1 && this.status.StatusPembayaran == 1){
+                this.ket_status_utama = "Segera lakukan pembayaran dan pengiriman sampel.";
+              }
+              else if(this.status.StatusKirimSampel == 2 && this.status.StatusPembayaran == 1){
+                this.ket_status_utama = "Pengiriman sampel sedang divalidasi. Segera lakukan pembayaran.";
+              }
+              else if(this.status.StatusKirimSampel == 1 && this.status.StatusPembayaran == 2){
+                this.ket_status_utama = "Pembayaran sedang divalidasi. Segera lakukan pengiriman sampel.";
+              }
+              else if(this.status.StatusKirimSampel == 2 && this.status.StatusPembayaran == 2){
+                this.ket_status_utama = "Menunggu validasi pembayaran dan pengiriman sampel.";
+              }
               this.waktu_status_utama = this.status.WaktuValidasiPesanan;
             }
-            else if (this.status.StatusKirimSampel == 2 && this.status.StatusPembayaran == 1) {
+            else if (this.status.StatusKirimSampel == 3 && this.status.StatusPembayaran < 3) {
               this.status_utama = "Sampel Diterima";
               this.ket_status_utama = "Pengiriman sampel telah diterima.";
               this.waktu_status_utama = this.status.WaktuKirimSampel;
             }
-            else if (this.status.StatusKirimSampel == 1 && this.status.StatusPembayaran == 2) {
+            else if (this.status.StatusKirimSampel < 3 && this.status.StatusPembayaran == 3) {
               this.status_utama = "Pembayaran Tervalidasi";
               this.ket_status_utama = "Pembayaran telah tervalidasi oleh sistem.";
               this.waktu_status_utama = this.status.WaktuPembayaran;
             }
-            else {
+            else if(this.status.StatusKirimSampel == 3 && this.status.StatusPembayaran == 3) {
               this.status_utama = "Menunggu Analisis";
               this.ket_status_utama = "Menunggu proses analisis pesanan.";
               this.waktu_status_utama = this.status.WaktuStatusUtama;
@@ -162,7 +173,7 @@ export class DetailPesananPage {
               status !== this.awal);
             console.log(this.sisa)
           }
-          else if (this.status.StatusUtama <= 6) {
+          else if (this.status.StatusUtama >= 6) {
             this.status_utama = "Pesanan Dibatalkan";
             this.ket_status_utama = "Pesanan Anda telah dibatalkan.";
             this.waktu_status_utama = this.status.WaktuDibatalkan;
@@ -202,16 +213,19 @@ export class DetailPesananPage {
         harga: this.pesanan.HargaTotal,
         waktu: this.status.WaktuPesananDibuat
       });
-      modal.present();
+       modal.present();
     }
     else if (page == 'kirimSampel') {
       let modal = this.modalCtrl.create(KirimSampelPage, {
-        id: this.idPesanan
+        id: this.idPesanan,
+        statusKirim: this.status.StatusKirimSampel
       });
+     
       modal.present();
     }
     else if (page == 'batal') {
       let modal = this.modalCtrl.create(BatalPesananPage, { id: this.idPesanan });
+      
       modal.present();
     }
     else if (page == 'ulasan') {
