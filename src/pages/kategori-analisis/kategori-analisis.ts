@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { DetailAnalisisPage } from '../detail-analisis/detail-analisis';
 import { BuatPesananPage } from '../buat-pesanan/buat-pesanan';
 import { CariPage } from '../cari/cari';
 import { BuatPesanan2Page } from '../buat-pesanan2/buat-pesanan2';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Data } from '../../provider/data';
+import { KeranjangPage } from '../keranjang/keranjang';
 
 
 
@@ -15,6 +16,12 @@ import { Data } from '../../provider/data';
   templateUrl: 'kategori-analisis.html',
 })
 export class KategoriAnalisisPage {
+  // cart on navbar
+  responses: any = [];
+  keranjangs: any = [];
+  jumlahKeranjang: number = 0;
+
+  // variables from response
   idKategori: number;
   kategori: any;
   katalogs: any = [];
@@ -25,6 +32,7 @@ export class KategoriAnalisisPage {
   constructor(
     public data: Data,
     public nav: NavController,
+    public alertCtrl: AlertController,
     public navParams: NavParams,
     public httpClient: HttpClient) {
     this.buatPesanan = BuatPesananPage;
@@ -87,6 +95,41 @@ export class KategoriAnalisisPage {
     console.log('ionViewDidLoad KategoriAnalisisPage');
   }
 
+  ionViewWillEnter(){
+    this.keranjangs = [];
+    this.jumlahKeranjang = 0;
+    this.data.getData().then((data) => {
+
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + data.api_token
+        })
+      };
+
+      this.httpClient.get(this.data.BASE_URL + '/getKeranjang', httpOptions).subscribe(data => {
+        let response = data;
+        this.responses = response;
+        console.log(response);
+        if (this.responses.Status == 200) {
+          this.keranjangs = this.responses.keranjang;
+          this.jumlahKeranjang = this.keranjangs.length;
+        }
+        else {
+          let alert = this.alertCtrl.create({
+            title: 'Gagal memuat',
+            subTitle: 'Silahkan coba lagi.',
+            buttons: ['OK']
+          });
+          alert.present();
+        }
+      });
+    })
+  }
+
+  keranjang(){
+    this.nav.push(KeranjangPage);
+  }
   gotoDetailAnalisis(IDjenis) {
     this.nav.push(DetailAnalisisPage, { data: IDjenis });
   }

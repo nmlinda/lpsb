@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { DetailPesananPage } from '../detail-pesanan/detail-pesanan';
 import { Data } from '../../provider/data';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -24,6 +24,7 @@ export class PemberitahuanPage {
     public navCtrl: NavController,
     public data: Data,
     public httpClient: HttpClient,
+    public loadCtrl: LoadingController,
     public alertCtrl: AlertController,
     public navParams: NavParams) {
   }
@@ -33,6 +34,9 @@ export class PemberitahuanPage {
   }
 
   ionViewWillEnter() {
+     let loading = this.loadCtrl.create({
+          content: 'memuat..'
+        });
     this.notif = [];
     this.data.getData().then((data) => {
 
@@ -48,6 +52,7 @@ export class PemberitahuanPage {
         this.notif = response;
         console.log(response);
         if (this.notif.Pemberitahuans) {
+          loading.dismiss();
           this.notif = this.notif.Pemberitahuans;
           for (var i = 0; i < this.notif.length; i++) {
             if(this.notif[i].IDStatus == 2){
@@ -95,6 +100,7 @@ export class PemberitahuanPage {
           console.log(this.notif)
 
         } else {
+          loading.dismiss();
           let alert = this.alertCtrl.create({
             title: 'Lihat pemberitahuan gagal',
             subTitle: 'Silahkan coba lagi.',

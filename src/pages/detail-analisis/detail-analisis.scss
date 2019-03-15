@@ -1,52 +1,68 @@
 page-detail-analisis {
-    .img-jenis {
-        border-radius: 50%;
-        width: 150px;
-        padding: 16px;
-        margin: auto;
-        display: block;
+  .img-jenis {
+    border-radius: 50%;
+    width: 150px;
+    padding: 16px;
+    margin: auto;
+    display: block;
+  }
+  h2,
+  p {
+    padding: 4px;
+  }
+  .sub-head {
+    font-size: 16px !important;
+    color: gray;
+    // font-weight: bold;
+    // border-bottom: 2px solid whitesmoke;
+  }
+  .text-content {
+    font-size: 16px !important;
+    color: black;
+    text-align: right;
+  }
+  .title {
+    font-size: 18px !important;
+    font-weight: bold;
+  }
+  .price {
+    font-size: 16px !important;
+    color: #ff6b21;
+    font-weight: bold;
+  }
+  .head {
+    font-size: 18px !important;
+    color: black;
+    font-weight: bold;
+  }
+  .footer {
+    position: fixed;
+    z-index: 1;
+    bottom: 0;
+    width: 100%;
+    background-color: white;
+    padding: 0;
+  }
+  .card-box {
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 0px;
+    width: 100%;
+  }
+  button {
+    ion-badge {
+      background-color: red;
+      position: absolute;
+      top: -3px;
+      right: -3px;
+      border-radius: 50%;
     }
-    h2, p {
-        padding: 4px;
-    }
-    .sub-head{
-        font-size: 16px !important;
-        color: gray;
-        // font-weight: bold;
-        // border-bottom: 2px solid whitesmoke;
-    }
-    .text-content{
-        font-size: 16px !important;
-        color: black;
-        text-align: right;
-    }
-    .title{
-        font-size: 18px !important;
-        font-weight: bold;
-    }
-    .price{
-        font-size: 16px !important;
-        color: #FF6B21;
-        font-weight: bold;
-    }
-    .head{
-        font-size: 18px !important;
-        color: black;
-        font-weight: bold;
-    }
-    .footer {
-        position: fixed;
-        z-index: 1;
-        bottom: 0;
-        width: 100%;
-        background-color: white;
-        padding: 0;
-      }
-    .card-box {
-        margin-left: 0px;
-        margin-right: 0px;
-        margin-top: 0px;
-        width: 100%;
-    }
+  }
+  #btn {
+    position: relative;
+    width: 42px;
+    top: 1px;
+    right: 1px;
+    overflow: visible !important;
+  }
 }
-

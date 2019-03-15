@@ -1,36 +1,51 @@
 page-kategori-analisis {
-    .grid-content{
-        background-color: whitesmoke;
+  .grid-content {
+    background-color: whitesmoke;
+  }
+  .search-bar {
+    background-color: white !important;
+  }
+  .card-jenis {
+    //margin: 0;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    padding: 4px;
+    height: 182px;
+  }
+  .text-content {
+    // position: absolute;
+    // bottom: 10px;
+    color: #ff6b21;
+  }
+  .img-jenis {
+    margin-top: 4px;
+    border-radius: 50%;
+    margin: auto;
+    display: block;
+    width: 50%;
+    padding: 4px;
+  }
+  h2,
+  p {
+    padding: 4px;
+    white-space: normal;
+  }
+  button {
+    ion-badge {
+      background-color: red;
+      position: absolute;
+      top: -3px;
+      right: -3px;
+      border-radius: 50%;
     }
-    .search-bar{
-        background-color: white !important;
-    }
-    .card-jenis {
-        //margin: 0;
-        display: inline-block;
-        margin-left: auto;
-        margin-right: auto;
-        display: block;
-        padding: 4px;
-        height: 182px;
-    }
-    .text-content{
-        // position: absolute;
-        // bottom: 10px;
-        color:#FF6B21;
-
-    }
-    .img-jenis {
-        margin-top: 4px;
-        border-radius: 50%;
-        margin: auto;
-        display: block;
-        width: 50%;
-        padding: 4px;
-    }
-    h2, p {
-        padding: 4px;
-        white-space: normal;   
-    }
+  }
+  #btn {
+    position: relative;
+    width: 42px;
+    top: 1px;
+    right: 1px;
+    overflow: visible !important;
+  }
 }
-

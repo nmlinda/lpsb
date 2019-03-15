@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-grid no-padding>
+    <!-- <ion-grid no-padding>
       <ion-row>
         <ion-col col-8 style="padding-top: 4px;" text-left>
           <ion-title>{{ namaJenis }}</ion-title>
@@ -16,7 +16,17 @@
           <page-navbar></page-navbar>
         </ion-col>
       </ion-row>
-    </ion-grid>
+    </ion-grid> -->
+    <ion-title>
+      {{ namaJenis }}
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button color="primary" id="btn" clear icon-only (click)="keranjang()">
+        <ion-icon name="cart" >
+          <ion-badge *ngIf="jumlahKeranjang" color="danger" >{{ jumlahKeranjang}}</ion-badge>
+        </ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>

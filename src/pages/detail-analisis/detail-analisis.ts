@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { BuatPesanan2Page } from '../buat-pesanan2/buat-pesanan2';
 import { Data } from '../../provider/data';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { KategoriAnalisisPage } from '../kategori-analisis/kategori-analisis';
+import { KeranjangPage } from '../keranjang/keranjang';
 /**
  * Generated class for the DetailAnalisisPage page.
  *
@@ -17,6 +18,12 @@ import { KategoriAnalisisPage } from '../kategori-analisis/kategori-analisis';
   templateUrl: 'detail-analisis.html',
 })
 export class DetailAnalisisPage {
+  // cart on navbar
+  responses: any = [];
+  keranjangs: any = [];
+  jumlahKeranjang: number = 0;
+
+  // variables from response
   IDjenis: any;
   jenisAnalisis: any;
   namaJenis: string;
@@ -33,6 +40,7 @@ export class DetailAnalisisPage {
 
   constructor(
     public data: Data,
+    public alertCtrl: AlertController,
     public navCtrl: NavController,
     public navParams: NavParams,
     public httpClient: HttpClient) {
@@ -81,6 +89,41 @@ export class DetailAnalisisPage {
     console.log('ionViewDidLoad DetailAnalisisPage');
   }
 
+  ionViewWillEnter(){
+    this.keranjangs = [];
+    this.jumlahKeranjang = 0;
+    this.data.getData().then((data) => {
+
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + data.api_token
+        })
+      };
+
+      this.httpClient.get(this.data.BASE_URL + '/getKeranjang', httpOptions).subscribe(data => {
+        let response = data;
+        this.responses = response;
+        console.log(response);
+        if (this.responses.Status == 200) {
+          this.keranjangs = this.responses.keranjang;
+          this.jumlahKeranjang = this.keranjangs.length;
+        }
+        else {
+          let alert = this.alertCtrl.create({
+            title: 'Gagal memuat',
+            subTitle: 'Silahkan coba lagi.',
+            buttons: ['OK']
+          });
+          alert.present();
+        }
+      });
+    })
+  }
+
+  keranjang(){
+    this.navCtrl.push(KeranjangPage);
+  }
   buatPesanan() {
     this.navCtrl.push(BuatPesanan2Page, { data: this.IDjenis });
   }
