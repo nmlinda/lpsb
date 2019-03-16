@@ -20,7 +20,7 @@ export class BatalPesananPage {
   idPesanan: any;
   alasan: any;
   alasanLainnya: any;
-  alasanLain: boolean = false;
+  // alasanLain: boolean = false;
   response: any = [];
   constructor(
     public navCtrl: NavController, 
@@ -38,13 +38,17 @@ export class BatalPesananPage {
     console.log('ionViewDidLoad BatalPesananPage');
   }
 
+  ionViewWillEnter(){
+    this.alasan = "lain";
+  }
+
   closeModal(){
     this.viewCtrl.dismiss();
   }
 
-  lainnya(){
-    this.alasanLain = true;
-  }
+  // lainnya(){
+  //   this.alasanLain = true;
+  // }
 
   batal(){
     if(!this.alasan){
@@ -95,7 +99,7 @@ export class BatalPesananPage {
           let currentIndex = this.navCtrl.getActive().index;
           this.navCtrl.push(DetailPesananPage, { data: this.idPesanan }).then(() => {
             this.navCtrl.remove(currentIndex);
-            // this.navCtrl.remove(currentIndex-1);
+            this.navCtrl.remove(currentIndex-1);
           });
         } else {
           let alert = this.alertCtrl.create({

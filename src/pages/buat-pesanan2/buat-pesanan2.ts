@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController, ToastController } from 'ionic-angular';
 // import { KeranjangPage } from '../keranjang/keranjang';
 import { Data } from '../../provider/data';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -52,6 +52,7 @@ export class BuatPesanan2Page {
     public loadCtrl: LoadingController,
     public navParams: NavParams,
     public alertCtrl: AlertController,
+    public toastCtrl: ToastController,
     public httpClient: HttpClient) {
 
     this.pesanData.kemasan = 'pilih';
@@ -157,6 +158,7 @@ export class BuatPesanan2Page {
         console.log(response);
         if (this.keranjang.Status == 201) {
           loading.dismiss();
+          this.toastKeranjang();
           let currentIndex = this.navCtrl.getActive().index;
           this.navCtrl.push(DetailAnalisisPage, { data: this.IDjenis }).then(() => {
             this.navCtrl.remove(currentIndex);
@@ -212,6 +214,7 @@ export class BuatPesanan2Page {
         console.log(response);
         if (this.keranjang.Status == 201) {
           loading.dismiss();
+          this.toastKeranjang();
           let currentIndex = this.navCtrl.getActive().index;
           this.navCtrl.push(KeranjangPage).then(() => {
             this.navCtrl.remove(currentIndex);
@@ -233,5 +236,19 @@ export class BuatPesanan2Page {
 
   showInfo() {
     this.info = !this.info;
+  }
+
+  toastKeranjang() {
+    let toast = this.toastCtrl.create({
+      message: 'Pesanan berhasil dimasukkan ke keranjang.',
+      duration: 3000,
+      position: 'top'
+    });
+
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+
+    toast.present();
   }
 }

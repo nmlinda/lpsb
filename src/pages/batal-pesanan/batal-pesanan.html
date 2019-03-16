@@ -1,18 +1,18 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-grid no-padding>
+    <!-- <ion-grid no-padding>
       <ion-row>
         <ion-col col-2 no-padding>
           <button ion-button (click)="closeModal()" clear icon-only>
             <ion-icon name="arrow-back"></ion-icon>
           </button>
         </ion-col>
-        <ion-col col-10 no-padding align-self-center>
+        <ion-col col-10 no-padding align-self-center> -->
           <ion-title>Batalkan Pesanan</ion-title>
-        </ion-col>
+        <!-- </ion-col>
       </ion-row>
-    </ion-grid>
+    </ion-grid> -->
   </ion-navbar>
 
 </ion-header>
@@ -20,7 +20,7 @@
 
 <ion-content>
   <div padding>
-   
+
     <h6>
       Mengapa Anda membatalkan pesanan?
     </h6>
@@ -33,11 +33,12 @@
         <ion-label class="label">Saya ingin mengubah data pesanan</ion-label>
         <ion-radio value="Saya ingin mengubah data pesanan" item-left style="margin: 6px;"></ion-radio>
       </ion-item>
-      <ion-item no-padding>
+      <ion-item no-padding no-lines>
         <ion-label class="label">Lainnya</ion-label>
-        <ion-radio value="lain" item-left style="margin: 6px;" (ionSelect)="lainnya()"></ion-radio>
-  
-        <ion-input  *ngIf="alasanLain" type="text" [(ngModel)]="alasanLainnya" autofocus="true"></ion-input>
+        <ion-radio value="lain" item-left style="margin: 6px;"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-input type="text" [(ngModel)]="alasanLainnya" autofocus="true"></ion-input>
       </ion-item>
     </ion-list>
   </div>

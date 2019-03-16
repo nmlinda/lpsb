@@ -90,7 +90,7 @@ export class PembayaranPage {
           let currentIndex = this.navCtrl.getActive().index;
           this.navCtrl.push(DetailPesananPage, { data: this.idPesanan }).then(() => {
             this.navCtrl.remove(currentIndex);
-            // this.navCtrl.remove(currentIndex-1);
+            this.navCtrl.remove(currentIndex-1);
           });
         }
         else {

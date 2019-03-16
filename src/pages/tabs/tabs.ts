@@ -44,7 +44,7 @@ export class TabsPage {
         console.log(this.response);
         if (this.response) {
           this.notif = this.response.Pemberitahuans;
-          this.unread = 0;
+          this.unread = null;
           for(var i=0; i < this.notif.length; i++){
             if (this.notif[i].Dilihat == 0){
               this.unread += 1;

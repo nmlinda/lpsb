@@ -329,7 +329,7 @@
         </ion-col>
       </ion-row>
       <ion-row *ngIf="status.StatusKirimSertifikat > 0">
-        <ion-col col-12 class="text-item" *ngIf="status.StatusKirimSertifikat == 1">
+        <ion-col col-12 class="text-item" *ngIf="status.StatusKirimSertifikat == 1 || statusPelanggan == 'MintaSertifikat'">
           Menunggu pengiriman
         </ion-col>
         <ion-col col-8 class="text-item" *ngIf="status.StatusKirimSertifikat > 1">

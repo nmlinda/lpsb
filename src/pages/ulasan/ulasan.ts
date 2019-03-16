@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, ToastController } from 'ionic-angular';
 import { Data } from '../../provider/data';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { DetailPesananPage } from '../detail-pesanan/detail-pesanan';
@@ -25,6 +25,7 @@ export class UlasanPage {
   constructor(public navCtrl: NavController,
     public httpClient: HttpClient,
     public data: Data,
+    public toastCtrl: ToastController,
     public navParams: NavParams,
     public viewCtrl: ViewController) {
     this.idPesanan = this.navParams.get('idPesanan');
@@ -48,11 +49,11 @@ export class UlasanPage {
         this.httpClient.post(this.data.BASE_URL + '/getUlasan', input, httpOptions).subscribe(data => {
           this.response = data;
           console.log(this.response)
-          if(this.response.Status == 200){
+          if (this.response.Status == 200) {
             this.ulasan = this.response.Ulasan;
             this.waktuUlasan = this.response.WaktuUlasan;
           }
-         
+
         })
 
       })
@@ -68,34 +69,68 @@ export class UlasanPage {
     this.viewCtrl.dismiss();
   }
 
-  kirim(){
-    this.data.getData().then((data) => {
+  kirim() {
+    if (this.ulasan) {
+      this.data.getData().then((data) => {
 
-      const httpOptions = {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + data.api_token
-        })
-      };
-      let input = JSON.stringify({
-        IDPesanan: this.idPesanan,
-        Ulasan: this.ulasan,
-      });
-
-
-      this.httpClient.post(this.data.BASE_URL + '/beriUlasan', input, httpOptions).subscribe(data => {
-        let response = data;
-        console.log(response)
-        if(response){
-          let currentIndex = this.navCtrl.getActive().index;
-          this.navCtrl.push(DetailPesananPage, {data: this.idPesanan}).then(() => {
-            this.navCtrl.remove(currentIndex);
-            this.navCtrl.remove(currentIndex-1);
+        const httpOptions = {
+          headers: new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + data.api_token
+          })
+        };
+        let input = JSON.stringify({
+          IDPesanan: this.idPesanan,
+          Ulasan: this.ulasan,
         });
-        }
+
+
+        this.httpClient.post(this.data.BASE_URL + '/beriUlasan', input, httpOptions).subscribe(data => {
+          let response = data;
+          console.log(response)
+          if (response) {
+            this.toastBerhasilKirim();
+            let currentIndex = this.navCtrl.getActive().index;
+            this.navCtrl.push(DetailPesananPage, { data: this.idPesanan }).then(() => {
+              this.navCtrl.remove(currentIndex);
+              this.navCtrl.remove(currentIndex - 1);
+            });
+          }
+
+        })
 
       })
-
-    })
+    }else{
+      this.toastValidator();
+    }
   }
+
+  toastValidator(){
+    let toast = this.toastCtrl.create({
+      message: 'Pastikan Anda mengisi ulasan.',
+      duration: 3000,
+      position: 'bottom'
+    });
+
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+
+    toast.present();
+  }
+
+  toastBerhasilKirim(){
+    let toast = this.toastCtrl.create({
+      message: 'Ulasan berhasil disimpan.',
+      duration: 3000,
+      position: 'top'
+    });
+
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+
+    toast.present();
+  }
+
 }

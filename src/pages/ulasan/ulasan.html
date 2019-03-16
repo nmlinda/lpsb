@@ -1,18 +1,18 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-grid no-padding>
+    <!-- <ion-grid no-padding>
       <ion-row>
         <ion-col col-2 no-padding>
           <button ion-button (click)="closeModal()" clear icon-only>
             <ion-icon name="arrow-back"></ion-icon>
           </button>
         </ion-col>
-        <ion-col col-10 no-padding align-self-center>
+        <ion-col col-10 no-padding align-self-center> -->
           <ion-title>Ulasan</ion-title>
-        </ion-col>
+        <!-- </ion-col>
       </ion-row>
-    </ion-grid>
+    </ion-grid> -->
   </ion-navbar>
 
 </ion-header>
@@ -29,7 +29,7 @@
     <ion-textarea placeholder="Tulis ulasan anda... " rows="4" cols="20" autofocus="true" [(ngModel)]="ulasan" [disabled]="ulas"></ion-textarea>
   </ion-item>
   <ion-buttons end padding-top *ngIf="!ulas">
-    <button ion-button text-capitalize (click)="kirim()">
+    <button ion-button text-capitalize (click)="kirim()" [disabled]="btn-ulasan">
       Kirim
     </button>
   </ion-buttons>

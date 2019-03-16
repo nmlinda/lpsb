@@ -20,7 +20,7 @@ export class KirimSampelPage {
   idPesanan: any;
   statusKirim: any;
   kirimJasa: boolean = false;
-  kirimSampel: any = [];
+  kirimSampel: any = null;
   getResi: any = [];
   noResi: string;
   kirim: string;
@@ -90,48 +90,64 @@ export class KirimSampelPage {
     this.kirimJasa = true;
   }
 
+  langsungSelected(){
+    this.kirimJasa = false;
+  }
+
   simpan() {
     if (this.kirimSampel) {
       if (this.kirimSampel == 1) {
         this.noResi = '-KirimSendiri';
+        this.post(this.idPesanan, this.noResi);
       }
-      let input = JSON.stringify({
-        IDPesanan: this.idPesanan,
-        Resi: this.noResi,
-      });
-      this.data.getData().then((data) => {
-        const httpOptions = {
-          headers: new HttpHeaders({
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + data.api_token
-          })
-        };
-        this.httpClient.post(this.data.BASE_URL + '/kirimSampel', input, httpOptions).subscribe(data => {
-          let response = data;
-          this.kirimSampel = response;
-          console.log(response);
-          if (this.kirimSampel.Status === 200) {
-            let currentIndex = this.navCtrl.getActive().index;
-            this.navCtrl.push(DetailPesananPage, { data: this.idPesanan }).then(() => {
-              this.navCtrl.remove(currentIndex);
-              // this.navCtrl.remove(currentIndex-1);
-            });
-          }
-          else {
-            let alert = this.alertCtrl.create({
-              title: 'Gagal Menyimpan',
-              subTitle: 'Silahkan coba lagi',
-              buttons: ['OK']
-            });
-            alert.present();
-          }
-
-        });
-      })
+      else if (this.kirimSampel ==2){
+        if(!this.noResi) {
+          this.toastValidator();
+        }else{
+          this.post(this.idPesanan, this.noResi);
+        }
+      }
+      
     }
-    else if (!this.noResi) {
+    else{
       this.toastValidator();
     }
+  }
+
+  post(id, resi){
+    let input = JSON.stringify({
+      IDPesanan: id,
+      Resi: resi,
+    });
+    this.data.getData().then((data) => {
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + data.api_token
+        })
+      };
+      this.httpClient.post(this.data.BASE_URL + '/kirimSampel', input, httpOptions).subscribe(data => {
+        let response = data;
+        this.kirimSampel = response;
+        console.log(response);
+        if (this.kirimSampel.Status === 200) {
+          let currentIndex = this.navCtrl.getActive().index;
+          this.navCtrl.push(DetailPesananPage, { data: this.idPesanan }).then(() => {
+            this.navCtrl.remove(currentIndex);
+            this.navCtrl.remove(currentIndex-1);
+          });
+        }
+        else {
+          let alert = this.alertCtrl.create({
+            title: 'Gagal Menyimpan',
+            subTitle: 'Silahkan coba lagi',
+            buttons: ['OK']
+          });
+          alert.present();
+        }
+
+      });
+    })
   }
 
   toastValidator() {

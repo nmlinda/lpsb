@@ -86,16 +86,16 @@ export class DetailPesananPage {
           else if (this.status.StatusUtama == 2) {
             if (this.status.StatusKirimSampel < 3 && this.status.StatusPembayaran < 3) {
               this.status_utama = "Pesanan Tervalidasi";
-              if(this.status.StatusKirimSampel == 1 && this.status.StatusPembayaran == 1){
+              if (this.status.StatusKirimSampel == 1 && this.status.StatusPembayaran == 1) {
                 this.ket_status_utama = "Segera lakukan pembayaran dan pengiriman sampel.";
               }
-              else if(this.status.StatusKirimSampel == 2 && this.status.StatusPembayaran == 1){
+              else if (this.status.StatusKirimSampel == 2 && this.status.StatusPembayaran == 1) {
                 this.ket_status_utama = "Pengiriman sampel sedang divalidasi. Segera lakukan pembayaran.";
               }
-              else if(this.status.StatusKirimSampel == 1 && this.status.StatusPembayaran == 2){
+              else if (this.status.StatusKirimSampel == 1 && this.status.StatusPembayaran == 2) {
                 this.ket_status_utama = "Pembayaran sedang divalidasi. Segera lakukan pengiriman sampel.";
               }
-              else if(this.status.StatusKirimSampel == 2 && this.status.StatusPembayaran == 2){
+              else if (this.status.StatusKirimSampel == 2 && this.status.StatusPembayaran == 2) {
                 this.ket_status_utama = "Menunggu validasi pembayaran dan pengiriman sampel.";
               }
               this.waktu_status_utama = this.status.WaktuValidasiPesanan;
@@ -110,7 +110,7 @@ export class DetailPesananPage {
               this.ket_status_utama = "Pembayaran telah tervalidasi oleh sistem.";
               this.waktu_status_utama = this.status.WaktuPembayaran;
             }
-            else if(this.status.StatusKirimSampel == 3 && this.status.StatusPembayaran == 3) {
+            else if (this.status.StatusKirimSampel == 3 && this.status.StatusPembayaran == 3) {
               this.status_utama = "Menunggu Analisis";
               this.ket_status_utama = "Menunggu proses analisis pesanan.";
               this.waktu_status_utama = this.status.WaktuStatusUtama;
@@ -208,30 +208,39 @@ export class DetailPesananPage {
 
   goto(page) {
     if (page == 'pembayaran') {
-      let modal = this.modalCtrl.create(PembayaranPage, {
+      // let modal = this.modalCtrl.create(PembayaranPage, {
+      //   id: this.idPesanan,
+      //   harga: this.pesanan.HargaTotal,
+      //   waktu: this.status.WaktuPesananDibuat
+      // });
+      // modal.present();
+      this.nav.push(PembayaranPage, {
         id: this.idPesanan,
         harga: this.pesanan.HargaTotal,
         waktu: this.status.WaktuPesananDibuat
       });
-       modal.present();
     }
     else if (page == 'kirimSampel') {
-      let modal = this.modalCtrl.create(KirimSampelPage, {
+      // let modal = this.modalCtrl.create(KirimSampelPage, {
+      //   id: this.idPesanan,
+      //   statusKirim: this.status.StatusKirimSampel
+      // });     
+      // modal.present();
+      this.nav.push(KirimSampelPage, {
         id: this.idPesanan,
         statusKirim: this.status.StatusKirimSampel
       });
-     
-      modal.present();
     }
     else if (page == 'batal') {
-      let modal = this.modalCtrl.create(BatalPesananPage, { id: this.idPesanan });
-      
-      modal.present();
+      // let modal = this.modalCtrl.create(BatalPesananPage, { id: this.idPesanan });
+      // modal.present();
+      this.nav.push(BatalPesananPage, { id: this.idPesanan });
     }
     else if (page == 'ulasan') {
       console.log(this.status.WaktuUlasan)
-      let modal = this.modalCtrl.create(UlasanPage, { idPesanan: this.idPesanan, waktu: this.status.WaktuUlasan });
-      modal.present();
+      // let modal = this.modalCtrl.create(UlasanPage, { idPesanan: this.idPesanan, waktu: this.status.WaktuUlasan });
+      // modal.present();
+      this.nav.push(UlasanPage, { idPesanan: this.idPesanan, waktu: this.status.WaktuUlasan });
     }
   }
 
