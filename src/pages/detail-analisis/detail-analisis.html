@@ -6,8 +6,8 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <!-- <ion-grid no-padding>
+    <ion-navbar>
+        <!-- <ion-grid no-padding>
       <ion-row>
         <ion-col col-8 style="padding-top: 4px;" text-left>
           <ion-title>{{ namaJenis }}</ion-title>
@@ -17,107 +17,106 @@
         </ion-col>
       </ion-row>
     </ion-grid> -->
-    <ion-title>
-      {{ namaJenis }}
-    </ion-title>
-    <ion-buttons end>
-      <button ion-button color="primary" id="btn" clear icon-only (click)="keranjang()">
+        <ion-title>
+            {{ namaJenis }}
+        </ion-title>
+        <ion-buttons end>
+            <button ion-button color="primary" id="btn" clear icon-only (click)="keranjang()">
         <ion-icon name="cart" >
           <ion-badge *ngIf="jumlahKeranjang" color="danger" >{{ jumlahKeranjang}}</ion-badge>
         </ion-icon>
       </button>
-    </ion-buttons>
-  </ion-navbar>
+        </ion-buttons>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content>
-  <ion-card color="light" class="card-box">
-    <img src="../../assets/imgs/fitokimia.jpg" class="img-jenis">
-    <h2 text-center text-uppercase class="title">
-      <strong>{{ namaJenis }}</strong>
-    </h2>
-    <p text-center class="price">
-      IPB Rp {{ hargaIPB | number:0  }}<br>
-      Non-IPB Rp {{ hargaNONIPB | number:0  }}<br>
-    </p>
-  </ion-card>
+    <ion-card color="light" class="card-box">
+        <img src="assets/imgs/fitokimia.jpg" class="img-jenis">
+        <h2 text-center text-uppercase class="title">
+            <strong>{{ namaJenis }}</strong>
+        </h2>
+        <p text-center class="price">
+            IPB Rp {{ hargaIPB | number:0 }}<br> Non-IPB Rp {{ hargaNONIPB | number:0 }}<br>
+        </p>
+    </ion-card>
 
-  <ion-card class="card-box">
-    <ion-grid>
-      <ion-row>
-        <ion-col col-1 align-self-center no-padding text-center>
-          <ion-icon name="pricetag" color="primary"></ion-icon>
-        </ion-col>
-        <ion-col col-4 no-padding>
-          <p class="sub-head">
-            Kategori<br>
-          </p>
-        </ion-col>
-        <ion-col col-7 no-padding>
-          <p class="text-content">
-            <a (click)="gotoKategori()">{{ kategori }}</a>
-          </p>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col col-1 align-self-center no-padding text-center>
-          <ion-icon name="flask" color="primary"></ion-icon>
-        </ion-col>
-        <ion-col col-4 no-padding>
-          <p class="sub-head">
-            Metode
-          </p>
-        </ion-col>
-        <ion-col col-7 no-padding>
-          <p class="text-content">
-            {{ metode }}
-          </p>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col col-1 align-self-center no-padding text-center>
-          <ion-icon name="clipboard" color="primary"></ion-icon>
-        </ion-col>
-        <ion-col col-4 no-padding>
-          <p class="sub-head">
-            Keterangan
-          </p>
-        </ion-col>
-        <ion-col col-7 no-padding>
-          <p class="text-content">
-            {{ keterangan }}
-          </p>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col col-1 align-self-center no-padding text-center>
-          <ion-icon name="checkmark-circle" color="primary"></ion-icon>
-        </ion-col>
-        <ion-col col-11 no-padding>
-          <p class="sub-head">
-            Bentuk Sampel
-          </p>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col col-1 align-self-center no-padding text-center>
-        </ion-col>
-        <ion-col col-11 no-padding>
-          <p class="text-content" text-left *ngIf="cairan">Cairan</p>
-          <p class="text-content" text-left *ngIf="ekstrak">Ekstrak</p>
-          <p class="text-content" text-left *ngIf="serbuk">Serbuk</p>
-          <p class="text-content" text-left *ngIf="simplisia">Simplisia</p>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-card>
-  <div class="footer" scrollY="false">
-    <button ion-button color="orange" block (click)="buatPesanan()">
+    <ion-card class="card-box">
+        <ion-grid>
+            <ion-row>
+                <ion-col col-1 align-self-center no-padding text-center>
+                    <ion-icon name="pricetag" color="primary"></ion-icon>
+                </ion-col>
+                <ion-col col-4 no-padding>
+                    <p class="sub-head">
+                        Kategori<br>
+                    </p>
+                </ion-col>
+                <ion-col col-7 no-padding>
+                    <p class="text-content">
+                        <a (click)="gotoKategori()">{{ kategori }}</a>
+                    </p>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col col-1 align-self-center no-padding text-center>
+                    <ion-icon name="flask" color="primary"></ion-icon>
+                </ion-col>
+                <ion-col col-4 no-padding>
+                    <p class="sub-head">
+                        Metode
+                    </p>
+                </ion-col>
+                <ion-col col-7 no-padding>
+                    <p class="text-content">
+                        {{ metode }}
+                    </p>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col col-1 align-self-center no-padding text-center>
+                    <ion-icon name="clipboard" color="primary"></ion-icon>
+                </ion-col>
+                <ion-col col-4 no-padding>
+                    <p class="sub-head">
+                        Keterangan
+                    </p>
+                </ion-col>
+                <ion-col col-7 no-padding>
+                    <p class="text-content">
+                        {{ keterangan }}
+                    </p>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col col-1 align-self-center no-padding text-center>
+                    <ion-icon name="checkmark-circle" color="primary"></ion-icon>
+                </ion-col>
+                <ion-col col-11 no-padding>
+                    <p class="sub-head">
+                        Bentuk Sampel
+                    </p>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col col-1 align-self-center no-padding text-center>
+                </ion-col>
+                <ion-col col-11 no-padding>
+                    <p class="text-content" text-left *ngIf="cairan">Cairan</p>
+                    <p class="text-content" text-left *ngIf="ekstrak">Ekstrak</p>
+                    <p class="text-content" text-left *ngIf="serbuk">Serbuk</p>
+                    <p class="text-content" text-left *ngIf="simplisia">Simplisia</p>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-card>
+    <div class="footer" scrollY="false">
+        <button ion-button color="orange" block (click)="buatPesanan()">
       Pesan
     </button>
-  </div>
+    </div>
 </ion-content>
 <!-- <ion-footer padding>
   <button ion-button block (click)="buatPesanan()">

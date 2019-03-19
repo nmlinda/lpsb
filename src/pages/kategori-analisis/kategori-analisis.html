@@ -6,8 +6,8 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <!-- <ion-grid no-padding>
+    <ion-navbar>
+        <!-- <ion-grid no-padding>
       <ion-row>
         <ion-col col-8 style="padding-top: 4px;">
           <ion-title>{{kategori}}</ion-title>
@@ -17,40 +17,39 @@
         </ion-col>
       </ion-row>
     </ion-grid> -->
-    <ion-title>
-      {{ kategori }}
-    </ion-title>
-    <ion-buttons end>
-      <button ion-button color="primary" id="btn" clear icon-only (click)="keranjang()">
+        <ion-title>
+            {{ kategori }}
+        </ion-title>
+        <ion-buttons end>
+            <button ion-button color="primary" id="btn" clear icon-only (click)="keranjang()">
         <ion-icon name="cart" >
           <ion-badge *ngIf="jumlahKeranjang" color="danger" >{{ jumlahKeranjang}}</ion-badge>
         </ion-icon>
       </button>
-    </ion-buttons>
-  </ion-navbar>
+        </ion-buttons>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content class="grid-content">
-  <ion-searchbar (click)="cari()" class="search-bar" [(ngModel)]="cariAnalisis">
-  </ion-searchbar>
+    <ion-searchbar (click)="cari()" class="search-bar" [(ngModel)]="cariAnalisis">
+    </ion-searchbar>
 
-  <ion-grid  no-padding>
-    <ion-row>
-      <ion-col *ngFor="let item of katalog | cari : cariAnalisis" col-6 no-padding>
-        <ion-card class="card-jenis" (click)="gotoDetailAnalisis(item.IDKatalog)"  text-center>
-          <img src="../../assets/imgs/fitokimia.jpg" class="img-jenis">
-          <h2 text-uppercase><strong>{{item.JenisAnalisis}}</strong></h2>
-          <p class="text-content">
-            IPB Rp {{item.HargaIPB | number:0 }}<br>
-            NON-IPB {{item.HargaNONIPB | number:0 }}
-          </p>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-<!-- 
+    <ion-grid no-padding>
+        <ion-row>
+            <ion-col *ngFor="let item of katalog | cari : cariAnalisis" col-6 no-padding>
+                <ion-card class="card-jenis" (click)="gotoDetailAnalisis(item.IDKatalog)" text-center>
+                    <img src="assets/imgs/fitokimia.jpg" class="img-jenis">
+                    <h2 text-uppercase><strong>{{item.JenisAnalisis}}</strong></h2>
+                    <p class="text-content">
+                        IPB Rp {{item.HargaIPB | number:0 }}<br> NON-IPB {{item.HargaNONIPB | number:0 }}
+                    </p>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <!-- 
   <ion-fab right bottom>
     <button ion-fab [navPush]="buatPesanan">
       <ion-icon name="add"></ion-icon>

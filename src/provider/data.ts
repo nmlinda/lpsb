@@ -6,8 +6,8 @@ import { Storage } from '@ionic/storage';
 @Injectable()
 export class Data {
   // public BASE_URL = 'http://172.18.16.52:8000/api';
-  public BASE_URL = 'http://localhost:8000/elpsb/api';
-  // public BASE_URL = 'http://ci.apps.cs.ipb.ac.id/elpsb/api';
+ // public BASE_URL = 'http://localhost:8000/elpsb/api';
+  public BASE_URL = 'http://ci.apps.cs.ipb.ac.id/elpsb/api';
   public HAS_LOGGED_IN = 'status_login';
 
   constructor(public httpClient: HttpClient, public storage: Storage) {

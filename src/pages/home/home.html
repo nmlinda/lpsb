@@ -1,6 +1,6 @@
 <ion-header>
-  <ion-navbar hideBackButton>
-    <!-- <ion-grid no-padding>
+    <ion-navbar hideBackButton>
+        <!-- <ion-grid no-padding>
       <ion-row>
         <ion-col col-8 style="padding-top: 4px;" text-left>
           <ion-title>LPSB</ion-title>
@@ -10,21 +10,21 @@
         </ion-col>
       </ion-row>
     </ion-grid> -->
-    <ion-title>
-      LPSB
-    </ion-title>
-    <ion-buttons end>
-      <button ion-button color="primary" id="btn" clear icon-only (click)="keranjang()">
+        <ion-title>
+            LPSB
+        </ion-title>
+        <ion-buttons end>
+            <button ion-button color="primary" id="btn" clear icon-only (click)="keranjang()">
         <ion-icon name="cart" >
           <ion-badge *ngIf="jumlahKeranjang" color="danger" >{{ jumlahKeranjang}}</ion-badge>
         </ion-icon>
       </button>
-    </ion-buttons>
-  </ion-navbar>
+        </ion-buttons>
+    </ion-navbar>
 </ion-header>
 
 <ion-content class="content">
-  <!-- <ion-slides pager>
+    <!-- <ion-slides pager>
 
         <ion-slide style="background-color:white">
           <h6>Selamat datang di LPSB!</h6>
@@ -40,53 +40,53 @@
       
       </ion-slides> -->
 
-  <ion-searchbar (click)="cari()" class="search-bar"></ion-searchbar>
+    <ion-searchbar (click)="cari()" class="search-bar"></ion-searchbar>
 
-  <ion-card>
-    <ion-grid>
-      <ion-row (click)="gotoKategori()">
-        <ion-col col-3 text-center align-self-center>
-          <ion-icon name="flask" style="font-size: 10vh;" color="primary"></ion-icon>
-        </ion-col>
-        <ion-col col-9>
-          <h2><strong>Pesan Jasa Analisis</strong></h2>
-          <p text-wrap>Buat pesanan jasa analisis biofarmaka dan lihat hasilnya pada aplikasi ini!</p>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-card>
+    <ion-card>
+        <ion-grid>
+            <ion-row (click)="gotoKategori()">
+                <ion-col col-3 text-center align-self-center>
+                    <ion-icon name="flask" style="font-size: 10vh;" color="primary"></ion-icon>
+                </ion-col>
+                <ion-col col-9>
+                    <h2><strong>Pesan Jasa Analisis</strong></h2>
+                    <p text-wrap>Buat pesanan jasa analisis biofarmaka dan lihat hasilnya pada aplikasi ini!</p>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-card>
 
-  <ion-card class="card-utama">
-    <ion-card-header>
-      KATEGORI
-    </ion-card-header>
+    <ion-card class="card-utama">
+        <ion-card-header>
+            KATEGORI
+        </ion-card-header>
 
-    <ion-card-content no-padding>
-      <ion-grid>
-        <ion-row>
-          <ion-col col-3 *ngFor="let item of kategori" (click)="gotoKategori(item.IDKategori)" class="kategori-col">
-            <img src="../../assets/imgs/logo.png" class="img-card">
-            <p text-center class="tess" text-wrap>
-              {{item.Kategori}}
-            </p>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card-content>
-    <!-- <ion-card-content class="card-flex">
+        <ion-card-content no-padding>
+            <ion-grid>
+                <ion-row>
+                    <ion-col col-3 *ngFor="let item of kategori" (click)="gotoKategori(item.IDKategori)" class="kategori-col">
+                        <img src="assets/imgs/logo.png" class="img-card">
+                        <p text-center class="tess" text-wrap>
+                            {{item.Kategori}}
+                        </p>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-card-content>
+        <!-- <ion-card-content class="card-flex">
       <ion-scroll scrollX="true" direction="x">
         <ion-card class="item card-item" *ngFor="let kategori of kategoris" (click)="gotoKategori(kategori)">
-          <img src="../../assets/imgs/logo.png" class="img-card">
+          <img src="assets/imgs/logo.png" class="img-card">
           <p text-center class="tess">
             {{kategori}}
           </p>
         </ion-card>
       </ion-scroll>
     </ion-card-content> -->
-  </ion-card>
+    </ion-card>
 
 
-  <!-- <ion-fab right bottom>
+    <!-- <ion-fab right bottom>
     <button ion-fab [navPush]="buatPesanan">
       <ion-icon name="add"></ion-icon>
     </button>

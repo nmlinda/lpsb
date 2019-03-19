@@ -138,7 +138,12 @@ export class ReviewPesananPage {
         } else {
           this.dataDiri = false;
         }
-        this.totalHarga = this.harga + this.kodeUnik;
+        if(this.lamaPengujian == 1){
+          this.totalBiasa();
+        }
+        else if(this.lamaPengujian == 2){
+          this.totalDipercepat();
+        }
       }
     });
     modal.present();
@@ -241,11 +246,13 @@ export class ReviewPesananPage {
           text: 'Akan diambil setelah pengujian selesai',
           handler: () => {
             this.sisaSampel = 1;
+            this.sisaSampelSelected = true;
           }
         }, {
           text: 'Akan ditinggalkan dan dalam 3 bulan ke depan akan dimusnahkan',
           handler: () => {
             this.sisaSampel = 0;
+            this.sisaSampelSelected = true;
           }
         }, {
           text: 'Kembali',
@@ -268,17 +275,12 @@ export class ReviewPesananPage {
         {
           text: 'Biasa (14 Hari Kerja)',
           handler: () => {
-            this.lamaPengujian = 1;
-            this.totalHarga = this.harga + this.kodeUnik;
-            this.hargaPercepatan = false;
+            this.totalBiasa();
           }
         }, {
           text: 'Percepatan (7 Hari Kerja)',
           handler: () => {
-            this.lamaPengujian = 2;
-            this.harga2x = this.harga * 2;
-            this.totalHarga = this.harga2x + this.kodeUnik;
-            this.hargaPercepatan = true;
+            this.totalDipercepat();
             this.toastPercepatan();
           }
         }, {
@@ -334,5 +336,18 @@ export class ReviewPesananPage {
     });
 
     toast.present();
+  }
+
+  totalBiasa(){
+    this.lamaPengujian = 1;
+    this.totalHarga = this.harga + this.kodeUnik;
+    this.hargaPercepatan = false;
+  }
+
+  totalDipercepat(){
+    this.lamaPengujian = 2;
+    this.harga2x = this.harga * 2;
+    this.totalHarga = this.harga2x + this.kodeUnik;
+    this.hargaPercepatan = true;
   }
 }
