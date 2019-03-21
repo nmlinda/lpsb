@@ -4,16 +4,8 @@ import { PembayaranPage } from '../pembayaran/pembayaran';
 import { KirimSampelPage } from '../kirim-sampel/kirim-sampel';
 import { BatalPesananPage } from '../batal-pesanan/batal-pesanan';
 import { UlasanPage } from '../ulasan/ulasan';
-// import { KirimSertifikatPage } from '../kirim-sertifikat/kirim-sertifikat';
 import { Data } from '../../provider/data';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
-/**
- * Generated class for the DetailPesananPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -48,8 +40,25 @@ export class DetailPesananPage {
     public httpClient: HttpClient,
     public data: Data,
     public modalCtrl: ModalController) {
-    this.idPesanan = this.navParams.get('data');
 
+  }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad DetailPesananPage');
+  }
+
+  ionViewWillEnter(){
+    this.idPesanan = null;
+    this.pesanan = null;
+    this.data_user = null;
+    this.list_sampel = null;
+    this.sampel_awal = null;
+    this.sampel_sisa = null;
+    this.status_utama = null;
+    this.ket_status_utama = null;
+    this.waktu_status_utama = null;
+
+    this.idPesanan = this.navParams.get('data');
 
     this.data.getData().then((data) => {
 
@@ -191,11 +200,6 @@ export class DetailPesananPage {
         }
       });
     })
-
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad DetailPesananPage');
   }
 
   showStatus() {

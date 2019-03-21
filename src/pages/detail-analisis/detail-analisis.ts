@@ -5,6 +5,7 @@ import { Data } from '../../provider/data';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { KategoriAnalisisPage } from '../kategori-analisis/kategori-analisis';
 import { KeranjangPage } from '../keranjang/keranjang';
+import { PemberitahuanPage } from '../pemberitahuan/pemberitahuan';
 /**
  * Generated class for the DetailAnalisisPage page.
  *
@@ -37,7 +38,10 @@ export class DetailAnalisisPage {
   ekstrak: boolean = false;
   serbuk: boolean = false;
   simplisia: boolean = false;
-
+  
+  response: any = [];
+  notif: any = [];
+  jumlahNotif: number;
   constructor(
     public data: Data,
     public alertCtrl: AlertController,
@@ -118,6 +122,33 @@ export class DetailAnalisisPage {
           alert.present();
         }
       });
+
+       //notif
+       this.response = [];
+       this.notif = [];
+       this.jumlahNotif = null;
+       this.httpClient.get(this.data.BASE_URL + '/getPemberitahuan', httpOptions).subscribe(data => {
+         this.response = data;
+         console.log(this.response);
+         if (this.response) {
+           this.notif = this.response.Pemberitahuans;
+           this.jumlahNotif = null;
+           for (var i = 0; i < this.notif.length; i++) {
+             if (this.notif[i].Dilihat == 0) {
+               this.jumlahNotif += 1;
+             }
+           }
+           console.log(this.jumlahNotif)
+         }
+         else {
+           let alert = this.alertCtrl.create({
+             title: 'Gagal memuat',
+             subTitle: 'Silahkan coba lagi.',
+             buttons: ['OK']
+           });
+           alert.present();
+         }
+       });
     })
   }
 
@@ -130,5 +161,9 @@ export class DetailAnalisisPage {
 
   gotoKategori(){
     this.navCtrl.push(KategoriAnalisisPage, { data: this.idKategori});
+  }
+
+  notifikasi() {
+    this.navCtrl.push(PemberitahuanPage);
   }
 }

@@ -13,19 +13,19 @@
 </ion-header> -->
 
 <ion-content>
-  <h3 text-center text-wrap>
-    <strong>
+    <h3 text-center text-wrap>
+        <strong>
       Pesanan Anda Diterima
     </strong>
-  </h3>
-  <p text-center text-wrap>
-    Pesanan anda akan segera divalidasi oleh sistem sebelum {{ date | date: 'dd-MM-yyyy'}}.
-  </p>
-  <div text-center>
-  <ion-icon name="checkmark-circle" color="primary" style="font-size: 200px"></ion-icon>
-  </div>
+    </h3>
+    <p text-center text-wrap padding>
+        Pesanan anda akan segera divalidasi oleh sistem sebelum {{ date | date: 'dd-MM-yyyy'}}.
+    </p>
+    <div text-center>
+        <ion-icon name="checkmark-circle" color="primary" style="font-size: 200px"></ion-icon>
+    </div>
 
-  <!-- <ion-card color="light">
+    <!-- <ion-card color="light">
     <ion-item>
       <h2 text-center text-wrap>
         <strong>
@@ -63,20 +63,20 @@
 </ion-content>
 
 <ion-footer>
-  <ion-grid>
-    <ion-row>
-      <!-- <ion-col col-6>
+    <ion-grid>
+        <ion-row>
+            <!-- <ion-col col-6>
         <button ion-button block outline color="secondary" (click)="gotoDetailPesanan()">
           Lihat Rincian
         </button>
       </ion-col> -->
-      <ion-col col-12>
-        <button ion-button block color="secondary" (click)="gotoBeranda()">
+            <ion-col col-12>
+                <button ion-button block color="secondary" (click)="gotoBeranda()">
           Oke
         </button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 </ion-footer>
 
 <!-- 

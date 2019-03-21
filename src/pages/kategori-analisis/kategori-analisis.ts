@@ -7,6 +7,7 @@ import { BuatPesanan2Page } from '../buat-pesanan2/buat-pesanan2';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Data } from '../../provider/data';
 import { KeranjangPage } from '../keranjang/keranjang';
+import { PemberitahuanPage } from '../pemberitahuan/pemberitahuan';
 
 
 
@@ -29,6 +30,9 @@ export class KategoriAnalisisPage {
   listKatalog: any = [];
   panjang: any;
   buatPesanan: any;
+  response: any = [];
+  notif: any = [];
+  jumlahNotif: number;
   constructor(
     public data: Data,
     public nav: NavController,
@@ -124,7 +128,35 @@ export class KategoriAnalisisPage {
           alert.present();
         }
       });
+
+      //notif
+      this.response = [];
+      this.notif = [];
+      this.jumlahNotif = null;
+      this.httpClient.get(this.data.BASE_URL + '/getPemberitahuan', httpOptions).subscribe(data => {
+        this.response = data;
+        console.log(this.response);
+        if (this.response) {
+          this.notif = this.response.Pemberitahuans;
+          this.jumlahNotif = null;
+          for (var i = 0; i < this.notif.length; i++) {
+            if (this.notif[i].Dilihat == 0) {
+              this.jumlahNotif += 1;
+            }
+          }
+          console.log(this.jumlahNotif)
+        }
+        else {
+          let alert = this.alertCtrl.create({
+            title: 'Gagal memuat',
+            subTitle: 'Silahkan coba lagi.',
+            buttons: ['OK']
+          });
+          alert.present();
+        }
+      });
     })
+    
   }
 
   keranjang(){
@@ -140,5 +172,9 @@ export class KategoriAnalisisPage {
 
   gotoBuatPesanan() {
     this.nav.push(BuatPesanan2Page);
+  }
+
+  notifikasi() {
+    this.nav.push(PemberitahuanPage);
   }
 }

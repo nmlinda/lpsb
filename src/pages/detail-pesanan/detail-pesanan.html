@@ -16,12 +16,11 @@
 <ion-content style="background-color: whitesmoke;">
 
     <!-- STATUS UTAMA -->
-    <ion-card *ngIf="status.WaktuPesananDibuat">
-        <ion-grid class=" space">
+    <ion-card *ngIf="status.WaktuPesananDibuat" class="line--green">
+        <ion-grid>
             <ion-row>
                 <ion-col col-1 align-self-right text-right class="status_utama">
-                    <ion-icon name="copy" color="primary" *ngIf="status.StatusUtama <= 5"></ion-icon>
-                    <ion-icon name="copy" color="danger" *ngIf="status.StatusUtama > 5"></ion-icon>
+                    <ion-icon name="copy" color="primary"></ion-icon>
                 </ion-col>
                 <ion-col col-11 class="status_utama">
                     <h2 class="text-utama">

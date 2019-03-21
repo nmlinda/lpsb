@@ -1,124 +1,121 @@
 page-detail-pesanan {
-  ion-card {
-    width: 100% !important;
-    margin-top: 0 !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-  }
-  ion-icon {
-    margin-inline-end: 4px;
-  }
-  .statusA{
-    border-bottom: 1px solid gainsboro;
-  }
-  // TIMELINE
-  /* The actual timeline (the vertical ruler) */
-  .timeline {
-    position: relative;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  /* The actual timeline (the vertical ruler) */
-  .timeline::after {
-    content: "";
-    position: absolute;
-    width: 2px;
-    background-color: gainsboro;
-    top: 17px;
-    bottom: 0px;
-    left: 5%;
-    margin-left: -2px;
-  }
-
-  /* Container around content */
-  .container {
-    padding-top: 4px;
-    padding-bottom: 4px;
-    padding-left: 35px;
-    position: relative;
-    background-color: inherit;
-    width: 100%;
-  }
-  .container2 {
-    padding-top: 4px;
-    padding-bottom: 4px;
-    padding-left: 35px;
-    position: relative;
-    background-color: inherit;
-    width: 100%;
-  }
-  /* The circles on the timeline */
-  .container::after {
-    content: "";
-    position: absolute;
-    width: 15px;
-    height: 15px;
-    right: -17px;
-    background-color: gainsboro;
-    // border: 1px solid gainsboro;
-    top: 15px;
-    border-radius: 50%;
-    z-index: 1;
-  }
-
-  .container2::after {
-    content: "";
-    position: absolute;
-    width: 15px;
-    height: 15px;
-    right: -17px;
-
-    background-color: #66A652;
-    // border: 1px solid rgb(137, 224, 110);
-    top: 15px;
-    border-radius: 50%;
-    z-index: 1;
-  }
-
-  /* Place the container to the right */
-  .right {
-    left: 50%;
-  }
-  /* Make sure all circles are at the same spot */
-  .right::after {
-    left: 8px;
-  }
-  /* Make sure all circles are at the same spot */
-  .right2::after {
-    left: 8px;
-  }
-
-  /* Make all right containers behave like the left ones */
-  .right {
-    left: 0%;
-  }
-
-  .line{
-    border-bottom: 1px solid gainsboro;
-  }
-  .line{
-    border-bottom: 1px solid gainsboro;
-  }
-  .line2{
-    border-top: 1px solid gainsboro;
-  }
-  // .status_utama {
-  //   background-color: #619E09;
-  // }
-  .text-utama {
-    font-weight: bold;
-    margin-bottom: 0;
-  }
-  .head{
-    font-size: 16px;
-    border-bottom: 1px solid gainsboro;
-    padding-bottom: 4px;
-  }
-  .text-content{
-    color: gray;
-  }
-  .text-item{
-    padding-left: 8px;
-    color: gray;
-  }
+    ion-card {
+        width: 100% !important;
+        margin-top: 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    ion-icon {
+        margin-inline-end: 4px;
+    }
+    .statusA {
+        border-bottom: 1px solid gainsboro;
+    }
+    // TIMELINE
+    /* The actual timeline (the vertical ruler) */
+    .timeline {
+        position: relative;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    /* The actual timeline (the vertical ruler) */
+    .timeline::after {
+        content: "";
+        position: absolute;
+        width: 2px;
+        background-color: gainsboro;
+        top: 17px;
+        bottom: 0px;
+        left: 5%;
+        margin-left: -2px;
+    }
+    /* Container around content */
+    .container {
+        padding-top: 4px;
+        padding-bottom: 4px;
+        padding-left: 35px;
+        position: relative;
+        background-color: inherit;
+        width: 100%;
+    }
+    .container2 {
+        padding-top: 4px;
+        padding-bottom: 4px;
+        padding-left: 35px;
+        position: relative;
+        background-color: inherit;
+        width: 100%;
+    }
+    /* The circles on the timeline */
+    .container::after {
+        content: "";
+        position: absolute;
+        width: 15px;
+        height: 15px;
+        right: -17px;
+        background-color: gainsboro;
+        // border: 1px solid gainsboro;
+        top: 15px;
+        border-radius: 50%;
+        z-index: 1;
+    }
+    .container2::after {
+        content: "";
+        position: absolute;
+        width: 15px;
+        height: 15px;
+        right: -17px;
+        background-color: #66A652;
+        // border: 1px solid rgb(137, 224, 110);
+        top: 15px;
+        border-radius: 50%;
+        z-index: 1;
+    }
+    /* Place the container to the right */
+    .right {
+        left: 50%;
+    }
+    /* Make sure all circles are at the same spot */
+    .right::after {
+        left: 8px;
+    }
+    /* Make sure all circles are at the same spot */
+    .right2::after {
+        left: 8px;
+    }
+    /* Make all right containers behave like the left ones */
+    .right {
+        left: 0%;
+    }
+    .line {
+        border-bottom: 1px solid gainsboro;
+    }
+    .line {
+        border-bottom: 1px solid gainsboro;
+    }
+    .line2 {
+        border-top: 1px solid gainsboro;
+    }
+    .line--green {
+        border-bottom: 3px solid #66A652;
+    }
+    // .status_utama {
+    //   background-color: #619E09;
+    // }
+    .text-utama {
+        font-weight: bold;
+        margin-bottom: 0;
+    }
+    .head {
+        font-size: 16px;
+        border-bottom: 1px solid gainsboro;
+        padding-bottom: 4px;
+    }
+    .text-content {
+        color: gray;
+    }
+    .text-item {
+        padding-left: 8px;
+        color: gray;
+    }
 }

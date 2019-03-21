@@ -11,12 +11,17 @@
       </ion-row>
     </ion-grid> -->
         <ion-title>
-            LPSB
+            Lab Uji Biofarmaka
         </ion-title>
         <ion-buttons end>
-            <button ion-button color="primary" id="btn" clear icon-only (click)="keranjang()">
-        <ion-icon name="cart" >
-          <ion-badge *ngIf="jumlahKeranjang" color="danger" >{{ jumlahKeranjang}}</ion-badge>
+            <button ion-button color="primary" class="btn--navbar" clear icon-only (click)="notifikasi()">
+        <ion-icon name="notifications">
+          <ion-badge *ngIf="jumlahNotif" color="danger">{{ jumlahNotif }}</ion-badge>
+        </ion-icon>
+      </button>
+            <button ion-button color="primary" class="btn--navbar" clear icon-only (click)="keranjang()">
+        <ion-icon name="cart">
+          <ion-badge *ngIf="jumlahKeranjang" color="danger">{{ jumlahKeranjang }}</ion-badge>
         </ion-icon>
       </button>
         </ion-buttons>
@@ -40,9 +45,9 @@
       
       </ion-slides> -->
 
-    <ion-searchbar (click)="cari()" class="search-bar"></ion-searchbar>
+    <ion-searchbar (click)="cari()" class="search-bar" placeholder="Contoh: Fitokimia, Ekstraksi.."></ion-searchbar>
 
-    <ion-card>
+    <ion-card class="card--green">
         <ion-grid>
             <ion-row (click)="gotoKategori()">
                 <ion-col col-3 text-center align-self-center>
@@ -50,7 +55,7 @@
                 </ion-col>
                 <ion-col col-9>
                     <h2><strong>Pesan Jasa Analisis</strong></h2>
-                    <p text-wrap>Buat pesanan jasa analisis biofarmaka dan lihat hasilnya pada aplikasi ini!</p>
+                    <p text-wrap>Buat pesanan uji biofarmaka dan lihat hasilnya pada aplikasi ini!</p>
                 </ion-col>
             </ion-row>
         </ion-grid>

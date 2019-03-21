@@ -41,8 +41,9 @@ export class CheckoutPage {
   // }
 
   gotoBeranda() {
-    // this.viewCtrl.dismiss().then(() => {
-      this.navCtrl.push(TabsPage);
-  // });
+    let currentIndex = this.navCtrl.getActive().index;
+    this.navCtrl.push(TabsPage).then(() => {
+      this.navCtrl.remove(currentIndex);
+    });
   }
 }

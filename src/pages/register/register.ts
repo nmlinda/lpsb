@@ -21,13 +21,14 @@ const httpOptions = {
 })
 export class RegisterPage {
   signupform: FormGroup;
-  userData = { 
-    "name": "", 
+  userData = {
+    "name": "",
     "institusi": 0,
     "institusiLain": "",
     "noIdentitas": "",
-    "password": "", 
-    "email": "" };
+    "password": "",
+    "email": ""
+  };
 
   logins: any = [];
   // submitted = false;
@@ -39,7 +40,7 @@ export class RegisterPage {
   institusi: string;
   institusiLain: boolean = false;
   IPB: boolean = false;
-  regis :any = [];
+  regis: any = [];
   constructor(
     public navCtrl: NavController,
     public alertCtrl: AlertController,
@@ -81,16 +82,19 @@ export class RegisterPage {
   }
 
   gotoLogin() {
-    this.navCtrl.push(LoginPage);
+    let currentIndex = this.navCtrl.getActive().index;
+    this.navCtrl.push(LoginPage).then(() => {
+      this.navCtrl.remove(currentIndex);
+    });
   }
 
   signup() {
     let loading = this.loadCtrl.create({
       content: 'memuat..'
     });
-    if(this.userData.institusi == 1){
+    if (this.userData.institusi == 1) {
       this.institusi = "Institut Pertanian Bogor";
-    } else if(this.userData.institusi == 2){
+    } else if (this.userData.institusi == 2) {
       this.institusi = this.userData.institusiLain;
     }
     let input = {

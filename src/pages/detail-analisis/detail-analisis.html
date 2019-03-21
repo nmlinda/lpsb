@@ -21,9 +21,14 @@
             {{ namaJenis }}
         </ion-title>
         <ion-buttons end>
+            <button ion-button color="primary" class="btn--navbar" clear icon-only (click)="notifikasi()">
+        <ion-icon name="notifications">
+          <ion-badge *ngIf="jumlahNotif" color="danger">{{ jumlahNotif }}</ion-badge>
+        </ion-icon>
+      </button>
             <button ion-button color="primary" id="btn" clear icon-only (click)="keranjang()">
-        <ion-icon name="cart" >
-          <ion-badge *ngIf="jumlahKeranjang" color="danger" >{{ jumlahKeranjang}}</ion-badge>
+        <ion-icon name="cart">
+          <ion-badge *ngIf="jumlahKeranjang" color="danger">{{ jumlahKeranjang}}</ion-badge>
         </ion-icon>
       </button>
         </ion-buttons>

@@ -1,119 +1,100 @@
 <ion-content>
-  <div class="title">
-    <h1 text-center>LPSB</h1>
-  </div>
-  <form (ngSubmit)="signup()" [formGroup]="signupform" novalidate padding>
-    <ion-list>
-      <ion-item>
-        <ion-icon name="person" item-end color="primary"></ion-icon>
-        <ion-label stacked>Nama Lengkap</ion-label>
-        <ion-input type="text" [(ngModel)]="userData.name" formControlName="name" placeholder="Nama Lengkap"
-          [class.error1]="!signupform.controls.name.valid && signupform.controls.name.dirty"></ion-input>
-      </ion-item>
-      <ion-item no-lines
-        *ngIf="( signupform.get('name').hasError('minlength') || signupform.get('name').hasError('maxlength') ||signupform.get('name').hasError('pattern') ||signupform.get('name').hasError('required') ) && signupform.get('name').touched">
-        <div class="error" *ngIf="signupform.get('name').hasError('required') && signupform.get('name').touched">
-          Masukkan Nama Lengkap anda
-        </div>
-        <div class="error" *ngIf="signupform.get('name').hasError('minlength') && signupform.get('name').touched">
-          Minimal 4 karakter
-        </div>
-        <div class="error" *ngIf="signupform.get('name').hasError('pattern') && signupform.get('name').touched">
-          Gunakan karakter alphabet
-        </div>
-      </ion-item>
+    <div class="title">
+        <h1 text-center>LPSB</h1>
+    </div>
+    <form (ngSubmit)="signup()" [formGroup]="signupform" novalidate padding>
+        <ion-list>
+            <ion-item>
+                <ion-icon name="person" item-end color="primary"></ion-icon>
+                <ion-label stacked>Nama Lengkap</ion-label>
+                <ion-input type="text" [(ngModel)]="userData.name" formControlName="name" placeholder="Nama Lengkap" [class.error1]="!signupform.controls.name.valid && signupform.controls.name.dirty"></ion-input>
+            </ion-item>
+            <ion-item no-lines *ngIf="( signupform.get('name').hasError('minlength') || signupform.get('name').hasError('maxlength') ||signupform.get('name').hasError('pattern') ||signupform.get('name').hasError('required') ) && signupform.get('name').touched">
+                <div class="error" *ngIf="signupform.get('name').hasError('required') && signupform.get('name').touched">
+                    Masukkan Nama Lengkap anda
+                </div>
+                <div class="error" *ngIf="signupform.get('name').hasError('minlength') && signupform.get('name').touched">
+                    Minimal 4 karakter
+                </div>
+                <div class="error" *ngIf="signupform.get('name').hasError('pattern') && signupform.get('name').touched">
+                    Gunakan karakter alphabet
+                </div>
+            </ion-item>
 
-      <ion-item>
-        <ion-icon name="briefcase" item-end color="primary"></ion-icon>
-        <ion-label stacked>Institusi/Perusahaan</ion-label>
-        <ion-select (ionChange)="institusiChange($event)" [(ngModel)]="userData.institusi" formControlName="institusi"
-          [class.error1]="!signupform.controls.institusi.valid && signupform.controls.institusi.dirty">
-          <ion-option value="1">Institut Pertanian Bogor</ion-option>
-          <ion-option value="2">Lainnya</ion-option>
-        </ion-select>
+            <ion-item>
+                <ion-icon name="briefcase" item-end color="primary"></ion-icon>
+                <ion-label stacked>Institusi/Perusahaan</ion-label>
+                <ion-select (ionChange)="institusiChange($event)" [(ngModel)]="userData.institusi" formControlName="institusi" [class.error1]="!signupform.controls.institusi.valid && signupform.controls.institusi.dirty">
+                    <ion-option value="1">Institut Pertanian Bogor</ion-option>
+                    <ion-option value="2">Lainnya</ion-option>
+                </ion-select>
 
-        <ion-item no-lines
-          *ngIf="signupform.get('institusi').hasError('required') && signupform.get('institusi').touched">
-          <div class="error"
-            *ngIf="signupform.get('institusi').hasError('required') && signupform.get('institusi').touched">
-            Pilih institusi
-          </div>
-        </ion-item>
+                <ion-item no-lines *ngIf="signupform.get('institusi').hasError('required') && signupform.get('institusi').touched">
+                    <div class="error" *ngIf="signupform.get('institusi').hasError('required') && signupform.get('institusi').touched">
+                        Pilih institusi
+                    </div>
+                </ion-item>
+            </ion-item>
+            <ion-item *ngIf="institusiLain">
+                <ion-input type="text" placeholder="e.g. Universitas Hardvard" [(ngModel)]="userData.institusiLain" formControlName="institusiLain" [class.error1]="!signupform.controls.institusiLain.valid && signupform.controls.institusiLain.dirty">
+                </ion-input>
+            </ion-item>
+            <ion-item no-lines *ngIf="signupform.get('institusiLain').hasError('required') && signupform.get('institusiLain').touched">
+                <div class="error" *ngIf="signupform.get('institusiLain').hasError('required') && signupform.get('institusiLain').touched">
+                    Masukkan Institusi Lain
+                </div>
+            </ion-item>
+            <ion-item *ngIf="IPB">
+                <ion-icon name="finger-print" item-end color="primary"></ion-icon>
+                <ion-label stacked>NIM/NIK IPB</ion-label>
+                <ion-input type="text" [(ngModel)]="userData.noIdentitas" placeholder="e.g. G64150049" formControlName="noIdentitas" [class.error1]="!signupform.controls.noIdentitas.valid && signupform.controls.noIdentitas.dirty"></ion-input>
+            </ion-item>
+            <ion-item no-lines *ngIf="signupform.get('noIdentitas').hasError('required') && signupform.get('noIdentitas').touched">
+                <div class="error" *ngIf="signupform.get('noIdentitas').hasError('required') && signupform.get('noIdentitas').touched">
+                    Masukkan NIM/NIK IPB
+                </div>
+            </ion-item>
 
-        <ion-input *ngIf="institusiLain" type="text" placeholder="e.g. Universitas Hardvard"
-          [(ngModel)]="userData.institusiLain" formControlName="institusiLain"
-          [class.error1]="!signupform.controls.institusiLain.valid && signupform.controls.institusiLain.dirty">
-        </ion-input>
-        <ion-item no-lines
-          *ngIf="signupform.get('institusiLain').hasError('required') && signupform.get('institusiLain').touched">
-          <div class="error"
-            *ngIf="signupform.get('institusiLain').hasError('required') && signupform.get('institusiLain').touched">
-            Masukkan Institusi Lain
-          </div>
-        </ion-item>
+            <ion-item>
+                <ion-icon name="mail" item-end color="primary"></ion-icon>
+                <ion-label stacked>Email</ion-label>
+                <ion-input type="email" [(ngModel)]="userData.email" formControlName="email" placeholder="Email" [class.error1]="!signupform.controls.email.valid && signupform.controls.email.dirty"></ion-input>
+            </ion-item>
+            <ion-item no-lines *ngIf="( signupform.get('email').hasError('minlength') || signupform.get('email').hasError('pattern') ||signupform.get('email').hasError('required') ) && signupform.get('email').touched">
+                <div class="error" *ngIf="signupform.get('email').hasError('required') && signupform.get('email').touched">
+                    Masukkan email anda
+                </div>
+                <div class="error" *ngIf="signupform.get('email').hasError('pattern') && signupform.get('email').touched">
+                    Email tidak valid
+                </div>
+            </ion-item>
 
-      </ion-item>
-      <ion-item *ngIf="IPB">
-        <ion-icon name="finger-print" item-end color="primary"></ion-icon>
-        <ion-label stacked>NIM/NIK IPB</ion-label>
-        <ion-input type="text" [(ngModel)]="userData.noIdentitas" placeholder="e.g. G64150049"
-          formControlName="noIdentitas"
-          [class.error1]="!signupform.controls.noIdentitas.valid && signupform.controls.noIdentitas.dirty"></ion-input>
-      </ion-item>
-      <ion-item no-lines
-        *ngIf="signupform.get('noIdentitas').hasError('required') && signupform.get('noIdentitas').touched">
-        <div class="error"
-          *ngIf="signupform.get('noIdentitas').hasError('required') && signupform.get('noIdentitas').touched">
-          Masukkan NIM/NIK IPB
-        </div>
-      </ion-item>
+            <ion-item>
+                <ion-icon name="key" item-end color="primary"></ion-icon>
+                <ion-label stacked>Password</ion-label>
+                <ion-input type="password" [(ngModel)]="userData.password" formControlName="password" placeholder="Password" [class.error1]="!signupform.controls.password.valid && signupform.controls.password.dirty"></ion-input>
+            </ion-item>
+            <ion-item no-lines *ngIf="( signupform.get('password').hasError('minlength') || signupform.get('password').hasError('maxlength') ||signupform.get('password').hasError('required') ) && signupform.get('password').touched">
+                <div class="error" *ngIf="signupform.get('password').hasError('required') && signupform.get('password').touched">
+                    Masukkan password anda
+                </div>
+                <div class="error" *ngIf="signupform.get('password').hasError('minlength') && signupform.get('password').touched">
+                    Minimal 6 karakter
+                </div>
+            </ion-item>
+        </ion-list>
 
-      <ion-item>
-        <ion-icon name="mail" item-end color="primary"></ion-icon>
-        <ion-label stacked>Email</ion-label>
-        <ion-input type="email" [(ngModel)]="userData.email" formControlName="email" placeholder="Email"
-          [class.error1]="!signupform.controls.email.valid && signupform.controls.email.dirty"></ion-input>
-      </ion-item>
-      <ion-item no-lines
-        *ngIf="( signupform.get('email').hasError('minlength') || signupform.get('email').hasError('pattern') ||signupform.get('email').hasError('required') ) && signupform.get('email').touched">
-        <div class="error" *ngIf="signupform.get('email').hasError('required') && signupform.get('email').touched">
-          Masukkan email anda
-        </div>
-        <div class="error" *ngIf="signupform.get('email').hasError('pattern') && signupform.get('email').touched">
-          Email tidak valid
-        </div>
-      </ion-item>
-
-      <ion-item>
-        <ion-icon name="key" item-end color="primary"></ion-icon>
-        <ion-label stacked>Password</ion-label>
-        <ion-input type="password" [(ngModel)]="userData.password" formControlName="password" placeholder="Password"
-          [class.error1]="!signupform.controls.password.valid && signupform.controls.password.dirty"></ion-input>
-      </ion-item>
-      <ion-item no-lines
-        *ngIf="( signupform.get('password').hasError('minlength') || signupform.get('password').hasError('maxlength') ||signupform.get('password').hasError('required') ) && signupform.get('password').touched">
-        <div class="error"
-          *ngIf="signupform.get('password').hasError('required') && signupform.get('password').touched">
-          Masukkan password anda
-        </div>
-        <div class="error"
-          *ngIf="signupform.get('password').hasError('minlength') && signupform.get('password').touched">
-          Minimal 6 karakter
-        </div>
-      </ion-item>
-    </ion-list>
-
-    <button type="submit" ion-button block [disabled]="signupform.invalid">
+        <button type="submit" ion-button block [disabled]="signupform.invalid">
       Daftar
     </button>
-  </form>
+    </form>
 
-  <div class="footer">
-    <p text-center>
-      Sudah punya akun?
-      <strong><a (click)="gotoLogin()"> Masuk.</a></strong>
-    </p>
-  </div>
+    <div class="footer">
+        <p text-center>
+            Sudah punya akun?
+            <strong><a (click)="gotoLogin()"> Masuk.</a></strong>
+        </p>
+    </div>
 </ion-content>
 <!-- <ion-footer>
   <p text-center>

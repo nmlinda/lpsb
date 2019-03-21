@@ -82,10 +82,10 @@ export class LoginPage {
   }
 
   gotoDaftar() {
-    this.navCtrl.push(RegisterPage);
+    let currentIndex = this.navCtrl.getActive().index;
+    this.navCtrl.push(RegisterPage).then(() => {
+      this.navCtrl.remove(currentIndex);
+    });
   }
 
-  gotoBeranda() {
-    this.navCtrl.push(HomePage);
-  }
 }
