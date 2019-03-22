@@ -1,24 +1,29 @@
 page-login {
-  .title {
-    color: #337ab7;
-    padding-top: 50px;
-    padding-bottom: 10px;
-  }
-  .error {
-    color: rgb(223, 62, 62);
-    font-size: 11px;
-  }
-
-  .error1 {
-    color: rgb(75, 75, 75);
-    border-bottom: 1px solid #ff0000;
-  }
-  .footer {
-    // position: absolute;
-    // bottom: 0px;
-    // width: 100%;
-    // padding: 0;
-    // border-top: 1px solid gainsboro;
-    padding-top: 10px;
-  }
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: 0;
+    .title {
+        color: #337ab7;
+        padding-top: 50px;
+        padding-bottom: 10px;
+    }
+    .error {
+        color: rgb(223, 62, 62);
+        font-size: 11px;
+    }
+    .error1 {
+        color: rgb(75, 75, 75);
+        border-bottom: 1px solid #ff0000;
+    }
+    .footer {
+        // position: absolute;
+        // bottom: 0px;
+        // width: 100%;
+        // padding: 0;
+        // border-top: 1px solid gainsboro;
+        padding-top: 10px;
+    }
 }

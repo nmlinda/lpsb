@@ -138,18 +138,28 @@
     </ion-card>
 
     <ion-grid class="footer">
-        <ion-row>
-            <ion-col col-5>
+        <!-- <ion-buttons start> -->
+        <button ion-button margin-right block outline text-capitalize color="orange" (click)="gotoKeranjang()" [disabled]="pesanform.invalid">
+              Pesan Sekarang
+            </button>
+        <!-- </ion-buttons> -->
+        <!-- <ion-buttons end> -->
+        <button ion-button text-capitalize block (click)="tambahKeranjang()" color="orange" [disabled]="pesanform.invalid">
+              Tambah ke Keranjang
+            </button>
+        <!-- </ion-buttons> -->
+        <!-- <ion-row>
+            <ion-col col-5 class="fixed-col">
                 <button ion-button block outline text-capitalize color="orange" (click)="gotoKeranjang()" [disabled]="pesanform.invalid">
           Pesan Sekarang
         </button>
             </ion-col>
-            <ion-col col-7>
+            <ion-col col-7 class="fixed-col">
                 <button ion-button block text-capitalize (click)="tambahKeranjang()" color="orange" [disabled]="pesanform.invalid">
         Tambah ke Keranjang
       </button>
             </ion-col>
-        </ion-row>
+        </ion-row> -->
     </ion-grid>
 </ion-content>
 <!-- 
