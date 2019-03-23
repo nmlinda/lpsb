@@ -1,5 +1,12 @@
 page-ulasan {
-  .inputan {
-    border: 1px solid gainsboro;
-  }
+    .inputan {
+        border: 1px solid gainsboro;
+    }
+    .question {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .answer {
+        display: flex;
+    }
 }

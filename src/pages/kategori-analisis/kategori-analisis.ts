@@ -33,6 +33,7 @@ export class KategoriAnalisisPage {
   response: any = [];
   notif: any = [];
   jumlahNotif: number;
+  harga: any;
   constructor(
     public data: Data,
     public nav: NavController,
@@ -41,57 +42,6 @@ export class KategoriAnalisisPage {
     public httpClient: HttpClient) {
     this.buatPesanan = BuatPesananPage;
     this.idKategori = this.navParams.get('data');
-
-    if (this.idKategori) {
-      this.data.getData().then((data) => {
-
-        const httpOptions = {
-          headers: new HttpHeaders({
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + data.api_token
-          })
-        };
-
-        this.httpClient.get(this.data.BASE_URL + '/getKatalogByKategori/' + this.idKategori,
-          httpOptions).subscribe(data => {
-            let response = data;
-            this.katalogs = response;
-            this.listKatalog = this.katalogs.katalogs;
-            this.kategori = this.katalogs.NamaKategori;
-            console.log(response);
-
-            this.panjang = this.listKatalog.length;
-            for (var i = 0; i < this.panjang; i++) {
-              this.katalog[i] = this.listKatalog[i];
-            }
-          });
-
-      })
-    }
-    else {
-      this.data.getData().then((data) => {
-
-        const httpOptions = {
-          headers: new HttpHeaders({
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + data.api_token
-          })
-        };
-
-        this.httpClient.get(this.data.BASE_URL + '/getAllKatalogUmum/', httpOptions).subscribe(data => {
-          let response = data;
-          this.katalogs = response;
-          this.listKatalog = this.katalogs.katalogs;
-          this.kategori = "Buat Pesanan";
-          console.log(response);
-
-          this.panjang = this.listKatalog.length;
-          for (var i = 0; i < this.panjang; i++) {
-            this.katalog[i] = this.listKatalog[i];
-          }
-        });
-      })
-    }
   }
 
 
@@ -99,9 +49,7 @@ export class KategoriAnalisisPage {
     console.log('ionViewDidLoad KategoriAnalisisPage');
   }
 
-  ionViewWillEnter(){
-    this.keranjangs = [];
-    this.jumlahKeranjang = 0;
+  ionViewWillEnter() {
     this.data.getData().then((data) => {
 
       const httpOptions = {
@@ -111,6 +59,76 @@ export class KategoriAnalisisPage {
         })
       };
 
+      //listKatalog
+      if (this.idKategori) {
+
+        this.httpClient.get(this.data.BASE_URL + '/getKatalogByKategori/' + this.idKategori,
+          httpOptions).subscribe(data => {
+            let response = data;
+            this.katalogs = response;
+            this.listKatalog = this.katalogs.katalogs;
+            this.kategori = this.katalogs.NamaKategori;
+            console.log(response);
+            if (response) {
+              this.panjang = this.listKatalog.length;
+              this.harga = 0;
+              this.data.getData().then((data) => {
+                for (var i = 0; i < this.panjang; i++) {
+                  if (data.Perusahaan == "Institut Pertanian Bogor") {
+                    this.listKatalog[i].Harga = this.listKatalog[i].HargaIPB;
+                  }
+                  else {
+                    this.listKatalog[i].Harga = this.listKatalog[i].HargaNONIPB;
+                  }
+                }
+              })
+            }
+            else {
+              let alert = this.alertCtrl.create({
+                title: 'Gagal memuat',
+                subTitle: 'Silahkan coba lagi.',
+                buttons: ['OK']
+              });
+              alert.present();
+            }
+          });
+      }
+      else {
+        this.httpClient.get(this.data.BASE_URL + '/getAllKatalogUmum/', httpOptions).subscribe(data => {
+          let response = data;
+          this.katalogs = response;
+          this.listKatalog = this.katalogs.katalogs;
+          this.kategori = "Buat Pesanan";
+          console.log(response);
+
+          if (response) {
+            this.panjang = this.listKatalog.length;
+            this.harga = 0;
+            this.data.getData().then((data) => {
+              for (var i = 0; i < this.panjang; i++) {
+                if (data.Perusahaan == "Institut Pertanian Bogor") {
+                  this.listKatalog[i].Harga = this.listKatalog[i].HargaIPB;
+                }
+                else {
+                  this.listKatalog[i].Harga = this.listKatalog[i].HargaNONIPB;
+                }
+              }
+            })
+          }
+          else {
+            let alert = this.alertCtrl.create({
+              title: 'Gagal memuat',
+              subTitle: 'Silahkan coba lagi.',
+              buttons: ['OK']
+            });
+            alert.present();
+          }
+        });
+      }
+
+      //cart
+      this.keranjangs = [];
+      this.jumlahKeranjang = 0;
       this.httpClient.get(this.data.BASE_URL + '/getKeranjang', httpOptions).subscribe(data => {
         let response = data;
         this.responses = response;
@@ -156,10 +174,10 @@ export class KategoriAnalisisPage {
         }
       });
     })
-    
+
   }
 
-  keranjang(){
+  keranjang() {
     this.nav.push(KeranjangPage);
   }
   gotoDetailAnalisis(IDjenis) {

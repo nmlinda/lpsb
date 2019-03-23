@@ -25,7 +25,7 @@ export class CariPage {
     public data: Data,
     public alertCtrl: AlertController,
     public httpClient: HttpClient,
-     public navParams: NavParams) {
+    public navParams: NavParams) {
     this.data.getData().then((data) => {
 
       const httpOptions = {
@@ -41,12 +41,23 @@ export class CariPage {
         this.listKatalog = this.katalogs.katalogs;
         console.log(response);
 
-        this.panjang = this.listKatalog.length;
-        for (var i = 0; i < this.panjang; i++) {
-          this.katalog[i] = this.listKatalog[i];
-        }
-      });
-    })
+        this.data.getData().then((data) => {
+
+          this.panjang = this.listKatalog.length;
+          for (var i = 0; i < this.panjang; i++) {
+            this.katalog[i] = this.listKatalog[i];
+            if (data.Perusahaan == "Institut Pertanian Bogor") {
+              this.listKatalog[i].Harga = this.listKatalog[i].HargaIPB;
+            }
+            else {
+              this.listKatalog[i].Harga = this.listKatalog[i].HargaNONIPB;
+            }
+          }
+        })
+      })
+
+    });
+
   }
 
   ionViewDidLoad() {

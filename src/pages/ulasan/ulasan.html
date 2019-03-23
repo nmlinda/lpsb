@@ -1,36 +1,39 @@
 <ion-header>
 
-  <ion-navbar>
-    <!-- <ion-grid no-padding>
-      <ion-row>
-        <ion-col col-2 no-padding>
-          <button ion-button (click)="closeModal()" clear icon-only>
-            <ion-icon name="arrow-back"></ion-icon>
-          </button>
-        </ion-col>
-        <ion-col col-10 no-padding align-self-center> -->
-          <ion-title>Ulasan</ion-title>
-        <!-- </ion-col>
-      </ion-row>
-    </ion-grid> -->
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>Ulasan</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <h6 *ngIf="!ulas">
-    Berikan ulasan anda terhadap pesanan di aplikasi ini
-  </h6>
-  <h6 *ngIf="ulas">
-    Ulasan anda terhadap pesanan di aplikasi ini
-  </h6>
-  <ion-item class="inputan" no-padding>
-    <ion-textarea placeholder="Tulis ulasan anda... " rows="4" cols="20" autofocus="true" [(ngModel)]="ulasan" [disabled]="ulas"></ion-textarea>
-  </ion-item>
-  <ion-buttons end padding-top *ngIf="!ulas">
-    <button ion-button text-capitalize (click)="kirim()" [disabled]="btn-ulasan">
-      Kirim
-    </button>
-  </ion-buttons>
+    <h6 *ngIf="!ulas">
+        Berikan ulasan anda terhadap pesanan di aplikasi ini
+    </h6>
+    <h6 *ngIf="ulas">
+        Ulasan anda terhadap pesanan di aplikasi ini
+    </h6>
+    <ion-list>
+        <ion-item>
+            <ion-label>Independensi laboratorium dalam menghasilkan data pengujian</ion-label>
+            <ion-range [(ngModel)]="brightness" min="1" step="1" max="5" pin="true" snaps="true" color="primary">
+                <ion-label range-left>SKM</ion-label>
+                <ion-label range-right>SM</ion-label>
+            </ion-range>
+        </ion-item>
+        <ion-item>
+            <p>
+                Ket: <br> SKM(1) = Sangat Kurang Memuaskan <br> KM(2) = Kurang Memuaskan <br> N(3) = Netral <br> M(4) = Memuaskan <br> SM(5) = Sangat Memuaskan
+            </p>
+        </ion-item>
+        <ion-item class="inputan" no-padding>
+            <ion-textarea placeholder="Tulis ulasan anda... " rows="4" cols="20" autofocus="true" [(ngModel)]="ulasan" [disabled]="ulas"></ion-textarea>
+        </ion-item>
+        <ion-buttons end padding-top *ngIf="!ulas">
+            <button ion-button text-capitalize (click)="kirim()" [disabled]="btn-ulasan">
+        Kirim
+      </button>
+        </ion-buttons>
+    </ion-list>
 </ion-content>

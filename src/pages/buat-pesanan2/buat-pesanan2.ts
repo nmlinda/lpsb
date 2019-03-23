@@ -29,8 +29,7 @@ export class BuatPesanan2Page {
   IDjenis: any;
   jenisAnalisis: any;
   namaJenis: string;
-  hargaIPB: number;
-  hargaNONIPB: number;
+  harga: number;
   metode: string;
   keterangan: string;
   Cairan: boolean = false;
@@ -75,8 +74,15 @@ export class BuatPesanan2Page {
           console.log(this.jenisAnalisis);
           this.IDjenis = this.jenisAnalisis.IDKatalog;
           this.namaJenis = this.jenisAnalisis.JenisAnalisis;
-          this.hargaIPB = this.jenisAnalisis.HargaIPB;
-          this.hargaNONIPB = this.jenisAnalisis.HargaNONIPB;
+          this.harga = 0;
+          this.data.getData().then((data) => {
+            if (data.Perusahaan == "Institut Pertanian Bogor") {
+              this.harga = this.jenisAnalisis.HargaIPB;
+            }
+            else {
+              this.harga = this.jenisAnalisis.HargaNONIPB;
+            }
+          })
           this.metode = this.jenisAnalisis.Metode;
           this.keterangan = this.jenisAnalisis.Keterangan;
           if (this.jenisAnalisis.Cairan === 1) {
@@ -129,6 +135,7 @@ export class BuatPesanan2Page {
     let loading = this.loadCtrl.create({
       content: 'memuat..'
     });
+    loading.present();
     if (this.pesanData.kemasan === "lainnya") {
       this.kemasan2 = this.pesanData.kemasanLainnya;
     }
@@ -184,6 +191,7 @@ export class BuatPesanan2Page {
     let loading = this.loadCtrl.create({
       content: 'memuat..'
     });
+    loading.present();
     if (this.pesanData.kemasan === "lainnya") {
       this.kemasan2 = this.pesanData.kemasanLainnya;
     }

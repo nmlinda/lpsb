@@ -1,22 +1,6 @@
-<!--
-  Generated template for the KategoriAnalisisPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
     <ion-navbar>
-        <!-- <ion-grid no-padding>
-      <ion-row>
-        <ion-col col-8 style="padding-top: 4px;">
-          <ion-title>{{kategori}}</ion-title>
-        </ion-col>
-        <ion-col col-4 no-padding>
-          <page-navbar></page-navbar>
-        </ion-col>
-      </ion-row>
-    </ion-grid> -->
         <ion-title>
             {{ kategori }}
         </ion-title>
@@ -43,21 +27,15 @@
 
     <ion-grid no-padding>
         <ion-row>
-            <ion-col *ngFor="let item of katalog | cari : cariAnalisis" col-6 no-padding>
+            <ion-col *ngFor="let item of listKatalog" col-6 no-padding>
                 <ion-card class="card-jenis" (click)="gotoDetailAnalisis(item.IDKatalog)" text-center>
                     <img src="assets/imgs/fitokimia.jpg" class="img-jenis">
                     <h2 text-uppercase><strong>{{item.JenisAnalisis}}</strong></h2>
                     <p class="text-content">
-                        IPB Rp {{item.HargaIPB | number:0 }}<br> NON-IPB {{item.HargaNONIPB | number:0 }}
+                        Rp {{item.Harga | number:0 }}
                     </p>
                 </ion-card>
             </ion-col>
         </ion-row>
     </ion-grid>
-    <!-- 
-  <ion-fab right bottom>
-    <button ion-fab [navPush]="buatPesanan">
-      <ion-icon name="add"></ion-icon>
-    </button>
-  </ion-fab> -->
 </ion-content>

@@ -92,6 +92,7 @@ export class RegisterPage {
     let loading = this.loadCtrl.create({
       content: 'memuat..'
     });
+    loading.present();
     if (this.userData.institusi == 1) {
       this.institusi = "Institut Pertanian Bogor";
     } else if (this.userData.institusi == 2) {
@@ -110,7 +111,7 @@ export class RegisterPage {
       let response = data;
       this.regis = response;
       console.log(response);
-      if (this.regis.success == true) {
+      if (response) {
         this.data.login(this.regis); // simpan response ke local storage
         this.navCtrl.setRoot(TabsPage);
         loading.dismiss();

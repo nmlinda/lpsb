@@ -28,8 +28,7 @@ export class DetailAnalisisPage {
   IDjenis: any;
   jenisAnalisis: any;
   namaJenis: string;
-  hargaIPB: number;
-  hargaNONIPB: number;
+  harga: number;
   idKategori: number;
   kategori: string;
   metode: string;
@@ -38,7 +37,7 @@ export class DetailAnalisisPage {
   ekstrak: boolean = false;
   serbuk: boolean = false;
   simplisia: boolean = false;
-  
+
   response: any = [];
   notif: any = [];
   jumlahNotif: number;
@@ -49,6 +48,14 @@ export class DetailAnalisisPage {
     public navParams: NavParams,
     public httpClient: HttpClient) {
     this.IDjenis = this.navParams.get('data');
+   
+  }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad DetailAnalisisPage');
+  }
+
+  ionViewWillEnter() {
     this.data.getData().then((data) => {
 
       const httpOptions = {
@@ -58,6 +65,7 @@ export class DetailAnalisisPage {
         })
       };
 
+      // katalog
       this.httpClient.get(this.data.BASE_URL + '/getKatalog/' + this.IDjenis,
         httpOptions).subscribe(data => {
           let response = data;
@@ -65,46 +73,38 @@ export class DetailAnalisisPage {
           console.log(this.jenisAnalisis);
           this.IDjenis = this.jenisAnalisis.IDKatalog;
           this.namaJenis = this.jenisAnalisis.JenisAnalisis;
-          this.hargaIPB = this.jenisAnalisis.HargaIPB;
-          this.hargaNONIPB = this.jenisAnalisis.HargaNONIPB;
           this.kategori = this.jenisAnalisis.Kategori;
           this.idKategori = this.jenisAnalisis.IDKategori;
+
+          this.harga = 0;
+          this.data.getData().then((data) => {
+            if (data.Perusahaan == "Institut Pertanian Bogor") {
+              this.harga = this.jenisAnalisis.HargaIPB;
+            }
+            else {
+              this.harga = this.jenisAnalisis.HargaNONIPB;
+            }
+          })
           console.log(this.kategori)
           this.metode = this.jenisAnalisis.Metode;
           this.keterangan = this.jenisAnalisis.Keterangan;
-          if(this.jenisAnalisis.Cairan === 1){
+          if (this.jenisAnalisis.Cairan === 1) {
             this.cairan = true;
           }
-          if(this.jenisAnalisis.Ekstrak === 1){
+          if (this.jenisAnalisis.Ekstrak === 1) {
             this.ekstrak = true;
           }
-          if(this.jenisAnalisis.Serbuk === 1){
+          if (this.jenisAnalisis.Serbuk === 1) {
             this.serbuk = true;
           }
-          if(this.jenisAnalisis.Simplisia === 1){
+          if (this.jenisAnalisis.Simplisia === 1) {
             this.simplisia = true;
           }
         });
 
-    })
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad DetailAnalisisPage');
-  }
-
-  ionViewWillEnter(){
-    this.keranjangs = [];
-    this.jumlahKeranjang = 0;
-    this.data.getData().then((data) => {
-
-      const httpOptions = {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + data.api_token
-        })
-      };
-
+      // cart
+      this.keranjangs = [];
+      this.jumlahKeranjang = 0;
       this.httpClient.get(this.data.BASE_URL + '/getKeranjang', httpOptions).subscribe(data => {
         let response = data;
         this.responses = response;
@@ -123,44 +123,44 @@ export class DetailAnalisisPage {
         }
       });
 
-       //notif
-       this.response = [];
-       this.notif = [];
-       this.jumlahNotif = null;
-       this.httpClient.get(this.data.BASE_URL + '/getPemberitahuan', httpOptions).subscribe(data => {
-         this.response = data;
-         console.log(this.response);
-         if (this.response) {
-           this.notif = this.response.Pemberitahuans;
-           this.jumlahNotif = null;
-           for (var i = 0; i < this.notif.length; i++) {
-             if (this.notif[i].Dilihat == 0) {
-               this.jumlahNotif += 1;
-             }
-           }
-           console.log(this.jumlahNotif)
-         }
-         else {
-           let alert = this.alertCtrl.create({
-             title: 'Gagal memuat',
-             subTitle: 'Silahkan coba lagi.',
-             buttons: ['OK']
-           });
-           alert.present();
-         }
-       });
+      //notif
+      this.response = [];
+      this.notif = [];
+      this.jumlahNotif = null;
+      this.httpClient.get(this.data.BASE_URL + '/getPemberitahuan', httpOptions).subscribe(data => {
+        this.response = data;
+        console.log(this.response);
+        if (this.response) {
+          this.notif = this.response.Pemberitahuans;
+          this.jumlahNotif = null;
+          for (var i = 0; i < this.notif.length; i++) {
+            if (this.notif[i].Dilihat == 0) {
+              this.jumlahNotif += 1;
+            }
+          }
+          console.log(this.jumlahNotif)
+        }
+        else {
+          let alert = this.alertCtrl.create({
+            title: 'Gagal memuat',
+            subTitle: 'Silahkan coba lagi.',
+            buttons: ['OK']
+          });
+          alert.present();
+        }
+      });
     })
   }
 
-  keranjang(){
+  keranjang() {
     this.navCtrl.push(KeranjangPage);
   }
   buatPesanan() {
     this.navCtrl.push(BuatPesanan2Page, { data: this.IDjenis });
   }
 
-  gotoKategori(){
-    this.navCtrl.push(KategoriAnalisisPage, { data: this.idKategori});
+  gotoKategori() {
+    this.navCtrl.push(KategoriAnalisisPage, { data: this.idKategori });
   }
 
   notifikasi() {

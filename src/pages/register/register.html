@@ -36,7 +36,7 @@
                 </ion-item>
             </ion-item>
             <ion-item *ngIf="institusiLain">
-                <ion-input type="text" placeholder="e.g. Universitas Hardvard" [(ngModel)]="userData.institusiLain" formControlName="institusiLain" [class.error1]="!signupform.controls.institusiLain.valid && signupform.controls.institusiLain.dirty">
+                <ion-input type="text" placeholder="e.g. Universitas Bakti" [(ngModel)]="userData.institusiLain" formControlName="institusiLain" [class.error1]="!signupform.controls.institusiLain.valid && signupform.controls.institusiLain.dirty">
                 </ion-input>
             </ion-item>
             <ion-item no-lines *ngIf="signupform.get('institusiLain').hasError('required') && signupform.get('institusiLain').touched">

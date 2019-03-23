@@ -54,6 +54,7 @@ export class LoginPage {
     let loading = this.loadCtrl.create({
       content: 'memuat..'
     });
+    loading.present();
     let input = JSON.stringify({
       "Email": this.userData.email,
       "Password": this.userData.password

@@ -23,19 +23,8 @@
                 <ion-col col-9>
                     <h2 text-uppercase><strong>{{ namaJenis }}</strong></h2>
                     <h4 class="primary">
-                        IPB Rp {{ hargaIPB | number:0 }}<br> NON-IPB Rp {{ hargaNONIPB | number:0 }}
+                        Rp {{ harga | number:0 }}<br>
                     </h4>
-                    <!-- <h4 *ngIf="!info">
-            <strong>Metode :</strong>
-            <br> {{ metode }}<br>
-            <strong>Keterangan:</strong>
-            <br> {{ keterangan }}<br>
-            <strong>Bentuk Sampel:</strong><br>
-            <div *ngIf="Cairan">Cairan<br></div>
-            <div *ngIf="Ekstrak">Ekstrak<br></div>
-            <div *ngIf="Serbuk">Serbuk<br></div>
-            <div *ngIf="Simplisia">Simplisia<br></div>
-          </h4> -->
                 </ion-col>
                 <!-- <ion-col col-1 (click)="showInfo()">
           <ion-icon *ngIf="info" name="arrow-dropdown" color="primary"></ion-icon>
@@ -138,44 +127,11 @@
     </ion-card>
 
     <ion-grid class="footer">
-        <!-- <ion-buttons start> -->
         <button ion-button margin-right block outline text-capitalize color="orange" (click)="gotoKeranjang()" [disabled]="pesanform.invalid">
-              Pesan Sekarang
-            </button>
-        <!-- </ion-buttons> -->
-        <!-- <ion-buttons end> -->
+      Pesan Sekarang
+    </button>
         <button ion-button text-capitalize block (click)="tambahKeranjang()" color="orange" [disabled]="pesanform.invalid">
-              Tambah ke Keranjang
-            </button>
-        <!-- </ion-buttons> -->
-        <!-- <ion-row>
-            <ion-col col-5 class="fixed-col">
-                <button ion-button block outline text-capitalize color="orange" (click)="gotoKeranjang()" [disabled]="pesanform.invalid">
-          Pesan Sekarang
-        </button>
-            </ion-col>
-            <ion-col col-7 class="fixed-col">
-                <button ion-button block text-capitalize (click)="tambahKeranjang()" color="orange" [disabled]="pesanform.invalid">
-        Tambah ke Keranjang
-      </button>
-            </ion-col>
-        </ion-row> -->
+      Tambah ke Keranjang
+    </button>
     </ion-grid>
 </ion-content>
-<!-- 
-<ion-footer style="background-color: white" no-shadow>
-  <ion-grid>
-    <ion-row>
-      <ion-col col-12>
-        <button ion-button full icon-only (click)="tambahKeranjang()" [disabled]="pesanform.invalid">
-          <ion-icon name="cart"></ion-icon> Tambah ke Keranjang
-        </button>
-      </ion-col>
-      <ion-col col-6>
-        <ion-buttons end>
-          <button ion-button block color="primary" (click)="gotoKeranjang()" [disabled]="pesanform.invalid">Pesan Sekarang</button>
-        </ion-buttons>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-</ion-footer> -->

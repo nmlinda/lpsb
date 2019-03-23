@@ -46,6 +46,13 @@ export class KeranjangPage {
     public alertCtrl: AlertController,
     public data: Data) {
 
+  }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad KeranjangPage');
+  }
+
+  ionViewWillEnter() {
     this.data.getData().then((data) => {
 
       const httpOptions = {
@@ -54,6 +61,12 @@ export class KeranjangPage {
           'Authorization': 'Bearer ' + data.api_token
         })
       };
+      this.keranjangs = [];
+      this.totalHarga = 0;
+      this.itemChecked = [];
+      this.listKeranjang = [];
+      this.panjang = 0;
+      this.harga = 0;
 
       this.httpClient.get(this.data.BASE_URL + '/getKeranjang', httpOptions).subscribe(data2 => {
         let response = data2;
@@ -73,8 +86,6 @@ export class KeranjangPage {
                 this.harga += this.listKeranjang[i].HargaNONIPB;
                 this.listKeranjang[i].Harga = this.listKeranjang[i].HargaNONIPB;
               }
-              // this.hargaIPB += this.listKeranjang[i].HargaIPB;
-              // this.hargaNONIPB += this.listKeranjang[i].HargaNONIPB;
               // pilih semua cart
               this.listKeranjang[i].checked = true;
               this.itemChecked.push(this.listKeranjang[i]);
@@ -86,8 +97,7 @@ export class KeranjangPage {
             this.nextButton = false;
 
             this.totalHarga = this.harga;
-            // this.hargaIPBall = this.hargaIPB;
-            // this.hargaNONIPBall = this.hargaNONIPB;
+
           }
         }
         else {
@@ -99,26 +109,6 @@ export class KeranjangPage {
           alert.present();
         }
       });
-    })
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad KeranjangPage');
-  }
-
-  ionViewWillEnter() {
-    this.harga = 0;
-    this.data.getData().then((data) => {
-      for (var i = 0; i < this.panjang; i++) {
-        if (data.Perusahaan == "Institut Pertanian Bogor") {
-          this.harga += this.listKeranjang[i].HargaIPB;
-          this.listKeranjang[i].Harga = this.listKeranjang[i].HargaIPB;
-        }
-        else {
-          this.harga += this.listKeranjang[i].HargaNONIPB;
-          this.listKeranjang[i].Harga = this.listKeranjang[i].HargaNONIPB;
-        }
-      }
     })
 
   }
@@ -141,7 +131,8 @@ export class KeranjangPage {
     if (this.itemChecked.length == this.panjang) {
       this.allCart = true;
       // ada yg gakepilih
-    } else {
+    }
+    else {
       this.allCart = false;
     }
     this.harga = 0;
@@ -150,18 +141,14 @@ export class KeranjangPage {
     // gada yg kepilih
     if (this.itemChecked.length < 1) {
       this.nextButton = true;
-    } else {
+    }
+    else {
       // ada yg kepilih
       this.nextButton = false;
       for (var i = 0; i < this.itemChecked.length; i++) {
-        // this.hargaIPB += this.itemChecked[i].HargaIPB;
-        // this.hargaNONIPB += this.itemChecked[i].HargaNONIPB;
         this.harga += this.itemChecked[i].Harga;
       }
     }
-
-
-
   }
 
   selectAllCart() {
@@ -174,8 +161,6 @@ export class KeranjangPage {
       this.nextButton = false;
       this.allCart = true;
       this.harga = this.totalHarga;
-      // this.hargaIPB = this.hargaIPBall;
-      // this.hargaNONIPB = this.hargaNONIPBall;
     }
     // no item
     else {
@@ -185,8 +170,6 @@ export class KeranjangPage {
       this.itemChecked = [];
       this.allCart = false;
       this.nextButton = true;
-      // this.hargaIPB = 0;
-      // this.hargaNONIPB = 0;
       this.harga = 0;
     }
 
@@ -218,14 +201,14 @@ export class KeranjangPage {
           this.listKeranjang = this.listKeranjang.filter(cart =>
             cart.IDItem !== keranjang.IDItem);
           console.log(this.listKeranjang)
-
+          this.panjang = this.listKeranjang.length;
+          
+          if (this.itemChecked.length == this.panjang) {
+            this.allCart = true;
+          }
           //update harga
-          // this.hargaIPB = 0;
-          // this.hargaNONIPB = 0;
           this.harga = 0;
           for (var i = 0; i < this.itemChecked.length; i++) {
-            // this.hargaIPB += this.itemChecked[i].HargaIPB;
-            // this.hargaNONIPB += this.itemChecked[i].HargaNONIPB;
             if (data.Perusahaan == "Institut Pertanian Bogor") {
               this.harga += this.itemChecked[i].HargaIPB;
             }
