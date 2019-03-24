@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, Loading, LoadingController } from 'ionic-angular';
 import { Data } from '../../provider/data';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -23,10 +23,15 @@ export class CariPage {
   cariAnalisis: string;
   constructor(public navCtrl: NavController,
     public data: Data,
+    public loadCtrl: LoadingController,
     public alertCtrl: AlertController,
     public httpClient: HttpClient,
     public navParams: NavParams) {
     this.data.getData().then((data) => {
+      let loading = this.loadCtrl.create({
+        content: 'memuat..'
+      });
+      loading.present();
 
       const httpOptions = {
         headers: new HttpHeaders({
@@ -38,22 +43,34 @@ export class CariPage {
       this.httpClient.get(this.data.BASE_URL + '/getAllKatalogUmum/', httpOptions).subscribe(data => {
         let response = data;
         this.katalogs = response;
-        this.listKatalog = this.katalogs.katalogs;
-        console.log(response);
 
-        this.data.getData().then((data) => {
+        if (this.katalogs.Status == 200) {
+          loading.dismiss();
+          this.listKatalog = this.katalogs.katalogs;
+          console.log(response);
 
-          this.panjang = this.listKatalog.length;
-          for (var i = 0; i < this.panjang; i++) {
-            this.katalog[i] = this.listKatalog[i];
-            if (data.Perusahaan == "Institut Pertanian Bogor") {
-              this.listKatalog[i].Harga = this.listKatalog[i].HargaIPB;
+          this.data.getData().then((data) => {
+
+            this.panjang = this.listKatalog.length;
+            for (var i = 0; i < this.panjang; i++) {
+              this.katalog[i] = this.listKatalog[i];
+              if (data.Perusahaan == "Institut Pertanian Bogor") {
+                this.listKatalog[i].Harga = this.listKatalog[i].HargaIPB;
+              }
+              else {
+                this.listKatalog[i].Harga = this.listKatalog[i].HargaNONIPB;
+              }
             }
-            else {
-              this.listKatalog[i].Harga = this.listKatalog[i].HargaNONIPB;
-            }
-          }
-        })
+          })
+        }
+        else {
+          loading.dismiss();
+          let alert = this.alertCtrl.create({
+            title: 'Silahkan coba lagi.',
+            buttons: ['OK']
+          });
+          alert.present();
+        }
       })
 
     });

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { DetailAnalisisPage } from '../detail-analisis/detail-analisis';
-import { BuatPesananPage } from '../buat-pesanan/buat-pesanan';
 import { CariPage } from '../cari/cari';
 import { BuatPesanan2Page } from '../buat-pesanan2/buat-pesanan2';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
@@ -39,8 +38,8 @@ export class KategoriAnalisisPage {
     public nav: NavController,
     public alertCtrl: AlertController,
     public navParams: NavParams,
+    public loadCtrl: LoadingController,
     public httpClient: HttpClient) {
-    this.buatPesanan = BuatPesananPage;
     this.idKategori = this.navParams.get('data');
   }
 
@@ -51,6 +50,10 @@ export class KategoriAnalisisPage {
 
   ionViewWillEnter() {
     this.data.getData().then((data) => {
+      let loading = this.loadCtrl.create({
+        content: 'memuat..'
+      });
+      loading.present();
 
       const httpOptions = {
         headers: new HttpHeaders({
@@ -66,10 +69,12 @@ export class KategoriAnalisisPage {
           httpOptions).subscribe(data => {
             let response = data;
             this.katalogs = response;
-            this.listKatalog = this.katalogs.katalogs;
-            this.kategori = this.katalogs.NamaKategori;
-            console.log(response);
-            if (response) {
+            if (this.katalogs.Status == 200) {
+              this.listKatalog = this.katalogs.katalogs;
+              this.kategori = this.katalogs.NamaKategori;
+              console.log(response);
+
+              loading.dismiss();
               this.panjang = this.listKatalog.length;
               this.harga = 0;
               this.data.getData().then((data) => {
@@ -89,6 +94,7 @@ export class KategoriAnalisisPage {
                 subTitle: 'Silahkan coba lagi.',
                 buttons: ['OK']
               });
+              loading.dismiss();
               alert.present();
             }
           });
@@ -97,11 +103,12 @@ export class KategoriAnalisisPage {
         this.httpClient.get(this.data.BASE_URL + '/getAllKatalogUmum/', httpOptions).subscribe(data => {
           let response = data;
           this.katalogs = response;
-          this.listKatalog = this.katalogs.katalogs;
-          this.kategori = "Buat Pesanan";
-          console.log(response);
+          if (this.katalogs.Status == 200) {
+            this.listKatalog = this.katalogs.katalogs;
+            this.kategori = "Buat Pesanan";
+            console.log(response);
 
-          if (response) {
+            loading.dismiss();
             this.panjang = this.listKatalog.length;
             this.harga = 0;
             this.data.getData().then((data) => {
@@ -116,6 +123,7 @@ export class KategoriAnalisisPage {
             })
           }
           else {
+            loading.dismiss();
             let alert = this.alertCtrl.create({
               title: 'Gagal memuat',
               subTitle: 'Silahkan coba lagi.',

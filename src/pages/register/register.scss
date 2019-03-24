@@ -1,24 +1,24 @@
 page-register {
-  .title {
-    color: #337ab7;
-    padding-top: 50px;
-    padding-bottom: 10px;
-  }
-  .error {
-    color: rgb(223, 62, 62);
-    font-size: 11px;
-  }
-
-  .error1 {
-    color: rgb(75, 75, 75);
-    border-bottom: 1px solid #ff0000;
-  }
-  .footer {
-    padding-top: 10px;
-    // position: absolute;
-    // bottom: 0px;
-    // width: 100%;
-    // padding: 0;
-    // border-top: 1px solid gainsboro;
-  }
+    .title {
+        color: #66A652;
+        padding-top: 50px;
+        padding-bottom: 10px;
+    }
+    .error {
+        color: rgb(223, 62, 62);
+        font-size: 11px;
+    }
+    .error1 {
+        color: rgb(75, 75, 75);
+        border-bottom: 1px solid #ff0000;
+    }
+    .footer {
+        padding-top: 10px;
+    }
+    .img-logo {
+        max-height: 80px;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
 }

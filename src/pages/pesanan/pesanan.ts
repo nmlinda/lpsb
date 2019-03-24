@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ModalController, LoadingController } from 'ionic-angular';
 import { DetailPesananPage } from '../detail-pesanan/detail-pesanan';
 import { Data } from '../../provider/data';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
-import { UlasanPage } from '../ulasan/ulasan';
-
 @IonicPage()
 @Component({
   selector: 'page-pesanan',
@@ -28,6 +26,7 @@ export class PesananPage {
   sampelLain: any = [];
   constructor(
     public navCtrl: NavController,
+    public loadCtrl: LoadingController,
     public data: Data,
     public alertCtrl: AlertController,
     public modalCtrl: ModalController,
@@ -44,6 +43,11 @@ export class PesananPage {
   }
 
   ionViewWillEnter() {
+    let loading = this.loadCtrl.create({
+      content: 'memuat..'
+    });
+    loading.present();
+
     this.pesanan = [];
     this.pesanans = [];
     this.belumDianalisis = [];
@@ -89,6 +93,7 @@ export class PesananPage {
             }
           }
           console.log(this.pesanans)
+          loading.dismiss();
         }
         else {
           let alert = this.alertCtrl.create({
@@ -96,6 +101,7 @@ export class PesananPage {
             subTitle: 'Silahkan coba lagi.',
             buttons: ['OK']
           });
+          loading.dismiss();
           alert.present();
         }
       });

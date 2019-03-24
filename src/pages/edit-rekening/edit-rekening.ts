@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ViewController, LoadingController } from 'ionic-angular';
 import { Data } from '../../provider/data';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ProfilPage } from '../profil/profil';
-
 /**
  * Generated class for the EditRekeningPage page.
  *
@@ -32,6 +30,7 @@ export class EditRekeningPage {
     public navParams: NavParams,
     public viewCtrl: ViewController,
     public httpClient: HttpClient,
+    public loadCtrl: LoadingController,
     public alertCtrl: AlertController,
     public data: Data) {
     this.data.getRekening().then((data) => {
@@ -56,6 +55,11 @@ export class EditRekeningPage {
   }
 
   simpan() {
+    let loading = this.loadCtrl.create({
+      content: 'memuat..'
+    });
+    loading.present();
+
     let input = JSON.stringify({
       "NamaRekening": this.rekData.namaNasabah,
       "NamaBank": this.rekData.namaBank,
@@ -73,6 +77,7 @@ export class EditRekeningPage {
         this.simpanRek = response;
         console.log(response);
         if (this.simpanRek.Status === 200) {
+          loading.dismiss();
           this.data.setRekening(this.simpanRek); // simpan response ke local storage
           this.viewCtrl.dismiss();
         }
@@ -82,6 +87,7 @@ export class EditRekeningPage {
             subTitle: 'Silahkan coba lagi',
             buttons: ['OK']
           });
+          loading.dismiss();
           alert.present();
         }
 

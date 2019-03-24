@@ -102,6 +102,11 @@ export class EditProfilPage {
 
 
   simpan() {
+    let loading = this.loadCtrl.create({
+      content: 'memuat..'
+    });
+    loading.present();
+
     if(this.profilData.institusi == 1){
       this.institusi = "Institut Pertanian Bogor";
     } else if(this.profilData.institusi == 2){
@@ -127,11 +132,13 @@ export class EditProfilPage {
         let response = data;
         this.profils = response;
         console.log(response);
-        if (this.profils.Status === 200) {
+        if (this.profils.Status == 200) {
+          loading.dismiss();
           this.data.login(this.profils); // simpan response ke local storage
           this.viewCtrl.dismiss(this.profils);
         }
         else {
+          loading.dismiss();
           let alert = this.alertCtrl.create({
             title: 'Gagal Menyimpan',
             subTitle: 'Silahkan coba lagi',

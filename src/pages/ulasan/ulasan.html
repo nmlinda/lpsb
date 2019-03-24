@@ -1,39 +1,259 @@
 <ion-header>
 
     <ion-navbar>
-        <ion-title>Ulasan</ion-title>
+        <ion-title>Penilaian</ion-title>
     </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-    <h6 *ngIf="!ulas">
-        Berikan ulasan anda terhadap pesanan di aplikasi ini
-    </h6>
-    <h6 *ngIf="ulas">
-        Ulasan anda terhadap pesanan di aplikasi ini
-    </h6>
-    <ion-list>
-        <ion-item>
-            <ion-label>Independensi laboratorium dalam menghasilkan data pengujian</ion-label>
-            <ion-range [(ngModel)]="brightness" min="1" step="1" max="5" pin="true" snaps="true" color="primary">
-                <ion-label range-left>SKM</ion-label>
-                <ion-label range-right>SM</ion-label>
-            </ion-range>
+    <p bold>Beri penilaian Anda terhadap jasa uji laboratorium biofarmaka agar LPSB dapat meningkatkan kualitas laboratorium.</p>
+    <p no-margin>
+        Keterangan:
+    </p>
+    <ul>
+        <li> 1 = Sangat Kurang Memuaskan</li>
+        <li> 2 = Kurang Memuaskan</li>
+        <li> 3 = Netral</li>
+        <li> 4 = Memuaskan</li>
+        <li> 5 = Sangat Memuaskan</li>
+    </ul>
+    <p class="question">
+        1. Independensi laboratorium dalam menghasilkan data pengujian
+    </p>
+    <ion-list radio-group no-margin class="survey" [(ngModel)]="survey1">
+        <ion-item no-padding no-lines>
+            <ion-label>1</ion-label>
+            <ion-radio item-left value="1" style="margin: 5px;"></ion-radio>
         </ion-item>
-        <ion-item>
-            <p>
-                Ket: <br> SKM(1) = Sangat Kurang Memuaskan <br> KM(2) = Kurang Memuaskan <br> N(3) = Netral <br> M(4) = Memuaskan <br> SM(5) = Sangat Memuaskan
-            </p>
+        <ion-item no-padding no-lines>
+            <ion-label>2</ion-label>
+            <ion-radio item-left value="2" style="margin: 5px;"></ion-radio>
         </ion-item>
-        <ion-item class="inputan" no-padding>
-            <ion-textarea placeholder="Tulis ulasan anda... " rows="4" cols="20" autofocus="true" [(ngModel)]="ulasan" [disabled]="ulas"></ion-textarea>
+        <ion-item no-padding no-lines>
+            <ion-label>3</ion-label>
+            <ion-radio item-left value="3" style="margin: 5px;"></ion-radio>
         </ion-item>
-        <ion-buttons end padding-top *ngIf="!ulas">
-            <button ion-button text-capitalize (click)="kirim()" [disabled]="btn-ulasan">
-        Kirim
-      </button>
-        </ion-buttons>
+        <ion-item no-padding no-lines>
+            <ion-label>4</ion-label>
+            <ion-radio item-left value="4" style="margin: 5px;"></ion-radio>
+        </ion-item>
+        <ion-item no-padding no-lines>
+            <ion-label>5</ion-label>
+            <ion-radio item-left value="5" style="margin: 5px;"></ion-radio>
+        </ion-item>
     </ion-list>
+    <p class="question">
+        2. Perlindungan atas kerahasiaan informasi
+    </p>
+    <ion-list radio-group no-margin class="survey" [(ngModel)]="survey2">
+        <ion-item no-padding no-lines>
+            <ion-label>1</ion-label>
+            <ion-radio item-left value="1" style="margin: 5px;"></ion-radio>
+        </ion-item>
+        <ion-item no-padding no-lines>
+            <ion-label>2</ion-label>
+            <ion-radio item-left value="2" style="margin: 5px;"></ion-radio>
+        </ion-item>
+        <ion-item no-padding no-lines>
+            <ion-label>3</ion-label>
+            <ion-radio item-left value="3" style="margin: 5px;"></ion-radio>
+        </ion-item>
+        <ion-item no-padding no-lines>
+            <ion-label>4</ion-label>
+            <ion-radio item-left value="4" style="margin: 5px;"></ion-radio>
+        </ion-item>
+        <ion-item no-padding no-lines>
+            <ion-label>5</ion-label>
+            <ion-radio item-left value="5" style="margin: 5px;"></ion-radio>
+        </ion-item>
+    </ion-list>
+    <p class="question">
+        3. Keakuratan laporan hasil uji
+    </p>
+    <ion-list radio-group no-margin class="survey" [(ngModel)]="survey3">
+        <ion-item no-padding no-lines>
+            <ion-label>1</ion-label>
+            <ion-radio item-left value="1" style="margin: 5px;"></ion-radio>
+        </ion-item>
+        <ion-item no-padding no-lines>
+            <ion-label>2</ion-label>
+            <ion-radio item-left value="2" style="margin: 5px;"></ion-radio>
+        </ion-item>
+        <ion-item no-padding no-lines>
+            <ion-label>3</ion-label>
+            <ion-radio item-left value="3" style="margin: 5px;"></ion-radio>
+        </ion-item>
+        <ion-item no-padding no-lines>
+            <ion-label>4</ion-label>
+            <ion-radio item-left value="4" style="margin: 5px;"></ion-radio>
+        </ion-item>
+        <ion-item no-padding no-lines>
+            <ion-label>5</ion-label>
+            <ion-radio item-left value="5" style="margin: 5px;"></ion-radio>
+        </ion-item>
+    </ion-list>
+    <p class="question">
+        4. Ketepatan waktu pengujian
+    </p>
+    <ion-list radio-group no-margin class="survey" [(ngModel)]="survey4">
+        <ion-item no-padding no-lines>
+            <ion-label>1</ion-label>
+            <ion-radio item-left value="1" style="margin: 5px;"></ion-radio>
+        </ion-item>
+        <ion-item no-padding no-lines>
+            <ion-label>2</ion-label>
+            <ion-radio item-left value="2" style="margin: 5px;"></ion-radio>
+        </ion-item>
+        <ion-item no-padding no-lines>
+            <ion-label>3</ion-label>
+            <ion-radio item-left value="3" style="margin: 5px;"></ion-radio>
+        </ion-item>
+        <ion-item no-padding no-lines>
+            <ion-label>4</ion-label>
+            <ion-radio item-left value="4" style="margin: 5px;"></ion-radio>
+        </ion-item>
+        <ion-item no-padding no-lines>
+            <ion-label>5</ion-label>
+            <ion-radio item-left value="5" style="margin: 5px;"></ion-radio>
+        </ion-item>
+    </ion-list>
+    <p class="question">
+        5. Komunikasi
+    </p>
+    <ion-list radio-group no-margin class="survey" [(ngModel)]="survey5">
+        <ion-item no-padding no-lines>
+            <ion-label>1</ion-label>
+            <ion-radio item-left value="1" style="margin: 5px;"></ion-radio>
+        </ion-item>
+        <ion-item no-padding no-lines>
+            <ion-label>2</ion-label>
+            <ion-radio item-left value="2" style="margin: 5px;"></ion-radio>
+        </ion-item>
+        <ion-item no-padding no-lines>
+            <ion-label>3</ion-label>
+            <ion-radio item-left value="3" style="margin: 5px;"></ion-radio>
+        </ion-item>
+        <ion-item no-padding no-lines>
+            <ion-label>4</ion-label>
+            <ion-radio item-left value="4" style="margin: 5px;"></ion-radio>
+        </ion-item>
+        <ion-item no-padding no-lines>
+            <ion-label>5</ion-label>
+            <ion-radio item-left value="5" style="margin: 5px;"></ion-radio>
+        </ion-item>
+    </ion-list>
+    <p class="question">
+        6. Tindakan lanjut dari pengaduan
+    </p>
+    <ion-list radio-group no-margin class="survey" [(ngModel)]="survey6">
+        <ion-item no-padding no-lines>
+            <ion-label>1</ion-label>
+            <ion-radio item-left value="1" style="margin: 5px;"></ion-radio>
+        </ion-item>
+        <ion-item no-padding no-lines>
+            <ion-label>2</ion-label>
+            <ion-radio item-left value="2" style="margin: 5px;"></ion-radio>
+        </ion-item>
+        <ion-item no-padding no-lines>
+            <ion-label>3</ion-label>
+            <ion-radio item-left value="3" style="margin: 5px;"></ion-radio>
+        </ion-item>
+        <ion-item no-padding no-lines>
+            <ion-label>4</ion-label>
+            <ion-radio item-left value="4" style="margin: 5px;"></ion-radio>
+        </ion-item>
+        <ion-item no-padding no-lines>
+            <ion-label>5</ion-label>
+            <ion-radio item-left value="5" style="margin: 5px;"></ion-radio>
+        </ion-item>
+    </ion-list>
+    <p class="question">
+        7. Fasilitas dan sumber daya manusia
+    </p>
+    <ion-list radio-group no-margin class="survey" [(ngModel)]="survey7">
+        <ion-item no-padding no-lines>
+            <ion-label>1</ion-label>
+            <ion-radio item-left value="1" style="margin: 5px;"></ion-radio>
+        </ion-item>
+        <ion-item no-padding no-lines>
+            <ion-label>2</ion-label>
+            <ion-radio item-left value="2" style="margin: 5px;"></ion-radio>
+        </ion-item>
+        <ion-item no-padding no-lines>
+            <ion-label>3</ion-label>
+            <ion-radio item-left value="3" style="margin: 5px;"></ion-radio>
+        </ion-item>
+        <ion-item no-padding no-lines>
+            <ion-label>4</ion-label>
+            <ion-radio item-left value="4" style="margin: 5px;"></ion-radio>
+        </ion-item>
+        <ion-item no-padding no-lines>
+            <ion-label>5</ion-label>
+            <ion-radio item-left value="5" style="margin: 5px;"></ion-radio>
+        </ion-item>
+    </ion-list>
+    <p class="question">
+        8. Penerapan <i>good professional practice</i>
+    </p>
+    <ion-list radio-group no-margin class="survey" [(ngModel)]="survey8">
+        <ion-item no-padding no-lines>
+            <ion-label>1</ion-label>
+            <ion-radio item-left value="1" style="margin: 5px;"></ion-radio>
+        </ion-item>
+        <ion-item no-padding no-lines>
+            <ion-label>2</ion-label>
+            <ion-radio item-left value="2" style="margin: 5px;"></ion-radio>
+        </ion-item>
+        <ion-item no-padding no-lines>
+            <ion-label>3</ion-label>
+            <ion-radio item-left value="3" style="margin: 5px;"></ion-radio>
+        </ion-item>
+        <ion-item no-padding no-lines>
+            <ion-label>4</ion-label>
+            <ion-radio item-left value="4" style="margin: 5px;"></ion-radio>
+        </ion-item>
+        <ion-item no-padding no-lines>
+            <ion-label>5</ion-label>
+            <ion-radio item-left value="5" style="margin: 5px;"></ion-radio>
+        </ion-item>
+    </ion-list>
+    <p class="question">
+        9. Biaya pengujian
+    </p>
+    <ion-list radio-group no-margin class="survey" [(ngModel)]="survey9">
+        <ion-item no-padding no-lines>
+            <ion-label>1</ion-label>
+            <ion-radio item-left value="1" style="margin: 5px;"></ion-radio>
+        </ion-item>
+        <ion-item no-padding no-lines>
+            <ion-label>2</ion-label>
+            <ion-radio item-left value="2" style="margin: 5px;"></ion-radio>
+        </ion-item>
+        <ion-item no-padding no-lines>
+            <ion-label>3</ion-label>
+            <ion-radio item-left value="3" style="margin: 5px;"></ion-radio>
+        </ion-item>
+        <ion-item no-padding no-lines>
+            <ion-label>4</ion-label>
+            <ion-radio item-left value="4" style="margin: 5px;"></ion-radio>
+        </ion-item>
+        <ion-item no-padding no-lines>
+            <ion-label>5</ion-label>
+            <ion-radio item-left value="5" style="margin: 5px;"></ion-radio>
+        </ion-item>
+    </ion-list>
+    <p class="question">Kritik dan Saran</p>
+    <ion-list>
+        <ion-item class="inputan" no-padding>
+            <ion-textarea placeholder="Tulis kritik dan saran anda... " rows="3" cols="20" [(ngModel)]="ulasan" [disabled]="ulas"></ion-textarea>
+        </ion-item>
+    </ion-list>
+
+    <ion-buttons end padding-top *ngIf="!ulas">
+        <button ion-button text-capitalize (click)="kirim()">
+         Kirim
+        </button>
+    </ion-buttons>
 </ion-content>

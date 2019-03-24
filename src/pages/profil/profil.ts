@@ -31,14 +31,6 @@ export class ProfilPage {
     public data: Data,
     public app: App) {
    
-    // this.nama = "Muhammad Gofar";
-    // this.institusi = "Institut Pertanian Bogor";
-    // this.alamat = "Jl Balebak 2 Bogor";
-    // this.email = "gofar@gmail.com";
-    // this.noHp = "0813434936694";
-    // this.npwp = "20857620934";
-
-    
   }
 
   ionViewDidLoad() {

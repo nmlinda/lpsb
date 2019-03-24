@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, ToastController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, ToastController, AlertController, LoadingController } from 'ionic-angular';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Data } from '../../provider/data';
 import { DetailPesananPage } from '../detail-pesanan/detail-pesanan';
@@ -27,6 +27,7 @@ export class BatalPesananPage {
     public navParams: NavParams, 
     public alertCtrl: AlertController,
     public toastCtrl: ToastController,
+    public loadCtrl: LoadingController,
     public httpClient: HttpClient,
     public data: Data,
     public viewCtrl: ViewController) {
@@ -78,6 +79,10 @@ export class BatalPesananPage {
   }
 
   batalPesanan(alasan){
+    let loading = this.loadCtrl.create({
+      content: 'memuat..'
+    });
+    loading.present();
     this.data.getData().then((data) => {
 
       const httpOptions = {
@@ -96,12 +101,14 @@ export class BatalPesananPage {
         this.response = data;
         console.log(data);
         if (this.response.Status == 200) {
+          loading.dismiss();
           let currentIndex = this.navCtrl.getActive().index;
           this.navCtrl.push(DetailPesananPage, { data: this.idPesanan }).then(() => {
             this.navCtrl.remove(currentIndex);
             this.navCtrl.remove(currentIndex-1);
           });
         } else {
+          loading.dismiss();
           let alert = this.alertCtrl.create({
             title: 'Silahkan coba lagi.',
             buttons: ['OK']

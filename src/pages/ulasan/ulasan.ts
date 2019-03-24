@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, ToastController } from 'ionic-angular';
 import { Data } from '../../provider/data';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
-import { DetailPesananPage } from '../detail-pesanan/detail-pesanan';
 
 /**
  * Generated class for the UlasanPage page.
@@ -18,10 +17,20 @@ import { DetailPesananPage } from '../detail-pesanan/detail-pesanan';
 })
 export class UlasanPage {
   ulas: boolean = false;
+  survey1: any;
+  survey2: any;
+  survey3: any;
+  survey4: any;
+  survey5: any;
+  survey6: any;
+  survey7: any;
+  survey8: any;
+  survey9: any;
   ulasan: string;
   waktuUlasan: Date;
   idPesanan: any;
   response: any = [];
+  
   constructor(public navCtrl: NavController,
     public httpClient: HttpClient,
     public data: Data,
@@ -70,7 +79,8 @@ export class UlasanPage {
   }
 
   kirim() {
-    if (this.ulasan) {
+    if (this.ulasan && this.survey1 && this.survey2 && this.survey3 && this.survey4 && 
+      this.survey5 && this.survey6 && this.survey7 && this.survey8 && this.survey9) {
       this.data.getData().then((data) => {
 
         const httpOptions = {
@@ -81,33 +91,45 @@ export class UlasanPage {
         };
         let input = JSON.stringify({
           IDPesanan: this.idPesanan,
+          survey1: this.survey1,
+          survey2: this.survey2,
+          survey3: this.survey3,
+          survey4: this.survey4,
+          survey5: this.survey5,
+          survey6: this.survey6,
+          survey7: this.survey7,
+          survey8: this.survey8,
+          survey9: this.survey9,
           Ulasan: this.ulasan,
         });
+        console.log(input)
+        this.toastBerhasilKirim();
 
 
-        this.httpClient.post(this.data.BASE_URL + '/beriUlasan', input, httpOptions).subscribe(data => {
-          let response = data;
-          console.log(response)
-          if (response) {
-            this.toastBerhasilKirim();
-            let currentIndex = this.navCtrl.getActive().index;
-            this.navCtrl.push(DetailPesananPage, { data: this.idPesanan }).then(() => {
-              this.navCtrl.remove(currentIndex);
-              this.navCtrl.remove(currentIndex - 1);
-            });
-          }
 
-        })
+        // this.httpClient.post(this.data.BASE_URL + '/beriUlasan', input, httpOptions).subscribe(data => {
+        //   let response = data;
+        //   console.log(response)
+        //   if (response) {
+        //     this.toastBerhasilKirim();
+        //     let currentIndex = this.navCtrl.getActive().index;
+        //     this.navCtrl.push(DetailPesananPage, { data: this.idPesanan }).then(() => {
+        //       this.navCtrl.remove(currentIndex);
+        //       this.navCtrl.remove(currentIndex - 1);
+        //     });
+          // }
+
+        // })
 
       })
-    }else{
+    } else {
       this.toastValidator();
     }
   }
 
-  toastValidator(){
+  toastValidator() {
     let toast = this.toastCtrl.create({
-      message: 'Pastikan Anda mengisi ulasan.',
+      message: 'Pastikan Anda telah melengkapi penilaian Anda.',
       duration: 3000,
       position: 'bottom'
     });
@@ -119,9 +141,9 @@ export class UlasanPage {
     toast.present();
   }
 
-  toastBerhasilKirim(){
+  toastBerhasilKirim() {
     let toast = this.toastCtrl.create({
-      message: 'Ulasan berhasil disimpan.',
+      message: 'Terima kasih atas penilaian Anda!',
       duration: 3000,
       position: 'top'
     });

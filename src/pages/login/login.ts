@@ -64,16 +64,25 @@ export class LoginPage {
       let response = data;
       this.logins = response;
       console.log(response);
-      if (this.logins.success == true) {
+      if (this.logins.Status == 200) {
         this.data.login(this.logins); // simpan response ke local storage
         this.navCtrl.setRoot(TabsPage);
         loading.dismiss();
       }
-      else {
+      else if (this.logins.Status == 400) {
         loading.dismiss();
         let alert = this.alertCtrl.create({
-          title: 'Gagal Masuk',
-          subTitle: 'Email atau Password salah',
+          title: 'Email atau Password salah',
+          subTitle: 'Silahkan coba lagi.',
+          buttons: ['OK']
+        });
+        alert.present();
+      }
+      else if (this.logins.Status == 500) {
+        loading.dismiss();
+        let alert = this.alertCtrl.create({
+          title: 'Masuk Gagal',
+          subTitle: 'Silahkan coba lagi.',
           buttons: ['OK']
         });
         alert.present();

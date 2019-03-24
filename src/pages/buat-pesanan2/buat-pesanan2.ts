@@ -66,41 +66,57 @@ export class BuatPesanan2Page {
           'Authorization': 'Bearer ' + data.api_token
         })
       };
+      let loading = this.loadCtrl.create({
+        content: 'memuat..'
+      });
+      loading.present();
 
       this.httpClient.get(this.data.BASE_URL + '/getKatalog/' + this.IDjenis,
         httpOptions).subscribe(data => {
           let response = data;
           this.jenisAnalisis = response;
           console.log(this.jenisAnalisis);
-          this.IDjenis = this.jenisAnalisis.IDKatalog;
-          this.namaJenis = this.jenisAnalisis.JenisAnalisis;
-          this.harga = 0;
-          this.data.getData().then((data) => {
-            if (data.Perusahaan == "Institut Pertanian Bogor") {
-              this.harga = this.jenisAnalisis.HargaIPB;
+          if(this.jenisAnalisis.Status == 200){
+            loading.dismiss();
+            this.IDjenis = this.jenisAnalisis.IDKatalog;
+            this.namaJenis = this.jenisAnalisis.JenisAnalisis;
+            this.harga = 0;
+            this.data.getData().then((data) => {
+              if (data.Perusahaan == "Institut Pertanian Bogor") {
+                this.harga = this.jenisAnalisis.HargaIPB;
+              }
+              else {
+                this.harga = this.jenisAnalisis.HargaNONIPB;
+              }
+            })
+            this.metode = this.jenisAnalisis.Metode;
+            this.keterangan = this.jenisAnalisis.Keterangan;
+            if (this.jenisAnalisis.Cairan === 1) {
+              this.Cairan = true;
+              this.cairan = false;
             }
-            else {
-              this.harga = this.jenisAnalisis.HargaNONIPB;
+            if (this.jenisAnalisis.Ekstrak === 1) {
+              this.Ekstrak = true;
+              this.ekstrak = false;
             }
-          })
-          this.metode = this.jenisAnalisis.Metode;
-          this.keterangan = this.jenisAnalisis.Keterangan;
-          if (this.jenisAnalisis.Cairan === 1) {
-            this.Cairan = true;
-            this.cairan = false;
+            if (this.jenisAnalisis.Serbuk === 1) {
+              this.Serbuk = true;
+              this.serbuk = false;
+            }
+            if (this.jenisAnalisis.Simplisia === 1) {
+              this.Simplisia = true;
+              this.simplisia = false;
+            }
           }
-          if (this.jenisAnalisis.Ekstrak === 1) {
-            this.Ekstrak = true;
-            this.ekstrak = false;
+          else {
+            loading.dismiss();
+            let alert = this.alertCtrl.create({
+              title: 'Silahkan coba lagi.',
+              buttons: ['OK']
+            });
+            alert.present();
           }
-          if (this.jenisAnalisis.Serbuk === 1) {
-            this.Serbuk = true;
-            this.serbuk = false;
-          }
-          if (this.jenisAnalisis.Simplisia === 1) {
-            this.Simplisia = true;
-            this.simplisia = false;
-          }
+         
         });
 
     })

@@ -1,12 +1,6 @@
 page-login {
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    position: absolute;
-    z-index: 0;
     .title {
-        color: #337ab7;
+        color: #66A652;
         padding-top: 50px;
         padding-bottom: 10px;
     }
@@ -19,11 +13,12 @@ page-login {
         border-bottom: 1px solid #ff0000;
     }
     .footer {
-        // position: absolute;
-        // bottom: 0px;
-        // width: 100%;
-        // padding: 0;
-        // border-top: 1px solid gainsboro;
         padding-top: 10px;
+    }
+    .img-logo {
+        max-height: 80px;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
     }
 }

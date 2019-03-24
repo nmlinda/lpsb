@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, AlertController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, AlertController, ToastController, LoadingController } from 'ionic-angular';
 import { PembayaranPage } from '../pembayaran/pembayaran';
 import { KirimSampelPage } from '../kirim-sampel/kirim-sampel';
 import { BatalPesananPage } from '../batal-pesanan/batal-pesanan';
@@ -19,6 +19,7 @@ export class DetailPesananPage {
   data_user: any = [];
   status: any = [];
   list_sampel: any = [];
+  panjang: number;
   sampel_awal: any = [];
   sampel_sisa: any = [];
   sampel_lain: boolean = false;
@@ -37,6 +38,7 @@ export class DetailPesananPage {
     public navParams: NavParams,
     public alertCtrl: AlertController,
     public toastCtrl: ToastController,
+    public loadCtrl: LoadingController,
     public httpClient: HttpClient,
     public data: Data,
     public modalCtrl: ModalController) {
@@ -47,12 +49,40 @@ export class DetailPesananPage {
     console.log('ionViewDidLoad DetailPesananPage');
   }
 
-  ionViewWillEnter(){
+  ionViewWillEnter() {
+    let loading = this.loadCtrl.create({
+      content: 'memuat..'
+    });
+    loading.present();
     this.idPesanan = null;
-    this.pesanan = null;
-    this.data_user = null;
+    this.pesanan = {
+      Percepatan : null,
+      HargaTotal: null,
+      Keterangan: null,
+      NoPesanan: null,
+    }
+    this.data_user = {
+      NamaLengkap :"",
+      Institusi: "",
+      Alamat: "",
+      NoHP: "",
+      Email: "",
+      NoNPWP: "",
+    }
+    
+    this.sampel_awal = {
+      JenisAnalisis: "",
+      Metode: "",
+      HargaSampel: 0,
+      JenisSampel: "",
+      Jumlah: 0,
+      Kemasan: "",
+      BentukSampel: "",
+    }
+
     this.list_sampel = null;
-    this.sampel_awal = null;
+    this.panjang = 0;
+    this.sampel_lain = false;
     this.sampel_sisa = null;
     this.status_utama = null;
     this.ket_status_utama = null;
@@ -78,14 +108,20 @@ export class DetailPesananPage {
         this.pesanan = response;
         console.log(response);
         if (this.pesanan.Status == 200) {
+          loading.dismiss();
           this.status = this.pesanan.status_pesanan;
 
           this.data_user = this.pesanan.data_user;
 
           this.list_sampel = this.pesanan.listSampel;
           this.sampel_awal = this.list_sampel[0];
+          this.panjang = this.list_sampel.length;
+          console.log('list sampel',this.panjang)
+          if(this.panjang > 1){
           this.sampel_sisa = this.list_sampel.filter(sampel =>
             sampel !== this.sampel_awal);
+            this.sampel_lain = false;
+          }
 
           if (this.status.StatusUtama == 1) {
             this.status_utama = "Menunggu Validasi";
@@ -136,8 +172,10 @@ export class DetailPesananPage {
               }
             ];
             this.awal = this.statusAnalisis[0];
+            if(this.statusAnalisis.length > 1){
             this.sisa = this.statusAnalisis.filter(cart =>
               cart !== this.awal);
+            }
           }
           else if (this.status.StatusUtama == 4) {
             this.status_utama = "Sedang Dianalisis";
@@ -191,6 +229,7 @@ export class DetailPesananPage {
 
         }
         else {
+          loading.dismiss();
           let alert = this.alertCtrl.create({
             title: 'Lihat Rincian pesanan gagal',
             subTitle: 'Silahkan coba lagi.',

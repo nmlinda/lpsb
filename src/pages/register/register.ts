@@ -111,15 +111,24 @@ export class RegisterPage {
       let response = data;
       this.regis = response;
       console.log(response);
-      if (response) {
+      if (this.regis.Status == 201) {
         this.data.login(this.regis); // simpan response ke local storage
         this.navCtrl.setRoot(TabsPage);
         loading.dismiss();
       }
-      else {
+      else if (this.regis.Status == 409) {
         loading.dismiss();
         let alert = this.alertCtrl.create({
-          title: 'Gagal Masuk',
+          title: 'Email telah terdaftar',
+          subTitle: 'Silahkan coba email lain.',
+          buttons: ['OK']
+        });
+        alert.present();
+      }
+      else if (this.regis.Status == 500) {
+        loading.dismiss();
+        let alert = this.alertCtrl.create({
+          title: 'Daftar Gagal',
           subTitle: 'Silahkan coba lagi.',
           buttons: ['OK']
         });

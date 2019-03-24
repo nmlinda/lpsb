@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, AlertController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, AlertController, ToastController, LoadingController } from 'ionic-angular';
 import { Data } from '../../provider/data';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DetailPesananPage } from '../detail-pesanan/detail-pesanan';
@@ -29,6 +29,7 @@ export class KirimSampelPage {
     public navParams: NavParams,
     public data: Data,
     public httpClient: HttpClient,
+    public loadCtrl: LoadingController,
     public toastCtrl: ToastController,
     public alertCtrl: AlertController,
     public viewCtrl: ViewController) {
@@ -40,6 +41,11 @@ export class KirimSampelPage {
   }
 
   ionViewWillEnter() {
+    let loading = this.loadCtrl.create({
+      content: 'memuat..'
+    });
+    loading.present();
+
     this.idPesanan = this.navParams.get('id');
     this.statusKirim = this.navParams.get('statusKirim');
     console.log(this.idPesanan, this.statusKirim)
@@ -56,15 +62,17 @@ export class KirimSampelPage {
         };
         this.httpClient.post(this.data.BASE_URL + '/kirimSampel', input, httpOptions).subscribe(data => {
           let response = data;
+          this.getResi = response;
           console.log(response)
-          if(response){
-            this.getResi = response;
+          if(this.getResi.Status == 200){
             this.setResi(this.getResi.Resi);
+            loading.dismiss();
           }else{
             let alert = this.alertCtrl.create({
               title: 'Silahkan coba lagi',
               buttons: ['OK']
             });
+            loading.dismiss();
             alert.present();
           }
         })
@@ -115,6 +123,11 @@ export class KirimSampelPage {
   }
 
   post(id, resi){
+    let loading = this.loadCtrl.create({
+      content: 'memuat..'
+    });
+    loading.present();
+
     let input = JSON.stringify({
       IDPesanan: id,
       Resi: resi,
@@ -130,7 +143,8 @@ export class KirimSampelPage {
         let response = data;
         this.kirimSampel = response;
         console.log(response);
-        if (this.kirimSampel.Status === 200) {
+        if (this.kirimSampel.Status == 200) {
+          loading.dismiss();
           let currentIndex = this.navCtrl.getActive().index;
           this.navCtrl.push(DetailPesananPage, { data: this.idPesanan }).then(() => {
             this.navCtrl.remove(currentIndex);
@@ -138,6 +152,7 @@ export class KirimSampelPage {
           });
         }
         else {
+          loading.dismiss();
           let alert = this.alertCtrl.create({
             title: 'Gagal Menyimpan',
             subTitle: 'Silahkan coba lagi',

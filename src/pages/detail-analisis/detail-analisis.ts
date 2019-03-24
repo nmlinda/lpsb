@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { BuatPesanan2Page } from '../buat-pesanan2/buat-pesanan2';
 import { Data } from '../../provider/data';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -45,10 +45,11 @@ export class DetailAnalisisPage {
     public data: Data,
     public alertCtrl: AlertController,
     public navCtrl: NavController,
+    public loadCtrl: LoadingController,
     public navParams: NavParams,
     public httpClient: HttpClient) {
     this.IDjenis = this.navParams.get('data');
-   
+
   }
 
   ionViewDidLoad() {
@@ -57,6 +58,10 @@ export class DetailAnalisisPage {
 
   ionViewWillEnter() {
     this.data.getData().then((data) => {
+      let loading = this.loadCtrl.create({
+        content: 'memuat..'
+      });
+      loading.present();
 
       const httpOptions = {
         headers: new HttpHeaders({
@@ -70,35 +75,49 @@ export class DetailAnalisisPage {
         httpOptions).subscribe(data => {
           let response = data;
           this.jenisAnalisis = response;
-          console.log(this.jenisAnalisis);
-          this.IDjenis = this.jenisAnalisis.IDKatalog;
-          this.namaJenis = this.jenisAnalisis.JenisAnalisis;
-          this.kategori = this.jenisAnalisis.Kategori;
-          this.idKategori = this.jenisAnalisis.IDKategori;
 
-          this.harga = 0;
-          this.data.getData().then((data) => {
-            if (data.Perusahaan == "Institut Pertanian Bogor") {
-              this.harga = this.jenisAnalisis.HargaIPB;
+          if (this.jenisAnalisis.Status == 200) {
+            console.log(this.jenisAnalisis);
+
+            loading.dismiss();
+
+            this.IDjenis = this.jenisAnalisis.IDKatalog;
+            this.namaJenis = this.jenisAnalisis.JenisAnalisis;
+            this.kategori = this.jenisAnalisis.Kategori;
+            this.idKategori = this.jenisAnalisis.IDKategori;
+
+            this.harga = 0;
+            this.data.getData().then((data) => {
+              if (data.Perusahaan == "Institut Pertanian Bogor") {
+                this.harga = this.jenisAnalisis.HargaIPB;
+              }
+              else {
+                this.harga = this.jenisAnalisis.HargaNONIPB;
+              }
+            })
+            console.log(this.kategori)
+            this.metode = this.jenisAnalisis.Metode;
+            this.keterangan = this.jenisAnalisis.Keterangan;
+            if (this.jenisAnalisis.Cairan === 1) {
+              this.cairan = true;
             }
-            else {
-              this.harga = this.jenisAnalisis.HargaNONIPB;
+            if (this.jenisAnalisis.Ekstrak === 1) {
+              this.ekstrak = true;
             }
-          })
-          console.log(this.kategori)
-          this.metode = this.jenisAnalisis.Metode;
-          this.keterangan = this.jenisAnalisis.Keterangan;
-          if (this.jenisAnalisis.Cairan === 1) {
-            this.cairan = true;
-          }
-          if (this.jenisAnalisis.Ekstrak === 1) {
-            this.ekstrak = true;
-          }
-          if (this.jenisAnalisis.Serbuk === 1) {
-            this.serbuk = true;
-          }
-          if (this.jenisAnalisis.Simplisia === 1) {
-            this.simplisia = true;
+            if (this.jenisAnalisis.Serbuk === 1) {
+              this.serbuk = true;
+            }
+            if (this.jenisAnalisis.Simplisia === 1) {
+              this.simplisia = true;
+            }
+          } 
+          else {
+            loading.dismiss();
+            let alert = this.alertCtrl.create({
+              title: 'Silahkan coba lagi.',
+              buttons: ['OK']
+            });
+            alert.present();
           }
         });
 

@@ -163,6 +163,7 @@ export class ReviewPesananPage {
         let loading = this.loadCtrl.create({
           content: 'memuat..'
         });
+        loading.present();
 
         this.data.getData().then((data) => {
           this.data_user = data;
@@ -194,7 +195,7 @@ export class ReviewPesananPage {
               let response = data;
               this.pesanan = response;
               console.log(response);
-              if (this.pesanan.status == 0) {
+              if (this.pesanan.Status == 200) {
                 loading.dismiss();
                 let currentIndex = this.navCtrl.getActive().index;
                 this.navCtrl.push(CheckoutPage).then(() => {

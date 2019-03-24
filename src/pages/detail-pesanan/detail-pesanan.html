@@ -176,7 +176,7 @@
                     </p>
                 </ion-col>
             </ion-row>
-            <div *ngIf="sampel_lain">
+            <div *ngIf="sampel_lain && panjang > 1">
                 <ion-row *ngFor="let sampel of sampel_sisa" class="line">
                     <ion-col col-2>
                         <img src="assets/imgs/fitokimia.jpg">
@@ -196,7 +196,7 @@
                 </ion-row>
             </div>
 
-            <ion-row *ngIf="sampel_sisa.length != 0" class="line">
+            <ion-row *ngIf="panjang > 1" class="line">
                 <ion-col col-12 text-center>
                     <p *ngIf="!sampel_lain">
                         <a (click)="showSampel()">
@@ -387,13 +387,13 @@
             <ion-row>
                 <ion-col col-12>
                     <button ion-button full (click)="goto('ulasan')">
-            Beri Ulasan
+            Nilai
           </button>
                 </ion-col>
             </ion-row>
             <ion-row *ngIf="status.WaktuUlasan && status.StatusUtama == 5">
                 <ion-col col-8 align-self-center>
-                    Telah diulas pada {{ status.WaktuUlasan | date: 'dd-MM-yyyy' }}
+                    Telah dinilai pada {{ status.WaktuUlasan | date: 'dd-MM-yyyy' }}
                 </ion-col>
                 <ion-col col-4>
                     <button ion-button outline block (click)="goto('ulasan')" text-capitalize>

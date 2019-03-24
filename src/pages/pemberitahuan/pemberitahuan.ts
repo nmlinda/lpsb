@@ -51,7 +51,7 @@ export class PemberitahuanPage {
         let response = data;
         this.notif = response;
         console.log(response);
-        if (this.notif.Pemberitahuans) {
+        if (this.notif.Status == 200) {
           loading.dismiss();
           this.notif = this.notif.Pemberitahuans;
           for (var i = 0; i < this.notif.length; i++) {
@@ -114,6 +114,10 @@ export class PemberitahuanPage {
 
   detailPesanan(id_notif, id_pesanan) {
     this.data.getData().then((data) => {
+      let loading = this.loadCtrl.create({
+        content: 'memuat..'
+      });
+      loading.present();
 
       const httpOptions = {
         headers: new HttpHeaders({
@@ -129,8 +133,16 @@ export class PemberitahuanPage {
       this.httpClient.post(this.data.BASE_URL + '/readPemberitahuan', input, httpOptions).subscribe(data => {
         this.response = data;
         if (this.response.Status == 200) {
+          loading.dismiss();
           console.log(this.response)
           this.navCtrl.push(DetailPesananPage, { data: id_pesanan });
+        }else {
+          loading.dismiss();
+          let alert = this.alertCtrl.create({
+            title: 'Silahkan coba lagi.',
+            buttons: ['OK']
+          });
+          alert.present();
         }
       })
     })

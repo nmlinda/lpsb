@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { ReviewPesananPage } from '../review-pesanan/review-pesanan';
 import { Data } from '../../provider/data';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
@@ -43,6 +43,7 @@ export class KeranjangPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public httpClient: HttpClient,
+    public loadCtrl: LoadingController,
     public alertCtrl: AlertController,
     public data: Data) {
 
@@ -53,6 +54,10 @@ export class KeranjangPage {
   }
 
   ionViewWillEnter() {
+    let loading = this.loadCtrl.create({
+      content: 'memuat..'
+    });
+    loading.present();
     this.data.getData().then((data) => {
 
       const httpOptions = {
@@ -73,6 +78,7 @@ export class KeranjangPage {
         this.keranjangs = response;
         console.log(response);
         if (this.keranjangs.Status == 200) {
+          loading.dismiss();
           this.listKeranjang = this.keranjangs.keranjang;
           this.panjang = this.listKeranjang.length;
           if (this.panjang > 0) {
@@ -101,6 +107,7 @@ export class KeranjangPage {
           }
         }
         else {
+          loading.dismiss();
           let alert = this.alertCtrl.create({
             title: 'Gagal memuat',
             subTitle: 'Silahkan coba lagi.',

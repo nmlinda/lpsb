@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController } from 'ionic-angular';
+import { NavController, AlertController, LoadingController } from 'ionic-angular';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 
 import { KategoriAnalisisPage } from '../kategori-analisis/kategori-analisis';
@@ -32,6 +32,7 @@ export class HomePage {
 
   constructor(public data: Data,
     public nav: NavController,
+    public loadCtrl: LoadingController,
     public alertCtrl: AlertController,
     public httpClient: HttpClient) {
     this.buatPesanan = KategoriAnalisisPage;
@@ -57,6 +58,10 @@ export class HomePage {
   }
 
   ionViewWillEnter() {
+    let loading = this.loadCtrl.create({
+      content: 'memuat..'
+    });
+    loading.present();
     this.data.getData().then((data) => {
 
       const httpOptions = {
@@ -73,12 +78,22 @@ export class HomePage {
       this.httpClient.get(this.data.BASE_URL + '/getAllKategori/', httpOptions).subscribe(data => {
         let response = data;
         this.listKategori = response;
+        if(this.listKategori.Status == 200){
         this.listKategori2 = this.listKategori.kategoris;
         console.log(this.listKategori2);
+        loading.dismiss();
 
         for (var i = 0; i < this.listKategori2.length; i++) {
           this.kategori[i] = this.listKategori2[i];
         }
+      }else{
+        loading.dismiss();
+          let alert = this.alertCtrl.create({
+            title: 'Silahkan coba lagi.',
+            buttons: ['OK']
+          });
+          alert.present();
+      }
       });
 
       // cart

@@ -3,10 +3,26 @@ page-ulasan {
         border: 1px solid gainsboro;
     }
     .question {
-        display: flex;
-        flex-wrap: wrap;
+        margin: 0;
+        padding-top: 15px;
+        padding-bottom: 5px;
+        border-top: 1px solid #66A652;
     }
-    .answer {
-        display: flex;
+    .survey {
+        display: inline-flex;
+        margin-left: 10px;
+    }
+    p {
+        white-space: normal;
+        margin-top: 0;
+        font-size: 16px;
+    }
+    ul {
+        padding-left: 10px;
+        margin-top: 0;
+        li {
+            list-style-type: none;
+            font-size: 16px;
+        }
     }
 }

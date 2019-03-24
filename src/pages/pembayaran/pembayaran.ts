@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, AlertController, Toast, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, AlertController, ToastController, LoadingController } from 'ionic-angular';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Data } from '../../provider/data';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
@@ -33,13 +33,13 @@ export class PembayaranPage {
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public data: Data,
+    public loadCtrl: LoadingController,
     public httpClient: HttpClient,
     public toastCtrl: ToastController,
     public alertCtrl: AlertController,
     public viewCtrl: ViewController) {
     this.idPesanan = this.navParams.get('id');
     this.harga = this.navParams.get('harga');
-    // this.waktu.setDate(this.navParams.get('waktu'))+3;
     this.waktu = new Date(this.navParams.get('waktu'));
     this.waktu.setDate(this.waktu.getDate() + 3);
     this.data.getRekening().then((data) => {
@@ -66,6 +66,11 @@ export class PembayaranPage {
     if(this.rekform.invalid){
       this.toastValidator();
     }else{
+      let loading = this.loadCtrl.create({
+        content: 'memuat..'
+      });
+      loading.present();
+
     let input = JSON.stringify({
       data_rek: {
         NamaRekening: this.rekData.namaNasabah,
@@ -86,7 +91,8 @@ export class PembayaranPage {
         let response = data;
         this.simpanRek = response;
         console.log(response);
-        if (this.simpanRek.Status === 200) {
+        if (this.simpanRek.Status == 200) {
+          loading.dismiss();
           let currentIndex = this.navCtrl.getActive().index;
           this.navCtrl.push(DetailPesananPage, { data: this.idPesanan }).then(() => {
             this.navCtrl.remove(currentIndex);
@@ -99,6 +105,7 @@ export class PembayaranPage {
             subTitle: 'Silahkan coba lagi',
             buttons: ['OK']
           });
+          loading.dismiss();
           alert.present();
         }
 

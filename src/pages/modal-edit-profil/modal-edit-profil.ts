@@ -100,6 +100,11 @@ export class ModalEditProfilPage {
   }
 
   simpan() {
+    let loading = this.loadCtrl.create({
+      content: 'memuat..'
+    });
+    loading.present();
+
     if(this.profilData.institusi == 1){
       this.institusi = "Institut Pertanian Bogor";
     } else if(this.profilData.institusi == 2){
@@ -125,7 +130,8 @@ export class ModalEditProfilPage {
         let response = data;
         this.profils = response;
         console.log(response);
-        if (this.profils.Status === 200) {
+        if (this.profils.Status == 200) {
+          loading.dismiss();
           this.data.login(this.profils); // simpan response ke local storage
           this.viewCtrl.dismiss(this.profils);
         }
@@ -135,6 +141,7 @@ export class ModalEditProfilPage {
             subTitle: 'Silahkan coba lagi',
             buttons: ['OK']
           });
+          loading.dismiss();
           alert.present();
         }
 
