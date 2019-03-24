@@ -199,7 +199,11 @@ export class DetailPesananPage {
           }
           else if (this.status.StatusUtama == 5) {
             this.status_utama = "Pesanan selesai";
-            this.ket_status_utama = "Silahkan unduh sertifikat hasil uji.";
+            if(this.status.WaktuUlasan){
+              this.ket_status_utama = "Silahkan unduh sertifikat hasil uji dan beri penilaian.";
+            }else {
+              this.ket_status_utama = "Silahkan unduh sertifikat hasil uji.";
+            }
             this.waktu_status_utama = this.status.WaktuSelesai;
             this.statusAnalisis = [
               {
@@ -251,12 +255,6 @@ export class DetailPesananPage {
 
   goto(page) {
     if (page == 'pembayaran') {
-      // let modal = this.modalCtrl.create(PembayaranPage, {
-      //   id: this.idPesanan,
-      //   harga: this.pesanan.HargaTotal,
-      //   waktu: this.status.WaktuPesananDibuat
-      // });
-      // modal.present();
       this.nav.push(PembayaranPage, {
         id: this.idPesanan,
         harga: this.pesanan.HargaTotal,
@@ -264,26 +262,17 @@ export class DetailPesananPage {
       });
     }
     else if (page == 'kirimSampel') {
-      // let modal = this.modalCtrl.create(KirimSampelPage, {
-      //   id: this.idPesanan,
-      //   statusKirim: this.status.StatusKirimSampel
-      // });     
-      // modal.present();
       this.nav.push(KirimSampelPage, {
         id: this.idPesanan,
         statusKirim: this.status.StatusKirimSampel
       });
     }
     else if (page == 'batal') {
-      // let modal = this.modalCtrl.create(BatalPesananPage, { id: this.idPesanan });
-      // modal.present();
       this.nav.push(BatalPesananPage, { id: this.idPesanan });
     }
     else if (page == 'ulasan') {
       console.log(this.status.WaktuUlasan)
-      // let modal = this.modalCtrl.create(UlasanPage, { idPesanan: this.idPesanan, waktu: this.status.WaktuUlasan });
-      // modal.present();
-      this.nav.push(UlasanPage, { idPesanan: this.idPesanan, waktu: this.status.WaktuUlasan });
+      this.nav.push(UlasanPage, { idPesanan: this.idPesanan});
     }
   }
 

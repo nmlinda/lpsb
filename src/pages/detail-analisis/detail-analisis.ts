@@ -175,7 +175,15 @@ export class DetailAnalisisPage {
     this.navCtrl.push(KeranjangPage);
   }
   buatPesanan() {
-    this.navCtrl.push(BuatPesanan2Page, { data: this.IDjenis });
+    this.navCtrl.push(BuatPesanan2Page, { 
+      id: this.IDjenis,
+      namaJenis: this.namaJenis,
+      harga: this.harga,
+      cairan: this.jenisAnalisis.Cairan,
+      ekstrak: this.jenisAnalisis.Ekstrak,
+      serbuk: this.jenisAnalisis.Serbuk,
+      simplisia: this.jenisAnalisis.Simplisia
+    });
   }
 
   gotoKategori() {

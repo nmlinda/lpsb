@@ -38,6 +38,8 @@ import { ModalDetailSampelPage } from '../pages/modal-detail-sampel/modal-detail
 import { ModalEditProfilPage } from '../pages/modal-edit-profil/modal-edit-profil';
 import { CariPipe } from '../pipes/cari/cari';
 
+
+
 @NgModule({
   declarations: [
     MyApp,

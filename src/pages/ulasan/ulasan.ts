@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, ToastController } from 'ionic-angular';
 import { Data } from '../../provider/data';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
-
+import { DetailPesananPage } from '../detail-pesanan/detail-pesanan';
 /**
  * Generated class for the UlasanPage page.
  *
@@ -17,20 +17,20 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 })
 export class UlasanPage {
   ulas: boolean = false;
-  survey1: any;
-  survey2: any;
-  survey3: any;
-  survey4: any;
-  survey5: any;
-  survey6: any;
-  survey7: any;
-  survey8: any;
-  survey9: any;
+  survey1: number;
+  survey2: number;
+  survey3: number;
+  survey4: number;
+  survey5: number;
+  survey6: number;
+  survey7: number;
+  survey8: number;
+  survey9: number;
   ulasan: string;
   waktuUlasan: Date;
   idPesanan: any;
   response: any = [];
-  
+
   constructor(public navCtrl: NavController,
     public httpClient: HttpClient,
     public data: Data,
@@ -38,9 +38,8 @@ export class UlasanPage {
     public navParams: NavParams,
     public viewCtrl: ViewController) {
     this.idPesanan = this.navParams.get('idPesanan');
-    this.waktuUlasan = this.navParams.get('waktu');
-
-    if (this.waktuUlasan) {
+    //this.waktuUlasan = this.navParams.get('waktu');
+    if (this.idPesanan) {
       this.ulas = true;
       this.data.getData().then((data) => {
 
@@ -61,6 +60,16 @@ export class UlasanPage {
           if (this.response.Status == 200) {
             this.ulasan = this.response.Ulasan;
             this.waktuUlasan = this.response.WaktuUlasan;
+            this.survey1 = this.response.survey1;
+            this.survey2 = this.response.survey2;
+            this.survey3 = this.response.survey3;
+            this.survey4 = this.response.survey4;
+            this.survey5 = this.response.survey5;
+            this.survey6 = this.response.survey6;
+            this.survey7 = this.response.survey7;
+            this.survey8 = this.response.survey8;
+            this.survey9 = this.response.survey9;
+
           }
 
         })
@@ -79,7 +88,7 @@ export class UlasanPage {
   }
 
   kirim() {
-    if (this.ulasan && this.survey1 && this.survey2 && this.survey3 && this.survey4 && 
+    if (this.ulasan && this.survey1 && this.survey2 && this.survey3 && this.survey4 &&
       this.survey5 && this.survey6 && this.survey7 && this.survey8 && this.survey9) {
       this.data.getData().then((data) => {
 
@@ -107,19 +116,19 @@ export class UlasanPage {
 
 
 
-        // this.httpClient.post(this.data.BASE_URL + '/beriUlasan', input, httpOptions).subscribe(data => {
-        //   let response = data;
-        //   console.log(response)
-        //   if (response) {
-        //     this.toastBerhasilKirim();
-        //     let currentIndex = this.navCtrl.getActive().index;
-        //     this.navCtrl.push(DetailPesananPage, { data: this.idPesanan }).then(() => {
-        //       this.navCtrl.remove(currentIndex);
-        //       this.navCtrl.remove(currentIndex - 1);
-        //     });
-          // }
+        this.httpClient.post(this.data.BASE_URL + '/beriUlasan', input, httpOptions).subscribe(data => {
+          let response = data;
+          console.log(response)
+          if (response) {
+            this.toastBerhasilKirim();
+            let currentIndex = this.navCtrl.getActive().index;
+            this.navCtrl.push(DetailPesananPage, { data: this.idPesanan }).then(() => {
+              this.navCtrl.remove(currentIndex);
+              this.navCtrl.remove(currentIndex - 1);
+            });
+          }
 
-        // })
+        })
 
       })
     } else {

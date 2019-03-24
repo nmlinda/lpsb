@@ -377,17 +377,17 @@
           </button>
                 </ion-col>
             </ion-row>
-            <ion-row class="" *ngIf="status.StatusUtama == 1">
+            <ion-row *ngIf="status.StatusUtama == 1">
                 <ion-col col-12>
                     <button ion-button full color="danger" (click)="goto('batal')">
             Batalkan Pesanan
           </button>
                 </ion-col>
             </ion-row>
-            <ion-row>
+            <ion-row *ngIf="!status.WaktuUlasan && status.StatusUtama == 5">
                 <ion-col col-12>
                     <button ion-button full (click)="goto('ulasan')">
-            Nilai
+            Beri Penilaian
           </button>
                 </ion-col>
             </ion-row>
