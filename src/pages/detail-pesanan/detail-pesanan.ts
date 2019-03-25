@@ -1,5 +1,6 @@
+import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, AlertController, ToastController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, AlertController, ToastController, LoadingController, Platform } from 'ionic-angular';
 import { PembayaranPage } from '../pembayaran/pembayaran';
 import { KirimSampelPage } from '../kirim-sampel/kirim-sampel';
 import { BatalPesananPage } from '../batal-pesanan/batal-pesanan';
@@ -7,10 +8,14 @@ import { UlasanPage } from '../ulasan/ulasan';
 import { Data } from '../../provider/data';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
+declare var cordova: any;
+
+
 @IonicPage()
 @Component({
   selector: 'page-detail-pesanan',
   templateUrl: 'detail-pesanan.html',
+  
 })
 export class DetailPesananPage {
   moreStatus: boolean = false;
@@ -34,15 +39,39 @@ export class DetailPesananPage {
   ket_status_utama: string;
   waktu_status_utama: Date;
 
+  storageDirectory: string = '';
+
   constructor(public nav: NavController,
     public navParams: NavParams,
     public alertCtrl: AlertController,
     public toastCtrl: ToastController,
+    private transfer: FileTransfer,
     public loadCtrl: LoadingController,
     public httpClient: HttpClient,
     public data: Data,
+    public platform: Platform,
     public modalCtrl: ModalController) {
 
+
+    this.platform.ready().then(() => {
+      // make sure this is on a device, not an emulation (e.g. chrome tools device mode)
+      if (!this.platform.is('cordova')) {
+        return false;
+      }
+
+      if (this.platform.is('ios')) {
+        // this.storageDirectory = cordova.file.documentsDirectory;
+        this.storageDirectory = cordova.file.externalRootDirectory + '/FPA/';
+      }
+      else if (this.platform.is('android')) {
+        // this.storageDirectory = cordova.file.dataDirectory;
+        this.storageDirectory = cordova.file.externalRootDirectory + '/FPA/';
+      }
+      else {
+        // exit otherwise, but you could add further types here e.g. Windows
+        return false;
+      }
+    });
   }
 
   ionViewDidLoad() {
@@ -59,20 +88,20 @@ export class DetailPesananPage {
     }, 5000);
     this.idPesanan = null;
     this.pesanan = {
-      Percepatan : null,
+      Percepatan: null,
       HargaTotal: null,
       Keterangan: null,
       NoPesanan: null,
     }
     this.data_user = {
-      NamaLengkap :"",
+      NamaLengkap: "",
       Institusi: "",
       Alamat: "",
       NoHP: "",
       Email: "",
       NoNPWP: "",
     }
-    
+
     this.sampel_awal = {
       JenisAnalisis: "",
       Metode: "",
@@ -90,6 +119,7 @@ export class DetailPesananPage {
     this.status_utama = null;
     this.ket_status_utama = null;
     this.waktu_status_utama = null;
+    this.sisa = null;
 
     this.idPesanan = this.navParams.get('data');
 
@@ -119,10 +149,10 @@ export class DetailPesananPage {
           this.list_sampel = this.pesanan.listSampel;
           this.sampel_awal = this.list_sampel[0];
           this.panjang = this.list_sampel.length;
-          console.log('list sampel',this.panjang)
-          if(this.panjang > 1){
-          this.sampel_sisa = this.list_sampel.filter(sampel =>
-            sampel !== this.sampel_awal);
+          console.log('list sampel', this.panjang)
+          if (this.panjang > 1) {
+            this.sampel_sisa = this.list_sampel.filter(sampel =>
+              sampel !== this.sampel_awal);
             this.sampel_lain = false;
           }
 
@@ -133,18 +163,21 @@ export class DetailPesananPage {
           }
           else if (this.status.StatusUtama == 2) {
             if (this.status.StatusKirimSampel < 3 && this.status.StatusPembayaran < 3) {
-              this.status_utama = "Pesanan Tervalidasi";
               if (this.status.StatusKirimSampel == 1 && this.status.StatusPembayaran == 1) {
+                this.status_utama = "Pesanan Tervalidasi";
                 this.ket_status_utama = "Segera lakukan pembayaran dan pengiriman sampel.";
               }
               else if (this.status.StatusKirimSampel == 2 && this.status.StatusPembayaran == 1) {
+                this.status_utama = "Menunggu Validasi Pengiriman Sampel";
                 this.ket_status_utama = "Pengiriman sampel sedang divalidasi. Segera lakukan pembayaran.";
               }
               else if (this.status.StatusKirimSampel == 1 && this.status.StatusPembayaran == 2) {
+                this.status_utama = "Menunggu Validasi Pembayaran";
                 this.ket_status_utama = "Pembayaran sedang divalidasi. Segera lakukan pengiriman sampel.";
               }
               else if (this.status.StatusKirimSampel == 2 && this.status.StatusPembayaran == 2) {
-                this.ket_status_utama = "Menunggu validasi pembayaran dan pengiriman sampel.";
+                this.status_utama = "Menunggu Validasi";
+                this.ket_status_utama = "Pembayaran dan pengiriman sampel sedang divalidasi.";
               }
               this.waktu_status_utama = this.status.WaktuValidasiPesanan;
             }
@@ -175,9 +208,9 @@ export class DetailPesananPage {
               }
             ];
             this.awal = this.statusAnalisis[0];
-            if(this.statusAnalisis.length > 1){
-            this.sisa = this.statusAnalisis.filter(cart =>
-              cart !== this.awal);
+            if (this.statusAnalisis.length > 1) {
+              this.sisa = this.statusAnalisis.filter(cart =>
+                cart !== this.awal);
             }
           }
           else if (this.status.StatusUtama == 4) {
@@ -202,9 +235,9 @@ export class DetailPesananPage {
           }
           else if (this.status.StatusUtama == 5) {
             this.status_utama = "Pesanan selesai";
-            if(this.status.WaktuUlasan){
+            if (this.status.WaktuUlasan) {
               this.ket_status_utama = "Silahkan unduh sertifikat hasil uji dan beri penilaian.";
-            }else {
+            } else {
               this.ket_status_utama = "Silahkan unduh sertifikat hasil uji.";
             }
             this.waktu_status_utama = this.status.WaktuSelesai;
@@ -229,13 +262,13 @@ export class DetailPesananPage {
           }
           else if (this.status.StatusUtama >= 6) {
             this.status_utama = "Pesanan Dibatalkan";
-            if (this.status.AlasanBatal){
-              this.ket_status_utama = "Pesanan telah dibatalkan oleh sistem karena "+ this.status.AlasanBatal;
+            if (this.status.AlasanBatal) {
+              this.ket_status_utama = "Pesanan telah dibatalkan oleh sistem karena " + this.status.AlasanBatal;
             }
             else {
               this.ket_status_utama = "Pesanan telah dibatalkan oleh Anda.";
             }
-            
+
             this.waktu_status_utama = this.status.WaktuDibatalkan;
           }
 
@@ -281,10 +314,112 @@ export class DetailPesananPage {
     }
     else if (page == 'ulasan') {
       console.log(this.status.WaktuUlasan)
-      this.nav.push(UlasanPage, { idPesanan: this.idPesanan});
+      this.nav.push(UlasanPage, { idPesanan: this.idPesanan, waktu: this.status.WaktuUlasan });
+    }
+    else if (page == 'beriUlasan') {
+      console.log(this.status.WaktuUlasan)
+      this.nav.push(UlasanPage, { idPesanan: this.idPesanan });
     }
   }
 
+  unduh(fail) {
+    let loading = this.loadCtrl.create({
+      content: 'memuat..'
+    });
+    loading.present();
+    setTimeout(() => {
+      loading.dismiss();
+    }, 5000);
+    if (fail == 'fpa') {
+      let confirm = this.alertCtrl.create({
+        title: 'Download Gambar?',
+        buttons: [
+          {
+            text: 'Batal',
+            handler: () => {
+              console.log('Disagree clicked');
+            }
+          },
+          {
+            text: 'Download',
+            handler: () => {
+              console.log('Agree clicked');
+
+              // download foto
+
+              let loading = this.loadCtrl.create({
+                content: 'unduh..'
+              });
+
+              loading.present();
+
+              setTimeout(() => {
+                loading.dismiss();
+              }, 5000);
+              // api
+              this.data.getData().then((data) => {
+
+                const httpOptions = {
+                  headers: new HttpHeaders({
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + data.api_token
+                  })
+                };
+                const fileTransfer: FileTransferObject = this.transfer.create();
+
+                let location = this.storageDirectory + '/FPA/' + Date.now() + '.png';
+
+                fileTransfer.download(this.data.BASE_URL + '/detailPesanan', location, true, httpOptions).then((entry) => {
+                  console.log('download complete: ' + entry.toURL());
+
+
+                  loading.dismiss();
+
+                  let alert = this.alertCtrl.create({
+                    title: 'Download Foto Berhasil',
+                    message: 'Lokasi Penyimpanan : ' + location,
+                    buttons: [
+                      {
+                        text: 'OK',
+                        handler: () => {
+                          console.log('Agree clicked');
+                        }
+                      }
+                    ]
+                  });
+                  alert.present();
+
+                }, (error) => {
+                  alert(error);
+                  // handle error
+
+                  loading.dismiss();
+                  let alertError = this.alertCtrl.create({
+                    title: 'Download Foto Gagal',
+                    message: 'silahkan coba kembali',
+                    buttons: [
+                      {
+                        text: 'OK',
+                        handler: () => {
+                          console.log('Agree clicked');
+                        }
+                      }
+                    ]
+                  });
+                  alertError.present();
+                });
+
+
+                // download foto
+
+              })
+            }
+          }
+        ]
+      });
+      confirm.present();
+    }
+  }
 
   lihatSertif() {
     let alert = this.alertCtrl.create({

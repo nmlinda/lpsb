@@ -17,7 +17,9 @@ page-pesanan {
     overflow-y: scroll;
     display: block;
   }
-
+  .status {
+    font-weight: bold;
+  }
   ion-segment {
     background-color: white;
     display: block;

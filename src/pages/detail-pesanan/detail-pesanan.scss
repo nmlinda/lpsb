@@ -118,4 +118,13 @@ page-detail-pesanan {
         padding-left: 8px;
         color: gray;
     }
+    .section {
+        display: inline-flex;
+        p {
+            align-self: flex-start;
+        }
+        &__item {
+            align-self: flex-end;
+        }
+    }
 }

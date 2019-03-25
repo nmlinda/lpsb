@@ -38,8 +38,8 @@ export class UlasanPage {
     public navParams: NavParams,
     public viewCtrl: ViewController) {
     this.idPesanan = this.navParams.get('idPesanan');
-    //this.waktuUlasan = this.navParams.get('waktu');
-    if (this.idPesanan) {
+    this.waktuUlasan = this.navParams.get('waktu');
+    if (this.waktuUlasan) {
       this.ulas = true;
       this.data.getData().then((data) => {
 
@@ -69,7 +69,6 @@ export class UlasanPage {
             this.survey7 = this.response.survey7;
             this.survey8 = this.response.survey8;
             this.survey9 = this.response.survey9;
-
           }
 
         })

@@ -80,8 +80,9 @@
           <h2>Status Analisis</h2>
         </ion-col>
         <ion-col col-1 text-center>
-          <ion-icon *ngIf="moreStatus" (click)="showStatus()" name="arrow-dropup" color="primary"></ion-icon>
-          <ion-icon *ngIf="!moreStatus" (click)="showStatus()" name="arrow-dropdown" color="primary"></ion-icon>
+          <ion-icon *ngIf="moreStatus && sisa == []" (click)="showStatus()" name="arrow-dropup" color="primary">
+          </ion-icon>
+          <ion-icon *ngIf="!moreStatus && sisa == []" (click)="showStatus()" name="arrow-dropdown" color="primary"></ion-icon>
         </ion-col>
       </ion-row>
       <ion-row>
@@ -266,7 +267,7 @@
   </ion-card>
 
   <!-- FORMULIR PERMOHONAN SAMPEL & TANDA TERIMA SAMPEL-->
-  <ion-card *ngIf="status.StatusUtama == 2">
+  <ion-card *ngIf="status.StatusUtama >= 2">
     <ion-grid>
       <ion-row>
         <ion-col col-9>
@@ -274,7 +275,7 @@
         </ion-col>
         <ion-col col-3 text-right>
           <p>
-            <strong><a (click)="toastUnduh()">Unduh</a></strong>
+            <strong><a (click)="unduh('fpa')">Unduh</a></strong>
           </p>
         </ion-col>
       </ion-row>
@@ -284,7 +285,7 @@
         </ion-col>
       </ion-row>
 
-      <ion-row class="line2" *ngIf="status.StatusKirimSampel == 3">
+      <ion-row class="line2" *ngIf="status.StatusKirimSampel == 3 ">
         <ion-col col-9>
           <h2>Tanda Terima Sampel</h2>
         </ion-col>
@@ -304,7 +305,7 @@
 
   <!-- SERTIFIKAT HASIL UJI -->
   <ion-card *ngIf="status.StatusUtama == 5">
-    <ion-grid>
+    <ion-grid *ngIf="status.StatusUtama == 5">
       <ion-row>
         <ion-col col-1 text-right align-self-center>
           <ion-icon name="ribbon" color="primary"></ion-icon>
@@ -364,9 +365,9 @@
   </ion-card>
 
   <!-- BUTTON -->
-  <ion-card no-margin *ngIf="status.StatusUtama < 6">
-    <ion-grid>
-      <ion-row *ngIf="status.StatusUtama == 2">
+  <ion-card no-margin *ngIf="status.StatusUtama == 2">
+    <ion-grid *ngIf="status.StatusUtama == 2">
+      <ion-row>
         <ion-col col-6 text-center *ngIf="status.StatusPembayaran == 1">
           <button ion-button outline block color="orange" (click)="goto('pembayaran')" text-capitalize>
             <ion-icon name="cash"></ion-icon>
@@ -380,21 +381,29 @@
           </button>
         </ion-col>
       </ion-row>
-      <ion-row *ngIf="status.StatusUtama == 1">
+    </ion-grid>
+  </ion-card>
+  <ion-card *ngIf="status.StatusUtama == 1">
+    <ion-grid *ngIf="status.StatusUtama == 1">
+      <ion-row>
         <ion-col col-12>
           <button ion-button full color="danger" (click)="goto('batal')">
             Batalkan Pesanan
           </button>
         </ion-col>
       </ion-row>
-      <ion-row *ngIf="!status.WaktuUlasan && status.StatusUtama == 5">
+    </ion-grid>
+  </ion-card>
+  <ion-card *ngIf="status.StatusUtama == 5">
+    <ion-grid *ngIf="status.StatusUtama == 5">
+      <ion-row *ngIf="!status.WaktuUlasan">
         <ion-col col-12>
-          <button ion-button full (click)="goto('ulasan')">
+          <button ion-button full (click)="goto('beriUlasan')">
             Beri Penilaian
           </button>
         </ion-col>
       </ion-row>
-      <ion-row *ngIf="status.WaktuUlasan && status.StatusUtama == 5">
+      <ion-row *ngIf="status.WaktuUlasan">
         <ion-col col-8 align-self-center>
           Telah dinilai pada {{ status.WaktuUlasan | date: 'dd-MM-yyyy' }}
         </ion-col>

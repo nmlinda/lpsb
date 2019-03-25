@@ -6,88 +6,92 @@
 -->
 <ion-header>
 
-    <ion-navbar>
-        <ion-title>Pesanan Saya</ion-title>
-    </ion-navbar>
+  <ion-navbar>
+    <ion-title>Pesanan Saya</ion-title>
+  </ion-navbar>
 
 </ion-header>
 
 
 <ion-content>
-    <ion-segment [(ngModel)]="status">
-        <ion-segment-button value="1">
-            Belum Dianalisis
-        </ion-segment-button>
-        <ion-segment-button value="2">
-            Dianalisis
-        </ion-segment-button>
-        <ion-segment-button value="3">
-            Selesai
-        </ion-segment-button>
-        <ion-segment-button value="4">
-            Batal
-        </ion-segment-button>
-    </ion-segment>
+  <ion-segment [(ngModel)]="status">
+    <ion-segment-button value="1">
+      Belum Dianalisis
+    </ion-segment-button>
+    <ion-segment-button value="2">
+      Dianalisis
+    </ion-segment-button>
+    <ion-segment-button value="3">
+      Selesai
+    </ion-segment-button>
+    <ion-segment-button value="4">
+      Batal
+    </ion-segment-button>
+  </ion-segment>
 
-    <div [ngSwitch]="status">
+  <div [ngSwitch]="status">
 
-        <div *ngSwitchCase="1">
-            <div *ngIf="belumDianalisis.length == 0">
-                <h6 text-center class="no-pesanan">
-                    <ion-icon name="cart" style="font-size: 70px;"></ion-icon><br> Tidak ada pesanan
-                </h6>
-            </div>
+    <div *ngSwitchCase="1">
+      <div *ngIf="belumDianalisis.length == 0">
+        <h6 text-center class="no-pesanan">
+          <ion-icon name="cart" style="font-size: 70px;"></ion-icon><br> Tidak ada pesanan
+        </h6>
+      </div>
 
-            <div *ngFor="let item of belumDianalisis">
-                <ion-card>
-                    <ion-item>
-                        <ion-grid no-padding>
-                            <ion-row>
-                                <ion-col col-6>
-                                    <h2>
-                                        Total: Rp {{item.HargaTotal | number:0 }}
-                                    </h2>
-                                </ion-col>
-                                <ion-col col-6>
-                                    <h3 text-right *ngIf="item.StatusUtama == 1">
-                                        <strong>Sedang Divalidasi</strong>
-                                    </h3>
-                                    <h3 text-right *ngIf="item.StatusUtama == 2 && item.status_pembayaran == 1 && item.status_pengiriman == 1">
-                                        Belum Dibayar
-                                    </h3>
-                                    <h3 text-right *ngIf="item.StatusUtama == 2 && item.status_pembayaran == 2 && item.status_pengiriman == 1">
-                                        Sampel Belum Dikirim
-                                    </h3>
-                                    <h3 text-right *ngIf="item.StatusUtama == 2 && item.status_pembayaran == 1 && item.status_pengiriman == 2">
-                                        Belum Dibayar
-                                    </h3>
-                                    <h3 text-right *ngIf="item.StatusUtama == 2 && item.status_pembayaran == 2 && item.status_pengiriman == 2">
-                                        Menunggu Analisis
-                                    </h3>
-                                </ion-col>
-                            </ion-row>
-                        </ion-grid>
-                    </ion-item>
-                    <ion-card-content>
-                        <ion-grid no-padding>
-                            <ion-row>
-                                <ion-col col-2>
-                                    <img src="assets/imgs/fitokimia.jpg" class="img-jenis">
-                                </ion-col>
-                                <ion-col col-10>
-                                    <p margin-left text-capitalize>
-                                        <span class="header-text">
+      <div *ngFor="let item of belumDianalisis">
+        <ion-card>
+          <ion-item>
+            <ion-grid no-padding>
+              <ion-row>
+                <ion-col col-6>
+                  <h2>
+                    Total: Rp {{item.HargaTotal | number:0 }}
+                  </h2>
+                </ion-col>
+                <ion-col col-6>
+                  <h3 class="status" text-right *ngIf="item.StatusUtama == 1">
+                    Sedang Divalidasi
+                  </h3>
+                  <h3 class="status" text-right
+                    *ngIf="item.StatusUtama == 2 && item.status_pembayaran == 1 && item.status_pengiriman == 1">
+                    Belum Dibayar
+                  </h3>
+                  <h3 class="status" text-right
+                    *ngIf="item.StatusUtama == 2 && item.status_pembayaran == 2 && item.status_pengiriman == 1">
+                    Sampel Belum Dikirim
+                  </h3>
+                  <h3 class="status" text-right
+                    *ngIf="item.StatusUtama == 2 && item.status_pembayaran == 1 && item.status_pengiriman == 2">
+                    Belum Dibayar
+                  </h3>
+                  <h3 class="status" text-right
+                    *ngIf="item.StatusUtama == 2 && item.status_pembayaran == 2 && item.status_pengiriman == 2">
+                    Menunggu Analisis
+                  </h3>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+          <ion-card-content>
+            <ion-grid no-padding>
+              <ion-row>
+                <ion-col col-2>
+                  <img src="assets/imgs/fitokimia.jpg" class="img-jenis">
+                </ion-col>
+                <ion-col col-10>
+                  <p margin-left text-capitalize>
+                    <span class="header-text">
                       {{ item.awal.JenisAnalisis }}
                     </span>
-                                        <br> {{ item.awal.JenisSampel }} ({{item.awal.Jumlah}})
-                                        <br>
-                                    </p>
-                                    <p text-right>
-                                        Rp {{ item.awal.HargaSampel | number:0 }}
-                                    </p>
-                                </ion-col>
-                            </ion-row>
-                            <span *ngIf="item.show">
+                    <br> {{ item.awal.JenisSampel }} ({{item.awal.Jumlah}})
+                    <br>
+                  </p>
+                  <p text-right>
+                    Rp {{ item.awal.HargaSampel | number:0 }}
+                  </p>
+                </ion-col>
+              </ion-row>
+              <span *ngIf="item.show">
                 <span *ngFor="let sampel of item.sisa">
                   <ion-row>
                     <ion-col col-2 no-padding>
@@ -98,111 +102,206 @@
                         <span class="header-text">
                           {{ sampel.JenisAnalisis }}
                         </span>
-                            <br> {{ sampel.JenisSampel }} ({{sampel.Jumlah}})
-                            <br>
-                            </p>
-                            <p text-right>
-                                Rp {{ sampel.HargaSampel | number:0 }}
-                            </p>
-                            </ion-col>
-                            </ion-row>
-                            </span>
-                            </span>
+                        <br> {{ sampel.JenisSampel }} ({{sampel.Jumlah}})
+                        <br>
+                      </p>
+                      <p text-right>
+                        Rp {{ sampel.HargaSampel | number:0 }}
+                      </p>
+                    </ion-col>
+                  </ion-row>
+                </span>
+              </span>
 
-                            <ion-row *ngIf="item.Sampel.length != 1">
-                                <ion-col col-12 text-center>
-                                    <p *ngIf="!item.show">
-                                        <a (click)="showSampel(item)">
+              <ion-row *ngIf="item.Sampel.length != 1">
+                <ion-col col-12 text-center>
+                  <p *ngIf="!item.show">
+                    <a (click)="showSampel(item)">
                       Tampilkan {{item.sisa.length}} Sampel Lagi
                       <ion-icon name="arrow-dropdown"></ion-icon>
                     </a>
-                                    </p>
-                                    <p *ngIf="item.show">
-                                        <a (click)="showSampel(item)">
+                  </p>
+                  <p *ngIf="item.show">
+                    <a (click)="showSampel(item)">
                       Sembunyikan {{item.sisa.length}} Sampel
                       <ion-icon name="arrow-dropup"></ion-icon>
                     </a>
-                                    </p>
-                                </ion-col>
-                            </ion-row>
-                            <!-- <ion-row *ngIf="item.status_pembayaran != 3 && status_pengiriman != 3">
-                <ion-col col-6 >
-                  <p *ngIf="item.status_pembayaran == 3">
-                    Pesanan dibayar
                   </p>
-                  <p *ngIf="item.status_pengiriman == 3">
-                    Sampel diterima
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-12>
+                  <ion-buttons end>
+                    <button ion-button text-capitalize color="primary" (click)="detailPesanan(item.IDPesanan)">
+                      Lihat Rincian
+                    </button>
+                  </ion-buttons>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </div>
+
+    </div>
+
+    <!-- DIANALISIS -->
+    <div *ngSwitchCase="2">
+      <div *ngIf="dianalisis.length == 0">
+        <h6 text-center class="no-pesanan">
+          <ion-icon name="cart" style="font-size: 70px;"></ion-icon><br> Tidak ada pesanan
+        </h6>
+      </div>
+
+      <div *ngFor="let item of dianalisis">
+        <ion-card>
+          <ion-item>
+            <ion-grid no-padding>
+              <ion-row>
+                <ion-col col-6>
+                  <h2>
+                    <strong>Total: Rp {{item.HargaTotal | number:0 }}</strong>
+                  </h2>
+                </ion-col>
+                <ion-col col-6>
+                  <h3 class="status" text-right *ngIf="item.StatusUtama == 3">
+                    Dikaji Ulang
+                  </h3>
+                  <h3 class="status" text-right *ngIf="item.StatusUtama == 4">
+                    Dianalisis
+                  </h3>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+          <ion-card-content>
+            <ion-grid no-padding>
+              <ion-row>
+                <ion-col col-2>
+                  <img src="assets/imgs/fitokimia.jpg" class="img-jenis">
+                </ion-col>
+                <ion-col col-10>
+                  <p margin-left text-capitalize>
+                    <span class="header-text">
+                      {{ item.awal.JenisAnalisis }}
+                    </span>
+                    <br> {{ item.awal.JenisSampel }} ({{item.awal.Jumlah}})
+                    <br>
+                  </p>
+                  <p text-right>
+                    Rp {{ item.awal.HargaSampel | number:0 }}
+                  </p>
+                </ion-col>
+              </ion-row>
+              <span *ngIf="sisa == item.awal.JenisSampel">
+                <span *ngFor="let sampel of item.sisa">
+                  <ion-row>
+                    <ion-col col-2 no-padding>
+                      <img src="assets/imgs/fitokimia.jpg" class="img-jenis">
+                    </ion-col>
+                    <ion-col col-10 no-padding>
+                      <p margin-left text-capitalize>
+                        <span class="header-text">
+                          {{ sampel.JenisAnalisis }}
+                        </span>
+                        <br> {{ sampel.JenisSampel }} ({{sampel.Jumlah}})
+                        <br>
+                      </p>
+                      <p text-right>
+                        Rp {{ sampel.HargaSampel | number:0 }}
+                      </p>
+                    </ion-col>
+                  </ion-row>
+                </span>
+              </span>
+              <ion-row *ngIf="item.Sampel.length != 1">
+                <ion-col col-12>
+                  <p text-center>
+                    <a (click)="showSampel(item)" *ngIf="sisa == ''">
+                      Tampilkan {{item.sisa.length}} Sampel Lagi
+                      <ion-icon name="arrow-dropdown"></ion-icon>
+                    </a>
+                    <a (click)="hideSampel(item)" *ngIf="sisa == item.awal.JenisSampel">
+                      Sembunyikan {{item.sisa.length}} Sampel
+                      <ion-icon name="arrow-dropup"></ion-icon>
+                    </a>
+                  </p>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-6>
+                  <p *ngIf="item.StatusUtama == 3">
+                    Pesanan dikaji ulang
+                  </p>
+                  <p *ngIf="item.StatusUtama == 4">
+                    Pesanan dianalisis
                   </p>
                 </ion-col>
                 <ion-col col-6>
                   <p text-right>{{item.WaktuStatusTerbaru | date: 'dd-MM-yyyy HH:mm'}}</p>
                 </ion-col>
-              </ion-row> -->
-                            <ion-row>
-                                <ion-col col-12>
-                                    <ion-buttons end>
-                                        <button ion-button text-capitalize color="primary" (click)="detailPesanan(item.IDPesanan)">
+              </ion-row>
+              <ion-row>
+                <ion-col col-12>
+                  <ion-buttons end>
+                    <button ion-button text-capitalize color="primary" (click)="detailPesanan(item.IDPesanan)">
                       Lihat Rincian
                     </button>
-                                    </ion-buttons>
-                                </ion-col>
-                            </ion-row>
-                        </ion-grid>
-                    </ion-card-content>
-                </ion-card>
-            </div>
+                  </ion-buttons>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </div>
 
-        </div>
+    </div>
 
-        <!-- DIANALISIS -->
-        <div *ngSwitchCase="2">
-            <div *ngIf="dianalisis.length == 0">
-                <h6 text-center class="no-pesanan">
-                    <ion-icon name="cart" style="font-size: 70px;"></ion-icon><br> Tidak ada pesanan
-                </h6>
-            </div>
-
-            <div *ngFor="let item of dianalisis">
-                <ion-card>
-                    <ion-item>
-                        <ion-grid no-padding>
-                            <ion-row>
-                                <ion-col col-6>
-                                    <h2>
-                                        <strong>Total: Rp {{item.HargaTotal | number:0 }}</strong>
-                                    </h2>
-                                </ion-col>
-                                <ion-col col-6>
-                                    <h3 text-right *ngIf="item.StatusUtama == 3">
-                                        Dikaji Ulang
-                                    </h3>
-                                    <h3 text-right *ngIf="item.StatusUtama == 4">
-                                        Dianalisis
-                                    </h3>
-                                </ion-col>
-                            </ion-row>
-                        </ion-grid>
-                    </ion-item>
-                    <ion-card-content>
-                        <ion-grid no-padding>
-                            <ion-row>
-                                <ion-col col-2>
-                                    <img src="assets/imgs/fitokimia.jpg" class="img-jenis">
-                                </ion-col>
-                                <ion-col col-10>
-                                    <p margin-left text-capitalize>
-                                        <span class="header-text">
+    <div *ngSwitchCase="3">
+      <div *ngIf="selesai.length == 0">
+        <h6 text-center class="no-pesanan">
+          <ion-icon name="cart" style="font-size: 70px;"></ion-icon><br> Tidak ada pesanan
+        </h6>
+      </div>
+      <!-- SELESAI -->
+      <div *ngFor="let item of selesai">
+        <ion-card>
+          <ion-item>
+            <ion-grid no-padding>
+              <ion-row>
+                <ion-col col-6>
+                  <h2>
+                    <strong>Total: Rp {{item.HargaTotal | number:0 }}</strong>
+                  </h2>
+                </ion-col>
+                <ion-col col-6>
+                  <h3 class="status" text-right>
+                    Selesai
+                  </h3>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+          <ion-card-content>
+            <ion-grid no-padding>
+              <ion-row>
+                <ion-col col-2>
+                  <img src="assets/imgs/fitokimia.jpg" class="img-jenis">
+                </ion-col>
+                <ion-col col-10>
+                  <p margin-left text-capitalize>
+                    <span class="header-text">
                       {{ item.awal.JenisAnalisis }}
                     </span>
-                                        <br> {{ item.awal.JenisSampel }} ({{item.awal.Jumlah}})
-                                        <br>
-                                    </p>
-                                    <p text-right>
-                                        Rp {{ item.awal.HargaSampel | number:0 }}
-                                    </p>
-                                </ion-col>
-                            </ion-row>
-                            <span *ngIf="sisa == item.awal.JenisSampel">
+                    <br> {{ item.awal.JenisSampel }} ({{item.awal.Jumlah}})
+                    <br>
+                  </p>
+                  <p text-right>
+                    Rp {{ item.awal.HargaSampel | number:0 }}
+                  </p>
+                </ion-col>
+              </ion-row>
+              <span *ngIf="item.show">
                 <span *ngFor="let sampel of item.sisa">
                   <ion-row>
                     <ion-col col-2 no-padding>
@@ -213,215 +312,107 @@
                         <span class="header-text">
                           {{ sampel.JenisAnalisis }}
                         </span>
-                            <br> {{ sampel.JenisSampel }} ({{sampel.Jumlah}})
-                            <br>
-                            </p>
-                            <p text-right>
-                                Rp {{ sampel.HargaSampel | number:0 }}
-                            </p>
-                            </ion-col>
-                            </ion-row>
-                            </span>
-                            </span>
-                            <ion-row *ngIf="item.Sampel.length != 1">
-                                <ion-col col-12>
-                                    <p text-center>
-                                        <a (click)="showSampel(item)" *ngIf="sisa == ''">
+                        <br> {{ sampel.JenisSampel }} ({{sampel.Jumlah}})
+                        <br>
+                      </p>
+                      <p text-right>
+                        Rp {{ sampel.HargaSampel | number:0 }}
+                      </p>
+                    </ion-col>
+                  </ion-row>
+                </span>
+              </span>
+              <ion-row *ngIf="item.Sampel.length != 1">
+                <ion-col col-12 text-center>
+                  <!-- <p text-center> -->
+                  <a (click)="showSampel(item)">
+                    <p *ngIf="!item.show">
                       Tampilkan {{item.sisa.length}} Sampel Lagi
                       <ion-icon name="arrow-dropdown"></ion-icon>
-                    </a>
-                                        <a (click)="hideSampel(item)" *ngIf="sisa == item.awal.JenisSampel">
+                    </p>
+                    <p *ngIf="item.show">
                       Sembunyikan {{item.sisa.length}} Sampel
                       <ion-icon name="arrow-dropup"></ion-icon>
-                    </a>
-                                    </p>
-                                </ion-col>
-                            </ion-row>
-                            <ion-row>
-                                <ion-col col-6>
-                                    <p *ngIf="item.StatusUtama == 3">
-                                        Pesanan dikaji ulang
-                                    </p>
-                                    <p *ngIf="item.StatusUtama == 4">
-                                        Pesanan dianalisis
-                                    </p>
-                                </ion-col>
-                                <ion-col col-6>
-                                    <p text-right>{{item.WaktuStatusTerbaru | date: 'dd-MM-yyyy HH:mm'}}</p>
-                                </ion-col>
-                            </ion-row>
-                            <ion-row>
-                                <ion-col col-12>
-                                    <ion-buttons end>
-                                        <button ion-button text-capitalize color="primary" (click)="detailPesanan(item.IDPesanan)">
-                      Lihat Rincian
-                    </button>
-                                    </ion-buttons>
-                                </ion-col>
-                            </ion-row>
-                        </ion-grid>
-                    </ion-card-content>
-                </ion-card>
-            </div>
-
-        </div>
-
-        <div *ngSwitchCase="3">
-            <div *ngIf="selesai.length == 0">
-                <h6 text-center class="no-pesanan">
-                    <ion-icon name="cart" style="font-size: 70px;"></ion-icon><br> Tidak ada pesanan
-                </h6>
-            </div>
-            <!-- SELESAI -->
-            <div *ngFor="let item of selesai">
-                <ion-card>
-                    <ion-item>
-                        <ion-grid no-padding>
-                            <ion-row>
-                                <ion-col col-6>
-                                    <h2>
-                                        <strong>Total: Rp {{item.HargaTotal | number:0 }}</strong>
-                                    </h2>
-                                </ion-col>
-                                <ion-col col-6>
-                                    <h3 text-right>
-                                        Selesai
-                                    </h3>
-                                </ion-col>
-                            </ion-row>
-                        </ion-grid>
-                    </ion-item>
-                    <ion-card-content>
-                        <ion-grid no-padding>
-                            <ion-row>
-                                <ion-col col-2>
-                                    <img src="assets/imgs/fitokimia.jpg" class="img-jenis">
-                                </ion-col>
-                                <ion-col col-10>
-                                    <p margin-left text-capitalize>
-                                        <span class="header-text">
-                      {{ item.awal.JenisAnalisis }}
-                    </span>
-                                        <br> {{ item.awal.JenisSampel }} ({{item.awal.Jumlah}})
-                                        <br>
-                                    </p>
-                                    <p text-right>
-                                        Rp {{ item.awal.HargaSampel | number:0 }}
-                                    </p>
-                                </ion-col>
-                            </ion-row>
-                            <span *ngIf="item.show">
-                <span *ngFor="let sampel of item.sisa">
-                  <ion-row>
-                    <ion-col col-2 no-padding>
-                      <img src="assets/imgs/fitokimia.jpg" class="img-jenis">
-                    </ion-col>
-                    <ion-col col-10 no-padding>
-                      <p margin-left text-capitalize>
-                        <span class="header-text">
-                          {{ sampel.JenisAnalisis }}
-                        </span>
-                            <br> {{ sampel.JenisSampel }} ({{sampel.Jumlah}})
-                            <br>
-                            </p>
-                            <p text-right>
-                                Rp {{ sampel.HargaSampel | number:0 }}
-                            </p>
-                            </ion-col>
-                            </ion-row>
-                            </span>
-                            </span>
-                            <ion-row *ngIf="item.Sampel.length != 1">
-                                <ion-col col-12 text-center>
-                                    <!-- <p text-center> -->
-                                    <a (click)="showSampel(item)">
-                                        <p *ngIf="!item.show">
-                                            Tampilkan {{item.sisa.length}} Sampel Lagi
-                                            <ion-icon name="arrow-dropdown"></ion-icon>
-                                        </p>
-                                        <p *ngIf="item.show">
-                                            Sembunyikan {{item.sisa.length}} Sampel
-                                            <ion-icon name="arrow-dropup"></ion-icon>
-                                        </p>
-                                    </a>
-                                    <!-- <a (click)="hideSampel(item)" *ngIf="item.show">
+                    </p>
+                  </a>
+                  <!-- <a (click)="hideSampel(item)" *ngIf="item.show">
                           Sembunyikan {{item.sisa.length}} Sampel
                           <ion-icon name="arrow-dropup"></ion-icon>
                         </a>
                       </p> -->
-                                </ion-col>
-                            </ion-row>
-                            <ion-row>
-                                <ion-col col-6>
-                                    <p>
-                                        Pesanan selesai
-                                    </p>
-                                </ion-col>
-                                <ion-col col-6>
-                                    <p text-right>{{item.WaktuStatusTerbaru | date: 'dd-MM-yyyy HH:mm'}}</p>
-                                </ion-col>
-                            </ion-row>
-                            <ion-row>
-                                <ion-col col-12>
-                                    <ion-buttons end>
-                                        <button ion-button text-capitalize color="primary" (click)="detailPesanan(item.IDPesanan)">
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-6>
+                  <p>
+                    Pesanan selesai
+                  </p>
+                </ion-col>
+                <ion-col col-6>
+                  <p text-right>{{item.WaktuStatusTerbaru | date: 'dd-MM-yyyy HH:mm'}}</p>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-12>
+                  <ion-buttons end>
+                    <button ion-button text-capitalize color="primary" (click)="detailPesanan(item.IDPesanan)">
                       Lihat Rincian
                     </button>
-                                    </ion-buttons>
-                                </ion-col>
-                            </ion-row>
-                        </ion-grid>
-                    </ion-card-content>
-                </ion-card>
-            </div>
+                  </ion-buttons>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </div>
 
-        </div>
+    </div>
 
-        <div *ngSwitchCase="4">
-            <div *ngIf="batal.length == 0">
-                <h6 text-center class="no-pesanan">
-                    <ion-icon name="cart" style="font-size: 70px;"></ion-icon><br> Tidak ada pesanan
-                </h6>
-            </div>
+    <div *ngSwitchCase="4">
+      <div *ngIf="batal.length == 0">
+        <h6 text-center class="no-pesanan">
+          <ion-icon name="cart" style="font-size: 70px;"></ion-icon><br> Tidak ada pesanan
+        </h6>
+      </div>
 
-            <div *ngFor="let item of batal">
-                <ion-card>
-                    <ion-item>
-                        <ion-grid no-padding>
-                            <ion-row>
-                                <ion-col col-6>
-                                    <h2>
-                                        <strong>Total: Rp {{item.HargaTotal | number:0 }}</strong>
-                                    </h2>
-                                </ion-col>
-                                <ion-col col-6>
-                                    <h3 text-right>
-                                        Dibatalkan
-                                    </h3>
-                                </ion-col>
-                            </ion-row>
-                        </ion-grid>
-                    </ion-item>
-                    <ion-card-content>
-                        <ion-grid no-padding>
-                            <ion-row>
-                                <ion-col col-2>
-                                    <img src="assets/imgs/fitokimia.jpg" class="img-jenis">
-                                </ion-col>
-                                <ion-col col-10>
-                                    <p margin-left text-capitalize>
-                                        <span class="header-text">
+      <div *ngFor="let item of batal">
+        <ion-card>
+          <ion-item>
+            <ion-grid no-padding>
+              <ion-row>
+                <ion-col col-6>
+                  <h2>
+                    <strong>Total: Rp {{item.HargaTotal | number:0 }}</strong>
+                  </h2>
+                </ion-col>
+                <ion-col col-6>
+                  <h3 class="status" text-right>
+                    Dibatalkan
+                  </h3>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+          <ion-card-content>
+            <ion-grid no-padding>
+              <ion-row>
+                <ion-col col-2>
+                  <img src="assets/imgs/fitokimia.jpg" class="img-jenis">
+                </ion-col>
+                <ion-col col-10>
+                  <p margin-left text-capitalize>
+                    <span class="header-text">
                       {{ item.awal.JenisAnalisis }}
                     </span>
-                                        <br> {{ item.awal.JenisSampel }} ({{item.awal.Jumlah}})
-                                        <br>
-                                    </p>
-                                    <p text-right>
-                                        Rp {{ item.awal.HargaSampel | number:0 }}
-                                    </p>
-                                </ion-col>
-                            </ion-row>
-                            <span *ngIf="sisa == item.awal.JenisSampel">
+                    <br> {{ item.awal.JenisSampel }} ({{item.awal.Jumlah}})
+                    <br>
+                  </p>
+                  <p text-right>
+                    Rp {{ item.awal.HargaSampel | number:0 }}
+                  </p>
+                </ion-col>
+              </ion-row>
+              <span *ngIf="sisa == item.awal.JenisSampel">
                 <span *ngFor="let sampel of item.sisa">
                   <ion-row>
                     <ion-col col-2 no-padding>
@@ -432,54 +423,54 @@
                         <span class="header-text">
                           {{ sampel.JenisAnalisis }}
                         </span>
-                            <br> {{ sampel.JenisSampel }} ({{sampel.Jumlah}})
-                            <br>
-                            </p>
-                            <p text-right>
-                                Rp {{ sampel.HargaSampel | number:0 }}
-                            </p>
-                            </ion-col>
-                            </ion-row>
-                            </span>
-                            </span>
-                            <ion-row *ngIf="item.Sampel.length != 1">
-                                <ion-col col-12>
-                                    <p text-center>
-                                        <a (click)="showSampel(item)" *ngIf="sisa == ''">
+                        <br> {{ sampel.JenisSampel }} ({{sampel.Jumlah}})
+                        <br>
+                      </p>
+                      <p text-right>
+                        Rp {{ sampel.HargaSampel | number:0 }}
+                      </p>
+                    </ion-col>
+                  </ion-row>
+                </span>
+              </span>
+              <ion-row *ngIf="item.Sampel.length != 1">
+                <ion-col col-12>
+                  <p text-center>
+                    <a (click)="showSampel(item)" *ngIf="sisa == ''">
                       Tampilkan {{item.sisa.length}} Sampel Lagi
                       <ion-icon name="arrow-dropdown"></ion-icon>
                     </a>
-                                        <a (click)="hideSampel(item)" *ngIf="sisa == item.awal.JenisSampel">
+                    <a (click)="hideSampel(item)" *ngIf="sisa == item.awal.JenisSampel">
                       Sembunyikan {{item.sisa.length}} Sampel
                       <ion-icon name="arrow-dropup"></ion-icon>
                     </a>
-                                    </p>
-                                </ion-col>
-                            </ion-row>
-                            <ion-row>
-                                <ion-col col-12>
-                                    <ion-row>
-                                        <ion-col col-6 align-self-center>
-                                            <p>Dibatalkan anda</p>
-                                        </ion-col>
-                                        <ion-col col-6>
-                                            <ion-buttons end>
-                                                <button ion-button text-capitalize color="primary" (click)="detailPesanan(item.IDPesanan)">
+                  </p>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-12>
+                  <ion-row>
+                    <ion-col col-6 align-self-center>
+                      <p>Dibatalkan anda</p>
+                    </ion-col>
+                    <ion-col col-6>
+                      <ion-buttons end>
+                        <button ion-button text-capitalize color="primary" (click)="detailPesanan(item.IDPesanan)">
                           Lihat Rincian
                         </button>
-                                            </ion-buttons>
-                                        </ion-col>
-                                    </ion-row>
-                                </ion-col>
-                            </ion-row>
-                        </ion-grid>
-                    </ion-card-content>
-                </ion-card>
-            </div>
-
-        </div>
+                      </ion-buttons>
+                    </ion-col>
+                  </ion-row>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </div>
 
     </div>
+
+  </div>
 
 
 </ion-content>
