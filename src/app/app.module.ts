@@ -1,3 +1,4 @@
+import { NativePageTransitions } from '@ionic-native/native-page-transitions';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
@@ -38,6 +39,9 @@ import { ModalDetailSampelPage } from '../pages/modal-detail-sampel/modal-detail
 import { ModalEditProfilPage } from '../pages/modal-edit-profil/modal-edit-profil';
 import { CariPipe } from '../pipes/cari/cari';
 
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
+import { File } from '@ionic-native/file';
+import { Camera } from '@ionic-native/camera';
 
 
 @NgModule({
@@ -109,6 +113,11 @@ import { CariPipe } from '../pipes/cari/cari';
     Data,
     StatusBar,
     SplashScreen,
+    FileTransfer,
+    FileTransferObject,
+    NativePageTransitions,
+    File,
+    Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

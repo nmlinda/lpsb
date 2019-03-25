@@ -128,6 +128,9 @@ tambahKeranjang() {
     content: 'memuat..'
   });
   loading.present();
+  setTimeout(() => {
+      loading.dismiss();
+    }, 5000);
   if (this.pesanData.kemasan === "lainnya") {
     this.kemasan2 = this.pesanData.kemasanLainnya;
   }
@@ -183,7 +186,10 @@ gotoKeranjang() {
   let loading = this.loadCtrl.create({
     content: 'memuat..'
   });
-  loading.present();
+  loading.present(); 
+  setTimeout(() => {
+      loading.dismiss();
+    }, 5000);
   if (this.pesanData.kemasan === "lainnya") {
     this.kemasan2 = this.pesanData.kemasanLainnya;
   }

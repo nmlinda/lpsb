@@ -54,6 +54,9 @@ export class KategoriAnalisisPage {
         content: 'memuat..'
       });
       loading.present();
+      setTimeout(() => {
+      loading.dismiss();
+    }, 5000);
 
       const httpOptions = {
         headers: new HttpHeaders({

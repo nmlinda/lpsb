@@ -83,6 +83,9 @@ export class BatalPesananPage {
       content: 'memuat..'
     });
     loading.present();
+    setTimeout(() => {
+      loading.dismiss();
+    }, 5000);
     this.data.getData().then((data) => {
 
       const httpOptions = {

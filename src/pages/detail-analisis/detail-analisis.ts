@@ -61,7 +61,10 @@ export class DetailAnalisisPage {
       let loading = this.loadCtrl.create({
         content: 'memuat..'
       });
-      loading.present();
+      loading.present(); 
+      setTimeout(() => {
+      loading.dismiss();
+    }, 5000);
 
       const httpOptions = {
         headers: new HttpHeaders({

@@ -1,85 +1,27 @@
 <ion-header>
 
-    <ion-navbar>
-        <!-- <ion-grid no-padding>
-        <ion-row>
-          <ion-col col-2 no-padding>
-              <button ion-button (click)="closeModal()" clear icon-only>
-                <ion-icon name="arrow-back"></ion-icon>
-              </button>
-          </ion-col>
-          <ion-col col-6 no-padding align-self-center> -->
-        <ion-title>Pembayaran</ion-title>
-        <ion-buttons end>
-            <button ion-button clear (click)="simpan()">Simpan</button>
-        </ion-buttons>
-        <!-- </ion-col>
-          <ion-col col-4 no-padding text-right>
-              <button ion-button clear (click)="simpan()">Simpan</button>
-          </ion-col>
-        </ion-row>
-      </ion-grid> -->
-    </ion-navbar>
+  <ion-navbar>
+    <ion-title>Pembayaran</ion-title>
+  </ion-navbar>
 
 </ion-header>
 
 
 <ion-content>
-    <ion-card padding>
-        <p class="price" text-center>Rp {{harga | number:0 }}</p>
-        <p text-center>
-            Bayar Sebelum {{ waktu | date: 'dd-MM-yyyy' }} 23:59
-        </p>
-    </ion-card>
+  <ion-card padding>
+    <p class="price" text-center>Rp {{harga | number:0 }}</p>
+    <p text-center>
+      Bayar Sebelum {{ waktu | date: 'dd-MM-yyyy' }} 23:59
+    </p>
+  </ion-card>
 
-    <ion-card padding>
-        <p class="head">Transfer ke Rekening LPSB</p>
-        <p class="text-item">Bank BNI <br> a.n. Rektorat Insitut Pertanian Bogor<br> No. Rek: 038271547576
-        </p>
-    </ion-card>
-    <ion-card padding>
-        <p class="head">Unggah Bukti Pembayaran</p>
-        <ion-input type="file" [(ngModel)]="bukti"></ion-input>
-    </ion-card>
-    <ion-card padding>
-        <form [formGroup]="rekform" novalidate>
-            <ion-list>
-                <ion-item no-padding>
-                    <ion-label stacked class="labelForm">Nama Bank</ion-label>
-                    <ion-input type="text" [(ngModel)]="rekData.namaBank" formControlName="namaBank" placeholder="Contoh: BNI" [class.error1]="!rekform.controls.namaBank.valid && rekform.controls.namaBank.dirty"></ion-input>
-                </ion-item>
-                <ion-item no-padding no-lines *ngIf="rekform.get('namaBank').hasError('required') && rekform.get('namaBank').touched">
-                    <div class="error" *ngIf="rekform.get('namaBank').hasError('required') && rekform.get('namaBank').touched">
-                        Masukkan Nama Bank
-                    </div>
-                </ion-item>
-
-                <ion-item no-padding>
-                    <ion-label stacked class="labelForm">No. Rekening</ion-label>
-                    <ion-input type="number" [(ngModel)]="rekData.noRekening" formControlName="noRekening" placeholder="Contoh: 123456789" [class.error1]="!rekform.controls.noRekening.valid && rekform.controls.noRekening.dirty"></ion-input>
-                </ion-item>
-                <ion-item no-padding no-lines *ngIf="rekform.get('noRekening').hasError('required') && rekform.get('noRekening').touched">
-                    <div class="error" *ngIf="rekform.get('noRekening').hasError('required') && rekform.get('noRekening').touched">
-                        Masukkan No Rekening
-                    </div>
-                </ion-item>
-
-                <ion-item no-padding>
-                    <ion-label stacked class="labelForm">Nama Pemilik Rekening</ion-label>
-                    <ion-input type="text" [(ngModel)]="rekData.namaNasabah" formControlName="namaNasabah" placeholder="Contoh: Muhammad Gofar" [class.error1]="!rekform.controls.namaNasabah.valid && rekform.controls.namaNasabah.dirty"></ion-input>
-                </ion-item>
-                <ion-item no-padding no-lines *ngIf="rekform.get('namaNasabah').hasError('required') && rekform.get('namaNasabah').touched">
-                    <div class="error" *ngIf="rekform.get('namaNasabah').hasError('required') && rekform.get('namaNasabah').touched">
-                        Masukkan Nama Nasabah
-                    </div>
-                </ion-item>
-            </ion-list>
-        </form>
-
-        <ion-card class="info">
-            <p class="text-info">
-                Masukkan info terkait rekening di atas sesuai pada buku tabungan.
-            </p>
-        </ion-card>
-    </ion-card>
+  <ion-card padding>
+    <p class="head">Transfer ke Rekening LPSB</p>
+    <p class="text-item">Bank BNI <br> a.n. Rektorat Insitut Pertanian Bogor<br> No. Rek: 038271547576
+    </p>
+  </ion-card>
+  <ion-card padding>
+    <p class="head">Bukti Transfer Pembayaran</p>
+    <button ion-button text-capitalize (click)="uploadBukti()">Unggah</button>
+  </ion-card>
 </ion-content>

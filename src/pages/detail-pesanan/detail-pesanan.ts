@@ -54,6 +54,9 @@ export class DetailPesananPage {
       content: 'memuat..'
     });
     loading.present();
+    setTimeout(() => {
+      loading.dismiss();
+    }, 5000);
     this.idPesanan = null;
     this.pesanan = {
       Percepatan : null,
@@ -226,7 +229,13 @@ export class DetailPesananPage {
           }
           else if (this.status.StatusUtama >= 6) {
             this.status_utama = "Pesanan Dibatalkan";
-            this.ket_status_utama = "Pesanan Anda telah dibatalkan.";
+            if (this.status.AlasanBatal){
+              this.ket_status_utama = "Pesanan telah dibatalkan oleh sistem karena "+ this.status.AlasanBatal;
+            }
+            else {
+              this.ket_status_utama = "Pesanan telah dibatalkan oleh Anda.";
+            }
+            
             this.waktu_status_utama = this.status.WaktuDibatalkan;
           }
 

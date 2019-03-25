@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, Loading, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { Data } from '../../provider/data';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -32,6 +32,9 @@ export class CariPage {
         content: 'memuat..'
       });
       loading.present();
+      setTimeout(() => {
+      loading.dismiss();
+    }, 5000);
 
       const httpOptions = {
         headers: new HttpHeaders({

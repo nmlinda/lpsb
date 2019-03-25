@@ -47,6 +47,9 @@ export class PesananPage {
       content: 'memuat..'
     });
     loading.present();
+    setTimeout(() => {
+      loading.dismiss();
+    }, 5000);
 
     this.pesanan = [];
     this.pesanans = [];

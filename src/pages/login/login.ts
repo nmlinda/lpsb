@@ -5,14 +5,12 @@ import { RegisterPage } from '../register/register';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Http } from '@angular/http';
 import { Data } from '../../provider/data';
-import { HomePage } from '../home/home';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { TabsPage } from '../tabs/tabs';
 
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
-    // 'Authorization': 'Bearer '+data.api_token
   })
 };
 
@@ -54,7 +52,10 @@ export class LoginPage {
     let loading = this.loadCtrl.create({
       content: 'memuat..'
     });
-    loading.present();
+    loading.present(); 
+    setTimeout(() => {
+      loading.dismiss();
+    }, 5000);
     let input = JSON.stringify({
       "Email": this.userData.email,
       "Password": this.userData.password

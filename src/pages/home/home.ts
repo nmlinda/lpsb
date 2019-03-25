@@ -39,18 +39,6 @@ export class HomePage {
     this.kategoriAnalisis = KategoriAnalisisPage;
     this.pemberitahuan = PemberitahuanPage;
 
-    this.data.getData().then((data) => {
-      const httpOptions = {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + data.api_token
-        })
-      };
-      this.httpClient.get(this.data.BASE_URL + '/getInfoRekening', httpOptions).subscribe(data => {
-        let response = data;
-        this.data.setRekening(response);
-      })
-    })
   }
 
   gotoKategori(IDKategori) {
@@ -62,6 +50,9 @@ export class HomePage {
       content: 'memuat..'
     });
     loading.present();
+    setTimeout(() => {
+      loading.dismiss();
+    }, 5000);
     this.data.getData().then((data) => {
 
       const httpOptions = {

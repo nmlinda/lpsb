@@ -96,7 +96,7 @@
                     <ion-col col-7>
                         <ion-item>
                             <ion-label color="primary" stacked>Bentuk</ion-label>
-                            <ion-select [disabled]="bentukSelect" [(ngModel)]="pesanData.bentuk" formControlName="bentuk" [class.error1]="!pesanform.controls.bentuk.valid && pesanform.controls.bentuk.dirty">
+                            <ion-select [(ngModel)]="pesanData.bentuk" formControlName="bentuk" [class.error1]="!pesanform.controls.bentuk.valid && pesanform.controls.bentuk.dirty">
                                 <ion-option value="pilih" disabled>Pilih</ion-option>
                                 <ion-option value="Cairan" [disabled]="cairan">Cairan</ion-option>
                                 <ion-option value="Ekstrak" [disabled]="ekstrak">Ekstrak</ion-option>

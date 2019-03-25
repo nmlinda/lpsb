@@ -59,6 +59,9 @@ export class EditRekeningPage {
       content: 'memuat..'
     });
     loading.present();
+    setTimeout(() => {
+      loading.dismiss();
+    }, 5000);
 
     let input = JSON.stringify({
       "NamaRekening": this.rekData.namaNasabah,

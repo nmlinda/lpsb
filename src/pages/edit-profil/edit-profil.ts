@@ -106,6 +106,9 @@ export class EditProfilPage {
       content: 'memuat..'
     });
     loading.present();
+    setTimeout(() => {
+      loading.dismiss();
+    }, 5000);
 
     if(this.profilData.institusi == 1){
       this.institusi = "Institut Pertanian Bogor";

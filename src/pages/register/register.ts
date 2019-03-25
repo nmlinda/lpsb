@@ -93,6 +93,9 @@ export class RegisterPage {
       content: 'memuat..'
     });
     loading.present();
+    setTimeout(() => {
+      loading.dismiss();
+    }, 5000);
     if (this.userData.institusi == 1) {
       this.institusi = "Institut Pertanian Bogor";
     } else if (this.userData.institusi == 2) {

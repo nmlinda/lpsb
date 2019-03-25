@@ -41,15 +41,18 @@ export class KirimSampelPage {
   }
 
   ionViewWillEnter() {
-    let loading = this.loadCtrl.create({
-      content: 'memuat..'
-    });
-    loading.present();
-
     this.idPesanan = this.navParams.get('id');
     this.statusKirim = this.navParams.get('statusKirim');
     console.log(this.idPesanan, this.statusKirim)
     if (this.statusKirim == 2) {
+      let loading = this.loadCtrl.create({
+        content: 'memuat..'
+      });
+      loading.present();
+      setTimeout(() => {
+        loading.dismiss();
+      }, 5000);
+  
       let input = JSON.stringify({
         IDPesanan: this.idPesanan
       });
@@ -60,6 +63,7 @@ export class KirimSampelPage {
             'Authorization': 'Bearer ' + data.api_token
           })
         };
+
         this.httpClient.post(this.data.BASE_URL + '/kirimSampel', input, httpOptions).subscribe(data => {
           let response = data;
           this.getResi = response;
@@ -127,6 +131,9 @@ export class KirimSampelPage {
       content: 'memuat..'
     });
     loading.present();
+    setTimeout(() => {
+      loading.dismiss();
+    }, 5000);
 
     let input = JSON.stringify({
       IDPesanan: id,
