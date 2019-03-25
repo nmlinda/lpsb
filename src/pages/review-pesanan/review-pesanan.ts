@@ -178,11 +178,6 @@ export class ReviewPesananPage {
               harga_total: this.totalHarga,
               KeteranganPesanan: this.keterangan,
               data_user: this.data_user,
-              data_rek: {
-                NamaBank: this.data_rek.NamaBank,
-                NoRekening: this.data_rek.NoRekening,
-                NamaRekening: this.data_rek.NamaRekening,
-              },
               listKeranjang: this.sampel,
             });
 

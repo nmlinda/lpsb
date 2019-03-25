@@ -127,4 +127,13 @@ page-detail-pesanan {
             align-self: flex-end;
         }
     }
+    .cards {
+        margin-top: 10px;
+        &--flex {
+            display: flex;
+        }
+        &__col {
+            flex: 0 0 50%;
+        }
+    }
 }

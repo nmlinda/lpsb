@@ -42,34 +42,29 @@
   </ion-card>
 
   <!-- DATA DIRI -->
-  <ion-card *ngIf="status.WaktuPesananDibuat">
-    <ion-grid>
-      <ion-row>
-        <ion-col col-12>
-          <h2 class="head">Data Diri</h2>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col col-7>
-          <p class="text-content">
-            <ion-icon name="person" color="primary"></ion-icon>
-            {{data_user.NamaLengkap}}<br>
-            <ion-icon name="briefcase" color="primary"></ion-icon>
-            {{ data_user.Institusi}}<br>
-            <ion-icon name="home" color="primary"></ion-icon>
-            {{ data_user.Alamat }}
-          </p>
-        </ion-col>
-        <ion-col col-5>
-          <p class="text-content">
-            <ion-icon name="mail" color="primary"></ion-icon>
-            {{data_user.Email}}<br>
-            <ion-icon name="call" color="primary"></ion-icon>
-            {{data_user.NoHP}}<br> NPWP: {{data_user.NoNPWP}}
-          </p>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+  <ion-card *ngIf="status.WaktuPesananDibuat" padding>
+    <h2 class="head">Data Diri</h2>
+    <section class="cards cards--flex">
+      <article class="cards__col">
+        <p class="text-content">
+          <ion-icon name="person" color="primary"></ion-icon>
+          {{data_user.NamaLengkap}}<br>
+          <ion-icon name="briefcase" color="primary"></ion-icon>
+          {{ data_user.Institusi}}<br>
+          <ion-icon name="home" color="primary"></ion-icon>
+          {{ data_user.Alamat }}
+        </p>
+      </article>
+      <article class="section__col">
+        <p class="text-content">
+          <ion-icon name="mail" color="primary"></ion-icon>
+          {{data_user.Email}}<br>
+          <ion-icon name="call" color="primary"></ion-icon>
+          {{data_user.NoHP}}<br>
+          NPWP: {{data_user.NoNPWP}}
+        </p>
+      </article>
+    </section>
   </ion-card>
 
   <!-- STATUS ANALISIS -->
@@ -80,9 +75,11 @@
           <h2>Status Analisis</h2>
         </ion-col>
         <ion-col col-1 text-center>
-          <ion-icon *ngIf="moreStatus && sisa == []" (click)="showStatus()" name="arrow-dropup" color="primary">
+          <ion-icon *ngIf="moreStatus && status.StatusUtama != 3" (click)="showStatus()" name="arrow-dropup"
+            color="primary">
           </ion-icon>
-          <ion-icon *ngIf="!moreStatus && sisa == []" (click)="showStatus()" name="arrow-dropdown" color="primary"></ion-icon>
+          <ion-icon *ngIf="!moreStatus && status.StatusUtama != 3" (click)="showStatus()" name="arrow-dropdown"
+            color="primary"></ion-icon>
         </ion-col>
       </ion-row>
       <ion-row>
@@ -365,8 +362,9 @@
   </ion-card>
 
   <!-- BUTTON -->
-  <ion-card no-margin *ngIf="status.StatusUtama == 2">
-    <ion-grid *ngIf="status.StatusUtama == 2">
+  <ion-card no-margin
+    *ngIf="(status.StatusPembayaran == 1 || status.StatusKirimSampel == 1) && status.StatusUtama == 2">
+    <ion-grid>
       <ion-row>
         <ion-col col-6 text-center *ngIf="status.StatusPembayaran == 1">
           <button ion-button outline block color="orange" (click)="goto('pembayaran')" text-capitalize>
@@ -383,19 +381,13 @@
       </ion-row>
     </ion-grid>
   </ion-card>
-  <ion-card *ngIf="status.StatusUtama == 1">
-    <ion-grid *ngIf="status.StatusUtama == 1">
-      <ion-row>
-        <ion-col col-12>
-          <button ion-button full color="danger" (click)="goto('batal')">
-            Batalkan Pesanan
-          </button>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+  <ion-card *ngIf="status.StatusUtama == 1" padding>
+    <button ion-button full color="danger" (click)="goto('batal')">
+      Batalkan Pesanan
+    </button>
   </ion-card>
   <ion-card *ngIf="status.StatusUtama == 5">
-    <ion-grid *ngIf="status.StatusUtama == 5">
+    <ion-grid>
       <ion-row *ngIf="!status.WaktuUlasan">
         <ion-col col-12>
           <button ion-button full (click)="goto('beriUlasan')">
