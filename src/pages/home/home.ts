@@ -117,7 +117,7 @@ export class HomePage {
       this.httpClient.get(this.data.BASE_URL + '/getPemberitahuan', httpOptions).subscribe(data => {
         this.response = data;
         console.log(this.response);
-        if (this.response) {
+        if (this.response.Status == 200) {
           this.notif = this.response.Pemberitahuans;
           this.jumlahNotif = null;
           for (var i = 0; i < this.notif.length; i++) {

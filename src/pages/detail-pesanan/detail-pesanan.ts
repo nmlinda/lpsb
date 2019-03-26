@@ -7,7 +7,7 @@ import { BatalPesananPage } from '../batal-pesanan/batal-pesanan';
 import { UlasanPage } from '../ulasan/ulasan';
 import { Data } from '../../provider/data';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
+import { File } from '@ionic-native/file';
 declare var cordova: any;
 
 
@@ -49,6 +49,7 @@ export class DetailPesananPage {
     public loadCtrl: LoadingController,
     public httpClient: HttpClient,
     public data: Data,
+    public file: File,
     public platform: Platform,
     public modalCtrl: ModalController) {
 
@@ -332,7 +333,7 @@ export class DetailPesananPage {
     }, 5000);
     if (fail == 'fpa') {
       let confirm = this.alertCtrl.create({
-        title: 'Download Gambar?',
+        title: 'Unduh Formulir Permohonan Analisis?',
         buttons: [
           {
             text: 'Batal',
@@ -341,7 +342,7 @@ export class DetailPesananPage {
             }
           },
           {
-            text: 'Download',
+            text: 'Unduh',
             handler: () => {
               console.log('Agree clicked');
 
@@ -366,10 +367,15 @@ export class DetailPesananPage {
                   })
                 };
                 const fileTransfer: FileTransferObject = this.transfer.create();
+                let path = null;
+                if (this.platform.is('ios')) {
+                  path = this.file.documentsDirectory;
+                } else if (this.platform.is('android')) {
+                  path = this.file.dataDirectory;
+                }
+                let location = path + '/FPA/';
 
-                let location = this.storageDirectory + '/FPA/' + Date.now() + '.png';
-
-                fileTransfer.download(this.data.BASE_URL + '/detailPesanan', location, true, httpOptions).then((entry) => {
+                fileTransfer.download(this.data.BASE_URL + '/detailPesanan', location + 'FPA.docx', true).then((entry) => {
                   console.log('download complete: ' + entry.toURL());
 
 

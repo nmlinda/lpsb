@@ -1,139 +1,185 @@
 page-detail-pesanan {
-    ion-card {
-        width: 100% !important;
-        margin-top: 0 !important;
-        margin-left: 0 !important;
-        margin-right: 0 !important;
+  ion-card {
+    width: 100% !important;
+    margin-top: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  ion-icon {
+    margin-inline-end: 4px;
+  }
+
+  .statusA {
+    border-bottom: 1px solid gainsboro;
+  }
+
+  
+
+  .line {
+    border-bottom: 1px solid gainsboro;
+  }
+
+  .line {
+    border-bottom: 1px solid gainsboro;
+  }
+
+  .line2 {
+    border-top: 1px solid gainsboro;
+  }
+
+  .line--green {
+    border-bottom: 3px solid #66A652;
+  }
+
+  .text-utama {
+    font-weight: bold;
+    margin-bottom: 0;
+  }
+
+  .head {
+    font-size: 16px;
+    border-bottom: 1px solid gainsboro;
+    padding-bottom: 4px;
+  }
+
+  .text-content {
+    color: gray;
+  }
+
+  .text-item {
+    padding-left: 8px;
+    color: gray;
+  }
+
+  .section {
+    display: inline-flex;
+
+    p {
+      align-self: flex-start;
     }
-    ion-icon {
-        margin-inline-end: 4px;
+
+    &__item {
+      align-self: flex-end;
     }
-    .statusA {
-        border-bottom: 1px solid gainsboro;
+  }
+
+  .cards {
+    margin-top: 10px;
+
+    &--flex {
+      display: flex;
     }
-    // TIMELINE
-    /* The actual timeline (the vertical ruler) */
-    .timeline {
-        position: relative;
-        max-width: 1200px;
-        margin: 0 auto;
+
+    &__col {
+      flex: 0 0 50%;
     }
-    /* The actual timeline (the vertical ruler) */
-    .timeline::after {
-        content: "";
-        position: absolute;
-        width: 2px;
-        background-color: gainsboro;
-        top: 17px;
-        bottom: 0px;
-        left: 5%;
-        margin-left: -2px;
-    }
-    /* Container around content */
-    .container {
-        padding-top: 4px;
-        padding-bottom: 4px;
-        padding-left: 35px;
-        position: relative;
-        background-color: inherit;
-        width: 100%;
-    }
-    .container2 {
-        padding-top: 4px;
-        padding-bottom: 4px;
-        padding-left: 35px;
-        position: relative;
-        background-color: inherit;
-        width: 100%;
-    }
-    /* The circles on the timeline */
-    .container::after {
-        content: "";
-        position: absolute;
-        width: 15px;
-        height: 15px;
-        right: -17px;
-        background-color: gainsboro;
-        // border: 1px solid gainsboro;
-        top: 15px;
-        border-radius: 50%;
-        z-index: 1;
-    }
-    .container2::after {
-        content: "";
-        position: absolute;
-        width: 15px;
-        height: 15px;
-        right: -17px;
-        background-color: #66A652;
-        // border: 1px solid rgb(137, 224, 110);
-        top: 15px;
-        border-radius: 50%;
-        z-index: 1;
-    }
-    /* Place the container to the right */
-    .right {
-        left: 50%;
-    }
-    /* Make sure all circles are at the same spot */
-    .right::after {
-        left: 8px;
-    }
-    /* Make sure all circles are at the same spot */
-    .right2::after {
-        left: 8px;
-    }
-    /* Make all right containers behave like the left ones */
-    .right {
-        left: 0%;
-    }
-    .line {
-        border-bottom: 1px solid gainsboro;
-    }
-    .line {
-        border-bottom: 1px solid gainsboro;
-    }
-    .line2 {
-        border-top: 1px solid gainsboro;
-    }
-    .line--green {
-        border-bottom: 3px solid #66A652;
-    }
-    // .status_utama {
-    //   background-color: #619E09;
-    // }
-    .text-utama {
-        font-weight: bold;
-        margin-bottom: 0;
-    }
-    .head {
-        font-size: 16px;
-        border-bottom: 1px solid gainsboro;
-        padding-bottom: 4px;
-    }
-    .text-content {
-        color: gray;
-    }
-    .text-item {
-        padding-left: 8px;
-        color: gray;
-    }
-    .section {
-        display: inline-flex;
-        p {
-            align-self: flex-start;
-        }
-        &__item {
-            align-self: flex-end;
-        }
-    }
-    .cards {
-        margin-top: 10px;
-        &--flex {
-            display: flex;
-        }
-        &__col {
-            flex: 0 0 50%;
-        }
-    }
+  }
+
+  // timeline-list
+  h3 {
+    margin: 20px 0;
+  }
+
+  .container {
+    padding: 5px 0;
+    margin: 5px auto;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .container:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -1px;
+    width: 2px;
+    height: 100%;
+    background: #CCD1D9;
+    z-index: 1
+  }
+
+  .timeline-block {
+    width: -webkit-calc(50% + 8px);
+    width: -moz-calc(50% + 8px);
+    width: calc(50% + 8px);
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -moz-box-pack: justify;
+    justify-content: space-between;
+    clear: both;
+  }
+
+  .timeline-block:last-child {
+      margin-bottom: 0;
+  }
+
+  .timeline-block-right {
+    float: right;
+  }
+
+  .timeline-block-left {
+    float: left;
+    direction: rtl
+  }
+
+  .marker {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 2px solid #F5F7FA;
+    background: #b8b8b8;
+    margin-top: 4px;
+    z-index: 9999;
+    text-align: center;
+    position: relative;
+    left: 6px;
+  }
+
+  .marker.active {
+    background: #66A652;
+  }
+
+  .timeline-content {
+    width: 95%;
+    padding: 0 15px;
+    color: #666
+  }
+
+  .timeline-content h3 {
+    margin-top: 8px;
+    margin-bottom: 5px;
+    font-size: 14px;
+  }
+
+  .timeline-content span {
+    font-size: 14px;
+    color: #a4a4a4;
+  }
+
+  .container:before {
+    left: 19px;
+    width: 2px;
+  }
+
+  .timeline-block {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .timeline-block-right {
+    float: none;
+  }
+
+  .timeline-block-left {
+    float: none;
+    direction: ltr;
+  }
+
+
 }

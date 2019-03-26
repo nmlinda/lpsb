@@ -38,6 +38,12 @@ export class ProfilPage {
   }
 
   ionViewWillEnter(){
+    this.nama = null;
+    this.institusi = null;
+    this.alamat = null;
+    this.email = null;
+    this.noHp = null;
+    this.npwp = null;
     this.data.getData().then((data) => {
       this.nama = data.Nama;
       this.institusi = data.Perusahaan;
@@ -76,13 +82,15 @@ export class ProfilPage {
   editProfil() {
     let modal = this.modalCtrl.create(EditProfilPage);
     modal.onDidDismiss((data) => {
-      console.log('data', data)
-      this.nama = data.Nama;
-      this.institusi = data.Perusahaan;
-      this.alamat = data.Alamat;
-      this.email = data.Email;
-      this.noHp = data.NoHP;
-      this.npwp = data.NoNPWP;
+      if (data) {
+        console.log('data', data)
+        this.nama = data.Nama;
+        this.institusi = data.Perusahaan;
+        this.alamat = data.Alamat;
+        this.email = data.Email;
+        this.noHp = data.NoHP;
+        this.npwp = data.NoNPWP;
+      }
       });
     modal.present();
   }

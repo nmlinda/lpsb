@@ -17,7 +17,8 @@ export class CariPipe implements PipeTransform {
     if(!cariAnalisis) return items;
     cariAnalisis = cariAnalisis.toLowerCase();
     return items.filter( item=> {
-      return item.JenisAnalisis.toString().toLowerCase().includes(cariAnalisis); 
+      return item.JenisAnalisis.toString().toLowerCase().includes(cariAnalisis) ||
+      item.Kategori.toString().toLowerCase().includes(cariAnalisis); 
     });
   }
 }

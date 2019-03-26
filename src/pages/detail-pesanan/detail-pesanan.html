@@ -68,8 +68,8 @@
   </ion-card>
 
   <!-- STATUS ANALISIS -->
-  <ion-card *ngIf="status.StatusUtama >= 3 && status.StatusUtama <= 5">
-    <ion-grid>
+  <ion-card *ngIf="status.StatusUtama >= 3 && status.StatusUtama <= 5" padding>
+    <ion-grid no-padding>
       <ion-row>
         <ion-col col-11>
           <h2>Status Analisis</h2>
@@ -82,26 +82,27 @@
             color="primary"></ion-icon>
         </ion-col>
       </ion-row>
-      <ion-row>
-        <ion-col col-12>
-          <div class="timeline">
-            <div class="container2 right2">
-              <div class="content statusA">
-                <p>{{ awal.status }}<br> {{ awal.waktu | date: 'dd-MM-yyyy HH:mm' }}</p>
-              </div>
-            </div>
-            <div *ngIf="moreStatus">
-              <div class="container right" *ngFor="let status of sisa">
-                <div class="content statusA">
-                  <p>{{ status.status }}<br> {{ status.waktu | date: 'dd-MM-yyyy HH:mm' }}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </ion-col>
-
-      </ion-row>
     </ion-grid>
+    <div class="container">
+
+      <div class="timeline-block timeline-block-right">
+        <div class="marker active"></div>
+        <div class="timeline-content">
+          <h3>{{ awal.status }}</h3>
+          <span>{{ awal.waktu | date: 'dd-MM-yyyy HH:mm' }}</span>
+
+        </div>
+      </div>
+      <div *ngIf="moreStatus">
+        <div class="timeline-block timeline-block-left" *ngFor="let status of sisa">
+          <div class="marker"></div>
+          <div class="timeline-content">
+            <h3>{{ status.status }}</h3>
+            <span>{{ status.waktu | date: 'dd-MM-yyyy HH:mm' }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </ion-card>
 
   <!-- INFORMASI PEMBAYARAN -->
