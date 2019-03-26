@@ -85,7 +85,7 @@
                 </ion-col>
                 <ion-col col-11 no-padding>
                     <p class="sub-head">
-                        Bentuk Sampel
+                        Pilihan Bentuk Sampel
                     </p>
                 </ion-col>
             </ion-row>
@@ -93,10 +93,10 @@
                 <ion-col col-1 align-self-center no-padding text-center>
                 </ion-col>
                 <ion-col col-11 no-padding>
-                    <p class="text-content" text-left *ngIf="cairan">Cairan</p>
-                    <p class="text-content" text-left *ngIf="ekstrak">Ekstrak</p>
-                    <p class="text-content" text-left *ngIf="serbuk">Serbuk</p>
-                    <p class="text-content" text-left *ngIf="simplisia">Simplisia</p>
+                    <p class="text-content" text-left *ngIf="cairan">Cairan (min. {{cairan}} Ml)</p>
+                    <p class="text-content" text-left *ngIf="ekstrak">Ekstrak (min. {{ekstrak}} Gram)</p>
+                    <p class="text-content" text-left *ngIf="serbuk">Serbuk (min. {{serbuk}} Gram)</p>
+                    <p class="text-content" text-left *ngIf="simplisia">Simplisia (min. {{simplisia }} Gram)</p>
                 </ion-col>
             </ion-row>
         </ion-grid>

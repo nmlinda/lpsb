@@ -4,7 +4,7 @@ import { IonicPage, NavController, NavParams, AlertController, LoadingController
 import { Data } from '../../provider/data';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DetailAnalisisPage } from '../detail-analisis/detail-analisis';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { KeranjangPage } from '../keranjang/keranjang';
 
 @IonicPage()
@@ -40,6 +40,9 @@ export class BuatPesanan2Page {
   Ekstrak: boolean = false;
   Serbuk: boolean = false;
   Simplisia: boolean = false;
+  min: number = null;
+  satuan: string = null;
+  jumlah: boolean = true;
 
   //form
   kemasanLain: boolean = false;
@@ -87,16 +90,16 @@ ionViewWillEnter(){
   this.bentukEkstrak = this.navParams.get('ekstrak');
   this.bentukSerbuk = this.navParams.get('serbuk');
   this.bentukSimplisia = this.navParams.get('simplisia');
-  if (this.bentukCairan === 1) {
+  if (this.bentukCairan) {
     this.cairan = false;
   }
-  if (this.bentukEkstrak === 1) {
+  if (this.bentukEkstrak) {
     this.ekstrak = false;
   }
-  if (this.bentukSerbuk === 1) {
+  if (this.bentukSerbuk) {
     this.serbuk = false;
   }
-  if (this.bentukSimplisia === 1) {
+  if (this.bentukSimplisia) {
     this.simplisia = false;
   }
 
@@ -108,7 +111,8 @@ ngOnInit() {
     kemasan: new FormControl('', [Validators.required]),
     kemasanLainnya: new FormControl('', [Validators.required]),
     bentuk: new FormControl('', [Validators.required]),
-    jumlah: new FormControl('', [Validators.required]),
+    jumlah: new FormControl('', [Validators.required,
+      (control: AbstractControl) => Validators.min(this.min)(control)]),
   });
 }
 
@@ -120,6 +124,28 @@ kemasanChange() {
   else {
     this.kemasanLain = false;
     this.pesanform.controls['kemasanLainnya'].disable();
+  }
+}
+
+bentukChange() {
+  if(this.pesanData.bentuk) {
+    this.jumlah = false;
+    if(this.pesanData.bentuk == 'Cairan') {
+      this.min = this.bentukCairan;
+      this.satuan = "Ml";
+    }
+    else if(this.pesanData.bentuk == 'Ekstrak') {
+      this.min = this.bentukEkstrak;
+      this.satuan = "Gram";
+    }
+    else if(this.pesanData.bentuk == 'Serbuk') {
+      this.min = this.bentukSerbuk;
+      this.satuan = "Gram";
+    }
+    else if(this.pesanData.bentuk == 'Simplisia') {
+      this.min = this.bentukSimplisia;
+      this.satuan = "Gram";
+    }
   }
 }
 

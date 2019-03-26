@@ -33,10 +33,11 @@ export class DetailAnalisisPage {
   kategori: string;
   metode: string;
   keterangan: string;
-  cairan: boolean = false;
-  ekstrak: boolean = false;
-  serbuk: boolean = false;
-  simplisia: boolean = false;
+
+  cairan: number = null;
+  ekstrak: number = null;
+  serbuk: number = null;
+  simplisia: number = null;
 
   response: any = [];
   notif: any = [];
@@ -101,18 +102,10 @@ export class DetailAnalisisPage {
             console.log(this.kategori)
             this.metode = this.jenisAnalisis.Metode;
             this.keterangan = this.jenisAnalisis.Keterangan;
-            if (this.jenisAnalisis.Cairan === 1) {
-              this.cairan = true;
-            }
-            if (this.jenisAnalisis.Ekstrak === 1) {
-              this.ekstrak = true;
-            }
-            if (this.jenisAnalisis.Serbuk === 1) {
-              this.serbuk = true;
-            }
-            if (this.jenisAnalisis.Simplisia === 1) {
-              this.simplisia = true;
-            }
+            this.cairan = this.jenisAnalisis.Cairan;
+            this.ekstrak = this.jenisAnalisis.Ekstrak;
+            this.serbuk = this.jenisAnalisis.Serbuk;
+            this.simplisia = this.jenisAnalisis.Simplisia;
           } 
           else {
             loading.dismiss();
