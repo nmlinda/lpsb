@@ -375,14 +375,14 @@ export class DetailPesananPage {
                 }
                 let location = path + '/FPA/';
 
-                fileTransfer.download(this.data.BASE_URL + '/detailPesanan', location + 'FPA.docx', true).then((entry) => {
+                fileTransfer.download(this.data.BASE_URL + '/generatePermohonanAnalisis', location + 'FPA.docx', true, httpOptions).then((entry) => {
                   console.log('download complete: ' + entry.toURL());
 
 
                   loading.dismiss();
 
                   let alert = this.alertCtrl.create({
-                    title: 'Download Foto Berhasil',
+                    title: 'Unduh Formulir Permohonan Analisis Berhasil',
                     message: 'Lokasi Penyimpanan : ' + location,
                     buttons: [
                       {
@@ -401,7 +401,7 @@ export class DetailPesananPage {
 
                   loading.dismiss();
                   let alertError = this.alertCtrl.create({
-                    title: 'Download Foto Gagal',
+                    title: 'Unduh Gagal',
                     message: 'silahkan coba kembali',
                     buttons: [
                       {

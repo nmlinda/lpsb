@@ -1,7 +1,6 @@
 import { NativePageTransitions } from '@ionic-native/native-page-transitions';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, AlertController, ToastController, LoadingController, ActionSheetController } from 'ionic-angular';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Data } from '../../provider/data';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { DetailPesananPage } from '../detail-pesanan/detail-pesanan';
@@ -30,6 +29,8 @@ export class PembayaranPage {
   email: any;
   token: any;
   validPhoto = false;
+
+  upload: any = [];
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -128,10 +129,7 @@ export class PembayaranPage {
   }
 
 
-  postPhoto(data) {
-    // alert(data);
-    // alert("token" + this.token);
-
+  postPhoto(photo) {
     let loading = this.loadCtrl.create({
       content: 'memuat..'
     });
@@ -141,30 +139,27 @@ export class PembayaranPage {
       loading.dismiss();
     }, 5000);
 
-    setTimeout(() => {
-      loading.dismiss();
-    }, 5000);
     // api
 
     const fileTransfer: FileTransferObject = this.transfer.create();
 
-
+    this.data.getData().then((data) => {
     let options: FileUploadOptions = {
       fileKey: 'img',
       fileName: this.idPesanan + '_' + Date.now(),
       chunkedMode: false,
       mimeType: "image/jpeg",
-      headers: { 'Authorization': 'Bearer ' + this.token }
+      headers: { 
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + data.api_token
+       }
     }
 
-    // fileTransfer.upload(data, this.data.BASE_URL + "/updatefotoprofil", options)
-    //   .then((data) => {
-
-
-
+    fileTransfer.upload(photo, this.data.BASE_URL + "/uploadBuktiPembayaran", options)
+      .then((response) => {
+        this.upload = response;
       loading.dismiss();
-        // this.saveToStorage(data.response);
-        console.log(options)
+        console.log(response)
         this.NativePageTransitions.fade(null);
         let currentIndex = this.navCtrl.getActive().index;
         this.navCtrl.push(DetailPesananPage, { data: this.idPesanan }).then(() => {
@@ -174,7 +169,7 @@ export class PembayaranPage {
 
         let alert = this.alertCtrl.create({
           title: 'Unggah Bukti Pembayaran Berhasil',
-          message: 'Sistem akan memvalidasi pembayaran.',
+          message: 'API ' + this.upload.DebugRequest + 's ' + this.upload.Status,
           buttons: [
             {
               text: 'OK',
@@ -186,11 +181,11 @@ export class PembayaranPage {
         });
         alert.present();
 
-      // }, (err) => {
-      //   console.log(err);
-      //   loading.dismiss();
-      //   alert(JSON.stringify(err));
-      // });
-
+      }, (err) => {
+        console.log(err);
+        loading.dismiss();
+        alert(JSON.stringify(err));
+      });
+      })
   }
 }

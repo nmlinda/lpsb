@@ -61,12 +61,12 @@
               *ngIf="pesanform.get('namaJenis').hasError('required') && pesanform.get('namaJenis').touched">
               <div class="error"
                 *ngIf="pesanform.get('namaJenis').hasError('required') && pesanform.get('namaJenis').touched">
-                Masukkan jenis sampel
+                Masukkan jenis
               </div>
             </ion-item>
           </ion-col>
         </ion-row>
-        <ion-row justify-content-center align-items-center style="height: 100%">
+        <ion-row>
           <ion-col col-6>
             <ion-item>
               <ion-label color="primary" stacked>Kemasan</ion-label>
@@ -86,20 +86,26 @@
               </div>
             </ion-item>
           </ion-col>
-          <ion-col col-6 style="margin-top: 20px;">
-            <!-- <ion-item> -->
-            <ion-input type="text" placeholder="Ketik kemasan lainnya.." *ngIf="kemasanLain"
-              [(ngModel)]="pesanData.kemasanLainnya" formControlName="kemasanLainnya"
-              [class.error1]="!pesanform.controls.kemasanLainnya.valid && pesanform.controls.kemasanLainnya.dirty">
-            </ion-input>
-            <!-- </ion-item> -->
+          <ion-col col-6>
+            <ion-item  *ngIf="kemasanLain">
+              <ion-label stacked color="primary">Kemasan lainnya</ion-label>
+              <ion-input type="text" placeholder="Ketik kemasan lainnya.." [(ngModel)]="pesanData.kemasanLainnya"
+                formControlName="kemasanLainnya"
+                [class.error1]="!pesanform.controls.kemasanLainnya.valid && pesanform.controls.kemasanLainnya.dirty">
+              </ion-input>
+            </ion-item>
             <ion-item no-lines
               *ngIf="pesanform.get('kemasanLainnya').hasError('required') && pesanform.get('kemasanLainnya').touched">
               <div class="error"
                 *ngIf="pesanform.get('kemasanLainnya').hasError('required') && pesanform.get('kemasanLainnya').touched">
-                Masukkan kemasan sampel
+                Masukkan kemasan
               </div>
             </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12>
+
           </ion-col>
         </ion-row>
         <ion-row>
@@ -132,35 +138,49 @@
                 placeholder="Jumlah"
                 [class.error1]="!pesanform.controls.jumlah.valid && pesanform.controls.jumlah.dirty"></ion-input>
             </ion-item>
+            <ion-item no-lines *ngIf="pesanform.get('jumlah').hasError('required') && pesanform.get('jumlah').touched">
+              <div class="error"
+                *ngIf="pesanform.get('jumlah').hasError('required') && pesanform.get('jumlah').touched">
+                Masukkan jumlah
+              </div>
+            </ion-item>
+            <ion-item no-lines *ngIf="pesanform.get('jumlah').hasError('min') && pesanform.get('jumlah').touched">
+              <div class="error" *ngIf="pesanform.get('jumlah').hasError('min') && pesanform.get('jumlah').touched">
+                kurang dari minimum
+              </div>
+            </ion-item>
           </ion-col>
-          <ion-col col-6 *ngIf="!jumlah" align-self-end>
-            <p *ngIf="pesanData.bentuk != 'Cairan'">Gram</p>
-            <p *ngIf="pesanData.bentuk == 'Cairan'">Ml</p>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label color="primary" stacked>Satuan</ion-label>
+              <ion-label *ngIf="pesanData.bentuk != 'pilih'" style="margin-top:5px">{{ satuan }}</ion-label>
+            </ion-item>
           </ion-col>
         </ion-row>
         <ion-row>
-          <ion-item no-lines *ngIf="pesanform.get('jumlah').hasError('required') && pesanform.get('jumlah').touched">
-            <div class="error" *ngIf="pesanform.get('jumlah').hasError('required') && pesanform.get('jumlah').touched">
-              Masukkan jumlah
-            </div>
-          </ion-item>
-          <ion-item no-lines *ngIf="pesanform.get('jumlah').hasError('min') && pesanform.get('jumlah').touched">
-            <div class="error" *ngIf="pesanform.get('jumlah').hasError('min') && pesanform.get('jumlah').touched">
-              Jumlah kurang dari syarat minimum
-            </div>
-          </ion-item>
+          <ion-col col-12>
+
+          </ion-col>
         </ion-row>
       </form>
     </ion-grid>
   </ion-card>
 
-  <ion-grid class="footer">
-    <button ion-button margin-right block outline text-capitalize color="orange" (click)="gotoKeranjang()"
-      [disabled]="pesanform.invalid">
-      Pesan Sekarang
-    </button>
-    <button ion-button text-capitalize block (click)="tambahKeranjang()" color="orange" [disabled]="pesanform.invalid">
-      Tambah ke Keranjang
-    </button>
-  </ion-grid>
+ 
 </ion-content>
+<ion-footer>
+    <section class="section">
+        <article class="btn-ion">
+          <button ion-button margin-right block outline text-capitalize color="orange" (click)="gotoKeranjang()"
+            [disabled]="pesanform.invalid">
+            Pesan Sekarang
+          </button>
+        </article>
+        <article class="btn-ion">
+          <button ion-button text-capitalize block (click)="tambahKeranjang()" color="orange"
+            [disabled]="pesanform.invalid">
+            Tambah ke Keranjang
+          </button>
+        </article>
+      </section>
+</ion-footer>

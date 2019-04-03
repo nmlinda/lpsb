@@ -81,6 +81,17 @@ ionViewWillEnter(){
   this.ekstrak = true;
   this.serbuk = true;
   this.simplisia = true;
+  this.pesanData = {
+    "namaJenis": "",
+    "kemasan": "",
+    "kemasanLainnya": "",
+    "bentuk": "",
+    "jumlah": ""
+  };
+  this.pesanData.kemasan = 'pilih';
+  this.pesanData.bentuk = 'pilih';
+  this.satuan = null;
+
 
   this.IDjenis = this.navParams.get('id');
   this.namaJenis = this.navParams.get('namaJenis');
@@ -146,6 +157,7 @@ bentukChange() {
       this.min = this.bentukSimplisia;
       this.satuan = "Gram";
     }
+    console.log(this.satuan)
   }
 }
 

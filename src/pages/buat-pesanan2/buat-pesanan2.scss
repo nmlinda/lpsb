@@ -1,7 +1,5 @@
 page-buat-pesanan2 {
-    .jumlah {
-        display: inline;
-    }
+    position: relative;
     .error {
         color: rgb(223, 62, 62);
         font-size: 11px;
@@ -10,22 +8,25 @@ page-buat-pesanan2 {
         color: rgb(75, 75, 75);
         border-bottom: 1px solid #ff0000;
     }
-    .footer {
-        position: fixed;
-        display: flex;
-        flex-direction: row;
-        flex: 0 0 80%;
-        // z-index: 1;
-        bottom: 0;
-        // width: 100%;
-        background-color: white;
-    }
-    .fixed-col {
-        position: fixed !important;
-    }
     .primary {
         color: #FF6B21;
         font-size: 16px;
         padding-top: 10px;
+    }
+
+    .section {
+        border-top: 1px solid gainsboro;
+        width: 100%;
+        display: flex;
+        padding: 10px;
+        background-color: white;
+        z-index: 1;
+    }
+    .btn-ion {
+        flex: 0 1 50%;
+        margin-right: 10px;
+    }
+    .btn-ion:last-child {
+        margin-right: 0;
     }
 }
