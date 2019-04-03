@@ -14,19 +14,24 @@ page-buat-pesanan2 {
         padding-top: 10px;
     }
 
-    .section {
-        border-top: 1px solid gainsboro;
+    ion-footer {
         width: 100%;
         display: flex;
-        padding: 10px;
         background-color: white;
         z-index: 1;
+        margin: 0;
+        height: 40px;
+        border: none;
     }
+
     .btn-ion {
         flex: 0 1 50%;
-        margin-right: 10px;
+        height: 40px;
+        margin: 0 !important;
     }
     .btn-ion:last-child {
         margin-right: 0;
     }
+
+    
 }

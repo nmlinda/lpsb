@@ -60,7 +60,7 @@
             <ion-grid>
                 <ion-row>
                     <ion-col col-3 *ngFor="let item of kategori" (click)="gotoKategori(item.IDKategori)" class="kategori-col">
-                        <img src="assets/imgs/logo.png" class="img-card">
+                        <img src="assets/imgs/kategori/mikrobiologi.png" class="img-card">
                         <p text-center class="tess" text-wrap>
                             {{item.Kategori}}
                         </p>
@@ -79,12 +79,4 @@
       </ion-scroll>
     </ion-card-content> -->
     </ion-card>
-
-
-    <!-- <ion-fab right bottom>
-    <button ion-fab [navPush]="buatPesanan">
-      <ion-icon name="add"></ion-icon>
-    </button>
-  </ion-fab> -->
-
 </ion-content>

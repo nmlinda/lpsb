@@ -10,9 +10,11 @@
 <ion-content>
   <ion-card padding>
     <p class="price" text-center>Rp {{harga | number:0 }}</p>
-    <p text-center>
-      Bayar Sebelum {{ waktu | date: 'dd-MM-yyyy' }} 23:59
-    </p>
+    <div class="info-box">
+      <p text-center>
+        Bayar Sebelum {{ waktu | date: 'd MMM yyyy' }}
+      </p>
+    </div>
   </ion-card>
 
   <ion-card padding>

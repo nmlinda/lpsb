@@ -18,7 +18,7 @@
     <ion-grid>
       <ion-row>
         <ion-col col-3>
-          <img src="assets/imgs/fitokimia.jpg">
+          <img src="assets/imgs/katalog/fitokimia.png">
         </ion-col>
         <ion-col col-9>
           <h2 text-uppercase><strong>{{ namaJenis }}</strong></h2>
@@ -87,7 +87,7 @@
             </ion-item>
           </ion-col>
           <ion-col col-6>
-            <ion-item  *ngIf="kemasanLain">
+            <ion-item *ngIf="kemasanLain">
               <ion-label stacked color="primary">Kemasan lainnya</ion-label>
               <ion-input type="text" placeholder="Ketik kemasan lainnya.." [(ngModel)]="pesanData.kemasanLainnya"
                 formControlName="kemasanLainnya"
@@ -166,21 +166,15 @@
     </ion-grid>
   </ion-card>
 
- 
+
 </ion-content>
 <ion-footer>
-    <section class="section">
-        <article class="btn-ion">
-          <button ion-button margin-right block outline text-capitalize color="orange" (click)="gotoKeranjang()"
-            [disabled]="pesanform.invalid">
-            Pesan Sekarang
-          </button>
-        </article>
-        <article class="btn-ion">
-          <button ion-button text-capitalize block (click)="tambahKeranjang()" color="orange"
-            [disabled]="pesanform.invalid">
-            Tambah ke Keranjang
-          </button>
-        </article>
-      </section>
+  <button class="btn-ion" ion-button margin-right full outline text-capitalize color="orange" (click)="gotoKeranjang()"
+    [disabled]="pesanform.invalid">
+    Pesan Sekarang
+  </button>
+  <button class="btn-ion" ion-button text-capitalize full (click)="tambahKeranjang()" color="orange"
+    [disabled]="pesanform.invalid">
+    Tambah ke Keranjang
+  </button>
 </ion-footer>

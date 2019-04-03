@@ -13,7 +13,9 @@ page-register {
         border-bottom: 1px solid #ff0000;
     }
     .footer {
-        padding-top: 10px;
+        p {
+            margin-top: 0;
+        }
     }
     .img-logo {
         max-height: 80px;
@@ -21,4 +23,25 @@ page-register {
         margin-right: auto;
         display: block;
     }
+    form {
+        padding: 24px !important;
+
+        .item-md.item-block .item-inner, .list-md .item-input:last-child{
+            border-bottom: none;
+        }
+
+        ion-icon {
+            margin-left: 10px !important;
+            margin-right: 0 !important;
+        }
+
+        ion-item {
+            padding-left: 0 !important;
+        }
+
+        button {
+            height: 40px !important;
+        }
+    }
+
 }

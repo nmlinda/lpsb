@@ -23,7 +23,7 @@
 
 <ion-content>
     <ion-card color="light" class="card-box">
-        <img src="assets/imgs/fitokimia.jpg" class="img-jenis">
+        <img src="assets/imgs/katalog/fitokimia.png" class="img-jenis">
         <h2 text-center text-uppercase class="title">
             <strong>{{ namaJenis }}</strong>
         </h2>
@@ -101,14 +101,14 @@
             </ion-row>
         </ion-grid>
     </ion-card>
-    <div class="footer" scrollY="false">
+    <!-- <div class="footer" scrollY="false">
         <button ion-button color="orange" block (click)="buatPesanan()">
       Pesan
     </button>
-    </div>
+    </div> -->
 </ion-content>
-<!-- <ion-footer padding>
-  <button ion-button block (click)="buatPesanan()">
+<ion-footer>
+  <button ion-button block (click)="buatPesanan()" class="btn-primary">
     Pesan
   </button>
-</ion-footer> -->
+</ion-footer>
