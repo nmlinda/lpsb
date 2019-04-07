@@ -30,6 +30,7 @@ export class PembayaranPage {
   token: any;
   validPhoto = false;
 
+  responses: any = [];
   upload: any = [];
 
   constructor(public navCtrl: NavController,
@@ -130,23 +131,21 @@ export class PembayaranPage {
 
 
   postPhoto(photo) {
+    const fileTransfer: FileTransferObject = this.transfer.create();
+
     let loading = this.loadCtrl.create({
-      content: 'memuat..'
+      content: 'mengunduh..'
     });
 
     loading.present();
     setTimeout(() => {
       loading.dismiss();
-    }, 5000);
-
-    // api
-
-    const fileTransfer: FileTransferObject = this.transfer.create();
+    }, 10000);
 
     this.data.getData().then((data) => {
     let options: FileUploadOptions = {
       fileKey: 'img',
-      fileName: this.idPesanan + '_' + Date.now(),
+      fileName: 'Bukti Pembayaran_' + data.Email + Date.now(),
       chunkedMode: false,
       mimeType: "image/jpeg",
       headers: { 
@@ -157,9 +156,12 @@ export class PembayaranPage {
 
     fileTransfer.upload(photo, this.data.BASE_URL + "/uploadBuktiPembayaran", options)
       .then((response) => {
-        this.upload = response;
+        this.responses = response;
+        this.upload = this.responses.response;
       loading.dismiss();
         console.log(response)
+        console.log(this.upload)
+        console.log(this.upload.DebugRequest)
         this.NativePageTransitions.fade(null);
         let currentIndex = this.navCtrl.getActive().index;
         this.navCtrl.push(DetailPesananPage, { data: this.idPesanan }).then(() => {
@@ -169,7 +171,7 @@ export class PembayaranPage {
 
         let alert = this.alertCtrl.create({
           title: 'Unggah Bukti Pembayaran Berhasil',
-          message: 'API ' + this.upload.DebugRequest + 's ' + this.upload.Status,
+          message: 'API ' + this.upload,
           buttons: [
             {
               text: 'OK',

@@ -5,7 +5,6 @@ import { Storage } from '@ionic/storage';
 
 @Injectable()
 export class Data {
-  // public BASE_URL = 'http://172.18.16.52:8000/api';
   // public BASE_URL = 'http://ci.apps.cs.ipb.ac.id/elpsb/api';
 
   public BASE_URL = 'https://powerful-tor-69480.herokuapp.com/elpsb/api';

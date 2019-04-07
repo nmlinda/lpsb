@@ -15,7 +15,7 @@ declare var cordova: any;
 @Component({
   selector: 'page-detail-pesanan',
   templateUrl: 'detail-pesanan.html',
-  
+
 })
 export class DetailPesananPage {
   moreStatus: boolean = false;
@@ -53,7 +53,6 @@ export class DetailPesananPage {
     public platform: Platform,
     public modalCtrl: ModalController) {
 
-
     this.platform.ready().then(() => {
       // make sure this is on a device, not an emulation (e.g. chrome tools device mode)
       if (!this.platform.is('cordova')) {
@@ -62,11 +61,11 @@ export class DetailPesananPage {
 
       if (this.platform.is('ios')) {
         // this.storageDirectory = cordova.file.documentsDirectory;
-        this.storageDirectory = cordova.file.externalRootDirectory + '/FPA/';
+        this.storageDirectory = cordova.file.externalRootDirectory + '/Download/';
       }
       else if (this.platform.is('android')) {
         // this.storageDirectory = cordova.file.dataDirectory;
-        this.storageDirectory = cordova.file.externalRootDirectory + '/FPA/';
+        this.storageDirectory = cordova.file.externalRootDirectory + '/Download/';
       }
       else {
         // exit otherwise, but you could add further types here e.g. Windows
@@ -324,13 +323,6 @@ export class DetailPesananPage {
   }
 
   unduh(fail) {
-    let loading = this.loadCtrl.create({
-      content: 'memuat..'
-    });
-    loading.present();
-    setTimeout(() => {
-      loading.dismiss();
-    }, 5000);
     if (fail == 'fpa') {
       let confirm = this.alertCtrl.create({
         title: 'Unduh Formulir Permohonan Analisis?',
@@ -367,23 +359,16 @@ export class DetailPesananPage {
                   })
                 };
                 const fileTransfer: FileTransferObject = this.transfer.create();
-                let path = null;
-                if (this.platform.is('ios')) {
-                  path = this.file.documentsDirectory;
-                } else if (this.platform.is('android')) {
-                  path = this.file.dataDirectory;
-                }
-                let location = path + '/FPA/';
 
-                fileTransfer.download(this.data.BASE_URL + '/generatePermohonanAnalisis', location + 'FPA.docx', true, httpOptions).then((entry) => {
+                let location = this.storageDirectory + '/LabUjiBiofarmaka/';
+                let filename = 'Formulir Permohonan Analisis_' + new Date().getTime() + '.docx';
+
+                fileTransfer.download(this.data.BASE_URL + '/generatePermohonanAnalisis', location + filename, true, httpOptions).then((entry) => {
                   console.log('download complete: ' + entry.toURL());
-
-
                   loading.dismiss();
-
                   let alert = this.alertCtrl.create({
                     title: 'Unduh Formulir Permohonan Analisis Berhasil',
-                    message: 'Lokasi Penyimpanan : ' + location,
+                    message: 'Lokasi Penyimpanan: ' + location + filename,
                     buttons: [
                       {
                         text: 'OK',
@@ -414,10 +399,6 @@ export class DetailPesananPage {
                   });
                   alertError.present();
                 });
-
-
-                // download foto
-
               })
             }
           }
