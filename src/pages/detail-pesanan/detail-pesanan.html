@@ -161,7 +161,7 @@
     <ion-grid>
       <ion-row class="line">
         <ion-col col-2>
-          <img src="assets/imgs/katalog/fitokimia.png">
+          <img src="{{ sampel_awal.Foto }}">
         </ion-col>
         <ion-col col-4>
           <h3>{{ sampel_awal.JenisAnalisis }}
@@ -179,7 +179,7 @@
       <div *ngIf="sampel_lain && panjang > 1">
         <ion-row *ngFor="let sampel of sampel_sisa" class="line">
           <ion-col col-2>
-            <img src="assets/imgs/katalog/fitokimia.png">
+            <img src="{{sampel.Foto}}">
           </ion-col>
           <ion-col col-4>
             <h3>
@@ -264,12 +264,12 @@
     </ion-grid>
   </ion-card>
 
-  <!-- FORMULIR PERMOHONAN SAMPEL & TANDA TERIMA SAMPEL-->
+  <!-- FORMULIR PERMOHONAN ANALISIS & TANDA TERIMA SAMPEL-->
   <ion-card *ngIf="status.StatusUtama >= 2">
-    <ion-grid>
+    <ion-grid  *ngIf="status.StatusUtama >= 2">
       <ion-row>
         <ion-col col-9>
-          <h2>Formulir Permohonan Sampel</h2>
+          <h2>Formulir Permohonan Analisis</h2>
         </ion-col>
         <ion-col col-3 text-right>
           <p>
@@ -289,7 +289,7 @@
         </ion-col>
         <ion-col col-3 text-right>
           <p>
-            <strong><a (click)="toastUnduh()">Unduh</a></strong>
+            <strong><a (click)="unduh('tts')">Unduh</a></strong>
           </p>
         </ion-col>
       </ion-row>
@@ -315,7 +315,7 @@
           <p>
             <strong>
               <a (click)="lihatSertif()" *ngIf="status.StatusKirimSertifikat == 0">Lihat</a>
-              <a (click)="toastUnduh()" *ngIf="status.StatusKirimSertifikat > 0">Unduh</a>
+              <a (click)="unduh('hsu')" *ngIf="status.StatusKirimSertifikat > 0">Unduh</a>
             </strong>
           </p>
         </ion-col>

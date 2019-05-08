@@ -2,13 +2,10 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { DetailAnalisisPage } from '../detail-analisis/detail-analisis';
 import { CariPage } from '../cari/cari';
-import { BuatPesanan2Page } from '../buat-pesanan2/buat-pesanan2';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Data } from '../../provider/data';
 import { KeranjangPage } from '../keranjang/keranjang';
 import { PemberitahuanPage } from '../pemberitahuan/pemberitahuan';
-
-
 
 @IonicPage()
 @Component({
@@ -197,10 +194,6 @@ export class KategoriAnalisisPage {
 
   cari() {
     this.nav.push(CariPage);
-  }
-
-  gotoBuatPesanan() {
-    this.nav.push(BuatPesanan2Page);
   }
 
   notifikasi() {

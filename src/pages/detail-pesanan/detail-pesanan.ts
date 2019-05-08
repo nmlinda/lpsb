@@ -35,6 +35,9 @@ export class DetailPesananPage {
   statusPelanggan: string;
   kodeUnik: number = 429;
 
+  url: string;
+  docsname: string;
+
   status_utama: string;
   ket_status_utama: string;
   waktu_status_utama: Date;
@@ -324,88 +327,94 @@ export class DetailPesananPage {
 
   unduh(fail) {
     if (fail == 'fpa') {
-      let confirm = this.alertCtrl.create({
-        title: 'Unduh Formulir Permohonan Analisis?',
-        buttons: [
-          {
-            text: 'Batal',
-            handler: () => {
-              console.log('Disagree clicked');
-            }
-          },
-          {
-            text: 'Unduh',
-            handler: () => {
-              console.log('Agree clicked');
-
-              // download foto
-
-              let loading = this.loadCtrl.create({
-                content: 'unduh..'
-              });
-
-              loading.present();
-
-              setTimeout(() => {
-                loading.dismiss();
-              }, 5000);
-              // api
-              this.data.getData().then((data) => {
-
-                const httpOptions = {
-                  headers: new HttpHeaders({
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + data.api_token
-                  })
-                };
-                const fileTransfer: FileTransferObject = this.transfer.create();
-
-                let location = this.storageDirectory + '/LabUjiBiofarmaka/';
-                let filename = 'Formulir Permohonan Analisis_' + new Date().getTime() + '.docx';
-
-                fileTransfer.download(this.data.BASE_URL + '/generatePermohonanAnalisis', location + filename, true, httpOptions).then((entry) => {
-                  console.log('download complete: ' + entry.toURL());
-                  loading.dismiss();
-                  let alert = this.alertCtrl.create({
-                    title: 'Unduh Formulir Permohonan Analisis Berhasil',
-                    message: 'Lokasi Penyimpanan: ' + location + filename,
-                    buttons: [
-                      {
-                        text: 'OK',
-                        handler: () => {
-                          console.log('Agree clicked');
-                        }
-                      }
-                    ]
-                  });
-                  alert.present();
-
-                }, (error) => {
-                  alert(error);
-                  // handle error
-
-                  loading.dismiss();
-                  let alertError = this.alertCtrl.create({
-                    title: 'Unduh Gagal',
-                    message: 'silahkan coba kembali',
-                    buttons: [
-                      {
-                        text: 'OK',
-                        handler: () => {
-                          console.log('Agree clicked');
-                        }
-                      }
-                    ]
-                  });
-                  alertError.present();
-                });
-              })
-            }
-          }
-        ]
-      });
-      confirm.present();
+      this.url = '/getPermohonanAnalisis/';
+      this.docsname = 'Formulir Permohonan Analisis';
     }
+    else if (fail == 'tts') {
+      this.url = '/getTandaTerimaSampel/';
+      this.docsname = 'Tanda Terima Sampel'
+    }
+    else if (fail == 'hsu') {
+      this.url = '/getSertifikat/';
+      this.docsname = "Sertifikat Hasil Uji";
+    }
+    let confirm = this.alertCtrl.create({
+      title: 'Unduh ' + this.docsname + '?',
+      buttons: [
+        {
+          text: 'Batal',
+          handler: () => {
+            console.log('Disagree clicked');
+          }
+        },
+        {
+          text: 'Unduh',
+          handler: () => {
+            console.log('Agree clicked');
+
+            let loading = this.loadCtrl.create({
+              content: 'unduh..'
+            });
+            loading.present();
+            setTimeout(() => {
+              loading.dismiss();
+            }, 5000);
+
+            this.data.getData().then((data) => {
+
+              const httpOptions = {
+                headers: new HttpHeaders({
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Bearer ' + data.api_token
+                })
+              };
+              const fileTransfer: FileTransferObject = this.transfer.create();
+
+              let location = this.storageDirectory + '/LabUjiBiofarmaka/';
+              let filename = this.docsname + '_' + new Date().getTime() + '.docx';
+
+              fileTransfer.download(this.data.BASE_URL + this.url + this.idPesanan, location + filename, true, httpOptions).then((entry) => {
+                console.log('download berhasil: ' + entry.toURL());
+                loading.dismiss();
+                let alert = this.alertCtrl.create({
+                  title: 'Unduh ' + this.docsname + ' Berhasil!',
+                  message: 'Lokasi Penyimpanan: ' + location + filename,
+                  buttons: [
+                    {
+                      text: 'OK',
+                      handler: () => {
+                        console.log('Agree clicked');
+                      }
+                    }
+                  ]
+                });
+                alert.present();
+
+              }, (error) => {
+                alert(error);
+                // handle error
+
+                loading.dismiss();
+                let alertError = this.alertCtrl.create({
+                  title: 'Unduh Gagal',
+                  message: 'silahkan coba kembali',
+                  buttons: [
+                    {
+                      text: 'OK',
+                      handler: () => {
+                        console.log('Agree clicked');
+                      }
+                    }
+                  ]
+                });
+                alertError.present();
+              });
+            })
+          }
+        }
+      ]
+    });
+    confirm.present();
   }
 
   lihatSertif() {
@@ -425,21 +434,12 @@ export class DetailPesananPage {
           role: 'cancel',
           handler: () => {
             console.log('Unduh sertif');
-            this.toastUnduh();
+            this.unduh('hsu');
           }
         }
       ]
     });
     alert.present();
-  }
-
-  toastUnduh() {
-    let toast = this.toastCtrl.create({
-      message: 'Berhasil diunduh',
-      duration: 3000,
-      position: 'top'
-    });
-    toast.present();
   }
 
   ubahStatus(status) {

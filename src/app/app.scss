@@ -21,3 +21,11 @@ ion-input, ion-textarea, ion-select{
 a {
     color: black;
 }
+.list-ios {
+  > .item-block:last-child, .item-block {
+    border: none !important;
+  }
+}
+.list-ios .item-block .item-inner {
+  border: none;
+}

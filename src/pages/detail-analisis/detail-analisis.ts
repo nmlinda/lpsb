@@ -33,6 +33,7 @@ export class DetailAnalisisPage {
   kategori: string;
   metode: string;
   keterangan: string;
+  foto: any;
 
   cairan: number = null;
   ekstrak: number = null;
@@ -106,6 +107,7 @@ export class DetailAnalisisPage {
             this.ekstrak = this.jenisAnalisis.Ekstrak;
             this.serbuk = this.jenisAnalisis.Serbuk;
             this.simplisia = this.jenisAnalisis.Simplisia;
+            this.foto = this.jenisAnalisis.FotoKatalog;
           } 
           else {
             loading.dismiss();
@@ -175,10 +177,11 @@ export class DetailAnalisisPage {
       id: this.IDjenis,
       namaJenis: this.namaJenis,
       harga: this.harga,
-      cairan: this.jenisAnalisis.Cairan,
-      ekstrak: this.jenisAnalisis.Ekstrak,
-      serbuk: this.jenisAnalisis.Serbuk,
-      simplisia: this.jenisAnalisis.Simplisia
+      cairan: this.cairan,
+      ekstrak: this.ekstrak,
+      serbuk: this.serbuk,
+      simplisia: this.simplisia,
+      foto: this.foto
     });
   }
 

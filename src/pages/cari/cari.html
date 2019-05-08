@@ -18,7 +18,7 @@
         <ion-row>
             <ion-col *ngFor="let item of katalog | cari : cariAnalisis" col-6 no-padding>
                 <ion-card class="card-jenis" (click)="gotoDetailAnalisis(item.IDKatalog)" text-center>
-                    <img src="assets/imgs/katalog/fitokimia.png" class="img-jenis">
+                    <img src="{{ item.FotoKatalog }}" class="img-jenis">
                     <h2 text-uppercase><strong>{{item.JenisAnalisis}}</strong></h2>
                     <p class="text-content">
                         Rp {{item.Harga | number:0 }}

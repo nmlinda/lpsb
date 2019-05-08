@@ -2,11 +2,10 @@ import { NativePageTransitions } from '@ionic-native/native-page-transitions';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, AlertController, ToastController, LoadingController, ActionSheetController } from 'ionic-angular';
 import { Data } from '../../provider/data';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { DetailPesananPage } from '../detail-pesanan/detail-pesanan';
 
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
-import { File } from '@ionic-native/file';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 /**
  * Generated class for the PembayaranPage page.
@@ -134,27 +133,29 @@ export class PembayaranPage {
     const fileTransfer: FileTransferObject = this.transfer.create();
 
     let loading = this.loadCtrl.create({
-      content: 'mengunduh..'
+      content: 'mengunggah..'
     });
 
     loading.present();
-    setTimeout(() => {
-      loading.dismiss();
-    }, 10000);
-
+  
     this.data.getData().then((data) => {
     let options: FileUploadOptions = {
       fileKey: 'img',
-      fileName: 'Bukti Pembayaran_' + data.Email + Date.now(),
+      fileName: 'Bukti Pembayaran',
       chunkedMode: false,
       mimeType: "image/jpeg",
       headers: { 
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + data.api_token
+        'Content-Type': 'image/png',
+        'Authorization': 'Bearer ' + data.api_token 
        }
     }
-
-    fileTransfer.upload(photo, this.data.BASE_URL + "/uploadBuktiPembayaran", options)
+    if(photo) {
+      console.log('ada foto')
+      console.log(photo)
+    }else {
+      console.log('no foto')
+    }
+    fileTransfer.upload(photo, this.data.BASE_URL + "/uploadBuktiPembayaran/"+this.idPesanan, options)
       .then((response) => {
         this.responses = response;
         this.upload = this.responses.response;
@@ -170,8 +171,8 @@ export class PembayaranPage {
         });
 
         let alert = this.alertCtrl.create({
-          title: 'Unggah Bukti Pembayaran Berhasil',
-          message: 'API ' + this.upload,
+          title: 'Unggah Bukti Pembayaran Berhasil'+ this.upload,
+          message: 'Bukti pembayaran sedang divalidasi.',
           buttons: [
             {
               text: 'OK',
@@ -186,7 +187,7 @@ export class PembayaranPage {
       }, (err) => {
         console.log(err);
         loading.dismiss();
-        alert(JSON.stringify(err));
+        alert("error: " + JSON.stringify(err));
       });
       })
   }

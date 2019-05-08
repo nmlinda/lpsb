@@ -43,6 +43,7 @@ export class BuatPesanan2Page {
   min: number = null;
   satuan: string = null;
   jumlah: boolean = true;
+  foto: any;
 
   //form
   kemasanLain: boolean = false;
@@ -77,6 +78,7 @@ ionViewWillEnter(){
   this.bentukEkstrak = null;
   this.bentukSerbuk = null;
   this.bentukSimplisia = null;
+  this.foto = null;
   this.cairan = true;
   this.ekstrak = true;
   this.serbuk = true;
@@ -101,6 +103,7 @@ ionViewWillEnter(){
   this.bentukEkstrak = this.navParams.get('ekstrak');
   this.bentukSerbuk = this.navParams.get('serbuk');
   this.bentukSimplisia = this.navParams.get('simplisia');
+  this.foto = this.navParams.get('foto');
   if (this.bentukCairan) {
     this.cairan = false;
   }

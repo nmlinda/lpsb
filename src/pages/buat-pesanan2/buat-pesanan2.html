@@ -18,7 +18,7 @@
     <ion-grid>
       <ion-row>
         <ion-col col-3>
-          <img src="assets/imgs/fitokimia.jpg">
+          <img src="{{foto}}">
         </ion-col>
         <ion-col col-9>
           <h2 text-uppercase><strong>{{ namaJenis }}</strong></h2>
@@ -26,10 +26,6 @@
             Rp {{ harga | number:0 }}<br>
           </h4>
         </ion-col>
-        <!-- <ion-col col-1 (click)="showInfo()">
-          <ion-icon *ngIf="info" name="arrow-dropdown" color="primary"></ion-icon>
-          <ion-icon *ngIf="!info" name="arrow-dropup" color="primary"></ion-icon>
-        </ion-col> -->
       </ion-row>
     </ion-grid>
   </ion-card>
