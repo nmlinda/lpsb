@@ -63,12 +63,12 @@ export class DetailPesananPage {
       }
 
       if (this.platform.is('ios')) {
-        // this.storageDirectory = cordova.file.documentsDirectory;
-        this.storageDirectory = cordova.file.externalRootDirectory + '/Download/';
+        this.storageDirectory = cordova.file.documentsDirectory;
+        // this.storageDirectory = cordova.file.externalRootDirectory + '/Download/';
       }
       else if (this.platform.is('android')) {
         // this.storageDirectory = cordova.file.dataDirectory;
-        this.storageDirectory = cordova.file.externalRootDirectory + '/Download/';
+        this.storageDirectory = cordova.file.externalDataDirectory + '/Download/';
       }
       else {
         // exit otherwise, but you could add further types here e.g. Windows
@@ -373,17 +373,16 @@ export class DetailPesananPage {
             this.data.getData().then((data) => {
 
               const httpOptions = {
-                headers: new HttpHeaders({
+                headers: {
                   'Content-Type': 'application/json',
                   'Authorization': 'Bearer ' + data.api_token
-                })
+                }
               };
               const fileTransfer: FileTransferObject = this.transfer.create();
 
-              let location = this.storageDirectory + '/LabUjiBiofarmaka/';
               let filename = this.docsname + '_' + new Date().getTime() + '.docx';
 
-              fileTransfer.download(this.data.BASE_URL + this.url + this.idPesanan, location + filename, true, httpOptions).then((entry) => {
+              fileTransfer.download(this.data.BASE_URL + this.url + this.idPesanan, this.storageDirectory + filename, true, httpOptions).then((entry) => {
                 console.log('download berhasil: ' + entry.toURL());
                 loading.dismiss();
                 let alert = this.alertCtrl.create({
@@ -401,7 +400,7 @@ export class DetailPesananPage {
                 alert.present();
 
               }, (error) => {
-                alert(error);
+                console.log(error);
                 // handle error
 
                 loading.dismiss();
