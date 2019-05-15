@@ -14,7 +14,7 @@ page-detail-pesanan {
     border-bottom: 1px solid gainsboro;
   }
 
-  
+
 
   .line {
     border-bottom: 1px solid gainsboro;
@@ -181,5 +181,12 @@ page-detail-pesanan {
     direction: ltr;
   }
 
+  .section {
+    display: flex;
+    padding: 5px;
 
+    &__btn {
+      margin: 5px
+    }
+  }
 }

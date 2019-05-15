@@ -184,14 +184,24 @@ export class DetailPesananPage {
               }
               this.waktu_status_utama = this.status.WaktuValidasiPesanan;
             }
-            else if (this.status.StatusKirimSampel == 3 && this.status.StatusPembayaran < 3) {
+            else if (this.status.StatusKirimSampel == 3 && this.status.StatusPembayaran == 1) {
               this.status_utama = "Sampel Diterima";
-              this.ket_status_utama = "Pengiriman sampel telah diterima.";
+              this.ket_status_utama = "Pengiriman sampel telah diterima. Segera lakukan pembayaran";
               this.waktu_status_utama = this.status.WaktuKirimSampel;
             }
-            else if (this.status.StatusKirimSampel < 3 && this.status.StatusPembayaran == 3) {
+            else if (this.status.StatusKirimSampel == 3 && this.status.StatusPembayaran == 2) {
+              this.status_utama = "Sampel Diterima";
+              this.ket_status_utama = "Pengiriman sampel telah diterima. Pembayaran sedang divalidasi.";
+              this.waktu_status_utama = this.status.WaktuKirimSampel;
+            }
+            else if (this.status.StatusKirimSampel == 1 && this.status.StatusPembayaran == 3) {
               this.status_utama = "Pembayaran Tervalidasi";
-              this.ket_status_utama = "Pembayaran telah tervalidasi oleh sistem.";
+              this.ket_status_utama = "Pembayaran telah tervalidasi oleh sistem. Segera lakukan pengiriman sampel.";
+              this.waktu_status_utama = this.status.WaktuPembayaran;
+            }
+            else if (this.status.StatusKirimSampel == 2 && this.status.StatusPembayaran == 3) {
+              this.status_utama = "Pembayaran Tervalidasi";
+              this.ket_status_utama = "Pembayaran telah tervalidasi oleh sistem. Pengiriman sampel sedang divalidasi.";
               this.waktu_status_utama = this.status.WaktuPembayaran;
             }
             else if (this.status.StatusKirimSampel == 3 && this.status.StatusPembayaran == 3) {
@@ -239,9 +249,9 @@ export class DetailPesananPage {
           else if (this.status.StatusUtama == 5) {
             this.status_utama = "Pesanan selesai";
             if (this.status.WaktuUlasan) {
-              this.ket_status_utama = "Silahkan unduh sertifikat hasil uji dan beri penilaian.";
-            } else {
               this.ket_status_utama = "Silahkan unduh sertifikat hasil uji.";
+            } else {
+              this.ket_status_utama = "Silahkan unduh sertifikat hasil uji dan beri penilaian.";
             }
             this.waktu_status_utama = this.status.WaktuSelesai;
             this.statusAnalisis = [

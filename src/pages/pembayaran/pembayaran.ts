@@ -129,7 +129,7 @@ export class PembayaranPage {
   }
 
 
-  postPhoto(photo) {
+  postPhoto(img) {
     const fileTransfer: FileTransferObject = this.transfer.create();
 
     let loading = this.loadCtrl.create({
@@ -141,21 +141,20 @@ export class PembayaranPage {
     this.data.getData().then((data) => {
       let options: FileUploadOptions = {
         fileKey: 'img',
-        fileName: 'Bukti Pembayaran',
+        fileName: img.substr(img.lastIndexOf('/') + 1),
         chunkedMode: false,
-        mimeType: "image/jpeg",
         headers: {
-          'Content-Type': 'image/png',
+          'Content-Type': 'image/jpeg',
           'Authorization': 'Bearer ' + data.api_token
         }
       }
-      if (photo) {
+      if (img) {
         console.log('ada foto')
-        console.log(photo)
+        console.log(img)
       } else {
         console.log('no foto')
       }
-      fileTransfer.upload(photo, this.data.BASE_URL + "/uploadBuktiPembayaran/" + this.idPesanan, options)
+      fileTransfer.upload(img,encodeURI(this.data.BASE_URL + "/uploadBuktiPembayaran/" + this.idPesanan), options)
         .then((response) => {
           this.responses = response;
           this.upload = JSON.parse(this.responses.response);

@@ -265,7 +265,7 @@
   </ion-card>
 
   <!-- FORMULIR PERMOHONAN ANALISIS & TANDA TERIMA SAMPEL-->
-  <ion-card *ngIf="status.StatusUtama >= 2">
+  <ion-card *ngIf="status.StatusUtama >= 2 && status.StatusUtama < 6">
     <ion-grid  *ngIf="status.StatusUtama >= 2">
       <ion-row>
         <ion-col col-9>
@@ -363,25 +363,19 @@
   </ion-card>
 
   <!-- BUTTON -->
-  <ion-card no-margin
-    *ngIf="(status.StatusPembayaran == 1 || status.StatusKirimSampel == 1) && status.StatusUtama == 2">
-    <ion-grid>
-      <ion-row>
-        <ion-col col-6 text-center *ngIf="status.StatusPembayaran == 1">
-          <button ion-button outline block color="orange" (click)="goto('pembayaran')" text-capitalize>
-            <ion-icon name="cash"></ion-icon>
-            Bayar Sekarang
-          </button>
-        </ion-col>
-        <ion-col col-6 text-center *ngIf="status.StatusKirimSampel == 1">
-          <button ion-button outline block (click)="goto('kirimSampel')" text-capitalize>
-            <ion-icon name="paper-plane"></ion-icon>
-            Kirim Sampel
-          </button>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+  <ion-card class="section" *ngIf="(status.StatusPembayaran == 1 || status.StatusKirimSampel == 1) && status.StatusUtama == 2">
+    <button ion-button outline block color="orange" (click)="goto('pembayaran')" text-capitalize
+      class="section__btn" *ngIf="status.StatusPembayaran == 1">
+      <ion-icon name="cash"></ion-icon>
+      Bayar Sekarang
+    </button>
+    <button ion-button outline block (click)="goto('kirimSampel')" text-capitalize class="section__btn"
+    *ngIf="status.StatusKirimSampel == 1" >
+      <ion-icon name="paper-plane"></ion-icon>
+      Kirim Sampel
+    </button>
   </ion-card>
+
   <ion-card *ngIf="status.StatusUtama == 1" padding>
     <button ion-button full color="danger" (click)="goto('batal')">
       Batalkan Pesanan
@@ -396,6 +390,7 @@
           </button>
         </ion-col>
       </ion-row>
+
       <ion-row *ngIf="status.WaktuUlasan">
         <ion-col col-8 align-self-center>
           Telah dinilai pada {{ status.WaktuUlasan | date: 'dd-MM-yyyy' }}
