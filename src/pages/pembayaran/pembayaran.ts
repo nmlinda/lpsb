@@ -23,7 +23,7 @@ export class PembayaranPage {
   idPesanan: any;
   harga: number;
   waktu: Date;
-  
+
 
   email: any;
   token: any;
@@ -48,7 +48,7 @@ export class PembayaranPage {
     this.harga = this.navParams.get('harga');
     this.waktu = new Date(this.navParams.get('waktu'));
     this.waktu.setDate(this.waktu.getDate() + 3);
-   
+
   }
 
   ionViewDidLoad() {
@@ -137,58 +137,87 @@ export class PembayaranPage {
     });
 
     loading.present();
-  
+
     this.data.getData().then((data) => {
-    let options: FileUploadOptions = {
-      fileKey: 'img',
-      fileName: 'Bukti Pembayaran',
-      chunkedMode: false,
-      mimeType: "image/jpeg",
-      headers: { 
-        'Content-Type': 'image/png',
-        'Authorization': 'Bearer ' + data.api_token 
-       }
-    }
-    if(photo) {
-      console.log('ada foto')
-      console.log(photo)
-    }else {
-      console.log('no foto')
-    }
-    fileTransfer.upload(photo, this.data.BASE_URL + "/uploadBuktiPembayaran/"+this.idPesanan, options)
-      .then((response) => {
-        this.responses = response;
-        this.upload = this.responses.response;
-      loading.dismiss();
-        console.log(response)
-        console.log(this.upload)
-        console.log(this.upload.DebugRequest)
-        this.NativePageTransitions.fade(null);
-        let currentIndex = this.navCtrl.getActive().index;
-        this.navCtrl.push(DetailPesananPage, { data: this.idPesanan }).then(() => {
-          this.navCtrl.remove(currentIndex);
-          this.navCtrl.remove(currentIndex - 1);
-        });
+      let options: FileUploadOptions = {
+        fileKey: 'img',
+        fileName: 'Bukti Pembayaran',
+        chunkedMode: false,
+        mimeType: "image/jpeg",
+        headers: {
+          'Content-Type': 'image/png',
+          'Authorization': 'Bearer ' + data.api_token
+        }
+      }
+      if (photo) {
+        console.log('ada foto')
+        console.log(photo)
+      } else {
+        console.log('no foto')
+      }
+      fileTransfer.upload(photo, this.data.BASE_URL + "/uploadBuktiPembayaran/" + this.idPesanan, options)
+        .then((response) => {
+          this.responses = response;
+          this.upload = JSON.parse(this.responses.response);
+          console.log(this.upload)
 
-        let alert = this.alertCtrl.create({
-          title: 'Unggah Bukti Pembayaran Berhasil'+ this.upload,
-          message: 'Bukti pembayaran sedang divalidasi.',
-          buttons: [
-            {
-              text: 'OK',
-              handler: () => {
-                console.log('Agree clicked');
+          if (this.upload.Status == 200) {
+            loading.dismiss();
+            this.NativePageTransitions.fade(null);
+            let currentIndex = this.navCtrl.getActive().index;
+            this.navCtrl.push(DetailPesananPage, { data: this.idPesanan }).then(() => {
+              this.navCtrl.remove(currentIndex);
+              this.navCtrl.remove(currentIndex - 1);
+            });
+
+            let alert = this.alertCtrl.create({
+              title: 'Unggah Bukti Pembayaran Berhasil',
+              message: 'Bukti pembayaran anda segera divalidasi.',
+              buttons: [
+                {
+                  text: 'OK',
+                  handler: () => {
+                    console.log('Agree clicked');
+                  }
+                }
+              ]
+            });
+            alert.present();
+
+          } else {
+            loading.dismiss();
+            let alert = this.alertCtrl.create({
+              title: 'Unggah Bukti Pembayaran Gagal',
+              message: 'Silahkan coba lagi.',
+              buttons: [
+                {
+                  text: 'OK',
+                  handler: () => {
+                    console.log('Agree clicked');
+                  }
+                }
+              ]
+            });
+            alert.present();
+          }
+
+        }, (err) => {
+          loading.dismiss();
+          console.log(err);
+          let alert = this.alertCtrl.create({
+            title: 'Unggah Bukti Pembayaran Gagal',
+            message: 'Silahkan coba lagi.',
+            buttons: [
+              {
+                text: 'OK',
+                handler: () => {
+                  console.log('Agree clicked');
+                }
               }
-            }
-          ]
+            ]
+          });
+          alert.present();
         });
-        alert.present();
-
-      }, (err) => {
-        console.log(err);
-        loading.dismiss();
-        alert("error: " + JSON.stringify(err));
-      });
-      })
+    })
   }
 }
