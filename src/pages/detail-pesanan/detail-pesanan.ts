@@ -387,7 +387,7 @@ export class DetailPesananPage {
                 loading.dismiss();
                 let alert = this.alertCtrl.create({
                   title: 'Unduh ' + this.docsname + ' Berhasil!',
-                  message: 'Lokasi Penyimpanan: ' + location + filename,
+                  message: 'Lokasi Penyimpanan: ' + this.storageDirectory + filename,
                   buttons: [
                     {
                       text: 'OK',
