@@ -22,10 +22,16 @@
       </ion-item>
 
       <ion-item>
-        <ion-icon name="key" item-end color="primary"></ion-icon>
         <ion-label stacked>Password</ion-label>
-        <ion-input type="password" [(ngModel)]="userData.password" formControlName="password" placeholder="password"
+        <ion-input type="password" [(ngModel)]="userData.password" type="{{status}}" formControlName="password" placeholder="password"
           [class.error1]="!loginform.controls.password.valid && loginform.controls.password.dirty"></ion-input>
+        <button class="btn-eye" [hidden]="!lihat" (click)="showPassword()" ion-button clear type="button" item-right>
+          <ion-icon name="eye" class='icon-eye' color="primary"> </ion-icon>
+        </button>
+        <button class="btn-eye" [hidden]="lihat" (click)="hidePassword()" ion-button clear type="button" item-right>
+          <ion-icon name="eye-off" class='icon-eye' color="primary"> </ion-icon>
+        </button>
+
       </ion-item>
       <ion-item no-lines
         *ngIf="( loginform.get('password').hasError('minlength') || loginform.get('password').hasError('maxlength') ||loginform.get('password').hasError('required') ) && loginform.get('password').touched">

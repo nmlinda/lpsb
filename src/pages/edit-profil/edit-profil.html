@@ -68,12 +68,12 @@
 
             <ion-item *ngIf="IPB">
                 <ion-icon name="finger-print" item-start color="primary"></ion-icon>
-                <ion-label stacked>NIM/NIK IPB</ion-label>
+                <ion-label stacked>NIP/NIM IPB</ion-label>
                 <ion-input type="text" [(ngModel)]="profilData.noIdentitas" placeholder="e.g. G64150049" formControlName="noIdentitas" [class.error1]="!profilform.controls.noIdentitas.valid && profilform.controls.noIdentitas.dirty"></ion-input>
             </ion-item>
             <ion-item no-lines *ngIf="profilform.get('noIdentitas').hasError('required') && profilform.get('noIdentitas').touched">
                 <div class="error" *ngIf="profilform.get('noIdentitas').hasError('required') && profilform.get('noIdentitas').touched">
-                    Masukkan NIM/NIK IPB
+                    Masukkan NIP/NIM IPB
                 </div>
             </ion-item>
 

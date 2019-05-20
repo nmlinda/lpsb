@@ -7,7 +7,7 @@
         <ion-buttons end>
             <button ion-button color="primary" class="btn--navbar" clear icon-only (click)="notifikasi()">
         <ion-icon name="notifications">
-          <ion-badge *ngIf="jumlahNotif" color="danger">{{ jumlahNotif }}</ion-badge>
+          <ion-badge *ngIf="jumlahNotif" color="danger" class="notif"></ion-badge>
         </ion-icon>
       </button>
             <button ion-button color="primary" id="btn" clear icon-only (click)="keranjang()">

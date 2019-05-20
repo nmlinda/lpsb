@@ -6,7 +6,7 @@
     <ion-buttons end>
       <button ion-button color="primary" class="btn--navbar" clear icon-only (click)="notifikasi()">
         <ion-icon name="notifications">
-          <ion-badge *ngIf="jumlahNotif" color="danger">{{ jumlahNotif }}</ion-badge>
+          <ion-badge *ngIf="jumlahNotif" color="danger" class="notif"></ion-badge>
         </ion-icon>
       </button>
       <button ion-button color="primary" class="btn--navbar" clear icon-only (click)="keranjang()">
@@ -24,15 +24,15 @@
         <ion-slide style="background-color:white">
           <h6>Selamat datang di LPSB!</h6>
         </ion-slide>
-      
+
         <ion-slide style="background-color: white">
           <h2>Slide 2</h2>
         </ion-slide>
-      
+
         <ion-slide style="background-color: white">
           <h2>Slide 3</h2>
         </ion-slide>
-      
+
       </ion-slides> -->
 
   <ion-searchbar (click)="cari()" class="search-bar" placeholder="Contoh: Fitokimia, Ekstraksi.."></ion-searchbar>

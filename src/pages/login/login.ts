@@ -25,6 +25,8 @@ export class LoginPage {
 
   data_user: any;
   logins: any = [];
+  status:string;
+  lihat: boolean;
 
   constructor(
     public navCtrl: NavController,
@@ -40,6 +42,13 @@ export class LoginPage {
     console.log('ionViewDidLoad LoginPage');
   }
 
+  ionViewWillEnter(){
+    this.status = "password";
+    this.lihat = true;
+  }
+  ionViewWillLeave(){
+    this.lihat = true;
+  }
   ngOnInit() {
     let EMAILPATTERN = '^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$';
     this.loginform = new FormGroup({
@@ -47,12 +56,22 @@ export class LoginPage {
       email: new FormControl('', [Validators.required, Validators.pattern(EMAILPATTERN)]),
     });
   }
+  showPassword(){
+    this.status = "text";
+    this.lihat = false;
+    console.log(this.status);
+  }
 
+  hidePassword(){
+    this.status = "password";
+    this.lihat = true;
+    console.log(this.status);
+  }
   login() {
     let loading = this.loadCtrl.create({
       content: 'memuat..'
     });
-    loading.present(); 
+    loading.present();
     setTimeout(() => {
       loading.dismiss();
     }, 5000);

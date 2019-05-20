@@ -63,7 +63,7 @@ export class DetailAnalisisPage {
       let loading = this.loadCtrl.create({
         content: 'memuat..'
       });
-      loading.present(); 
+      loading.present();
       setTimeout(() => {
       loading.dismiss();
     }, 5000);
@@ -108,7 +108,7 @@ export class DetailAnalisisPage {
             this.serbuk = this.jenisAnalisis.Serbuk;
             this.simplisia = this.jenisAnalisis.Simplisia;
             this.foto = this.jenisAnalisis.FotoKatalog;
-          } 
+          }
           else {
             loading.dismiss();
             let alert = this.alertCtrl.create({
@@ -173,7 +173,7 @@ export class DetailAnalisisPage {
     this.navCtrl.push(KeranjangPage);
   }
   buatPesanan() {
-    this.navCtrl.push(BuatPesanan2Page, { 
+    this.navCtrl.push(BuatPesanan2Page, {
       id: this.IDjenis,
       namaJenis: this.namaJenis,
       harga: this.harga,

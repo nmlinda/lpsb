@@ -154,7 +154,7 @@ export class PembayaranPage {
       } else {
         console.log('no foto')
       }
-      fileTransfer.upload(img,encodeURI(this.data.BASE_URL + "/uploadBuktiPembayaran/" + this.idPesanan), options)
+      fileTransfer.upload(img,encodeURI(this.data.BASE_URL + "/uploadBuktiPembayaran/" + this.idPesanan), options, true)
         .then((response) => {
           this.responses = response;
           this.upload = JSON.parse(this.responses.response);

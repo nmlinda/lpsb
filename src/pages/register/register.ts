@@ -1,3 +1,4 @@
+import { PasswordValidation } from './../../provider/PasswordValidation';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
@@ -10,7 +11,6 @@ import { TabsPage } from '../tabs/tabs';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
-    // 'Authorization': 'Bearer '+data.api_token
   })
 };
 
@@ -27,6 +27,7 @@ export class RegisterPage {
     "institusiLain": "",
     "noIdentitas": "",
     "password": "",
+    "ulangiPassword": "",
     "email": ""
   };
 
@@ -36,6 +37,10 @@ export class RegisterPage {
   email: string;
   password: string;
   daftarButton = true;
+  status:string;
+  lihat: boolean;
+  status2:string;
+  lihat2: boolean;
 
   institusi: string;
   institusiLain: boolean = false;
@@ -51,6 +56,17 @@ export class RegisterPage {
     public data: Data) {
   }
 
+  ionViewWillEnter(){
+    this.status = "password";
+    this.lihat = true;
+    this.status2 = "password";
+    this.lihat2 = true;
+  }
+  ionViewWillLeave(){
+    this.lihat = true;
+    this.lihat2 = true;
+  }
+
   ngOnInit() {
     let EMAILPATTERN = '^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$';
     this.signupform = new FormGroup({
@@ -60,11 +76,38 @@ export class RegisterPage {
       institusi: new FormControl('', [Validators.required]),
       institusiLain: new FormControl('', [Validators.required]),
       noIdentitas: new FormControl('', [Validators.required]),
-    });
+      ulangiPassword: new FormControl('', [Validators.required])
+    }),{
+      validator: PasswordValidation.MatchPassword // your validation method
+    }
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RegisterPage');
+  }
+
+  showPassword(){
+    this.status = "text";
+    this.lihat = false;
+    console.log(this.status);
+  }
+
+  hidePassword(){
+    this.status = "password";
+    this.lihat = true;
+    console.log(this.status);
+  }
+
+  showPassword2(){
+    this.status2 = "text";
+    this.lihat2 = false;
+    console.log(this.status);
+  }
+
+  hidePassword2(){
+    this.status2 = "password";
+    this.lihat2 = true;
+    console.log(this.status2);
   }
 
   institusiChange() {

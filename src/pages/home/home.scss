@@ -1,85 +1,100 @@
 page-home {
-    .card--green {
-        border: 2px solid #66A652;
-        border-radius: 10px;
+  .card--green {
+    border: 2px solid #66A652;
+    border-radius: 10px;
+  }
+
+  .text--white {
+    color: white;
+  }
+
+  button {
+    ion-badge {
+      background-color: red;
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      border-radius: 50% !important;
     }
-    .text--white {
-        color: white;
+  }
+
+  .btn--navbar {
+    position: relative;
+    width: 40px;
+    top: 1px;
+    right: 1px;
+    overflow: visible !important;
+  }
+
+  .content {
+    background-color: whitesmoke;
+  }
+
+  .search-bar {
+    background-color: white !important;
+  }
+
+  ion-slides {
+    height: 15vh;
+  }
+
+  ion-col {
+    .button-inner {
+      text-transform: none;
+      font-weight: normal;
     }
-    button {
-        ion-badge {
-            background-color: red;
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            border-radius: 50%;
-        }
-    }
-    .btn--navbar {
-        position: relative;
-        width: 40px;
-        top: 1px;
-        right: 1px;
-        overflow: visible !important;
-    }
-    .content {
-        background-color: whitesmoke;
-    }
-    .search-bar {
-        background-color: white !important;
-    }
-    ion-slides {
-        height: 15vh;
-    }
-    ion-col {
-        .button-inner {
-            text-transform: none;
-            font-weight: normal;
-        }
-    }
-    .img-card {
-        height: 50px;
-        width: 50px;
-        margin: auto;
-        display: block;
-    }
-    .card-utama {
-        // width: 100% !important;
-        // margin: 0 !important;
-    }
-    .card-item {
-        width: 30%;
-        margin: auto;
-        background-color: transparent;
-        webkit-box-shadow: none;
-        box-shadow: none;
-        display: inline-block;
-        white-space: normal;
-    }
-    // scroller
-    ion-scroll {
-        width: 100vw;
-        display: inline-block;
-        height: 16vh;
-    }
-    .scroll-zoom-wrapper {
-        white-space: nowrap;
-    }
-    .options {
-        margin-top: 3vh;
-        height: 10vh;
-        width: 20%;
-        margin: 0;
-    }
-    .tess {
-        line-height: normal;
-        white-space: nowrap !important;
-        // display: inline;
-    }
-    .kategori-col {
-        padding: 0;
-        margin-top: 3vh;
-        height: 100%;
-        margin: 0;
-    }
+  }
+
+  .img-card {
+    height: 50px;
+    width: 50px;
+    margin: auto;
+    display: block;
+  }
+
+  .card-utama {
+    // width: 100% !important;
+    // margin: 0 !important;
+  }
+
+  .card-item {
+    width: 30%;
+    margin: auto;
+    background-color: transparent;
+    webkit-box-shadow: none;
+    box-shadow: none;
+    display: inline-block;
+    white-space: normal;
+  }
+
+  // scroller
+  ion-scroll {
+    width: 100vw;
+    display: inline-block;
+    height: 16vh;
+  }
+
+  .scroll-zoom-wrapper {
+    white-space: nowrap;
+  }
+
+  .options {
+    margin-top: 3vh;
+    height: 10vh;
+    width: 20%;
+    margin: 0;
+  }
+
+  .tess {
+    line-height: normal;
+    white-space: nowrap !important;
+    // display: inline;
+  }
+
+  .kategori-col {
+    padding: 0;
+    margin-top: 3vh;
+    height: 100%;
+    margin: 0;
+  }
 }
