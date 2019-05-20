@@ -42,6 +42,7 @@
         </ion-item>
       </ion-item>
       <ion-item *ngIf="institusiLain">
+        <ion-icon name="briefcase" item-end color="primary"></ion-icon>
         <ion-input type="text" placeholder="e.g. Universitas Bakti" [(ngModel)]="userData.institusiLain"
           formControlName="institusiLain"
           [class.error1]="!signupform.controls.institusiLain.valid && signupform.controls.institusiLain.dirty">
@@ -118,13 +119,13 @@
 
         </ion-item>
         <ion-item no-lines
-          *ngIf="(signupform.controls['ulangiPassword'].errors?.MatchPassword || signupform.get('ulangiPassword').hasError('required') ) && signupform.get('ulangiPassword').touched">
+          *ngIf="(userData.password != userData.ulangiPassword || signupform.get('ulangiPassword').hasError('required') ) && signupform.get('ulangiPassword').touched">
           <div class="error"
             *ngIf="signupform.get('ulangiPassword').hasError('required') && signupform.get('ulangiPassword').touched">
             Masukkan password anda
           </div>
-          <div class="error" *ngIf="signupform.controls['ulangiPassword'].errors?.MatchPassword && signupform.get('ulangiPassword').touched">
-            Password tidak sama
+          <div class="error" *ngIf="userData.ulangiPassword && userData.password != userData.ulangiPassword && signupform.get('ulangiPassword').touched">
+            Password yang anda masukkan tidak sama
           </div>
         </ion-item>
 

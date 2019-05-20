@@ -105,7 +105,6 @@ export class PembayaranPage {
     }
     catch (e) {
       console.error(e);
-      alert("error");
     }
 
   }
@@ -125,6 +124,8 @@ export class PembayaranPage {
 
       this.validPhoto = true;
     }, (err) => {
+
+      console.error(err);
     });
   }
 

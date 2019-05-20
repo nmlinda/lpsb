@@ -1,4 +1,3 @@
-import { PasswordValidation } from './../../provider/PasswordValidation';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
@@ -77,9 +76,7 @@ export class RegisterPage {
       institusiLain: new FormControl('', [Validators.required]),
       noIdentitas: new FormControl('', [Validators.required]),
       ulangiPassword: new FormControl('', [Validators.required])
-    }),{
-      validator: PasswordValidation.MatchPassword // your validation method
-    }
+    })
   }
 
   ionViewDidLoad() {

@@ -42,7 +42,16 @@ a {
   top: 1px;
   right: 5px;
   width: 13px;
-  height: 12px;
+  height: 13px;
   padding-left: 0px;
   padding-right: 0px;
+}
+.notif, .badge-ios {
+  right: -2px !important;
+}
+button {
+  ion-badge {
+    border-radius: 50% !important;
+    padding: 3px 7px !important;
+  }
 }
