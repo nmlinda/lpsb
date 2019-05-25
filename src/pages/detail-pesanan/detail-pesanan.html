@@ -362,6 +362,12 @@
     </ion-grid>
   </ion-card>
 
+  <button ion-button outline block color="orange" (click)="goto('pembayaran')" text-capitalize
+      class="section__btn">
+      <ion-icon name="cash"></ion-icon>
+      Bayar Sekarang
+    </button>
+
   <!-- BUTTON -->
   <ion-card class="section" *ngIf="(status.StatusPembayaran == 1 || status.StatusKirimSampel == 1) && status.StatusUtama == 2">
     <button ion-button outline block color="orange" (click)="goto('pembayaran')" text-capitalize
