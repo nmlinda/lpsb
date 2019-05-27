@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { App, IonicPage, NavController, NavParams, LoadingController, AlertController, ModalController } from 'ionic-angular';
 import { EditProfilPage } from '../edit-profil/edit-profil';
 import { EditRekeningPage } from '../edit-rekening/edit-rekening';
-import { GantiPasswordPage } from '../ganti-password/ganti-password';
 
 // import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 import { LoginPage } from '../login/login';
@@ -30,7 +29,7 @@ export class ProfilPage {
     public modalCtrl: ModalController,
     public data: Data,
     public app: App) {
-   
+
   }
 
   ionViewDidLoad() {
@@ -69,7 +68,7 @@ export class ProfilPage {
           text: 'Ya',
           handler: () => {
             console.log('Agree clicked')
-            // this.navCtrl.setRoot(MyApp); 
+            // this.navCtrl.setRoot(MyApp);
             this.data.logout();
             this.app.getRootNav().setRoot(LoginPage);
           }
@@ -94,14 +93,9 @@ export class ProfilPage {
       });
     modal.present();
   }
-  
+
   editRekening(){
     let modal = this.modalCtrl.create(EditRekeningPage);
-    modal.present();
-  }
-
-  gantiPass(){
-    let modal = this.modalCtrl.create(GantiPasswordPage);
     modal.present();
   }
 

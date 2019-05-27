@@ -1,19 +1,45 @@
 page-profil {
-    ion-avatar{
-        width: 70px;
-        display: block;
-        margin: auto;
-        border-radius: 50% !important;
-        overflow: hidden;
+  ion-avatar {
+    width: 70px;
+    display: block;
+    margin: auto;
+    border-radius: 50% !important;
+    overflow: hidden;
+  }
+
+  ion-card {
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
+  .label-md {
+    margin: 0;
+  }
+
+  .card-grey {
+    background-color: whitesmoke;
+  }
+
+  .profil {
+    display:flex;
+    padding: 10px;
+    background-color: whitesmoke;
+
+    &__data {
+      flex-basis: 90%;
     }
-    ion-card{
-        width: 100% !important;
-        margin: 0 !important;
+
+    &__item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 5px;
+
+      ion-icon {
+        font-size: 25px;
+      }
+      h2 {
+        flex-basis: 90%;
+      }
     }
-    .label-md {
-        margin: 0;
-    }
-    .card-grey{
-        background-color: whitesmoke;
-    }
+  }
 }

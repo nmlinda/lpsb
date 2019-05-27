@@ -26,7 +26,6 @@ import { HttpModule } from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { CariPage } from '../pages/cari/cari';
 import { DetailAnalisisPage } from '../pages/detail-analisis/detail-analisis';
-import { GantiPasswordPage } from '../pages/ganti-password/ganti-password';
 import { KirimSampelPage } from '../pages/kirim-sampel/kirim-sampel';
 import { PembayaranPage } from '../pages/pembayaran/pembayaran';
 import { BatalPesananPage } from '../pages/batal-pesanan/batal-pesanan';
@@ -60,7 +59,6 @@ import { Camera } from '@ionic-native/camera';
     EditRekeningPage,
     CariPage,
     DetailAnalisisPage,
-    GantiPasswordPage,
     KirimSampelPage,
     PembayaranPage,
     BatalPesananPage,
@@ -97,7 +95,6 @@ import { Camera } from '@ionic-native/camera';
     EditRekeningPage,
     CariPage,
     DetailAnalisisPage,
-    GantiPasswordPage,
     KirimSampelPage,
     PembayaranPage,
     BatalPesananPage,

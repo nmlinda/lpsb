@@ -8,54 +8,53 @@
 
 
 <ion-content>
-  <ion-card >
-    <ion-grid class="card-grey">
-      <ion-row class="card-grey">
-        <ion-col col-10 class="card-grey">
-          <h1>
-            {{nama}}
-          </h1>
-          <h2>
-            <ion-icon name="mail" margin-end color="primary"></ion-icon>
-            <span *ngIf="email">{{email}}<br></span>
-            <span *ngIf="!email">-<br></span>
-          </h2>
-          <h2>
-            <ion-icon name="call" margin-end color="primary"></ion-icon>
-            <span *ngIf="noHp">{{noHp}}<br></span>
-            <span *ngIf="!noHp">-<br></span>
-          </h2>
-          <h2>
-            <ion-icon name="briefcase" margin-end color="primary"></ion-icon>
-            <span *ngIf="institusi">{{institusi}}<br></span>
-            <span *ngIf="!institusi">-<br></span>
-          </h2>
-          <h2>
-            <ion-icon name="home" margin-end color="primary"></ion-icon>
-            <span *ngIf="alamat">{{alamat}}<br></span>
-            <span *ngIf="!alamat">-<br></span>
-          </h2>
-          <h2>
-            <ion-icon name="checkmark-circle-outline" margin-end color="primary"></ion-icon>
-            NPWP:
-            <span *ngIf="npwp">{{npwp}}<br></span>
-            <span *ngIf="!npwp">-<br></span>
-          </h2>
-        </ion-col>
-        <ion-col col-2 text-center class="card-grey">
-          <button ion-button clear icon-only (click)="editProfil()">
-            <ion-icon name="create" color="primary"></ion-icon>
-          </button>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+  <ion-card class="profil">
+    <div class="profil__data">
+      <h1>
+        {{nama}}
+      </h1>
+      <div class="profil__item">
+        <ion-icon name="mail" margin-end color="primary"></ion-icon>
+        <h2>
+          <span *ngIf="email">{{email}}<br></span>
+          <span *ngIf="!email">-<br></span>
+        </h2>
+      </div>
+      <div class="profil__item">
+        <ion-icon name="call" margin-end color="primary"></ion-icon>
+        <h2>
+          <span *ngIf="noHp">{{noHp}}<br></span>
+          <span *ngIf="!noHp">-<br></span>
+        </h2>
+      </div>
+      <div class="profil__item">
+        <ion-icon name="briefcase" margin-end color="primary"></ion-icon>
+        <h2>
+          <span *ngIf="institusi">{{institusi}}<br></span>
+          <span *ngIf="!institusi">-<br></span>
+        </h2>
+      </div>
+      <div class="profil__item">
+        <ion-icon name="home" margin-end color="primary"></ion-icon>
+        <h2>
+          <span *ngIf="alamat">{{alamat}}<br></span>
+          <span *ngIf="!alamat">-<br></span>
+        </h2>
+      </div>
+      <div class="profil__item">
+        <ion-icon name="checkmark-circle-outline" margin-end color="primary"></ion-icon>
+        <h2>
+          NPWP:
+          <span *ngIf="npwp">{{npwp}}<br></span>
+          <span *ngIf="!npwp">-<br></span>
+        </h2>
+      </div>
+    </div>
+    <button ion-button clear icon-only (click)="editProfil()" class="profil__btn">
+      <ion-icon name="create" color="primary"></ion-icon>
+    </button>
   </ion-card>
 
-  <ion-item (click)="gantiPass()">
-    <ion-icon name="key" item-start color="primary"></ion-icon>
-    Ubah Password
-    <ion-icon name="arrow-dropright" item-end color="primary"></ion-icon>
-  </ion-item>
   <ion-item (click)="logout()">
     <ion-icon name="log-out" item-start color="primary"></ion-icon>
     Keluar

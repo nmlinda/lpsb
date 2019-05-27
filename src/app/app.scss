@@ -13,30 +13,41 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 ion-col {
-    position: initial !important;
+  position: initial !important;
 }
-ion-input, ion-textarea, ion-select{
-    border-bottom: 1px solid #66A652;
+
+ion-input,
+ion-textarea,
+ion-select {
+  border-bottom: 1px solid #66A652;
 }
+
 a {
-    color: black;
+  color: black;
 }
+
 .list-ios {
-  > .item-block:last-child, .item-block {
+
+  >.item-block:last-child,
+  .item-block {
     border: none !important;
   }
 }
+
 .list-ios .item-block .item-inner {
   border: none;
 }
+
 .btn-eye {
   padding: 0 !important;
   margin-right: 0 !important;
 }
+
 .icon-eye {
   font-size: 2.8rem;
   margin: 0;
 }
+
 .notif {
   display: block !important;
   top: 1px;
@@ -46,9 +57,12 @@ a {
   padding-left: 0px;
   padding-right: 0px;
 }
-.notif, .badge-ios {
+
+.notif,
+.badge-ios {
   right: -2px !important;
 }
+
 button {
   ion-badge {
     border-radius: 50% !important;
