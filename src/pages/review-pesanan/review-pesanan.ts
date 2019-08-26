@@ -27,7 +27,6 @@ export class ReviewPesananPage {
   hargaPercepatan: boolean = false;
   harga: number = 0;
   harga2x: number = 0;
-  kodeUnik: number = 429;
   totalHarga: number = 0;
   totalHarga2: number = 0;
   nama: string;
@@ -97,7 +96,7 @@ export class ReviewPesananPage {
           this.sampel[j].Harga = this.sampel[j].HargaNONIPB;
         }
       }
-      this.totalHarga = this.harga + this.kodeUnik;
+      this.totalHarga = this.harga;
 
     })
 
@@ -339,14 +338,14 @@ export class ReviewPesananPage {
 
   totalBiasa(){
     this.lamaPengujian = 1;
-    this.totalHarga = this.harga + this.kodeUnik;
+    this.totalHarga = this.harga;
     this.hargaPercepatan = false;
   }
 
   totalDipercepat(){
     this.lamaPengujian = 2;
     this.harga2x = this.harga * 2;
-    this.totalHarga = this.harga2x + this.kodeUnik;
+    this.totalHarga = this.harga2x;
     this.hargaPercepatan = true;
   }
 }

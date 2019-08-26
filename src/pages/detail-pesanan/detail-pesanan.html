@@ -124,22 +124,11 @@
           Sub total <span *ngIf="pesanan.Percepatan == 2">(percepatan)</span>
         </ion-col>
         <ion-col col-4 text-right>
-          <span *ngIf="pesanan.Percepatan == 1"> Rp {{ pesanan.HargaTotal-kodeUnik| number:0 }}</span>
+          <span *ngIf="pesanan.Percepatan == 1"> Rp {{ pesanan.HargaTotal | number:0 }}</span>
           <span *ngIf="pesanan.Percepatan == 2">
-            Rp ({{ (pesanan.HargaTotal-kodeUnik) / 2 }})x2<br>
-            Rp {{ pesanan.HargaTotal - kodeUnik}}
+            Rp ({{ (pesanan.HargaTotal ) / 2 }})x2<br>
+            Rp {{ pesanan.HargaTotal }}
           </span>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col col-1>
-
-        </ion-col>
-        <ion-col col-7>
-          Kode Unik
-        </ion-col>
-        <ion-col col-4 text-right>
-          Rp {{ kodeUnik }}
         </ion-col>
       </ion-row>
       <ion-row>
@@ -361,12 +350,6 @@
       </ion-row>
     </ion-grid>
   </ion-card>
-
-  <button ion-button outline block color="orange" (click)="goto('pembayaran')" text-capitalize
-      class="section__btn">
-      <ion-icon name="cash"></ion-icon>
-      Bayar Sekarang
-    </button>
 
   <!-- BUTTON -->
   <ion-card class="section" *ngIf="(status.StatusPembayaran == 1 || status.StatusKirimSampel == 1) && status.StatusUtama == 2">

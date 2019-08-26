@@ -169,13 +169,10 @@
                         Sub Total <span *ngIf="hargaPercepatan">(Percepatan)</span>
                     </h3>
                     <br *ngIf="hargaPercepatan">
-                    <h3 no-margin *ngIf="IPB" class="sub-head">
-                        Kode Unik
-                    </h3>
                     <h2 class="head">
                         <strong>
-              Total
-            </strong>
+                          Total
+                        </strong>
                     </h2>
                 </ion-col>
                 <ion-col col-5>
@@ -187,9 +184,6 @@
                     </h3>
                     <h3 *ngIf="IPB && hargaPercepatan" no-margin text-right class="sub-head">
                         Rp {{harga2x | number:0 }}
-                    </h3>
-                    <h3 no-margin text-right *ngIf="IPB" class="sub-head">
-                        Rp {{kodeUnik | number:0 }}
                     </h3>
                     <h2 text-right style="color:#FF6B21;" class="head" *ngIf="IPB">
                         <strong>

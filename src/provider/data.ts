@@ -5,9 +5,9 @@ import { Storage } from '@ionic/storage';
 
 @Injectable()
 export class Data {
-  // public BASE_URL = 'http://ci.apps.cs.ipb.ac.id/elpsb/api';
+  public BASE_URL = 'http://biofarmaka-lpsb.serveo.net/elpsb/api';
 
-  public BASE_URL = 'https://powerful-tor-69480.herokuapp.com/elpsb/api';
+  // public BASE_URL = 'https://powerful-tor-69480.herokuapp.com/elpsb/api';
   public HAS_LOGGED_IN = 'status_login';
 
   constructor(public httpClient: HttpClient, public storage: Storage) {
