@@ -1,3 +1,4 @@
+import { ContactPage } from './../contact/contact';
 import { Component } from '@angular/core';
 import { App, IonicPage, NavController, NavParams, LoadingController, AlertController, ModalController } from 'ionic-angular';
 import { EditProfilPage } from '../edit-profil/edit-profil';
@@ -13,7 +14,7 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: 'profil.html',
 })
 export class ProfilPage {
-    nama: string;
+  nama: string;
   institusi: string;
   alamat: string;
 
@@ -99,4 +100,7 @@ export class ProfilPage {
     modal.present();
   }
 
+  gotoContact() {
+    this.navCtrl.push(ContactPage);
+  }
 }

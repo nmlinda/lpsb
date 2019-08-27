@@ -1,3 +1,4 @@
+import { ContactPage } from './../pages/contact/contact';
 import { NativePageTransitions } from '@ionic-native/native-page-transitions';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -69,7 +70,8 @@ import { Camera } from '@ionic-native/camera';
     RegisterPage,
     ModalDetailSampelPage,
     ModalEditProfilPage,
-    CariPipe
+    CariPipe,
+    ContactPage
   ],
   imports: [
     HttpClientModule,
@@ -104,7 +106,8 @@ import { Camera } from '@ionic-native/camera';
     LoginPage,
     RegisterPage,
     ModalDetailSampelPage,
-    ModalEditProfilPage
+    ModalEditProfilPage,
+    ContactPage
   ],
   providers: [
     Data,
